@@ -1,5 +1,5 @@
 # Modernizing Domain-Specific Languages with XMLText and IntellEdit
-![Logo](http://intelledit.big.tuwien.ac.at/img/XMLIntellEditLogo.svg)
+![Logo](http://xmlintelledit.big.tuwien.ac.at/img/XMLIntellEditLogo.svg)
 
 The necessity of software evolution caused by novel requirements is often triggered alongside the advancement of underlying languages and tools.
 
