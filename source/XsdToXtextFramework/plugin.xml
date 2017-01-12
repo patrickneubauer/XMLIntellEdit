@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Library3WithReferences -->
+      <package
+            uri="platform:/plugin/library3WithReferences.xsd"
+            class="Library3WithReferences.Library3Package"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Library3WithReferences -->
+      <parser
+            type="library3"
+            class="Library3WithReferences.util.Library3ResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Library3 -->
+      <package
+            uri="platform:/plugin/library3.xsd"
+            class="library3.Library3Package"
+            genModel="Library3.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Library3 -->
+      <parser
+            type="library3"
+            class="library3.util.Library3ResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated library3.ecore.simple -->
+      <package
+            uri="platform:/plugin/library3.xsd-simplified"
+            class="library3Simplified.Library3SimplifiedPackage"
+            genModel="library3.ecore.simple.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated library3simple -->
+      <package
+            uri="http://platform:/plugin/library3.xsdsimplified"
+            class="library3Simplified.library3SimplifiedPackage"
+            genModel="library3simple.genmodel"/>
+   </extension>
+
+</plugin>

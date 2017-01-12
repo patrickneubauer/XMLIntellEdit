@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Library3s:DocumentRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Library3s="platform:/plugin/library3.xsd-simplified" xsi:schemaLocation="platform:/plugin/library3.xsd-simplified library3.ecore.simple.ecore">
+  <book isbn="fas" author="asdf" title="fffd"/>
+</Library3s:DocumentRoot>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="library3.xsd">
+  <book isbn="0123456789">
+    <title>Unbeschriebenes Blatt</title>
+    <author>Neuer Autor</author>
+  </book>
+</library>
