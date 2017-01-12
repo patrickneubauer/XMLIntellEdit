@@ -41,7 +41,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 import at.ac.tuwien.big.autoedit.ecore.util.MyEcoreUtil;
-import at.ac.tuwien.big.autoedit.ecore.util.MyResource;
 import at.ac.tuwien.big.ecoretransform.CollectionValueTransformation;
 import at.ac.tuwien.big.ecoretransform.EAttributeTransformator;
 import at.ac.tuwien.big.ecoretransform.EReferenceTransformator;
@@ -199,14 +198,12 @@ public class TransformatorStructure {
 		return commonIdAttribute;
 	}
 
+	public Resource getEcoreResource() {
+		return ecoreResource;
+	}
+	
 	private Resource ecoreResource;
 	private Iterable<EObject> xmlResource;
-	
-	public MyResource myEcore;
-	
-	public MyResource getMyEcore() {
-		return myEcore;
-	}
 	
 	public EClass getEcoreEClass(EClass xml) {
 		return xmlToEcoreClasses.get(xml);
@@ -347,8 +344,6 @@ public class TransformatorStructure {
 				xmlToEcoreReferences.remove(key);
 			}
 		}
-		//myXml = MyResource.get(xmlResource);
-		myEcore = MyResource.get(ecoreResource);
 		
 		//Add OCL expressions
 		for (EObject eobj: xmlResource) {

@@ -263,7 +263,7 @@ public class XsdToXtextGenerator {
 				ecoreResource, targetName);
 		rootClass[0] = struct.getEcoreRoot();
 		rootClass[0] = struct.getEcoreRoot();
-		Resource ecoreRResource = struct.getMyEcore().getResource();
+		Resource ecoreRResource = struct.getEcoreResource();
 		try {
 			ecoreRResource.save(new FileOutputStream(new File(ECORE_FILE_NAME)), null);
 		} catch (IOException e1) {

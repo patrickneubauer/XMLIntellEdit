@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import at.ac.tuwien.big.autoedit.ecore.util.MyEcoreUtil;
-import at.ac.tuwien.big.autoedit.ecore.util.MyResource;
 import at.ac.tuwien.big.ecoretransform.CollectionValueTransformation;
 import at.ac.tuwien.big.ecoretransform.EAttributeTransformator;
 import at.ac.tuwien.big.ecoretransform.EReferenceTransformator;
@@ -122,7 +121,7 @@ public class TransformatorImpl implements Transformator {
 		}
 		EObject ret = xmlToEcore.get(xmlObject);
 		if (ret == null) {
-			ret = structure.getMyEcore().createInstance(retClass);
+			ret = MyEcoreUtil.createInstanceStatic(retClass);
 			xmlToEcore.put(xmlObject, ret);
 			ecoreToXml.put(ret, xmlObject);
 		}
@@ -166,7 +165,7 @@ public class TransformatorImpl implements Transformator {
 		}
 		EObject ret = ecoreToXml.get(eobject);
 		if (ret == null) {
-			ret = MyResource.createInstanceStatic(retClass);
+			ret = MyEcoreUtil.createInstanceStatic(retClass);
 			ecoreToXml.put(eobject, ret);
 			xmlToEcore.put(ret, eobject);
 		}
