@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.sql.rowset.spi.XmlReader;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -22,12 +23,11 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import at.ac.tuwien.big.autoedit.ecore.util.MyEcoreUtil;
-import at.ac.tuwien.big.autoedit.ecore.util.MyResource;
 import at.ac.tuwien.big.ecoretransform.CollectionValueTransformation;
 import at.ac.tuwien.big.ecoretransform.EAttributeTransformator;
 import at.ac.tuwien.big.ecoretransform.EReferenceTransformator;
 import at.ac.tuwien.big.ecoretransform.Transformator;
+import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 
 public class TransformatorImpl implements Transformator {
 	
@@ -39,6 +39,9 @@ public class TransformatorImpl implements Transformator {
 	
 	private Map<EObject,EObject> xmlToEcore = new HashMap<EObject, EObject>();
 	private Map<EObject,EObject> ecoreToXml = new HashMap<EObject, EObject>();
+	
+	private Resource ecore;
+	private Resource xml;
 	
 	private Set<EObject> fullTransformed = new HashSet<>();
 	
@@ -60,6 +63,8 @@ public class TransformatorImpl implements Transformator {
 	}
 
 	public void xmlToEcore(Resource xml, Resource ecore) {
+		this.ecore = ecore;
+		this.xml = xml;
 		Collection<EObject> eobjs = xml.getContents();
 		ecore.getContents().clear();
 		for (EObject eobj: eobjs) {
@@ -80,6 +85,8 @@ public class TransformatorImpl implements Transformator {
 	}
 	
 	public void ecoreToXml(Resource ecore, Resource xml) {
+		this.ecore = ecore;
+		this.xml = xml;
 		Collection<EObject> eobjs = ecore.getContents();
 		Collection<EObject> eobjs2 = xml.getContents();
 		EObject root = null;
@@ -166,7 +173,7 @@ public class TransformatorImpl implements Transformator {
 		}
 		EObject ret = ecoreToXml.get(eobject);
 		if (ret == null) {
-			ret = MyResource.createInstanceStatic(retClass);
+			ret = MyEcoreUtil.createInstanceStatic(retClass);
 			ecoreToXml.put(eobject, ret);
 			xmlToEcore.put(ret, eobject);
 		}
@@ -197,6 +204,26 @@ public class TransformatorImpl implements Transformator {
 			}
 		}
 		return ret;
+	}
+
+	public Resource getEcoreResource() {
+		return ecore;
+	}
+	
+	public Resource getXmlResource() {
+		return xml;
+	}
+	
+	public List<EObject> getEcoreContents() {
+		return ecore.getContents();
+	}
+
+	public void xmlToEcore() {
+		xmlToEcore(getXmlResource(), getEcoreResource());
+	}
+
+	public void ecoreToXml() {
+		ecoreToXml(getEcoreResource(), getXmlResource());
 	}
 
 

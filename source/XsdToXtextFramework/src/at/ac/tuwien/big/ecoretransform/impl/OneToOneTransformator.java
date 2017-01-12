@@ -12,11 +12,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import at.ac.tuwien.big.autoedit.ecore.util.MyEcoreUtil;
-import at.ac.tuwien.big.autoedit.ecore.util.MyResource;
 import at.ac.tuwien.big.ecoretransform.EAttributeTransformator;
 import at.ac.tuwien.big.ecoretransform.EReferenceTransformator;
 import at.ac.tuwien.big.ecoretransform.Transformator;
+import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 
 public class OneToOneTransformator implements Transformator {
 
@@ -49,7 +48,7 @@ public class OneToOneTransformator implements Transformator {
 		EObject ret = xmlToEcore.get(xmlObject);
 		if (ret == null) {
 			EClass targetClass = (EClass)ecore.getEObject(xml.getURIFragment(xmlObject));
-			ret = MyResource.createInstanceStatic(targetClass);
+			ret = MyEcoreUtil.createInstanceStatic(targetClass);
 			xmlToEcore.put(xmlObject, ret);
 			ecoreToXml.put(ret, xmlObject);
 		}
@@ -82,7 +81,7 @@ public class OneToOneTransformator implements Transformator {
 		}
 		EObject ret = ecoreToXml.get(eobject);
 		if (ret == null) {
-			ret = MyResource.createInstanceStatic(retClass);
+			ret = MyEcoreUtil.createInstanceStatic(retClass);
 			ecoreToXml.put(eobject, ret);
 			xmlToEcore.put(ret, eobject);
 		}

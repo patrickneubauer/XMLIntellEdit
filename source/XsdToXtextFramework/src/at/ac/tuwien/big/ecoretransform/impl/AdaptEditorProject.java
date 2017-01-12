@@ -136,7 +136,10 @@ public class AdaptEditorProject {
 				strings.addAll(index+1, Arrays.asList(
 						 " at.ac.tuwien.big.oclgen,",
 						 " at.ac.tuwien.big.autoedit,",
-						 " org.eclipse.xtext.util,"
+						 " org.eclipse.xtext.util,",
+						 " org.eclipse.xsd.ecore,",
+						 " org.eclipse.text,",
+						 " at.ac.tuwien.big.XtextUtil,,"
 						));
 				return;
 			}

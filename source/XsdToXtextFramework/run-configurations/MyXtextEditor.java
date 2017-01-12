@@ -1,23 +1,41 @@
 package org.xtext.example.librarytest.ui;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 import java.util.WeakHashMap;
 
+
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationAccess;
 import org.eclipse.jface.text.source.IAnnotationAccessExtension;
+import org.eclipse.jface.text.source.IAnnotationModel;
+import org.eclipse.jface.text.source.IAnnotationModelExtension;
 import org.eclipse.jface.text.source.ImageUtilities;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
@@ -26,6 +44,11 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.ui.texteditor.DefaultMarkerAnnotationAccess;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
+import org.eclipse.ui.texteditor.SimpleMarkerAnnotation;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
@@ -34,15 +57,49 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
+import at.ac.tuwien.big.autoedit.ecore.util.MyResource;
 import at.ac.tuwien.big.autoedit.proposal.ProposalList;
 import at.ac.tuwien.big.autoedit.xtext.DynamicValidator;
 import at.ac.tuwien.big.autoedit.xtext.ExpressionQuickfixInfo;
+import at.ac.tuwien.big.ecoretransform.impl.TransformatorImpl;
+import at.ac.tuwien.big.ecoretransform.impl.TransformatorStructure;
+import at.ac.tuwien.big.ecoretransform.impl.TypeTransformatorStore;
+import at.ac.tuwien.big.xtext.equalizer.InstanceCreator;
+import at.ac.tuwien.big.xtext.equalizer.impl.SimpleModelCorrespondance;
+import at.ac.tuwien.big.xtext.equalizer.impl.SimpleModelEqualizer;
+import at.ac.tuwien.big.xtext.util.ui.AnnotationTree;
 
 public class MyXtextEditor extends XtextEditor {
 
 	IXtextDocument lastDoc = null;
 	
-/*
+	TransformatorStructure struct = null;
+	
+	private WeakHashMap<String, EObject> uuidToEObject = new WeakHashMap<String, EObject>();
+	private WeakHashMap<EObject, String> eobjectToUuid = new WeakHashMap<EObject, String>();
+	
+	private TransformatorImpl transformator; 
+	
+	public EObject getEObject(String forUUID) {
+		return uuidToEObject.get(forUUID);
+	}
+	
+	public String getOrCreateUUID(EObject forObject) {
+		String ret = eobjectToUuid.get(forObject);
+		if (ret == null) {
+			ret = UUID.randomUUID().toString();
+			uuidToEObject.put(ret, forObject);
+			eobjectToUuid.put(forObject, ret);
+		}
+		return ret;
+	}
+	
+
+	
+	private static final String ANNOTATION_TYPE_TARGET = "GENERATED_MODEL_ANNOTATION_TARGET";
+	private static final String MARKER_TYPE_TARGET = "simplejava.isgenerated.target";
+	
+
 	public IXtextDocument getDocument() {
 		IXtextDocument doc = super.getDocument();
 		if (doc != lastDoc) {
@@ -58,13 +115,18 @@ public class MyXtextEditor extends XtextEditor {
 					URI testXml = URI.createURI(str);
 					try {
 						Resource xmlTest = state.getResourceSet().getResource(testXml, true);
-						EPackage mainPkg = (EPackage)xmlTest.getContents().get(0);
+						
+						EPackage mainPkg = (EPackage)xmlTest.getContents().get(0).eClass().getEPackage();
 						String tryUri = mainPkg.getNsURI()+"simplified";
 						EPackage simplified = state.getResourceSet().getPackageRegistry().getEPackage(tryUri);
 						if (simplified == null) {
 							//Generate completely new
-							Transform
+							struct = new TransformatorStructure(new TypeTransformatorStore(), state.getResourceSet(), mainPkg.eResource());
+							transformator = new TransformatorImpl(struct);
 						}
+						transformator.clearCompleted();
+						transformator.xmlToEcore(xmlTest, state);
+						synchronizeFromBase(state);
 					} catch (Exception e) {
 						System.err.println("Could not load xml resource: "+e.getMessage());
 						e.printStackTrace();
@@ -76,8 +138,214 @@ public class MyXtextEditor extends XtextEditor {
 			lastDoc = doc;
 		}
 		return doc;
-	}*/
+	}
 	
+	public void doSave(IProgressMonitor monitor) {
+		IXtextDocument doc = super.getDocument();
+		doc.readOnly(new IUnitOfWork<Object, XtextResource>(){
+
+			@Override
+			public Object exec(XtextResource state) throws Exception {
+				resynchronizeToBase(state);
+				return null;
+			}
+		});
+		super.doSave(monitor);
+	}
+	
+	public String getReferencedUUID(MarkerAnnotation annotation) {
+		return annotation.getMarker().getAttribute("uuid", null);
+	}
+	
+	public String getContainingObjectUUID(String uuid) {
+		EObject eobj = getEObject(uuid);
+		if (eobj != null) {
+			return getUUIDOrNull(eobj.eContainer());
+		}
+		return null;
+	}
+
+	private String getUUIDOrNull(EObject eobj) {
+		return eobjectToUuid.get(eobj);
+	}
+
+	public String pickDeepestUuid(List<String> uuids) {
+		Set<String> possible = new HashSet<>(uuids);
+		for (String sub: uuids) {
+			possible.remove(getContainingObjectUUID(sub));
+		}
+		if (!possible.isEmpty()) {
+			return possible.iterator().next();
+		}
+		return null;
+	}
+	
+	public String pickDeepest(List<String> str) {
+		String ret = pickDeepestUuid(str);
+		if (ret != null) {
+			return ret;
+		}
+		return null;
+	}	
+
+	public void synchronizeFromBase(XtextResource state) {
+		/*transformator.clearCompleted();
+		transformator.xmlToEcore();*/
+		Map<Annotation,Position> newAnnotations = new HashMap<Annotation, Position>();
+		List<EObject> targetEObject = new ArrayList<EObject>();
+		IResource res = getResource();  
+		for (EObject eobj: (Iterable<EObject>)()->state.getAllContents()) {
+			targetEObject.add(eobj);
+			ICompositeNode node = NodeModelUtils.getNode(eobj);
+			int start = node.getOffset();
+			int end = node.getEndOffset();
+			
+			//Targets
+			EObject searchObj = transformator.getEcoreResource().getEObject(state.getURIFragment(eobj));
+			if (searchObj == null) {
+				System.err.println("Unassociated searchobj from " +eobj+"!");
+				continue;
+			}
+			String uuid = getOrCreateUUID(searchObj);
+			try {
+				IMarker marker = res.createMarker(MARKER_TYPE_TARGET);
+				marker.setAttribute(IMarker.MESSAGE, "Target Object: "+uuid);
+				marker.setAttribute("uuid", uuid);
+				marker.setAttribute(IMarker.CHAR_START, start);
+				marker.setAttribute(IMarker.CHAR_END, end);
+				SimpleMarkerAnnotation annotation = new SimpleMarkerAnnotation(ANNOTATION_TYPE_TARGET, marker);
+				newAnnotations.put(annotation, new Position(start, end-start));
+			} catch (CoreException e) {
+				System.err.println("Exception "+e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		IAnnotationModel model = getSourceViewer().getAnnotationModel();
+		if (model instanceof IAnnotationModelExtension) {
+			IAnnotationModelExtension ext = (IAnnotationModelExtension)model;
+			ext.removeAllAnnotations();
+			ext.replaceAnnotations(new Annotation[]{},newAnnotations);
+		} else {
+			System.err.println("I want an extension!");
+		}
+	}
+	
+	public void resynchronizeToBase(XtextResource state) {
+		transformator.clearCompleted();
+		SimpleModelCorrespondance correspondance = new SimpleModelCorrespondance();
+		//Build correspondance map based on annotations
+		
+		//Get positions of elements
+		AnnotationTree<MarkerAnnotation> fakeTree = new AnnotationTree<>(null, null, 0, Integer.MAX_VALUE);
+		IAnnotationModel annotationmodel = getSourceViewer().getAnnotationModel();
+		Map<MarkerAnnotation,Integer> annotationSize = new HashMap<>();
+		List<Annotation> toRemove = new ArrayList<Annotation>();
+		
+		{
+			Iterator<?> it = annotationmodel.getAnnotationIterator();
+			//Sortiere zuerst nach Größe
+			while (it.hasNext()) {
+				Object o  = it.next();
+				if (o instanceof MarkerAnnotation ) {
+
+					MarkerAnnotation ann = (MarkerAnnotation)o;
+					String type = ann.getType();
+					if (ANNOTATION_TYPE_TARGET.equals(type)) {
+						toRemove.add(ann);
+					}
+					if (!ANNOTATION_TYPE_TARGET.equals(type)) {
+						continue;
+					}
+					org.eclipse.jface.text.Position pos = annotationmodel.getPosition(ann);
+					annotationSize.put(ann, pos.getLength());
+				}
+			}
+		}
+		
+		List<MarkerAnnotation> annotationList = new ArrayList<>();
+		annotationList.addAll(annotationSize.keySet());
+		Collections.sort(annotationList, new Comparator<Annotation>() {
+
+			@Override
+			public int compare(Annotation o1, Annotation o2) {
+				return -Integer.compare(annotationSize.get(o1), annotationSize.get(o2));
+			}
+		});
+
+		for (MarkerAnnotation an: annotationList) {
+			Position pos = annotationmodel.getPosition(an);
+			fakeTree.tryAdd(an, pos.getOffset(), pos.getOffset()+pos.getLength());
+		}
+	
+		//Map<String,Map<String,Map<String,String>>> containmentMap = changeBaseModel.getContainmentNameMap();
+		//Type, Container, Name, Object
+		
+		for (EObject eobj: (Iterable<EObject>)()->state.getAllContents()) {
+			ICompositeNode node = NodeModelUtils.getNode(eobj);
+			int start = node.getTotalOffset();
+			int end = node.getTotalEndOffset();
+			start = node.getOffset();
+			end = node.getEndOffset();
+			//mit etwas glück ist das mit dem offset nichts komplett anderes sondern noch immer
+			//in der datei und damit nur etwas kleiner und hat eine höhere Wahrscheinlichkeit, eine passende Annotation zu erhalten
+			
+			//Suche: kleinste Annotation, die das vollständig enthält
+			List<MarkerAnnotation> candidates = fakeTree.getMostSpecificAnnotations(start, end);
+			List<String> uuids = new ArrayList<String>();
+			for (MarkerAnnotation annot: candidates) {
+				uuids.add(getReferencedUUID(annot));
+			}
+			if (uuids.isEmpty()) {
+				//No match, that's fine ... - the element has been newly inserted
+				System.out.println("NO match for "+eobj+"!");
+			} else {
+				//You need to pick the correct one, i.e. the most deeply nested one
+				String pickedStr = pickDeepest(uuids);
+				if (pickedStr != null) {
+					EObject picked = getEObject(pickedStr);
+					//Check if this is not at the same time a match of a contained object
+					EObject curComp = eobj.eContainer();
+					//Da muss man nicht irgendwie zwischenspeichern, weil der Iterator zuerst parent, dann child traversiert
+					while (curComp != null) {
+						if (Objects.equals(correspondance.getRightObject(curComp),picked)) {
+							picked = null;
+							System.out.println("NO real match for "+eobj+"!");									
+							break;
+						}
+						curComp = curComp.eContainer();
+					}
+					if (picked != null) {
+						correspondance.putCorrespondence(eobj, picked);
+						System.out.println("Associate: "+Arrays.toString(uuids.toArray())+" --> "+picked+ " for "+eobj);
+					}
+				} else {
+					System.err.println("Could not pick deepest!");
+				}
+			} 
+		}
+		SimpleModelCorrespondance subCor = new SimpleModelCorrespondance();
+		//Für die doch nicht existierenden
+		InstanceCreator creator = new InstanceCreator() {
+			
+			@Override
+			public EObject createInstance(EClass cl) {
+				return MyResource.createInstanceStatic(cl);
+			}
+		};
+		System.out.println("Root objects init: "+transformator.getEcoreContents()+" VS "+state.getContents());
+		SimpleModelEqualizer equalizer = new SimpleModelEqualizer(
+				state.getContents(), transformator.getEcoreContents(),
+				correspondance, subCor, creator);
+		
+		equalizer.equalize();
+		transformator.ecoreToXml();
+		try {
+			transformator.getXmlResource().save(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	private static WeakHashMap<IMarker, Boolean> knownMarkers = new WeakHashMap<IMarker, Boolean>();
 	

@@ -39,7 +39,7 @@ Require-Bundle: org.eclipse.xsd,
  Automaton;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: at.ac.tuwien.big.autoedit.ecore.util,
- at.tuwien.big.virtmod.datatype,
+ at.ac.tuwien.big.xtext.util,
  org.apache.commons.lang3;version="3.1.0",
  org.apache.log4j,
  org.eclipse.core.runtime,

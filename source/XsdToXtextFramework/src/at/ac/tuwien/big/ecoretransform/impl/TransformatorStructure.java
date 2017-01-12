@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.BasicExtendedMetaData;
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
-import at.ac.tuwien.big.autoedit.ecore.util.MyEcoreUtil;
 import at.ac.tuwien.big.autoedit.ecore.util.MyResource;
 import at.ac.tuwien.big.ecoretransform.CollectionValueTransformation;
 import at.ac.tuwien.big.ecoretransform.EAttributeTransformator;
@@ -49,6 +49,7 @@ import at.ac.tuwien.big.ecoretransform.SingleObjectTransformation;
 import at.ac.tuwien.big.ecoretransform.SingleObjectTransformator;
 import at.ac.tuwien.big.ecoretransform.Transformator;
 import at.ac.tuwien.big.ecoretransform.ValueTransformator;
+import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 
 public class TransformatorStructure {
 	private Map<EAttribute, EAttributeTransformator> xmlToEcoreAttr = new HashMap<EAttribute, EAttributeTransformator>();
@@ -181,6 +182,12 @@ public class TransformatorStructure {
 		ret.xmlResource = ()->ecoreXmlResource.getAllContents();
 		ret.parseXmlEcore(resourceSet,URI.createFileURI(targetFilename),ret.xmlResource, false);
 		return ret;
+	}
+	
+	public TransformatorStructure(TypeTransformatorStore store, ResourceSet resourceSet, Resource xmlResource) {
+		this.store = store;
+		this.xmlResource = ()->xmlResource.getAllContents();
+		parseXmlEcore(resourceSet,URI.createURI(xmlResource.getURI()+"simplified"),this.xmlResource,false);
 	}
 	
 	public TransformatorStructure(TypeTransformatorStore store, ResourceSet resourceSet, File xmlResourceFile, Iterable<EObject> xmlResource) {
