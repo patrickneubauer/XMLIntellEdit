@@ -1,0 +1,71 @@
+package at.ac.tuwien.big.xtext.equalizer.impl;
+
+import java.io.File;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.mwe.utils.StandaloneSetup;
+
+import at.ac.tuwien.big.autoedit.test.OclExtractor;
+import at.ac.tuwien.big.xtext.equalizer.InstanceCreator;
+import at.ac.tuwien.big.xtext.equalizer.Synchronizer;
+
+/**synchronizes between two models which do not change
+ * Application for example in autoedit later to change the current population!
+ * Left changes, right should be synch
+ */
+public class SimpleSynchronizer implements Synchronizer {
+	
+	private Resource left;
+	private Resource right;
+	private SimpleModelEqualizer equal;
+	
+	public SimpleSynchronizer(Resource left, Resource right, SimpleModelCorrespondance parentCor, InstanceCreator creator) {
+		this.left = left;
+		this.right = right;
+		this.equal = new SimpleModelEqualizer(left, right, parentCor, new SimpleModelCorrespondance(), creator);
+	}
+
+	@Override
+	public Resource getLeft() {
+		return left;
+	}
+
+	@Override
+	public Resource getRight() {
+		return right;
+	}
+
+	@Override
+	public void synchronize() {
+		equal.equalize();
+	}
+	
+	public static void main(String[] args) {
+		Resource ecoreRes = OclExtractor.getEcore(new File("model/serviceexample.ecore"));
+		Resource left = OclExtractor.getXMI(new File("model/change_no.xmi"), ecoreRes);
+		Resource right = new ResourceImpl();
+		InstanceCreator creator = new MyEcoreUtilInstanceCreator();
+		SimpleSynchronizer test = new SimpleSynchronizer(left, right, new SimpleModelCorrespondance(), creator);
+		test.synchronize();
+		for (EObject eobj: (Iterable<EObject>)()->right.getAllContents()) {
+			System.out.println("Copied: " +eobj);
+		}
+		EObject root = left.getContents().get(0);
+		List l = (List)(root.eGet(root.eClass().getEStructuralFeature("cluster")));
+		EObject firstObj = (EObject)l.get(0);
+		EObject copy = EcoreUtil.copy(firstObj);
+		l.add(copy);
+		
+		test.synchronize();
+		for (EObject eobj: (Iterable<EObject>)()->right.getAllContents()) {
+			System.out.println("Copied: " +eobj);
+		}
+	}
+
+}
