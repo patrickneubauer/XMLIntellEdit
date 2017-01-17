@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated library3simple -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="library3Simplified.presentation.library3SimplifiedModelWizardID"
+            name="%_UI_library3SimplifiedModelWizard_label"
+            class="library3Simplified.presentation.library3SimplifiedModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/library3SimplifiedModelFile.gif">
+         <description>%_UI_library3SimplifiedModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated library3simple -->
+      <editor
+            id="library3Simplified.presentation.library3SimplifiedEditorID"
+            name="%_UI_library3SimplifiedEditor_label"
+            icon="icons/full/obj16/library3SimplifiedModelFile.gif"
+            extensions="library3simplified"
+            class="library3Simplified.presentation.library3SimplifiedEditor"
+            contributorClass="library3Simplified.presentation.library3SimplifiedActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated simpleany -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="simpleanySimplified.presentation.simpleanySimplifiedModelWizardID"
+            name="%_UI_simpleanySimplifiedModelWizard_label"
+            class="simpleanySimplified.presentation.simpleanySimplifiedModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/simpleanySimplifiedModelFile.gif">
+         <description>%_UI_simpleanySimplifiedModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated simpleany -->
+      <editor
+            id="simpleanySimplified.presentation.simpleanySimplifiedEditorID"
+            name="%_UI_simpleanySimplifiedEditor_label"
+            icon="icons/full/obj16/simpleanySimplifiedModelFile.gif"
+            extensions="simpleanysimplified"
+            class="simpleanySimplified.presentation.simpleanySimplifiedEditor"
+            contributorClass="simpleanySimplified.presentation.simpleanySimplifiedActionBarContributor">
+      </editor>
+   </extension>
+</plugin>

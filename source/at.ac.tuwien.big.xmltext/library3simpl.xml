@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Library3s:Library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Library3s="http://file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/source/at.ac.tuwien.big.xmltext/library3.xsdsimplified"
+    xsi:schemaLocation="http://file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/source/at.ac.tuwien.big.xmltext/library3.xsdsimplified library3simple.ecore">
+  <books name="BuchName" title="Unbeschriebenes Blatt" author="Anonym" pages="15"
+      dimension="5 x 2 x 2 cm" isbn="001-23-4567-080-9"/>
+  <customers firstName="Max" lastName="Mustermann" borrowedBookId="#BuchName"/>
+</Library3s:Library>

@@ -141,13 +141,22 @@ public interface library3SimplifiedPackage extends EPackage {
 	int BOOK__DIMENSION = 4;
 
 	/**
+	 * The feature id for the '<em><b>Download</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOK__DOWNLOAD = 5;
+
+	/**
 	 * The feature id for the '<em><b>Isbn</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOK__ISBN = 5;
+	int BOOK__ISBN = 6;
 
 	/**
 	 * The feature id for the '<em><b>Book Info</b></em>' containment reference.
@@ -156,7 +165,7 @@ public interface library3SimplifiedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOK__BOOK_INFO = 6;
+	int BOOK__BOOK_INFO = 7;
 
 	/**
 	 * The number of structural features of the '<em>Book</em>' class.
@@ -165,7 +174,7 @@ public interface library3SimplifiedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOK_FEATURE_COUNT = 7;
+	int BOOK_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Book</em>' class.
@@ -205,7 +214,7 @@ public interface library3SimplifiedPackage extends EPackage {
 	int CUSTOMER__LAST_NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>Borrowed Book Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Borrowed Book Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -363,6 +372,17 @@ public interface library3SimplifiedPackage extends EPackage {
 	EAttribute getBook_Dimension();
 
 	/**
+	 * Returns the meta object for the attribute '{@link library3Simplified.Book#getDownload <em>Download</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Download</em>'.
+	 * @see library3Simplified.Book#getDownload()
+	 * @see #getBook()
+	 * @generated
+	 */
+	EAttribute getBook_Download();
+
+	/**
 	 * Returns the meta object for the attribute '{@link library3Simplified.Book#getIsbn <em>Isbn</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -417,15 +437,15 @@ public interface library3SimplifiedPackage extends EPackage {
 	EAttribute getCustomer_LastName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link library3Simplified.Customer#getBorrowedBookId <em>Borrowed Book Id</em>}'.
+	 * Returns the meta object for the reference '{@link library3Simplified.Customer#getBorrowedBookId <em>Borrowed Book Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Borrowed Book Id</em>'.
+	 * @return the meta object for the reference '<em>Borrowed Book Id</em>'.
 	 * @see library3Simplified.Customer#getBorrowedBookId()
 	 * @see #getCustomer()
 	 * @generated
 	 */
-	EAttribute getCustomer_BorrowedBookId();
+	EReference getCustomer_BorrowedBookId();
 
 	/**
 	 * Returns the meta object for the attribute '{@link library3Simplified.Customer#getBorrowedBookSince <em>Borrowed Book Since</em>}'.
@@ -554,6 +574,14 @@ public interface library3SimplifiedPackage extends EPackage {
 		EAttribute BOOK__DIMENSION = eINSTANCE.getBook_Dimension();
 
 		/**
+		 * The meta object literal for the '<em><b>Download</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOOK__DOWNLOAD = eINSTANCE.getBook_Download();
+
+		/**
 		 * The meta object literal for the '<em><b>Isbn</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -596,12 +624,12 @@ public interface library3SimplifiedPackage extends EPackage {
 		EAttribute CUSTOMER__LAST_NAME = eINSTANCE.getCustomer_LastName();
 
 		/**
-		 * The meta object literal for the '<em><b>Borrowed Book Id</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Borrowed Book Id</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CUSTOMER__BORROWED_BOOK_ID = eINSTANCE.getCustomer_BorrowedBookId();
+		EReference CUSTOMER__BORROWED_BOOK_ID = eINSTANCE.getCustomer_BorrowedBookId();
 
 		/**
 		 * The meta object literal for the '<em><b>Borrowed Book Since</b></em>' attribute feature.

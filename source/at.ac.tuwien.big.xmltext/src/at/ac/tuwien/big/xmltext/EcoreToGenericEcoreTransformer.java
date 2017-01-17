@@ -3,14 +3,21 @@ package at.ac.tuwien.big.xmltext;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.xsd.ecore.XSDEcoreBuilder;
 
@@ -32,18 +39,78 @@ public class EcoreToGenericEcoreTransformer {
 	}
 	
 	public void setXsdEcore(URI xsdPath) {
-		ResourceSet rs = new ResourceSetImpl();
-		setXsdEcore(rs.getResource(xsdPath, true));
+		ResourceSet resourceSet = new ResourceSetImpl();
+		XSDEcoreBuilder xsdEcoreBuilder = new XSDEcoreBuilder();
+		Collection<Resource> generatedResources = xsdEcoreBuilder.generateResources(xsdPath);
+		List<EPackage> genPkgs = new ArrayList<>();
+		// register the packages loaded from XSD
+		for (Resource res: generatedResources) {
+			for (Object generatedEObject : (Iterable<EObject>)()->res.getAllContents()) {
+			    if (generatedEObject instanceof EPackage) {
+			    	EPackage generatedPackage = (EPackage) generatedEObject;
+			    	System.out.println("Associating package "+generatedPackage.getNsURI()+" with "+generatedPackage);
+			    	//TODO: Hier setze ich Sachen in die Global Registry, aber warum reicht das normale nicht aus?!
+			    	
+			    	EPackage alternative = (EPackage) EPackageRegistryImpl.INSTANCE.putIfAbsent(generatedPackage.getNsURI(),
+			            generatedPackage);
+			    	System.out.println("Alternative to "+generatedPackage+": "+alternative);
+			    	if (alternative == null)  {
+				    	resourceSet.getPackageRegistry().put(generatedPackage.getNsURI(),
+				            generatedPackage);
+				        genPkgs.add(generatedPackage);
+						resourceSet.getResources().add(res);
+			    	}
+			    }
+			}
+		}
+		setXsdEcore(resourceSet.getResource(xsdPath, true));
 	}
 	
 	public void setXsdEcore(Resource ecoreResource) {
 		this.ecoreResource = ecoreResource;
+		
 	}
 	
 	public void setTargetFilename(String targetName) {
 		this.targetName = targetName;
 	}
 	
+
+	public Resource loadXml(String xmlPath) {
+		ResourceSet resourceSet = ecoreResource.getResourceSet();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml", new GenericXMLResourceFactoryImpl());
+		URI uri = resourceSet.getURIConverter().normalize(URI.createFileURI(xmlPath));
+		Resource resource = resourceSet.getResource(uri,true);
+		try {
+			resource.load(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return simplifyInstance(resource);
+	}
+	
+	private WeakHashMap<Resource, TransformatorImpl> transformators = new WeakHashMap<Resource, TransformatorImpl>();
+	
+	public TransformatorImpl getTransformator(Resource xmlRes) {
+		TransformatorImpl ret = transformators.get(xmlRes);
+		if (ret == null) {
+			transformators.put(xmlRes, ret = new TransformatorImpl(struct));
+		}
+		return ret;
+	}
+	
+	public Resource simplifyInstance(Resource xmlXmi) {
+		Resource ret = new XMIResourceImpl(xmlXmi.getResourceSet().getURIConverter().normalize(URI.createURI(xmlXmi.getURI().toString()+".simple.xmi")));
+		xmlXmi.getResourceSet().getResources().add(ret);
+		TransformatorImpl trans = getTransformator(xmlXmi);
+		trans.xmlToEcore(xmlXmi, ret);
+		return ret;
+	}
+	
+	public void rebuildXml(Resource ecore, Resource xml) {
+		getTransformator(xml).ecoreToXml(ecore, xml);
+	}
 	
 	
 	
@@ -52,6 +119,7 @@ public class EcoreToGenericEcoreTransformer {
 		struct = TransformatorStructure.fromXmlEcore(new TypeTransformatorStore(),
 				ecoreResource.getResourceSet(),
 				ecoreResource, targetName);
+		struct.getIdAttribute();
 		rootClass = struct.getEcoreRoot();
 		this.result = struct.getEcoreResource();
 	}

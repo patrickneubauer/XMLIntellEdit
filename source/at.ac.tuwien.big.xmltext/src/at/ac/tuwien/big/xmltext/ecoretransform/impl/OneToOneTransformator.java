@@ -87,7 +87,7 @@ public class OneToOneTransformator implements Transformator {
 		}
 		if (fullTransformed.add(ret)) {
 			for (EAttribute attr: ret.eClass().getEAllAttributes()) {
-				EAttributeTransformator tf = structure.getTransformatorForEcore(attr);
+				EAttributeTransformator tf = structure.getTransformatorForEcore(ret.eClass(),attr);
 				if (tf != null) {
 					Collection c = MyEcoreUtil.getAsCollection(eobject, tf.getEcore());
 					c = tf.convertToXml(c);

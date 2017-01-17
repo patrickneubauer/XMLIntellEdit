@@ -8,11 +8,13 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: at.ac.tuwien.big.ecoretransform.impl,
- at.ac.tuwien.big.xmltext.ecoretransform.impl,
+Export-Package: at.ac.tuwien.big.xmltext.ecoretransform.impl,
  library3Simplified,
  library3Simplified.impl,
- library3Simplified.util
+ library3Simplified.util,
+ simpleanySimplified,
+ simpleanySimplified.impl,
+ simpleanySimplified.util
 Require-Bundle: org.eclipse.xsd,
  org.eclipse.emf.codegen.ecore,
  org.eclipse.core.runtime,
@@ -39,6 +41,7 @@ Require-Bundle: org.eclipse.xsd,
  org.eclipse.xtext.xtext.wizard;bundle-version="2.10.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: at.ac.tuwien.big.xtext.util,
+ dk.brics.automaton,
  org.apache.commons.lang3;version="3.1.0",
  org.apache.log4j,
  org.eclipse.core.runtime,

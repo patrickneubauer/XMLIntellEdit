@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.xml.type.internal.XMLCalendar;
 import at.ac.tuwien.big.xmltext.ecoretransform.CollectionValueTransformation;
 import at.ac.tuwien.big.xmltext.ecoretransform.SingleValueTransformation;
 import at.ac.tuwien.big.xmltext.ecoretransform.ValueTransformator;
+import dk.brics.automaton.Datatypes;
 
 public class TypeTransformatorStore {
 	
@@ -118,6 +119,10 @@ public class TypeTransformatorStore {
 			return svg.asCollectionTransformation();
 		}
 		return null;
+	}
+
+	public boolean isStandardDatatype(String name) {
+		return Datatypes.isXMLName(name);
 	}
 
 }

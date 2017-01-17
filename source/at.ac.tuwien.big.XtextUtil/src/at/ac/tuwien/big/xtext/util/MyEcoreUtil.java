@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -21,8 +22,11 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class MyEcoreUtil {
 
@@ -484,6 +488,13 @@ public class MyEcoreUtil {
 			eobj = new DynamicEObjectImpl(targetType);
 		}
 		return eobj;
+	}
+
+
+	public static Resource loadEcore(String fileName) {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+		ResourceSet rs = new ResourceSetImpl();
+		return rs.getResource(rs.getURIConverter().normalize(URI.createFileURI(fileName)),true);
 	}
 
 

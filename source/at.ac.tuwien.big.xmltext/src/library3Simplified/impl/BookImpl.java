@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link library3Simplified.impl.BookImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link library3Simplified.impl.BookImpl#getPages <em>Pages</em>}</li>
  *   <li>{@link library3Simplified.impl.BookImpl#getDimension <em>Dimension</em>}</li>
+ *   <li>{@link library3Simplified.impl.BookImpl#getDownload <em>Download</em>}</li>
  *   <li>{@link library3Simplified.impl.BookImpl#getIsbn <em>Isbn</em>}</li>
  *   <li>{@link library3Simplified.impl.BookImpl#getBookInfo <em>Book Info</em>}</li>
  * </ul>
@@ -134,6 +135,26 @@ public class BookImpl extends MinimalEObjectImpl.Container implements Book {
 	 * @ordered
 	 */
 	protected String dimension = DIMENSION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDownload() <em>Download</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDownload()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DOWNLOAD_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDownload() <em>Download</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDownload()
+	 * @generated
+	 * @ordered
+	 */
+	protected String download = DOWNLOAD_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getIsbn() <em>Isbn</em>}' attribute.
@@ -294,6 +315,27 @@ public class BookImpl extends MinimalEObjectImpl.Container implements Book {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDownload() {
+		return download;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDownload(String newDownload) {
+		String oldDownload = download;
+		download = newDownload;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, library3SimplifiedPackage.BOOK__DOWNLOAD, oldDownload, download));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getIsbn() {
 		return isbn;
 	}
@@ -385,6 +427,8 @@ public class BookImpl extends MinimalEObjectImpl.Container implements Book {
 				return getPages();
 			case library3SimplifiedPackage.BOOK__DIMENSION:
 				return getDimension();
+			case library3SimplifiedPackage.BOOK__DOWNLOAD:
+				return getDownload();
 			case library3SimplifiedPackage.BOOK__ISBN:
 				return getIsbn();
 			case library3SimplifiedPackage.BOOK__BOOK_INFO:
@@ -415,6 +459,9 @@ public class BookImpl extends MinimalEObjectImpl.Container implements Book {
 				return;
 			case library3SimplifiedPackage.BOOK__DIMENSION:
 				setDimension((String)newValue);
+				return;
+			case library3SimplifiedPackage.BOOK__DOWNLOAD:
+				setDownload((String)newValue);
 				return;
 			case library3SimplifiedPackage.BOOK__ISBN:
 				setIsbn((String)newValue);
@@ -449,6 +496,9 @@ public class BookImpl extends MinimalEObjectImpl.Container implements Book {
 			case library3SimplifiedPackage.BOOK__DIMENSION:
 				setDimension(DIMENSION_EDEFAULT);
 				return;
+			case library3SimplifiedPackage.BOOK__DOWNLOAD:
+				setDownload(DOWNLOAD_EDEFAULT);
+				return;
 			case library3SimplifiedPackage.BOOK__ISBN:
 				setIsbn(ISBN_EDEFAULT);
 				return;
@@ -477,6 +527,8 @@ public class BookImpl extends MinimalEObjectImpl.Container implements Book {
 				return pages != PAGES_EDEFAULT;
 			case library3SimplifiedPackage.BOOK__DIMENSION:
 				return DIMENSION_EDEFAULT == null ? dimension != null : !DIMENSION_EDEFAULT.equals(dimension);
+			case library3SimplifiedPackage.BOOK__DOWNLOAD:
+				return DOWNLOAD_EDEFAULT == null ? download != null : !DOWNLOAD_EDEFAULT.equals(download);
 			case library3SimplifiedPackage.BOOK__ISBN:
 				return ISBN_EDEFAULT == null ? isbn != null : !ISBN_EDEFAULT.equals(isbn);
 			case library3SimplifiedPackage.BOOK__BOOK_INFO:
@@ -505,6 +557,8 @@ public class BookImpl extends MinimalEObjectImpl.Container implements Book {
 		result.append(pages);
 		result.append(", dimension: ");
 		result.append(dimension);
+		result.append(", download: ");
+		result.append(download);
 		result.append(", isbn: ");
 		result.append(isbn);
 		result.append(')');

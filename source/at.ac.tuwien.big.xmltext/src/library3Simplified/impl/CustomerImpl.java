@@ -2,12 +2,14 @@
  */
 package library3Simplified.impl;
 
+import library3Simplified.Book;
 import library3Simplified.Customer;
 import library3Simplified.library3SimplifiedPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -70,24 +72,14 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 	protected String lastName = LAST_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBorrowedBookId() <em>Borrowed Book Id</em>}' attribute.
+	 * The cached value of the '{@link #getBorrowedBookId() <em>Borrowed Book Id</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getBorrowedBookId()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String BORROWED_BOOK_ID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getBorrowedBookId() <em>Borrowed Book Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBorrowedBookId()
-	 * @generated
-	 * @ordered
-	 */
-	protected String borrowedBookId = BORROWED_BOOK_ID_EDEFAULT;
+	protected Book borrowedBookId;
 
 	/**
 	 * The default value of the '{@link #getBorrowedBookSince() <em>Borrowed Book Since</em>}' attribute.
@@ -175,7 +167,15 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getBorrowedBookId() {
+	public Book getBorrowedBookId() {
+		if (borrowedBookId != null && borrowedBookId.eIsProxy()) {
+			InternalEObject oldBorrowedBookId = (InternalEObject)borrowedBookId;
+			borrowedBookId = (Book)eResolveProxy(oldBorrowedBookId);
+			if (borrowedBookId != oldBorrowedBookId) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_ID, oldBorrowedBookId, borrowedBookId));
+			}
+		}
 		return borrowedBookId;
 	}
 
@@ -184,8 +184,17 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBorrowedBookId(String newBorrowedBookId) {
-		String oldBorrowedBookId = borrowedBookId;
+	public Book basicGetBorrowedBookId() {
+		return borrowedBookId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBorrowedBookId(Book newBorrowedBookId) {
+		Book oldBorrowedBookId = borrowedBookId;
 		borrowedBookId = newBorrowedBookId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_ID, oldBorrowedBookId, borrowedBookId));
@@ -225,7 +234,8 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 			case library3SimplifiedPackage.CUSTOMER__LAST_NAME:
 				return getLastName();
 			case library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_ID:
-				return getBorrowedBookId();
+				if (resolve) return getBorrowedBookId();
+				return basicGetBorrowedBookId();
 			case library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_SINCE:
 				return getBorrowedBookSince();
 		}
@@ -247,7 +257,7 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 				setLastName((String)newValue);
 				return;
 			case library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_ID:
-				setBorrowedBookId((String)newValue);
+				setBorrowedBookId((Book)newValue);
 				return;
 			case library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_SINCE:
 				setBorrowedBookSince((String)newValue);
@@ -271,7 +281,7 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 				setLastName(LAST_NAME_EDEFAULT);
 				return;
 			case library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_ID:
-				setBorrowedBookId(BORROWED_BOOK_ID_EDEFAULT);
+				setBorrowedBookId((Book)null);
 				return;
 			case library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_SINCE:
 				setBorrowedBookSince(BORROWED_BOOK_SINCE_EDEFAULT);
@@ -293,7 +303,7 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 			case library3SimplifiedPackage.CUSTOMER__LAST_NAME:
 				return LAST_NAME_EDEFAULT == null ? lastName != null : !LAST_NAME_EDEFAULT.equals(lastName);
 			case library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_ID:
-				return BORROWED_BOOK_ID_EDEFAULT == null ? borrowedBookId != null : !BORROWED_BOOK_ID_EDEFAULT.equals(borrowedBookId);
+				return borrowedBookId != null;
 			case library3SimplifiedPackage.CUSTOMER__BORROWED_BOOK_SINCE:
 				return BORROWED_BOOK_SINCE_EDEFAULT == null ? borrowedBookSince != null : !BORROWED_BOOK_SINCE_EDEFAULT.equals(borrowedBookSince);
 		}
@@ -314,8 +324,6 @@ public class CustomerImpl extends MinimalEObjectImpl.Container implements Custom
 		result.append(firstName);
 		result.append(", lastName: ");
 		result.append(lastName);
-		result.append(", borrowedBookId: ");
-		result.append(borrowedBookId);
 		result.append(", borrowedBookSince: ");
 		result.append(borrowedBookSince);
 		result.append(')');

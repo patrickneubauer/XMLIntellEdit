@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Simpleanys:Library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Simpleanys="http://file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/source/at.ac.tuwien.big.xmltext/simpleany.xsdsimplified"
+    xsi:schemaLocation="http://file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/source/at.ac.tuwien.big.xmltext/simpleany.xsdsimplified simpleany.ecore">
+  <books name="BuchName" title="Unbeschriebenes Blatt" author="Anonym">
+    <description>
+      <mixed xsi:type="Simpleanys:MixedText" value="Dieses Buch wird "/>
+      <mixed xsi:type="Simpleanys:MixedFeature" value="keywords"/>
+      <mixed xsi:type="Simpleanys:MixedText" value="gekauft!"/>
+      <keywords>nicht</keywords>
+    </description>
+  </books>
+</Simpleanys:Library>

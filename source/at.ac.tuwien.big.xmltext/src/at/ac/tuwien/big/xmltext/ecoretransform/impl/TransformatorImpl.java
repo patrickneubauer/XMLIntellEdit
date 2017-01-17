@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import at.ac.tuwien.big.xmltext.ecoretransform.CollectionValueTransformation;
 import at.ac.tuwien.big.xmltext.ecoretransform.EAttributeTransformator;
 import at.ac.tuwien.big.xmltext.ecoretransform.EReferenceTransformator;
+import at.ac.tuwien.big.xmltext.ecoretransform.PartialObjectCopier;
 import at.ac.tuwien.big.xmltext.ecoretransform.Transformator;
 import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 
@@ -39,6 +40,11 @@ public class TransformatorImpl implements Transformator {
 	
 	private Map<EObject,EObject> xmlToEcore = new HashMap<EObject, EObject>();
 	private Map<EObject,EObject> ecoreToXml = new HashMap<EObject, EObject>();
+	private Map<Object,EObject> xmlObjectsById = new HashMap<>();
+	
+	public EObject getXmlObject(String id) {
+		return xmlObjectsById.get(id);
+	}
 	
 	private Resource ecore;
 	private Resource xml;
@@ -66,6 +72,17 @@ public class TransformatorImpl implements Transformator {
 		this.ecore = ecore;
 		this.xml = xml;
 		Collection<EObject> eobjs = xml.getContents();
+		for (EObject eobj: (Iterable<EObject>)()->xml.getAllContents()) {
+			if (eobj.eClass() != null) {
+				EClass cl = eobj.eClass();
+				EAttribute idAttr = cl.getEIDAttribute();
+				if (idAttr != null) {
+					for (Object o: MyEcoreUtil.getAsCollection(eobj, idAttr)) {
+						xmlObjectsById.put(o, eobj);
+					}
+				}
+			}
+		}
 		ecore.getContents().clear();
 		for (EObject eobj: eobjs) {
 			if ("DocumentRoot".equals(eobj.eClass().getName())) {
@@ -134,8 +151,26 @@ public class TransformatorImpl implements Transformator {
 			ecoreToXml.put(ret, xmlObject);
 		}
 		if (fullTransformed.add(ret)) {
+			List<EStructuralFeature> defer = new ArrayList<EStructuralFeature>();
+			for (EStructuralFeature attr: ret.eClass().getEAllStructuralFeatures()) {
+				if (structure.isMixed(attr)) {
+					defer.add(attr);
+					continue;
+				}
+				PartialObjectCopier changer  = structure.getChangerForEcore(attr);
+				if (changer != null) {
+					changer.copyFrom(this, xmlObject, ret);
+				}
+			}
+			for (EStructuralFeature attr: defer) {
+				PartialObjectCopier changer  = structure.getChangerForEcore(attr);
+				if (changer != null) {
+					changer.copyFrom(this, xmlObject, ret);
+				}
+			}
+			/*
 			for (EAttribute attr: ret.eClass().getEAllAttributes()) {
-				EAttributeTransformator tf = structure.getTransformatorForEcore(attr);
+				EAttributeTransformator tf = structure.getTransformatorForEcore(ret.eClass(),attr);
 				if (tf != null) {
 					if (xmlObject.eIsSet(tf.getXml())) {
 						Collection c = MyEcoreUtil.getAsCollection(xmlObject, tf.getXml());
@@ -157,7 +192,7 @@ public class TransformatorImpl implements Transformator {
 						ret.eUnset(tf.getEcore());
 					}
 				}
-			}
+			}*/
 		}
 		return ret;
 	}
@@ -180,30 +215,24 @@ public class TransformatorImpl implements Transformator {
 			xmlToEcore.put(ret, eobject);
 		}
 		if (fullTransformed.add(ret)) {
-			for (EAttribute attr: ret.eClass().getEAllAttributes()) {
-				EAttributeTransformator tf = structure.getTransformatorForXml(attr);
-				if (tf != null) {
-					if (eobject.eIsSet(tf.getEcore())) {
-						Collection c = MyEcoreUtil.getAsCollection(eobject, tf.getEcore());
-						c = tf.convertToXml(c);
-						MyEcoreUtil.setAsCollectionBasic(ret,attr,c);
-					} else {
-						ret.eUnset(tf.getXml());
-					}
+			List<EStructuralFeature> defer = new ArrayList<EStructuralFeature>();
+			for (EStructuralFeature attr: ret.eClass().getEStructuralFeatures()) {
+				if (structure.isMixed(attr)) {
+					defer.add(attr);
+					continue;
+				}
+				PartialObjectCopier changer = structure.getChangerForXml(attr);
+				if (changer != null) {
+					changer.copyFrom(this, eobject, ret);
 				}
 			}
-			for (EReference attr: ret.eClass().getEAllReferences()) {
-				EReferenceTransformator tf = structure.getTransformatorForXml(attr);
-				if (tf != null) {
-					if (eobject.eIsSet(tf.getEcore())) {
-						Collection c = MyEcoreUtil.getAsCollection(eobject, tf.getEcore());
-						c = tf.convertToXml(c, this);
-						MyEcoreUtil.setAsCollectionBasic(ret,attr,c);
-					} else {
-						ret.eUnset(tf.getXml());
-					}
+			for (EStructuralFeature attr: defer) {
+				PartialObjectCopier changer = structure.getChangerForXml(attr);
+				if (changer != null) {
+					changer.copyFrom(this, eobject, ret);
 				}
-			}
+			}	
+			/**/
 		}
 		return ret;
 	}

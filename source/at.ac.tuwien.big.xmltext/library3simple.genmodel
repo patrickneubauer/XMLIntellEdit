@@ -24,6 +24,9 @@
         <ecoreFeature xsi:type="ecore:EAttribute" href="library3simple.ecore#//Book/dimension"/>
       </genFeatures>
       <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3simple.ecore#//Book/download"/>
+      </genFeatures>
+      <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="library3simple.ecore#//Book/isbn"/>
       </genFeatures>
       <genFeatures property="None" children="true" createChild="true">
@@ -38,8 +41,8 @@
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="library3simple.ecore#//Customer/lastName"/>
       </genFeatures>
-      <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="library3simple.ecore#//Customer/borrowedBookId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="library3simple.ecore#//Customer/borrowedBookId"/>
       </genFeatures>
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="library3simple.ecore#//Customer/borrowedBookSince"/>

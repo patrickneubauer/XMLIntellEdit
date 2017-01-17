@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <book isbn="001-23-4567-080-9">
+    <name>BuchName</name>
+    <title>Unbeschriebenes Blatt</title>
+    <author>Anonym</author>
+    <pages>15</pages>
+    <dimension>5 x 2 x 2 cm</dimension>
+  </book>
+  <customer>
+    <firstName>Max</firstName>
+    <lastName>Mustermann</lastName>
+    <borrowedBookId>BuchName</borrowedBookId>
+  </customer>
+</library>

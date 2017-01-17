@@ -49,4 +49,12 @@
             genModel="library3simple.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated simpleany -->
+      <package
+            uri="http://platform:/plugin/simpleany.xsdsimplified"
+            class="simpleanySimplified.simpleanySimplifiedPackage"
+            genModel="simpleany.genmodel"/>
+   </extension>
+
 </plugin>

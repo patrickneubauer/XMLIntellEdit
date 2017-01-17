@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="library3.xsd">
+<book 
+	isbn="0123456789">
+	<name>BuchName</name>
+    <title>Unbeschriebenes Blatt</title>
+    <author>Anonym</author>
+    <dimension>5 x 2 x 2 cm</dimension>
+</book>
+<customer>
+	<firstName>Max</firstName>
+	<lastName>Mustermann</lastName>
+	<borrowedBookId>BuchName</borrowedBookId>
+</customer> 
+
+</library>

@@ -192,7 +192,7 @@ public class library3SimplifiedPackageImpl extends EPackageImpl implements libra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBook_Isbn() {
+	public EAttribute getBook_Download() {
 		return (EAttribute)bookEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -201,8 +201,17 @@ public class library3SimplifiedPackageImpl extends EPackageImpl implements libra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getBook_Isbn() {
+		return (EAttribute)bookEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getBook_BookInfo() {
-		return (EReference)bookEClass.getEStructuralFeatures().get(6);
+		return (EReference)bookEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -237,8 +246,8 @@ public class library3SimplifiedPackageImpl extends EPackageImpl implements libra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCustomer_BorrowedBookId() {
-		return (EAttribute)customerEClass.getEStructuralFeatures().get(2);
+	public EReference getCustomer_BorrowedBookId() {
+		return (EReference)customerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -313,13 +322,14 @@ public class library3SimplifiedPackageImpl extends EPackageImpl implements libra
 		createEAttribute(bookEClass, BOOK__AUTHOR);
 		createEAttribute(bookEClass, BOOK__PAGES);
 		createEAttribute(bookEClass, BOOK__DIMENSION);
+		createEAttribute(bookEClass, BOOK__DOWNLOAD);
 		createEAttribute(bookEClass, BOOK__ISBN);
 		createEReference(bookEClass, BOOK__BOOK_INFO);
 
 		customerEClass = createEClass(CUSTOMER);
 		createEAttribute(customerEClass, CUSTOMER__FIRST_NAME);
 		createEAttribute(customerEClass, CUSTOMER__LAST_NAME);
-		createEAttribute(customerEClass, CUSTOMER__BORROWED_BOOK_ID);
+		createEReference(customerEClass, CUSTOMER__BORROWED_BOOK_ID);
 		createEAttribute(customerEClass, CUSTOMER__BORROWED_BOOK_SINCE);
 
 		libraryEClass = createEClass(LIBRARY);
@@ -365,14 +375,15 @@ public class library3SimplifiedPackageImpl extends EPackageImpl implements libra
 		initEAttribute(getBook_Author(), ecorePackage.getEString(), "author", null, 1, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBook_Pages(), ecorePackage.getEInt(), "pages", null, 1, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBook_Dimension(), ecorePackage.getEString(), "dimension", null, 1, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBook_Download(), ecorePackage.getEString(), "download", null, 0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBook_Isbn(), ecorePackage.getEString(), "isbn", null, 1, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBook_BookInfo(), this.getBookInfo(), null, "bookInfo", null, 0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(customerEClass, Customer.class, "Customer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCustomer_FirstName(), ecorePackage.getEString(), "firstName", null, 1, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCustomer_LastName(), ecorePackage.getEString(), "lastName", null, 1, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCustomer_BorrowedBookId(), ecorePackage.getEString(), "borrowedBookId", null, 1, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCustomer_BorrowedBookSince(), ecorePackage.getEString(), "borrowedBookSince", null, 1, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCustomer_BorrowedBookId(), this.getBook(), null, "borrowedBookId", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCustomer_BorrowedBookSince(), ecorePackage.getEString(), "borrowedBookSince", null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(libraryEClass, Library.class, "Library", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLibrary_Books(), this.getBook(), null, "books", null, 0, -1, Library.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -386,6 +397,8 @@ public class library3SimplifiedPackageImpl extends EPackageImpl implements libra
 		createEcoreAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
+		// http://big.tuwien.ac.at/standardXMLDatatype
+		createStandardXMLDatatypeAnnotations();
 	}
 
 	/**
@@ -427,6 +440,22 @@ public class library3SimplifiedPackageImpl extends EPackageImpl implements libra
 			 "maxLengthAuthor", "self.author.size() <= 32",
 			 "patternDimension", "self.dimension.matches(\'([0-9]|([1-9][0-9]+))([.][0-9]+)? x ([0-9]|([1-9][0-9]+))([.][0-9]+)? x ([0-9]|([1-9][0-9]+))([.][0-9]+)? (centimeters|cm|in|inches)\')",
 			 "patternIsbn", "self.isbn.matches(\'[0-9]{3}-[0-9]{2}-[0-9]{4}-[0-9]{3}-[0-9]\')"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://big.tuwien.ac.at/standardXMLDatatype</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createStandardXMLDatatypeAnnotations() {
+		String source = "http://big.tuwien.ac.at/standardXMLDatatype";	
+		addAnnotation
+		  (getBook_Download(), 
+		   source, 
+		   new String[] {
+			 "type", "URI"
 		   });
 	}
 

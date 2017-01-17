@@ -77,30 +77,30 @@ public interface Customer extends EObject {
 	void setLastName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Borrowed Book Id</b></em>' attribute.
+	 * Returns the value of the '<em><b>Borrowed Book Id</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Borrowed Book Id</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Borrowed Book Id</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Borrowed Book Id</em>' attribute.
-	 * @see #setBorrowedBookId(String)
+	 * @return the value of the '<em>Borrowed Book Id</em>' reference.
+	 * @see #setBorrowedBookId(Book)
 	 * @see library3Simplified.library3SimplifiedPackage#getCustomer_BorrowedBookId()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
-	String getBorrowedBookId();
+	Book getBorrowedBookId();
 
 	/**
-	 * Sets the value of the '{@link library3Simplified.Customer#getBorrowedBookId <em>Borrowed Book Id</em>}' attribute.
+	 * Sets the value of the '{@link library3Simplified.Customer#getBorrowedBookId <em>Borrowed Book Id</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Borrowed Book Id</em>' attribute.
+	 * @param value the new value of the '<em>Borrowed Book Id</em>' reference.
 	 * @see #getBorrowedBookId()
 	 * @generated
 	 */
-	void setBorrowedBookId(String value);
+	void setBorrowedBookId(Book value);
 
 	/**
 	 * Returns the value of the '<em><b>Borrowed Book Since</b></em>' attribute.
@@ -113,7 +113,7 @@ public interface Customer extends EObject {
 	 * @return the value of the '<em>Borrowed Book Since</em>' attribute.
 	 * @see #setBorrowedBookSince(String)
 	 * @see library3Simplified.library3SimplifiedPackage#getCustomer_BorrowedBookSince()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getBorrowedBookSince();

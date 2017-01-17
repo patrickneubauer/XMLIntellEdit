@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link library3Simplified.Book#getAuthor <em>Author</em>}</li>
  *   <li>{@link library3Simplified.Book#getPages <em>Pages</em>}</li>
  *   <li>{@link library3Simplified.Book#getDimension <em>Dimension</em>}</li>
+ *   <li>{@link library3Simplified.Book#getDownload <em>Download</em>}</li>
  *   <li>{@link library3Simplified.Book#getIsbn <em>Isbn</em>}</li>
  *   <li>{@link library3Simplified.Book#getBookInfo <em>Book Info</em>}</li>
  * </ul>
@@ -157,6 +158,32 @@ public interface Book extends EObject {
 	 * @generated
 	 */
 	void setDimension(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Download</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Download</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Download</em>' attribute.
+	 * @see #setDownload(String)
+	 * @see library3Simplified.library3SimplifiedPackage#getBook_Download()
+	 * @model annotation="http://big.tuwien.ac.at/standardXMLDatatype type='URI'"
+	 * @generated
+	 */
+	String getDownload();
+
+	/**
+	 * Sets the value of the '{@link library3Simplified.Book#getDownload <em>Download</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Download</em>' attribute.
+	 * @see #getDownload()
+	 * @generated
+	 */
+	void setDownload(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Isbn</b></em>' attribute.

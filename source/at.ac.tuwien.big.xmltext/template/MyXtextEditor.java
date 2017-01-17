@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -26,15 +27,19 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
@@ -57,6 +62,7 @@ import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.validation.XtextAnnotation;
@@ -109,7 +115,8 @@ public class MyXtextEditor extends XtextEditor {
 
 	public IXtextDocument getDocument() {
 		IXtextDocument doc = super.getDocument();
-		if (doc != lastDoc) {
+		String[] content = new String[1];
+		if (doc != lastDoc && doc != null) {
 			doc.modify(new IUnitOfWork<Object, XtextResource>(){
 
 				@Override
@@ -121,47 +128,147 @@ public class MyXtextEditor extends XtextEditor {
 					}
 					URI testXml = URI.createURI(str);
 					try {
-						String xsdFile = str.substring(0,str.lastIndexOf('.'))+".xsd";
-						XSDEcoreBuilder xsdEcoreBuilder = new XSDEcoreBuilder();
+						//String xsdFile = str.substring(0,str.lastIndexOf('.'))+".xsd";
+						//XSDEcoreBuilder xsdEcoreBuilder = new XSDEcoreBuilder();
 						
 						try {
 							ResourceSet resourceSet = state.getResourceSet();
-							Collection<Resource> generatedResources = xsdEcoreBuilder.generateResources(resourceSet.getURIConverter().normalize(URI.createURI(xsdFile)));
 							resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml", new GenericXMLResourceFactoryImpl());
+							/*Collection<Resource> generatedResources = xsdEcoreBuilder.generateResources(resourceSet.getURIConverter().normalize(URI.createURI(xsdFile)));
+							
 							List<EPackage> genPkgs = new ArrayList<>();
 							// register the packages loaded from XSD
 							for (Resource res: generatedResources) {
-								resourceSet.getResources().add(res);
 								for (Object generatedEObject : (Iterable<EObject>)()->res.getAllContents()) {
 								    if (generatedEObject instanceof EPackage) {
 								    	EPackage generatedPackage = (EPackage) generatedEObject;
 								    	System.out.println("Associating package "+generatedPackage.getNsURI()+" with "+generatedPackage);
 								    	//TODO: Hier setze ich Sachen in die Global Registry, aber warum reicht das normale nicht aus?!
-								    	EPackageRegistryImpl.INSTANCE.put(generatedPackage.getNsURI(),
+								    	
+								    	EPackage alternative = (EPackage) EPackageRegistryImpl.INSTANCE.putIfAbsent(generatedPackage.getNsURI(),
 								            generatedPackage);
-								    	resourceSet.getPackageRegistry().put(generatedPackage.getNsURI(),
-								            generatedPackage);
-								        genPkgs.add(generatedPackage);
+								    	System.out.println("Alternative to "+generatedPackage+": "+alternative);
+								    	if (alternative == null)  {
+									    	resourceSet.getPackageRegistry().put(generatedPackage.getNsURI(),
+									            generatedPackage);
+									        genPkgs.add(generatedPackage);
+											resourceSet.getResources().add(res);
+								    	}
 								    }
 								}
-							}
+							}*/
 						} catch (Exception e) {
 							e.printStackTrace();
 							System.err.println("Could not load xsd resource: "+e.getMessage());
 						}
 						
 						Resource xmlTest = state.getResourceSet().getResource(testXml, true);
-						
-						EPackage mainPkg = (EPackage)xmlTest.getContents().get(0).eClass().getEPackage();
-						String tryUri = mainPkg.getNsURI()+"simplified";
-						EPackage simplified = state.getResourceSet().getPackageRegistry().getEPackage(tryUri);
-						if (simplified == null) {
-							//Generate completely new
-							struct = new TransformatorStructure(new TypeTransformatorStore(), state.getResourceSet(), mainPkg.eResource());
-							transformator = new TransformatorImpl(struct);
+						System.out.println("XMLTest class: "+((xmlTest!=null)?xmlTest.getClass():xmlTest));
+						if (xmlTest.getTimeStamp() < state.getTimeStamp()) {
+							System.out.println("Resource not updated since it is newer!");
+							return null;
 						}
-						transformator.clearCompleted();
-						transformator.xmlToEcore(xmlTest, state);
+						EPackage mainPkg = (EPackage)xmlTest.getContents().get(0).eClass().getEPackage();
+						System.out.println("MainPackage: "+mainPkg.getNsURI());
+						String tryUri = mainPkg.getNsURI()+"simplified";
+						String lastPart = tryUri;
+						{
+							int lastInd = tryUri.lastIndexOf('/');
+							if (lastInd != -1) {
+								tryUri = tryUri.substring(lastInd);
+							}
+						}
+						EPackage simplified = state.getResourceSet().getPackageRegistry().getEPackage(tryUri);
+						boolean hasInstanceClass = false;
+						if (simplified == null) {
+							mainLoop: for (Entry<String,Object> entr: state.getResourceSet().getPackageRegistry().entrySet()) {
+								if (entr.getKey() != null && entr.getKey().endsWith(tryUri) && entr.getValue() instanceof EPackage) {
+									if (simplified != null) {
+										System.err.println("Multiple EPackages possible: "+simplified+" and " +entr.getValue());
+									}
+									//Check if it has instance class
+									if (!hasInstanceClass) {
+										EPackage epkg = (EPackage)entr.getValue();
+										for (EClassifier cl: epkg.getEClassifiers()) {
+											if (cl instanceof EClass && cl.getInstanceClass() != null) {
+												hasInstanceClass = true;
+												simplified = (EPackage)entr.getValue();
+												break mainLoop;
+											}
+										}
+										if (simplified == null) {
+											simplified = epkg;
+										}
+									}
+									
+									
+								}
+							}
+						}
+						if (simplified == null) {
+							mainLoop: for (Entry<String,Object> entr: EPackageRegistryImpl.INSTANCE.entrySet()) {
+								if (entr.getKey() != null && entr.getKey().endsWith(tryUri) && entr.getValue() instanceof EPackage) {
+									if (simplified != null) {
+										System.err.println("Multiple EPackages possible: "+simplified+" and " +entr.getValue());
+									}
+									if (!hasInstanceClass) {
+										EPackage epkg = (EPackage)entr.getValue();
+										for (EClassifier cl: epkg.getEClassifiers()) {
+											if (cl instanceof EClass && cl.getInstanceClass() != null) {
+												hasInstanceClass = true;
+												simplified = (EPackage)entr.getValue();
+												break mainLoop;
+											}
+										}
+										if (simplified == null) {
+											simplified = epkg;
+										}
+									}
+								}
+							}
+						}
+						state.getResourceSet().getPackageRegistry().forEach((x,y)->{System.out.println("Registered: "+x+" -> "+y);});
+						EPackageRegistryImpl.INSTANCE.forEach((x,y)->{System.out.println("Globally Registered: "+x+" -> "+y);});
+						for (Resource r: state.getResourceSet().getResources()) {
+							String nsuri = null;
+							for (Object generatedEObject : (Iterable<EObject>)()->r.getAllContents()) {
+							    if (generatedEObject instanceof EPackage) {
+							    	nsuri = ((EPackage) generatedEObject).getNsURI();
+							    }
+							}
+							System.out.println("Resource "+r+ " stored with uri "+r.getURI()+" and nsuri "+nsuri);
+						}
+						if (simplified != null) {
+							//Generate completely new
+							struct = TransformatorStructure.withKnownResult(new TypeTransformatorStore(), state.getResourceSet(), mainPkg.eResource(),
+									simplified.eResource());
+									//new TransformatorStructure(new TypeTransformatorStore(), state.getResourceSet(), mainPkg.eResource());
+							transformator = new TransformatorImpl(struct);
+							transformator.clearCompleted();
+							XMIResourceImpl xmiRes = new XMIResourceImpl();
+							ISerializer serializer = state.getSerializer();
+							transformator.xmlToEcore(xmlTest, xmiRes);
+							
+							SimpleModelCorrespondance emfComp = SimpleModelCorrespondance.fromEmfCompare(xmiRes,state);
+							
+							SimpleModelEqualizer equalizer = new SimpleModelEqualizer(xmiRes.getContents(), state.getContents(),
+									emfComp, new SimpleModelCorrespondance(), InstanceCreator.DEFAULT);
+							equalizer.equalize();
+							try {
+								//content[0] = serializer.serialize(state.getContents().get(0));
+								
+								//System.out.println("Serialized: "+content[0]);
+								content[0] = null;
+								//state.getContents().clear();
+							} catch (Exception e) {
+								System.err.println("Could not serialize xml resource: "+e.getMessage());
+								e.printStackTrace();
+								state.getContents().clear();
+							}
+						} else {
+							System.err.println("Could not find XSD");
+						}
+						
 					} catch (Exception e) {
 						System.err.println("Could not load xml resource: "+e.getMessage());
 						e.printStackTrace();
@@ -171,11 +278,22 @@ public class MyXtextEditor extends XtextEditor {
 				
 			});
 			lastDoc = doc;
-			doc.modify(new IUnitOfWork<Object, XtextResource>(){
+			if (content[0] != null) {
+				doc.set(content[0]);
+			}
+			String str = doc.get();
+			System.out.println("Serialized to "+str);
+			doc.readOnly(new IUnitOfWork<Object, XtextResource>(){
 
 				@Override
 				public Object exec(XtextResource state) throws Exception {
-					synchronizeFromBase(state);
+					
+					try {
+						synchronizeFromBase(state);
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.err.println(e.getMessage());
+					}
 					return null;
 				}
 			});
@@ -239,9 +357,13 @@ public class MyXtextEditor extends XtextEditor {
 		IResource res = getResource();  
 		for (EObject eobj: (Iterable<EObject>)()->state.getAllContents()) {
 			targetEObject.add(eobj);
-			ICompositeNode node = NodeModelUtils.getNode(eobj);
-			int start = node.getOffset();
-			int end = node.getEndOffset();
+			ICompositeNode node = NodeModelUtils.findActualNodeFor(eobj);
+			if (node == null) {
+				System.err.println("No node found for "+eobj);
+				continue;
+			}
+			int start = node.getTotalOffset();
+			int end = node.getTotalEndOffset();
 			
 			//Targets
 			EObject searchObj = transformator.getEcoreResource().getEObject(state.getURIFragment(eobj));
@@ -275,7 +397,7 @@ public class MyXtextEditor extends XtextEditor {
 	
 	public void resynchronizeToBase(XtextResource state) {
 		transformator.clearCompleted();
-		SimpleModelCorrespondance correspondance = new SimpleModelCorrespondance();
+		SimpleModelCorrespondance correspondance = SimpleModelCorrespondance.fromEmfCompare(state, transformator.getEcoreResource());
 		//Build correspondance map based on annotations
 		
 		//Get positions of elements
@@ -324,7 +446,11 @@ public class MyXtextEditor extends XtextEditor {
 		//Type, Container, Name, Object
 		
 		for (EObject eobj: (Iterable<EObject>)()->state.getAllContents()) {
-			ICompositeNode node = NodeModelUtils.getNode(eobj);
+			ICompositeNode node = NodeModelUtils.findActualNodeFor(eobj);
+			if (node == null) {
+				System.err.println("No node found for "+eobj);
+				continue;
+			}
 			int start = node.getTotalOffset();
 			int end = node.getTotalEndOffset();
 			start = node.getOffset();

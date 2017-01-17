@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated library3-base -->
+      <package
+            uri="platform:/plugin/library3.xsd"
+            class="library3.Library3Package"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated library3-base -->
+      <parser
+            type="library3"
+            class="library3.util.Library3ResourceFactoryImpl"/>
+   </extension>
+
+</plugin>

@@ -7,9 +7,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
+
 
 public interface InstanceCreator extends Creater<EObject, EClass> {
 	
+	InstanceCreator DEFAULT = new InstanceCreator() {
+		
+		@Override
+		public EObject createInstance(EClass cl) {
+			return MyEcoreUtil.createInstanceStatic(cl);
+		}
+	};
+
 	public EObject createInstance(EClass cl);
 	
 	@Override
