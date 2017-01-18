@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.xsd.ecore.XSDEcoreBuilder;
 
-import at.ac.tuwien.big.xmltext.ecoretransform.impl.OneToOneTransformator;
 import at.ac.tuwien.big.xmltext.ecoretransform.impl.TransformatorImpl;
 import at.ac.tuwien.big.xmltext.ecoretransform.impl.TransformatorStructure;
 import at.ac.tuwien.big.xmltext.ecoretransform.impl.TypeTransformatorStore;
@@ -82,8 +81,7 @@ public class Test {
 		EObject root = resource.getContents().get(0);
 		System.out.println("Rootclass: "+root.eClass());
 
-		OneToOneTransformator simpleTrans = new OneToOneTransformator(root.eClass().eResource(), generatedResources.iterator().next());
-		
+	
 
 		Resource ecoreResource = new XMIResourceImpl(resourceSet.getURIConverter().normalize(URI.createFileURI("library-simplified.xmi")));
 		transformer.xmlToEcore(resource, ecoreResource);

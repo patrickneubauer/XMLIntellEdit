@@ -273,7 +273,7 @@ public class TransformatorStructure {
 		TransformatorStructure ret = new TransformatorStructure();
 		ret.store = store;
 		ret.xmlResource = ()->ecoreXmlResource.getAllContents();
-		ret.parseXmlEcore(resourceSet,URI.createFileURI(targetFilename),ret.xmlResource, false);
+		ret.parseXmlEcore(resourceSet,targetFilename==null?null:URI.createFileURI(targetFilename),ret.xmlResource, false);
 		return ret;
 	}
 	
@@ -467,7 +467,7 @@ public class TransformatorStructure {
 						if (id != null && id.getEContainingClass() == cl) {
 							cl.getEStructuralFeatures().remove(id);
 						}
-						if (cl.getEAllSuperTypes().contains(commonIdClass)) { 
+						if (!cl.getEAllSuperTypes().contains(commonIdClass)) { 
 							cl.getESuperTypes().add(commonIdClass);
 						}
 					}
@@ -541,6 +541,29 @@ public class TransformatorStructure {
 				};
 				xmlToEcoreChanger.put(attr, poc);
 				xmlToEcoreChanger.put(ref, poc);
+			}
+			if (attr.isID()) {
+				//Konvertiere jedes Objekt in seine ID
+				PartialObjectCopier poc = new PartialObjectCopier() {
+					
+					@Override
+					public void copyFrom(TransformatorImpl transformator, EObject from, EObject to) {
+						Collection c = MyEcoreUtil.getAsCollection(from, commonIdAttribute);
+						MyEcoreUtil.setAsCollectionBasic(to, to.eClass().getEIDAttribute(), c);
+					}
+				};
+				ecoreToXmlChanger.put(commonIdAttribute,poc);
+				ecoreToXmlChanger.put(attr,poc);
+				poc = new PartialObjectCopier() {
+					
+					@Override
+					public void copyFrom(TransformatorImpl transformator, EObject from, EObject to) {
+						Collection c = MyEcoreUtil.getAsCollection(from, from.eClass().getEIDAttribute());
+						MyEcoreUtil.setAsCollectionBasic(to, commonIdAttribute, c);
+					}
+				};
+				xmlToEcoreChanger.put(attr, poc);
+				xmlToEcoreChanger.put(commonIdAttribute, poc);
 			}
 		}
 	}
@@ -774,7 +797,7 @@ public class TransformatorStructure {
 			}
 		}
 		if (this.ecoreResource == null) { 
-			this.ecoreResource = new XMIResourceImpl(resourceSet.getURIConverter().normalize(targetEcoreUri));
+			this.ecoreResource = targetEcoreUri==null?new XMIResourceImpl(): new XMIResourceImpl(resourceSet.getURIConverter().normalize(targetEcoreUri));
 			
 			ecorePackage = EcoreFactory.eINSTANCE.createEPackage();
 			ecorePackage.setNsURI("http://"+xmlEPkg.getNsURI()+"simplified");
