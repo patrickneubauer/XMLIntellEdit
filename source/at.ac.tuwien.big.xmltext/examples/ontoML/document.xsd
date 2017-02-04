@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ISO TC 184/SC 4/WG 2 N869 - ISO 13584-32 OntoML - XML schema
+-->
+<!--
+
+The following permission notice and disclaimer shall be included in all copies of this DTD/XML Schema ("the Schema"), 
+and derivations of the Schema:
+
+
+Permission is hereby granted, free of charge in perpetuity, to any person obtaining a copy of the Schema, to use, 
+copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, 
+installing and using software based on the Schema, and to permit persons to whom the Schema is furnished to do so, 
+subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE SCHEMA DEFINED IN ISO 13584-32, AND SHOULD NOT BE INTERPRETED AS COMPLYING 
+WITH THAT STANDARD
+
+-->
+<xs:schema xmlns="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="identifier.xsd"/>
+	<xs:include schemaLocation="basic.xsd"/>
+	<xs:include schemaLocation="translation.xsd"/>
+	<xs:include schemaLocation="external_file.xsd"/>
+	<!-- Global element -->
+	<xs:element name="document" type="DOCUMENT_Type"/>
+	<!-- Simple type definitions -->
+	<xs:simpleType name="ABSOLUTE_URL_TYPE_Type">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<!-- Complex type definitions -->
+	<xs:complexType name="AUTHORS_Type">
+		<xs:sequence>
+			<xs:element name="person" type="PERSON_Type" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DOCUMENT_CONTENT_Type" abstract="false">
+		<xs:complexContent>
+			<xs:extension base="EXTERNAL_RESOURCE_Type">
+				<xs:sequence>
+					<xs:element name="revision" type="REVISION_TYPE_Type"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DOCUMENT_Type" abstract="false">
+		<xs:sequence>
+			<xs:element name="name_scope" type="CLASS_REFERENCE_Type"/>
+			<xs:element name="date_of_original_definition" type="DATE_TYPE_Type" minOccurs="0"/>
+			<xs:element name="date_of_current_version" type="DATE_TYPE_Type" minOccurs="0"/>
+			<xs:element name="date_of_current_revision" type="DATE_TYPE_Type" minOccurs="0"/>
+			<xs:element name="revision" type="REVISION_TYPE_Type"/>
+			<xs:element name="status" type="STATUS_Type" minOccurs="0"/>
+			<xs:element name="translation" type="TRANSLATION_Type" minOccurs="0"/>
+			<xs:element name="source_language" type="LANGUAGE_Type" minOccurs="0"/>
+			<xs:element name="is_deprecated" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="is_deprecated_interpretation" type="TEXT_Type" minOccurs="0"/>
+			<xs:element name="preferred_name" type="PREFERRED_NAME_Type"/>
+			<xs:element name="synonymous_names" type="SYNONYMOUS_NAME_Type" minOccurs="0"/>
+			<xs:element name="short_name" type="SHORT_NAME_Type" minOccurs="0"/>
+			<xs:element name="icon" type="GRAPHICS_Type" minOccurs="0"/>
+			<xs:element name="definition" type="TEXT_Type"/>
+			<xs:element name="note" type="TEXT_Type" minOccurs="0"/>
+			<xs:element name="remark" type="TEXT_Type" minOccurs="0"/>
+			<xs:element name="authors" type="AUTHORS_Type" minOccurs="0"/>
+			<xs:element name="publishing_organisation" type="ORGANIZATION_Type"/>
+			<xs:element name="content" type="DOCUMENT_CONTENT_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="DocumentId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="PERSON_Type" abstract="false">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="last_name" type="xs:string" minOccurs="0"/>
+			<xs:element name="first_name" type="xs:string" minOccurs="0"/>
+			<xs:element name="middle_names" type="STRINGS_Type" minOccurs="0"/>
+			<xs:element name="prefix_titles" type="STRINGS_Type" minOccurs="0"/>
+			<xs:element name="suffix_titles" type="STRINGS_Type" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="REMOTE_LOCATIONS_Type">
+		<xs:sequence>
+			<xs:element name="remote_location" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="ABSOLUTE_URL_TYPE_Type">
+							<xs:attribute name="language" type="LANGUAGE_CODE_Type" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="STRINGS_Type">
+		<xs:sequence>
+			<xs:element name="value" type="xs:string" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
