@@ -1,0 +1,1442 @@
+<?xml version="1.0" encoding="ASCII"?>
+<_0s:ECLASSDICTIONARY xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:_0s="urn:eclass:xml-schema:dictionary:2.0simplified" xmlns:ontomls="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontomlsimplified">
+  <ontoml>
+    <header description="eCl@ss9.1 BASIC" version="eCl@ss XML 2 0" name="eClass9_1_BASIC_EN_SG_90.xml" dateTimeStamp="2015-11-26T14:52:37.526Z" preProcessorVersion="1.1.0-eCl@ss XML 2.0 export" originatingSystem="eCl@ss ContentDevelopmentPlatform" authorisation="Christian Eck" id="0173-1#11-ECLASS91#001">
+      <authors>eCl@ss e.V. info@eclass.eu</authors>
+      <organisations>ECLASS</organisations>
+      <globalLanguage languageCode="en"/>
+      <ontomlInformation revision="9.1">
+        <preferredName>
+          <labels value="eCl@ss9.1"/>
+        </preferredName>
+      </ontomlInformation>
+      <ontomlStructure sourceDocumentIdentifier="869" status="IS" name="ONTOML"/>
+    </header>
+    <dictionary>
+      <containedClasses>
+        <class xsi:type="ontomls:CATEGORIZATIONCLASS" dateOfOriginalDefinition="2008-03-29Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" hierarchicalPosition="90000000" id="0173-1#01-ACL240#004">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Interim class (unspecified)" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="-no definition"/>
+          </definition>
+          <itsSuperclass classRef="0173-1#01-AAA002#001"/>
+        </class>
+        <class xsi:type="ontomls:CATEGORIZATIONCLASS" dateOfOriginalDefinition="2008-03-29Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" hierarchicalPosition="90900000" id="0173-1#01-ACL241#004">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Interim classification (unspecified)" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="-no definition"/>
+          </definition>
+          <itsSuperclass classRef="0173-1#01-ACL240#004"/>
+        </class>
+        <class xsi:type="ontomls:CATEGORIZATIONCLASS" dateOfOriginalDefinition="2008-03-29Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" hierarchicalPosition="90909000" id="0173-1#01-ACL242#004">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Interim classification (unspecified)" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Group (3rd level) for objects that cannot be classified into other specified groups in the existing structure, but that are classified to their parent-class on the 2nd level. A xx-xx-90-00-class cannot have any other sub-groups besides the generic xx-xx-90-90-class (&#x2026;(Other, unspecified)) to be generally valid within the parent class on the 2nd level" countryCode="US" languageCode="en"/>
+          </definition>
+          <itsSuperclass classRef="0173-1#01-ACL241#004"/>
+        </class>
+        <class xsi:type="ontomls:CATEGORIZATIONCLASS" dateOfOriginalDefinition="2008-03-29Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" hierarchicalPosition="90909090" id="0173-1#01-ACL243#010">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Interim classification (unspecified)" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Sub-group (4th level) for objects that cannot be classified into other specified sub-groups in the existing structure, but that are classified to their parent-class on the 3rd level" countryCode="US" languageCode="en"/>
+          </definition>
+          <note>
+            <texts value="A 90-class is not further specified with the help of properties (apart from the basic properties) nor keywords in order to be universally valid within its parent-class on the 3rd level." countryCode="US" languageCode="en"/>
+          </note>
+          <itsSuperclass classRef="0173-1#01-ACL242#004"/>
+        </class>
+        <class xsi:type="ontomls:ITEMCLASSCASEOF" dateOfOriginalDefinition="2009-07-17Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" id="0173-1---BASIC_1_1#01-DAC090#008" instanceSharable="true">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="AC_default_SG90" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="-"/>
+          </definition>
+          <itsSuperclass classRef="0173-1---BASIC_1_1#01-AAA001#001"/>
+          <describedBy>
+            <propertys propertyRef="0173-1#02-AAE670#003"/>
+            <propertys propertyRef="0173-1#02-AAQ326#001"/>
+            <propertys propertyRef="0173-1#02-AAD931#004"/>
+            <propertys propertyRef="0173-1#02-BAA271#007"/>
+            <propertys propertyRef="0173-1#02-AAO663#002"/>
+            <propertys propertyRef="0173-1#02-AAO677#001"/>
+            <propertys propertyRef="0173-1#02-BAA001#006"/>
+            <propertys propertyRef="0173-1#02-BAD847#003"/>
+            <propertys propertyRef="0173-1#02-AAO676#002"/>
+            <propertys propertyRef="0173-1#02-AAP805#002"/>
+            <propertys propertyRef="0173-1#02-BAA316#005"/>
+            <propertys propertyRef="0173-1#02-BAA002#004"/>
+            <propertys propertyRef="0173-1#02-AAO847#003"/>
+            <propertys propertyRef="0173-1#02-BAB542#004"/>
+            <propertys propertyRef="0173-1#02-AAO735#002"/>
+            <propertys propertyRef="0173-1#02-AAO736#003"/>
+            <propertys propertyRef="0173-1#02-BAA059#006"/>
+            <propertys propertyRef="0173-1#02-AAM551#001"/>
+            <propertys propertyRef="0173-1#02-AAU734#001"/>
+            <propertys propertyRef="0173-1#02-AAU733#001"/>
+            <propertys propertyRef="0173-1#02-AAU732#001"/>
+            <propertys propertyRef="0173-1#02-AAU731#001"/>
+            <propertys propertyRef="0173-1#02-AAU730#001"/>
+            <propertys propertyRef="0173-1#02-AAU729#001"/>
+            <propertys propertyRef="0173-1#02-AAU728#001"/>
+            <propertys propertyRef="0173-1#02-AAO742#002"/>
+          </describedBy>
+          <isCaseOf>
+            <class classRef="0173-1#01-ACL243#010"/>
+          </isCaseOf>
+        </class>
+        <class xsi:type="ontomls:ITEMCLASSCASEOF" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" id="0173-1---BASIC_1_1#01-ADB911#006" instanceSharable="true">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Interim classification (unspecified)" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Sub-group (4th level) for objects that cannot be classified into other specified sub-groups in the existing structure, but that are classified to their parent-class on the 3rd level" countryCode="US" languageCode="en"/>
+          </definition>
+          <note>
+            <texts value="A 90-class is not further specified with the help of properties (apart from the basic properties) nor keywords in order to be universally valid within its parent-class on the 3rd level." countryCode="US" languageCode="en"/>
+          </note>
+          <itsSuperclass classRef="0173-1---BASIC_1_1#01-AAA001#001"/>
+          <describedBy>
+            <propertys propertyRef="0173-1#02-AAE670#003"/>
+            <propertys propertyRef="0173-1#02-AAQ326#001"/>
+            <propertys propertyRef="0173-1#02-AAD931#004"/>
+            <propertys propertyRef="0173-1#02-BAA271#007"/>
+            <propertys propertyRef="0173-1#02-AAO663#002"/>
+            <propertys propertyRef="0173-1#02-AAO677#001"/>
+            <propertys propertyRef="0173-1#02-BAA001#006"/>
+            <propertys propertyRef="0173-1#02-BAD847#003"/>
+            <propertys propertyRef="0173-1#02-AAO676#002"/>
+            <propertys propertyRef="0173-1#02-AAP805#002"/>
+            <propertys propertyRef="0173-1#02-BAA316#005"/>
+            <propertys propertyRef="0173-1#02-BAA002#004"/>
+            <propertys propertyRef="0173-1#02-AAO847#003"/>
+            <propertys propertyRef="0173-1#02-BAB542#004"/>
+            <propertys propertyRef="0173-1#02-AAO735#002"/>
+            <propertys propertyRef="0173-1#02-AAO736#003"/>
+            <propertys propertyRef="0173-1#02-BAA059#006"/>
+            <propertys propertyRef="0173-1#02-AAM551#001"/>
+            <propertys propertyRef="0173-1#02-AAU734#001"/>
+            <propertys propertyRef="0173-1#02-AAU733#001"/>
+            <propertys propertyRef="0173-1#02-AAU732#001"/>
+            <propertys propertyRef="0173-1#02-AAU731#001"/>
+            <propertys propertyRef="0173-1#02-AAU730#001"/>
+            <propertys propertyRef="0173-1#02-AAU729#001"/>
+            <propertys propertyRef="0173-1#02-AAU728#001"/>
+            <propertys propertyRef="0173-1#02-AAO742#002"/>
+            <propertys propertyRef="0173-1#02-AAO673#001"/>
+            <propertys propertyRef="0173-1#02-AAA305#008"/>
+            <propertys propertyRef="0173-1#02-AAB146#005"/>
+            <propertys propertyRef="0173-1#02-AAS244#001"/>
+            <propertys propertyRef="0173-1#02-AAB110#005"/>
+            <propertys propertyRef="0173-1#02-AAQ199#002"/>
+            <propertys propertyRef="0173-1#02-AAO993#001"/>
+          </describedBy>
+          <isCaseOf>
+            <class classRef="0173-1#01-ACL243#010"/>
+          </isCaseOf>
+        </class>
+        <class xsi:type="ontomls:ITEMCLASS" dateOfOriginalDefinition="2000-01-01Z" dateOfCurrentVersion="2000-01-01Z" dateOfCurrentRevision="2000-01-01Z" revision="1" status="66" id="0173-1#01-RAA001#001">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="eCl@ss" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="-"/>
+          </definition>
+        </class>
+        <class xsi:type="ontomls:CATEGORIZATIONCLASS" dateOfOriginalDefinition="2006-12-19Z" dateOfCurrentVersion="2006-12-19Z" dateOfCurrentRevision="2006-12-19Z" revision="1" status="66" hierarchicalPosition="" id="0173-1#01-AAA002#001">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="eCl@ss" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="eCl@ss" countryCode="US" languageCode="en"/>
+          </definition>
+        </class>
+        <class xsi:type="ontomls:ITEMCLASS" dateOfOriginalDefinition="2007-01-24Z" dateOfCurrentVersion="2007-01-24Z" dateOfCurrentRevision="2007-01-24Z" revision="1" status="66" id="0173-1---BASIC_1_1#01-AAA001#001" instanceSharable="true">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="eCl@ss Application Classes" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="eCl@ss" countryCode="US" languageCode="en"/>
+          </definition>
+          <itsSuperclass classRef="0173-1#01-RAA001#001"/>
+        </class>
+      </containedClasses>
+      <containedSuppliers>
+        <suppliers revision="1" id="0173-1">
+          <org id="0173-1" name="eCl@ss"/>
+        </suppliers>
+      </containedSuppliers>
+      <containedProperties>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2009-08-11Z" dateOfCurrentRevision="2009-08-11Z" revision="1" status="66" isDeprecated="true" detClassification="A51" id="0173-1#02-BAD847#003">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Manufacturer product number" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <shortName>
+            <labels value="MAN_PROD_NUM" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="unique product identifier of the manufacturer" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="With this article number the customer is able to order an article or service from the manufacturer or a supplier." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-02-11Z" dateOfCurrentRevision="2011-02-11Z" revision="1" status="66" id="0173-1#02-AAM551#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Supplier product designation" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="brand-neutral name which the supplier uses for his product or service" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-02-11Z" dateOfCurrentRevision="2011-02-11Z" revision="1" status="66" detClassification="A91" id="0173-1#02-AAO673#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Health Industry Barcode" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <shortName>
+            <labels value="HIBC" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="a coded character string in Code 128 assigned by the manufacturer for unambiguous product identification, as HIBC carries product data for enterprise resource planning and enables traceability of automatic data collection at each point of the supply chain" countryCode="US" languageCode="en"/>
+          </definition>
+          <sourceDocOfDefinition xsi:type="ontomls:IDENTIFIEDDOCUMENT">
+            <documentIdentifier>
+              <labels value="EHIBCC EN1571" countryCode="US" languageCode="en"/>
+            </documentIdentifier>
+          </sourceDocOfDefinition>
+          <remark>
+            <texts value="The main code contains the identification of manufacturer, article number, packaging index and a check digit, secondary code charge / serial number, expiry date and quantity index. Advanced information is possibly connected with Data Identifier of the superior FACT-standard. Worldwide protect by label '+'." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-02-11Z" dateOfCurrentRevision="2011-02-11Z" revision="1" status="66" detClassification="A21" id="0173-1#02-AAO677#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Manufacturer name" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="Preliminary establishment of the designation of the manufacturer subject to changes by future EU directives and/or European standards." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-02-11Z" dateOfCurrentRevision="2011-02-11Z" revision="1" status="66" detClassification="A62" id="0173-1#02-AAO993#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Version of UMDNS" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="version number of Universal Medical Device Nomenclature System (UMDNS)" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-02-11Z" dateOfCurrentRevision="2011-02-11Z" revision="1" status="66" detClassification="A62" id="0173-1#02-AAQ326#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="additional link address" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="site address where you can view information about the product or to communicate" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-11-18Z" dateOfCurrentRevision="2011-11-18Z" revision="1" status="66" detClassification="A62" id="0173-1#02-AAQ199#002">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Universal Medical Device Nomenclature System" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Universal Medical Device Nomenclature System (UMDNS) developed by ECRI for the purpose of coding of medical devices. This nomenclature consists of terms and a randomly made numerical codification, provided with additionally modes of links as synonyms and related and congeneric and specific terms" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="UMDNS classification is required for tenders throughout Europe plus for reporting of medical device incidents" countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-11-18Z" dateOfCurrentRevision="2011-11-18Z" revision="1" status="66" detClassification="A51" id="0173-1#02-AAO676#002">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Manufacturer product number" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <shortName>
+            <labels value="MAN_PROD_NUM" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="unique product identifier of the manufacturer" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="With this article number the customer is able to order an article or service from the manufacturer or a supplier." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-11-18Z" dateOfCurrentRevision="2011-11-18Z" revision="1" status="66" detClassification="A91" id="0173-1#02-AAO735#002">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Supplier name" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Name of supplier which provides the customer with an article (product or service)" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="The supplier as contractor in a contractual relationship can, for example, be a manufacturer, a distributor, an importer, a retail dealer or chain, an assembly company or service organization. The supplier can be any legal entity which is responsible for the quality of the product before it is taken by the customer. In the context of transport services the supplier can also be the person or organization which delivers an article or a service to the buyer." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2012-11-27Z" dateOfCurrentVersion="2012-11-27Z" dateOfCurrentRevision="2012-11-27Z" revision="1" status="66" detClassification="A91" id="0173-1#02-AAS244#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Pharmaceutical central number" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <shortName>
+            <labels value="" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="eight-digit (7 numbers + check digit) standardized identification key within Germany ruled by the Informationsstelle f&#xfc;r Arzneispezialit&#xe4;ten (IfA) to specify unambiguously medicinal products and other products sold at pharmacies concerning name, medicinal form, strength of active substance and packaging size" countryCode="US" languageCode="en"/>
+          </definition>
+          <sourceDocOfDefinition xsi:type="ontomls:IDENTIFIEDDOCUMENT">
+            <documentIdentifier>
+              <labels value="IFA GmbH" countryCode="US" languageCode="en"/>
+            </documentIdentifier>
+          </sourceDocOfDefinition>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2012-11-27Z" dateOfCurrentRevision="2012-11-27Z" revision="1" status="66" detClassification="A51" id="0173-1#02-AAP805#002">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Product name" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="designation for a product defined by manufacturer or sales organization" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="COMMENT 1: The designation product is applicable to all tangible goods as well as to all intangible goods (e.g. a service, consultation, intellectual property, software). COMMENT 2: Many products are marketed under a special name to indicate their origin" countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2009-08-10Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" detClassification="A51" id="0173-1#02-AAD931#004">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="customs tariff number (TARIC)" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <synonymousNames>
+            <labels value="TARIC" countryCode="US" languageCode="en"/>
+          </synonymousNames>
+          <shortName>
+            <labels value="TARIC" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="EU uniformed number system conforming regulation (EWG) No. 2658/87 from 23 july 1987 concerning custom numbers and customs" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:INTTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2009-08-10Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" isDeprecated="true" detClassification="A62" id="0173-1#02-AAE670#003">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="additional link address" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="site address where you can view information about the product or to communicate" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" isDeprecated="true" detClassification="A21" id="0173-1#02-BAA001#006">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Manufacturer name" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation used by manufacturer" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="Preliminary establishment of the designation of the manufacturer subject to changes by future EU directives and/or European standards." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" isDeprecated="true" detClassification="A51" id="0173-1#02-BAA002#004">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Product type description" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="name of the product family or variant" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="A product type can also be an abbreviation or coded type" countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" isDeprecated="true" detClassification="A91" id="0173-1#02-BAA059#006">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Supplier product number" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <shortName>
+            <labels value="SUP_PROD_NUM" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="unique product order identifier of the supplier" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="The customer can use this number to order the article (or service) from the manufacturer or supplier." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" isDeprecated="true" detClassification="A91" id="0173-1#02-BAA271#007">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="GTIN" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <synonymousNames>
+            <labels value="EAN CODE" countryCode="US" languageCode="en"/>
+          </synonymousNames>
+          <shortName>
+            <labels value="GTIN" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="internationally unique and unambiguous article number for products and services (Global Trade Item Number, formerly EAN)" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="The most common EAN-number is a 13 digit number. The first two or three digits represent the national institute responsible for assigning numbers and thus indicate the country of manufacture. The following five or four places are used for the manufacturer's characterization. Five additional digits are provided for the manufacturer's article number. The 13th and last digit is a check digit." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" isDeprecated="true" detClassification="A51" id="0173-1#02-BAA316#005">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Product name" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="designation for a product defined by manufacturer or sales organization" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="COMMENT 1: The designation product is applicable to all tangible goods as well as to all intangible goods (e.g. a service, consultation, intellectual property, software). COMMENT 2: Many products are marketed under a special name to indicate their origin," countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" isDeprecated="true" detClassification="A91" id="0173-1#02-BAB542#004">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Supplier name" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Name of supplier which provides the customer with an article (product or service)" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="The supplier as contractor in a contractual relationship can, for example, be a manufacturer, a distributor, an importer, a retail dealer or chain, an assembly company or service organization. The supplier can be any legal entity which is responsible for the quality of the product before it is taken by the customer. In the context of transport services the supplier can also be the person or organization which delivers an article or a service to the buyer." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2008-03-29Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" detClassification="A58" suggestedValueList="true" id="0173-1#02-AAB110#005">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Size of glove" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="standardized measurement to manufacture gloves in series" countryCode="US" languageCode="en"/>
+          </definition>
+          <sourceDocOfDefinition xsi:type="ontomls:IDENTIFIEDDOCUMENT">
+            <documentIdentifier>
+              <labels value="Ortovox. So ermitteln Sie Ihre Handschuhgr&#xf6;&#xdf;e [online]. Updated 03 June 2007 [cited 06 March 2007] Available from: &lt;http://www.ortovox.com/typo7/index.php?id=271>" countryCode="US" languageCode="en"/>
+            </documentIdentifier>
+          </sourceDocOfDefinition>
+          <domain xsi:type="ontomls:NAMEDTYPE">
+            <referredType datatypeRef="0173-1#09-AAB473#004"/>
+          </domain>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2008-03-29Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" detClassification="A57" id="0173-1#02-AAB146#005">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Material of glove" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="material (fabric, raw material) the glove is made of (having regard to its outward form and/or the process of formation resp. of manufacture)" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2014-11-30Z" dateOfCurrentRevision="2014-11-30Z" revision="1" status="66" detClassification="A91" id="0173-1#02-AAO736#003">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Supplier product number" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <shortName>
+            <labels value="SUP_PROD_NUM" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="unique product order identifier of the supplier" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="The customer can use this number to order the article (or service) from the manufacturer or supplier." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2014-11-30Z" dateOfCurrentRevision="2014-11-30Z" revision="1" status="66" detClassification="A91" id="0173-1#02-AAO663#002">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="GTIN" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <shortName>
+            <labels value="GTIN" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="internationally unique and unambiguous article number for products and services (Global Trade Item Number, formerly EAN)" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="The most common EAN-number is a 13 digit number. The first two or three digits represent the national institute responsible for assigning numbers and thus indicate the country of manufacture. The following five or four places are used for the manufacturer's characterization. Five additional digits are provided for the manufacturer's article number. The 13th and last digit is a check digit." countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2008-03-29Z" dateOfCurrentVersion="2014-11-30Z" dateOfCurrentRevision="2014-11-30Z" revision="1" status="66" detClassification="A57" suggestedValueList="true" id="0173-1#02-AAA305#008">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="allergenic potential" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="definition of contained or not contained materials and substances which are able to cause an allergic immune response intracorporally depending on their nature and properties or because of their state" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:NAMEDTYPE">
+            <referredType datatypeRef="0173-1#09-AAB203#006"/>
+          </domain>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2015-11-13Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" id="0173-1#02-AAU728#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Supplier product family" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="2nd level of a 3 level supplier specific product hierarchy" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2015-11-13Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" id="0173-1#02-AAU729#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Supplier product root" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Top level of a 3 level supplier specific product hierarchy" countryCode="US" languageCode="en"/>
+          </definition>
+          <note>
+            <texts value="could be used for building variants" countryCode="US" languageCode="en"/>
+          </note>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2015-11-13Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" id="0173-1#02-AAU730#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Supplier product description" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Description of the product, it's technical features and implementation if needed (long text)" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2015-11-13Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" id="0173-1#02-AAU731#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Manufacturer product family" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="2nd level of a 3 level manufacturer specific product hierarchy" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2015-11-13Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" id="0173-1#02-AAU732#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Manufacturer product root" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Top level of a 3 level manufacturer specific product hierarchy" countryCode="US" languageCode="en"/>
+          </definition>
+          <note>
+            <texts value="could be used for building variants" countryCode="US" languageCode="en"/>
+          </note>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2015-11-13Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" id="0173-1#02-AAU733#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Manufacturer product order suffix" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="By the manufacturer awarded string for the identification of additional attributes, not by a structured manufacturer item number may be expressed" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2015-11-13Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" id="0173-1#02-AAU734#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Manufacturer product description" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="Description of the product, it's technical features and implementation if needed (long text)" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:TRANSLATABLESTRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" detClassification="A51" id="0173-1#02-AAO742#002">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Brand" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <shortName>
+            <labels value="BRAND" countryCode="US" languageCode="en"/>
+          </shortName>
+          <definition>
+            <texts value="Part of the naming for the support and the recognition of the brand position of products and services consisting of words, numbers, letters or other characters. Registered brands and trademarks are indicated with the appropriate protective signs (&#xae; or TM)" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2015-11-13Z" dateOfCurrentRevision="2015-11-13Z" revision="1" status="66" detClassification="A51" id="0173-1#02-AAO847#003">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="description of product type" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="name of the product family or variant" countryCode="US" languageCode="en"/>
+          </definition>
+          <remark>
+            <texts value="A product type can also be an abbreviation or coded type" countryCode="US" languageCode="en"/>
+          </remark>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+      </containedProperties>
+      <containedDatatypes>
+        <datatypes dateOfOriginalDefinition="2008-03-29Z" dateOfCurrentVersion="2014-11-30Z" dateOfCurrentRevision="2014-11-30Z" revision="1" status="66" id="0173-1#09-AAB203#006">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="allergenic potential" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <typeDefinition xsi:type="ontomls:STRINGTYPE">
+            <constraints>
+              <constraints xsi:type="ontomls:ENUMERATIONCONSTRAINT">
+                <subset/>
+                <valueMeaning>
+                  <itsValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAW820#001">
+                      <preferredName>
+                        <labels value="containing phthalate" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAW819#001">
+                      <preferredName>
+                        <labels value="free of phthalate" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAW411#001">
+                      <preferredName>
+                        <labels value="not specified" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAW263#001">
+                      <preferredName>
+                        <labels value="polyvinylchloride-free" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAW262#001">
+                      <preferredName>
+                        <labels value="polyvinylchloride-containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAW202#001">
+                      <preferredName>
+                        <labels value="free of colophony" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAW201#001">
+                      <preferredName>
+                        <labels value="colophony-containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ021#004">
+                      <preferredName>
+                        <labels value="BBP-containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ020#004">
+                      <preferredName>
+                        <labels value="BBP-free" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAA936#003">
+                      <preferredName>
+                        <labels value="chromium containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAA317#003">
+                      <preferredName>
+                        <labels value="chromium free" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV561#001">
+                      <preferredName>
+                        <labels value="containing carbamates" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV565#001">
+                      <preferredName>
+                        <labels value="containing guanidine" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV559#001">
+                      <preferredName>
+                        <labels value="containing mercaptobenzothiazoles" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV567#001">
+                      <preferredName>
+                        <labels value="containing thiourea" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV563#001">
+                      <preferredName>
+                        <labels value="containing thiurams" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ023#004">
+                      <preferredName>
+                        <labels value="DBP-containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ022#004">
+                      <preferredName>
+                        <labels value="DBP-free" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ025#004">
+                      <preferredName>
+                        <labels value="DEHP-containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ024#004">
+                      <preferredName>
+                        <labels value="DEHP-free" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ027#004">
+                      <preferredName>
+                        <labels value="DIDP-containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ026#004">
+                      <preferredName>
+                        <labels value="DIDP-free" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ029#004">
+                      <preferredName>
+                        <labels value="DINP-containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ028#004">
+                      <preferredName>
+                        <labels value="DINP-free" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV560#001">
+                      <preferredName>
+                        <labels value="free of carbamates" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV564#001">
+                      <preferredName>
+                        <labels value="free of guanidine" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV558#001">
+                      <preferredName>
+                        <labels value="free of mercaptobenzothiazoles" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV566#001">
+                      <preferredName>
+                        <labels value="free of thiourea" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAV562#001">
+                      <preferredName>
+                        <labels value="free of thiurams" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAJ031#004">
+                      <preferredName>
+                        <labels value="latex containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAJ030#004">
+                      <preferredName>
+                        <labels value="latexfree" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAB200#003">
+                      <preferredName>
+                        <labels value="nickel containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAA595#003">
+                      <preferredName>
+                        <labels value="nickel free" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAA577#003">
+                      <preferredName>
+                        <labels value="non-valued" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAJ033#004">
+                      <preferredName>
+                        <labels value="powder containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAJ032#004">
+                      <preferredName>
+                        <labels value="powderfree" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ035#004">
+                      <preferredName>
+                        <labels value="PVC-containing" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" isDeprecated="true" valueMeaningId="0173-1#07-AAJ034#004">
+                      <preferredName>
+                        <labels value="PVC-free" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                  </itsValues>
+                </valueMeaning>
+              </constraints>
+            </constraints>
+          </typeDefinition>
+        </datatypes>
+        <datatypes dateOfOriginalDefinition="2008-03-29Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" id="0173-1#09-AAB473#004">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Size of glove" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <typeDefinition xsi:type="ontomls:STRINGTYPE">
+            <constraints>
+              <constraints xsi:type="ontomls:ENUMERATIONCONSTRAINT">
+                <subset/>
+                <valueMeaning>
+                  <itsValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAK432#004">
+                      <preferredName>
+                        <labels value="L" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAK433#004">
+                      <preferredName>
+                        <labels value="M" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAK434#004">
+                      <preferredName>
+                        <labels value="S" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAK435#004">
+                      <preferredName>
+                        <labels value="XL" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAK436#004">
+                      <preferredName>
+                        <labels value="XS" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                  </itsValues>
+                </valueMeaning>
+              </constraints>
+            </constraints>
+          </typeDefinition>
+        </datatypes>
+      </containedDatatypes>
+    </dictionary>
+  </ontoml>
+  <extensions>
+    <containedEaTemplates>
+      <eaTemplates code="E132" id="bd1e699ae7b14354a33f7b7a7df58a4e">
+        <typeOfValue xsi:type="ontomls:STRINGTYPE"/>
+        <sourceLanguage countryCode="DE" languageCode="de"/>
+        <shortName>
+          <labels value="Z21" countryCode="US" languageCode="en"/>
+        </shortName>
+        <preferredName>
+          <labels value="CC_restricts_CR_acces" countryCode="US" languageCode="en"/>
+        </preferredName>
+      </eaTemplates>
+      <eaTemplates typeOfEntity="02" code="DBC" id="bc6b36b4ee0440f4b6f8c2e5f250f6f0">
+        <typeOfValue xsi:type="ontomls:INTTYPE"/>
+        <sourceLanguage countryCode="US" languageCode="en"/>
+        <shortName>
+          <labels value="Digits before comma" countryCode="US" languageCode="en"/>
+        </shortName>
+        <preferredName>
+          <labels value="Digits before comma" countryCode="US" languageCode="en"/>
+        </preferredName>
+      </eaTemplates>
+      <eaTemplates typeOfEntity="02" code="DAC" id="e75d1d4ff7614942a3143d27f5afbf9f">
+        <typeOfValue xsi:type="ontomls:INTTYPE"/>
+        <sourceLanguage countryCode="US" languageCode="en"/>
+        <shortName>
+          <labels value="Digits after comma" countryCode="US" languageCode="en"/>
+        </shortName>
+        <preferredName>
+          <labels value="Digits after comma" countryCode="US" languageCode="en"/>
+        </preferredName>
+      </eaTemplates>
+      <eaTemplates code="CORRECTION" id="12345678901234567890123456789012">
+        <typeOfValue xsi:type="ontomls:INTTYPE"/>
+        <sourceLanguage countryCode="US" languageCode="en"/>
+        <shortName>
+          <labels value="Correction" countryCode="US" languageCode="en"/>
+        </shortName>
+        <preferredName>
+          <labels value="Correction" countryCode="US" languageCode="en"/>
+        </preferredName>
+      </eaTemplates>
+      <eaTemplates typeOfEntity="02" code="PROP_QUANTITY_CONNECTION" id="571f168c5f324b0d89c3be68a71569b8">
+        <typeOfValue xsi:type="ontomls:STRINGTYPE"/>
+        <sourceLanguage countryCode="US" languageCode="en"/>
+        <shortName>
+          <labels value="Connection property-quantity" countryCode="US" languageCode="en"/>
+        </shortName>
+        <preferredName>
+          <labels value="Connection property-quantity" countryCode="US" languageCode="en"/>
+        </preferredName>
+      </eaTemplates>
+      <eaTemplates typeOfEntity="02" code="MXL" id="0f6948d9497d472da4ee16ece61b47cd">
+        <typeOfValue xsi:type="ontomls:INTTYPE"/>
+        <sourceLanguage countryCode="US" languageCode="en"/>
+        <shortName>
+          <labels value=" Maximum string length" countryCode="US" languageCode="en"/>
+        </shortName>
+        <preferredName>
+          <labels value=" Maximum string length" countryCode="US" languageCode="en"/>
+        </preferredName>
+      </eaTemplates>
+      <eaTemplates typeOfEntity="02" code="PROP_VALENCY" id="ddbf46fc03854aaab471390e45f69d71">
+        <typeOfValue xsi:type="ontomls:STRINGTYPE"/>
+        <sourceLanguage countryCode="US" languageCode="en"/>
+        <shortName>
+          <labels value="Property valency" countryCode="US" languageCode="en"/>
+        </shortName>
+        <preferredName>
+          <labels value="Property valency" countryCode="US" languageCode="en"/>
+        </preferredName>
+      </eaTemplates>
+    </containedEaTemplates>
+    <containedEaInstances>
+      <entityEas entityRef="0173-1#02-BAD847#003">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAM551#001">
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAO673#001">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="49"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAO677#001">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAO993#001">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="6"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAQ326#001">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="1024"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAQ199#002">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAO676#002">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAO735#002">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="32"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAS244#001">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="8"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAP805#002">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAD931#004">
+        <eas templateId="bc6b36b4ee0440f4b6f8c2e5f250f6f0">
+          <integerValue value="11"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAE670#003">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="1024"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-BAA001#006">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-BAA002#004">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="265"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-BAA059#006">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-BAA271#007">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="32"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-BAA316#005">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-BAB542#004">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="32"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAB110#005">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="3"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAB146#005">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="256"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAO736#003">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAO663#002">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="14"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAA305#008">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="256"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAU728#001">
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAU729#001">
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAU730#001">
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAU731#001">
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAU732#001">
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAU733#001">
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAU734#001">
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="univalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAO742#002">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="64"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#02-AAO847#003">
+        <eas templateId="0f6948d9497d472da4ee16ece61b47cd">
+          <integerValue value="265"/>
+        </eas>
+        <eas templateId="ddbf46fc03854aaab471390e45f69d71">
+          <stringValue value="multivalent"/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#01-ACL240#004">
+        <eas templateId="bd1e699ae7b14354a33f7b7a7df58a4e">
+          <integerValue/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#01-ACL242#004">
+        <eas templateId="bd1e699ae7b14354a33f7b7a7df58a4e">
+          <integerValue/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#01-ACL241#004">
+        <eas templateId="bd1e699ae7b14354a33f7b7a7df58a4e">
+          <integerValue/>
+        </eas>
+      </entityEas>
+      <entityEas entityRef="0173-1#01-ACL243#010">
+        <eas templateId="bd1e699ae7b14354a33f7b7a7df58a4e">
+          <integerValue/>
+        </eas>
+      </entityEas>
+    </containedEaInstances>
+    <containedRelDeprecation>
+      <deprecations context="0173-1#01-ACL243#010" entity="0173-1---BASIC_1_1#01-DAC090#008" relType="DEPRECIATION ICO AC-CC"/>
+      <deprecations context="0173-1---BASIC_1_1#01-DAC090#008" entity="0173-1#02-AAE670#003" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-DAC090#008" entity="0173-1#02-BAA271#007" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-DAC090#008" entity="0173-1#02-BAA001#006" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-DAC090#008" entity="0173-1#02-BAD847#003" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-DAC090#008" entity="0173-1#02-BAA316#005" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-DAC090#008" entity="0173-1#02-BAA002#004" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-DAC090#008" entity="0173-1#02-BAB542#004" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-DAC090#008" entity="0173-1#02-BAA059#006" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-AAO673#001" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-AAA305#008" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-AAB146#005" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-AAS244#001" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-AAB110#005" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-AAQ199#002" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-AAO993#001" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-AAE670#003" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-BAA271#007" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-BAA001#006" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-BAD847#003" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-BAA316#005" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-BAA002#004" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-BAB542#004" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1---BASIC_1_1#01-ADB911#006" entity="0173-1#02-BAA059#006" relType="DEPRECIATION C-P"/>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ021#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ020#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ023#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ022#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ025#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ024#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ027#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ026#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ029#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ028#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ035#004"/>
+      </deprecations>
+      <deprecations context="0173-1#09-AAB203#006" relType="DEPRECIATION D-V">
+        <controlledValue valueRef="0173-1#07-AAJ034#004"/>
+      </deprecations>
+    </containedRelDeprecation>
+  </extensions>
+</_0s:ECLASSDICTIONARY>

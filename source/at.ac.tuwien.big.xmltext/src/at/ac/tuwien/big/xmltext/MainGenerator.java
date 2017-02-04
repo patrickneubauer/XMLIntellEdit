@@ -14,7 +14,7 @@ import mypackage.XsdToXtextGenerator;
 public class MainGenerator {
 
 	
-	private static void test1() {
+	private static void testLibrary3Example() {
 		XsdToEcoreTransformer transformer = new XsdToEcoreTransformer();
 		transformer.setXsd(XsdToXtextGenerator.XSD_FILE_NAME);
 		Resource xsdResource = transformer.getResult();
@@ -47,7 +47,7 @@ public class MainGenerator {
 		generator.generateModelCode();
 	}
 	
-	private static void test2() {
+	private static void testEClassBasicExample90() {
 		XsdToEcoreTransformer transformer = new XsdToEcoreTransformer();
 		transformer.setXsd("examples/eclassXML/dictionary.xsd");
 		Resource xsdResource = transformer.getResult();
@@ -81,7 +81,7 @@ public class MainGenerator {
 		generator.generateModelCode();
 	}
 	
-	private static void test3() {
+	private static void testEClassBasicExample27() {
 		XsdToEcoreTransformer transformer = new XsdToEcoreTransformer();
 		transformer.setXsd("examples/eclassXML/dictionary.xsd");
 		Resource xsdResource = transformer.getResult();
@@ -150,9 +150,9 @@ public class MainGenerator {
 	}
 	
 	public static void main(String[] args) {
-		//test1();
-		//test2();
-		test3();
-		//testNamespace();
+		testLibrary3Example();
+		testEClassBasicExample90();
+		testEClassBasicExample27();
+		testNamespace();
 	}
 }
