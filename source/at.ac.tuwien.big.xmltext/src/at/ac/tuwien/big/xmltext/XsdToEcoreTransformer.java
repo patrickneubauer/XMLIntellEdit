@@ -19,9 +19,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLOptions;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLOptionsImpl;
 import org.eclipse.xsd.ecore.XSDEcoreBuilder;
 
 public class XsdToEcoreTransformer {
@@ -66,6 +68,7 @@ public class XsdToEcoreTransformer {
 	
 	public Resource loadXml(String xmlPath) {
 		ResourceSet resourceSet = getResult().getResourceSet();
+		resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml", new GenericXMLResourceFactoryImpl());
 		Resource resource = resourceSet.getResource(resourceSet.getURIConverter().normalize(URI.createFileURI(xmlPath)), true);
 		try {

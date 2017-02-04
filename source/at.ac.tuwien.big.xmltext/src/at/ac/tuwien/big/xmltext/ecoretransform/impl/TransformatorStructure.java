@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -262,9 +263,9 @@ public class TransformatorStructure {
 		TransformatorStructure ret = new TransformatorStructure();
 		ret.store = store;
 		ret.xmlResource = ()->xmlResource.getAllContents();
-		ret.ecoreResource = ecoreResource;
+		ret.ecoreResources.add(ecoreResource);
 		ret.readInBasicTarget(ecoreResource);
-		ret.parseXmlEcoreBasic(resourceSet, xmlResource.getURI(), ()->xmlResource.getAllContents(), false);
+		ret.parseXmlEcoreBasic(ecoreResource, resourceSet, xmlResource.getURI(), ()->xmlResource.getAllContents(), false);
 		return ret;
 	}
 
@@ -273,20 +274,33 @@ public class TransformatorStructure {
 		TransformatorStructure ret = new TransformatorStructure();
 		ret.store = store;
 		ret.xmlResource = ()->ecoreXmlResource.getAllContents();
-		ret.parseXmlEcore(resourceSet,targetFilename==null?null:URI.createFileURI(targetFilename),ret.xmlResource, false);
+		ret.parseXmlEcore(null,resourceSet,targetFilename==null?null:URI.createFileURI(targetFilename),ret.xmlResource, false);
+		return ret;
+	}
+	
+	public static TransformatorStructure fromXmlEcores(TypeTransformatorStore store,
+			ResourceSet resourceSet, List<Resource> ecoreXmlResources, String targetFilename) {
+		TransformatorStructure ret = new TransformatorStructure();
+		ret.store = store;
+		int ind = 0;
+		for (Resource ecoreXmlResource: ecoreXmlResources) {
+			ret.xmlResource = ()->ecoreXmlResource.getAllContents();
+			ret.parseXmlEcore(null,resourceSet,targetFilename==null?null:URI.createFileURI(targetFilename+(++ind)+".ecore"),ret.xmlResource, false);
+			
+		}
 		return ret;
 	}
 	
 	public TransformatorStructure(TypeTransformatorStore store, ResourceSet resourceSet, Resource xmlResource) {
 		this.store = store;
 		this.xmlResource = ()->xmlResource.getAllContents();
-		parseXmlEcore(resourceSet,URI.createURI(xmlResource.getURI()+"simplified"),this.xmlResource,false);
+		parseXmlEcore(null,resourceSet,URI.createURI(xmlResource.getURI()+"simplified"),this.xmlResource,false);
 	}
 	
 	public TransformatorStructure(TypeTransformatorStore store, ResourceSet resourceSet, File xmlResourceFile, Iterable<EObject> xmlResource) {
 		this.store = store;
 		this.xmlResource = xmlResource;
-		parseXmlEcore(resourceSet,URI.createFileURI(xmlResourceFile.getAbsolutePath()+".simple.ecore"),xmlResource,false);
+		parseXmlEcore(null,resourceSet,URI.createFileURI(xmlResourceFile.getAbsolutePath()+".simple.ecore"),xmlResource,false);
 	}
 	
 	private EAttribute commonIdAttribute = null;
@@ -497,7 +511,7 @@ public class TransformatorStructure {
 				
 				//attributeToReference.put(ecoreAttr, ref);
 				//referenceToAttribute.put(ref, ecoreAttr);
-				if (!hadReference) {
+				if (!hadReference && ecoreAttr.getEContainingClass() != null) {
 					int idx = ecoreAttr.getEContainingClass().getEStructuralFeatures().indexOf(ecoreAttr);
 					ecoreAttr.getEContainingClass().getEStructuralFeatures().add(idx,ref);
 					ecoreAttr.getEContainingClass().getEStructuralFeatures().remove(ecoreAttr);
@@ -609,11 +623,8 @@ public class TransformatorStructure {
 		return commonIdAttribute;
 	}
 
-	public Resource getEcoreResource() {
-		return ecoreResource;
-	}
 	
-	private Resource ecoreResource;
+	private List<Resource> ecoreResources = new ArrayList<Resource>();
 	private Iterable<EObject> xmlResource;
 	
 	public EClass getEcoreEClass(EClass xml) {
@@ -702,7 +713,7 @@ public class TransformatorStructure {
 	private EReference rootReferenceXml;
 	
 	
-	public void parseXmlEcoreBasic(ResourceSet resourceSet, URI targetEcoreUri, Iterable<EObject> xmlResource, boolean generateFile) {
+	public void parseXmlEcoreBasic(Resource localEcore, ResourceSet resourceSet, URI targetEcoreUri, Iterable<EObject> xmlResource, boolean generateFile) {
 		EPackage xmlEPkg = null;
 		for (EObject eobj: xmlResource) {
 			if (eobj instanceof EPackage) {
@@ -710,7 +721,7 @@ public class TransformatorStructure {
 				resourceSet.getPackageRegistry().put(xmlEPkg.getNsURI(), eobj);
 			}
 		}
-		ecorePackage = (EPackage)ecoreResource.getContents().get(0);
+		ecorePackage = (EPackage)localEcore.getContents().get(0);
 
 		List<EAttribute> eattrs = new ArrayList<>();
 		List<EReference> erefs = new ArrayList<>();
@@ -779,16 +790,20 @@ public class TransformatorStructure {
 		buildChangers();
 		calcId();
 		augmentWithStandardDatatypes();
+		
 		if (generateFile) {
 			try {
-				this.ecoreResource.save(new FileOutputStream("testoutput.ecore"),null);
+				int ind = 0;
+				for (Resource ecoreRes: ecoreResources) {
+					ecoreRes.save(new FileOutputStream("testoutput"+(++ind)+".ecore"),null);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	public void parseXmlEcore(ResourceSet resourceSet, /*String xmlEcoreName, */URI targetEcoreUri, Iterable<EObject> xmlResource, boolean generateFile) {
+	public void parseXmlEcore(Resource localECoreResource, ResourceSet resourceSet, /*String xmlEcoreName, */URI targetEcoreUri, Iterable<EObject> xmlResource, boolean generateFile) {
 		EPackage xmlEPkg = null;
 		for (EObject eobj: xmlResource) {
 			if (eobj instanceof EPackage) {
@@ -796,18 +811,26 @@ public class TransformatorStructure {
 				resourceSet.getPackageRegistry().put(xmlEPkg.getNsURI(), eobj);
 			}
 		}
-		if (this.ecoreResource == null) { 
-			this.ecoreResource = targetEcoreUri==null?new XMIResourceImpl(): new XMIResourceImpl(resourceSet.getURIConverter().normalize(targetEcoreUri));
+		if (xmlEPkg == null) {
+			for (EObject eobj: xmlResource) {
+				System.out.println("Found object: "+eobj);
+			}	
+		}
+		if (localECoreResource == null) { 
+			localECoreResource = targetEcoreUri==null?new XMIResourceImpl(): new XMIResourceImpl(
+					resourceSet.getURIConverter().normalize(targetEcoreUri)
+					);
+			this.ecoreResources.add(localECoreResource);
 			
 			ecorePackage = EcoreFactory.eINSTANCE.createEPackage();
-			ecorePackage.setNsURI("http://"+xmlEPkg.getNsURI()+"simplified");
+			ecorePackage.setNsURI(xmlEPkg.getNsURI()+"simplified");
 			//epkg.setNsURI(xmlEPkg.getNsURI()+"-simplified");
 			//String xmlEcoreShortName = xmlEcoreName.split("\\.", 2)[0];
-			ecorePackage.setName(xmlEPkg.getName()+"Simplified");
+			ecorePackage.setName((xmlEPkg.getName()+"Simplified").replace(".", ""));
 			ecorePackage.setNsPrefix(xmlEPkg.getNsPrefix()+"s");
-			ecoreResource.getContents().add(ecorePackage);
+			localECoreResource.getContents().add(ecorePackage);
 		} else {
-			ecorePackage = (EPackage)ecoreResource.getContents().get(0);
+			ecorePackage = (EPackage)localECoreResource.getContents().get(0);
 		}
 
 		List<EAttribute> eattrs = new ArrayList<>();
@@ -839,9 +862,14 @@ public class TransformatorStructure {
 					ecorePackage.getEClassifiers().add(ecoreClass);
 				} else {
 					//Analyze subclass
-					documentRootClassXml = cl;
-					rootReferenceXml = TransformatorImpl.getRootFeature(cl);
-					rootClassXml = rootReferenceXml.getEReferenceType();
+					
+					if (rootReferenceXml == null) {
+						rootReferenceXml = TransformatorImpl.getRootFeature(cl);
+						if (rootReferenceXml != null) {
+							rootClassXml = rootReferenceXml.getEReferenceType();
+							documentRootClassXml = cl;
+						}
+					}
 				}
 				
 			} else if (eobj instanceof EEnum) {
@@ -895,9 +923,14 @@ public class TransformatorStructure {
 		buildChangers();
 		calcId();
 		augmentWithStandardDatatypes();
+
+		
 		if (generateFile) {
 			try {
-				this.ecoreResource.save(new FileOutputStream("testoutput.ecore"),null);
+				int ind = 0;
+				for (Resource ecoreRes: ecoreResources) {
+					ecoreRes.save(new FileOutputStream("testoutput"+(++ind)+".ecore"),null);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -918,7 +951,7 @@ public class TransformatorStructure {
 		resourceSet.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, extendedMetaData);
 		Resource res = resourceSet.getResource(resourceSet.getURIConverter().normalize(URI.createFileURI(xmlEcore.getAbsolutePath())), true);
 		this.xmlResource = ()->res.getAllContents();
-		parseXmlEcore(resourceSet, URI.createFileURI(xmlEcore.getAbsolutePath()+".simple.ecore"),  xmlResource, true);
+		parseXmlEcore(null,resourceSet, URI.createFileURI(xmlEcore.getAbsolutePath()+".simple.ecore"),  xmlResource, true);
 		
 		
 	}
@@ -1355,7 +1388,7 @@ public class TransformatorStructure {
 						ecoreReference.getEReferenceType(), matchingObjectTransformation)));
 		xmlToEcoreRef.put(xmlReference, tfi);
 		ecoreToXmlRef.put(ecoreReference, tfi);
-		contCl.getEStructuralFeatures().add(ecoreReference);
+		//contCl.getEStructuralFeatures().add(ecoreReference);
 		return true;
 	}
 	
@@ -1489,6 +1522,11 @@ public class TransformatorStructure {
 
 	public EClass getEcoreRoot() {
 		return rootClassEcore;
+	}
+
+
+	public List<Resource> getEcoreResources() {
+		return ecoreResources;
 	}
 
 }
