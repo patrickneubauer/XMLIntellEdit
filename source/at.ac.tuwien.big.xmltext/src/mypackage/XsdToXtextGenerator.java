@@ -124,11 +124,11 @@ import at.ac.tuwien.util.ObjectSerializer;
 @SuppressWarnings("restriction")
 public class XsdToXtextGenerator {
 
-	public static final String GENMODEL_FILE_NAME = "library3simple.genmodel";
-	public static final String ECORE_FILE_NAME = "library3simple.ecore";
-	public static final String ECORE_INIT_FILE_NAME = "library3base.ecore";
-	public  static final String XSD_FILE_NAME = "library3.xsd";
-	public  static final String XTEXT_GRAMMAR_FILE_NAME = "TheLibrary.xtext";
+	public static final String GENMODEL_FILE_NAME = "examples/library3simple.genmodel";
+	public static final String ECORE_FILE_NAME = "examples/library3simple.ecore";
+	public static final String ECORE_INIT_FILE_NAME = "examples/library3base.ecore";
+	public  static final String XSD_FILE_NAME = "examples/library3.xsd";
+	public  static final String XTEXT_GRAMMAR_FILE_NAME = "examples/TheLibrary.xtext";
 	
 	/**
 	 * ECLIPSE_WORKSPACE_LOCATION has to exactly match the workspace folder in

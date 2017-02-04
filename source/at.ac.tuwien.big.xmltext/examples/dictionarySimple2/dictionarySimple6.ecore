@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xontomlextensionsschemacoreSimplified" nsURI="urn:x-ontoml-extensions:schema:coresimplified" nsPrefix="cores">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="CONTAINEDEAINSTANCES">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entityEas" lowerBound="1" upperBound="-1" eType="//ENTITYEXTENDEDATTRIBUTES" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CONTAINEDEATEMPLATES">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eaTemplates" lowerBound="1" upperBound="-1" eType="//EATEMPLATE" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CONTAINEDRELATIONDEPRECATION">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deprecations" lowerBound="1" upperBound="-1" eType="//DEPRECATION" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DEPRECATION">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternContext patternEntity"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternContext" value="self.context.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})? [0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})? [0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+      <details key="patternEntity" value="self.entity.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})? [0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})? [0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="context" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entity">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relType" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stringValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//StringValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bagValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//BagValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//BooleanValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//ComplexValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//CompositeValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlledValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//ControlledValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencyValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//CurrencyValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//DateValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateTimeValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//DateTimeValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//FileValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//IntegerValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemReferenceValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//ItemReferenceValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localizedTextValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//LocalizedTextValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureQualifiedNumberValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//MeasureQualifiedNumberValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureRangeValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//MeasureRangeValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureSingleNumberValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//MeasureSingleNumberValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nullValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//NullValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//RationalValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//RealValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//SequenceValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//SetValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//TimeValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearMonthValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//YearMonthValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//YearValue"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EAENTITYTYPEType">
+    <eLiterals name="_01" literal="01"/>
+    <eLiterals name="_02" value="1" literal="02"/>
+    <eLiterals name="_" value="2" literal="*"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EAREFERENCE">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="maxLengthTemplateId"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="maxLengthTemplateId" value="self.templateId.size() &lt;= 100"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="templateId" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EATEMPLATE">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="maxLengthCode maxLengthId"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="maxLengthCode" value="self.code.size() &lt;= 100"/>
+      <details key="maxLengthId" value="self.id.size() &lt;= 100"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeOfEntity" lowerBound="1" eType="//EAENTITYTYPEType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeOfValue" lowerBound="1" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple1.ecore#//ANYTYPE"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceLanguage" lowerBound="1" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple1.ecore#//LANGUAGE"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shortName" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple1.ecore#//SHORTNAME"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preferredName" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple1.ecore#//PREFERREDNAME"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EAVALUATION">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="maxLengthTemplateId"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="maxLengthTemplateId" value="self.templateId.size() &lt;= 100"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="templateId" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stringValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//StringValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bagValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//BagValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//BooleanValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//ComplexValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//CompositeValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlledValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//ControlledValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencyValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//CurrencyValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//DateValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateTimeValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//DateTimeValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//FileValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//IntegerValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemReferenceValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//ItemReferenceValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localizedTextValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//LocalizedTextValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureQualifiedNumberValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//MeasureQualifiedNumberValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureRangeValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//MeasureRangeValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureSingleNumberValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//MeasureSingleNumberValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nullValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//NullValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//RationalValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//RealValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//SequenceValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//SetValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//TimeValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearMonthValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//YearMonthValue"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearValue" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple3.ecore#//YearValue"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ENTITYEXTENDEDATTRIBUTES">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternEntityRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternEntityRef" value="self.entityRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})? [0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})? [0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entityRef" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eas" lowerBound="1" upperBound="-1" eType="//EAVALUATION" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EXTENSIONS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedEaTemplates" eType="//CONTAINEDEATEMPLATES" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedEaInstances" eType="//CONTAINEDEAINSTANCES" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedRelDeprecation" eType="//CONTAINEDRELATIONDEPRECATION" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

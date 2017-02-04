@@ -24,14 +24,14 @@ public class MainGenerator {
 		Resource ecoreResource = simplifiedTransformer.getResult();
 		EClass ecoreRoot = simplifiedTransformer.getRootClass();
 		simplifiedTransformer.saveResult();
-		Resource complexXmi = transformer.loadXmlAsXmi("library3.xml");
-		transformer.saveInstance(complexXmi, "library3complex.xmi");
-		Resource simplifiedXmi = simplifiedTransformer.loadXml("library3.xml");
+		Resource complexXmi = transformer.loadXmlAsXmi("examples/library3.xml");
+		transformer.saveInstance(complexXmi, "examples/library3complex.xmi");
+		Resource simplifiedXmi = simplifiedTransformer.loadXml("examples/library3.xml");
 		CustomSerializer serializer = new CustomSerializer();
 		
 		try {
-			serializer.writeOutput(simplifiedXmi, "library3simpl.xmi");
-			serializer.writeOutput(simplifiedXmi, "library3simpl.xml");
+			serializer.writeOutput(simplifiedXmi, "examples/library3simpl.xmi");
+			serializer.writeOutput(simplifiedXmi, "examples/library3simpl.xml");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,23 +49,23 @@ public class MainGenerator {
 	
 	private static void test2() {
 		XsdToEcoreTransformer transformer = new XsdToEcoreTransformer();
-		transformer.setXsd("eclassXML/dictionary.xsd");
+		transformer.setXsd("examples/eclassXML/dictionary.xsd");
 		Resource xsdResource = transformer.getResult();
 		
 		
 		MultiEcoreToGenericEcoreTransformer simplifiedTransformer = new MultiEcoreToGenericEcoreTransformer();
-		simplifiedTransformer.setTargetFilename("dictionarySimple");
-		simplifiedTransformer.addXsdEcore("eclassXML/dictionary.xsd");
+		simplifiedTransformer.setTargetFilename("examples/dictionarySimple");
+		simplifiedTransformer.addXsdEcore("examples/eclassXML/dictionary.xsd");
 		EClass ecoreRoot = simplifiedTransformer.getRootClass();
 		simplifiedTransformer.getResult();
 		simplifiedTransformer.saveResult();
 		//Resource complexXmi = transformer.loadXmlAsXmi("ontoML/eClass9_1_BASIC_EN_SG_90.xml");
 		//transformer.saveInstance(complexXmi, "ontoML/eClass9_1_BASIC_EN_SG_90_complex.xmi");
-		Resource simplifiedXmi = simplifiedTransformer.loadXml("eclassXML/eClass9_1_BASIC_EN_SG_90.xml");
+		Resource simplifiedXmi = simplifiedTransformer.loadXml("examples/eclassXML/eClass9_1_BASIC_EN_SG_90.xml");
 		CustomSerializer serializer = new CustomSerializer();
 		
 		try {
-			serializer.writeOutput(simplifiedXmi, "eclassXML/eClass9_1_BASIC_EN_SG_90_simple.xmi");			
+			serializer.writeOutput(simplifiedXmi, "examples/eclassXML/eClass9_1_BASIC_EN_SG_90_simple.xmi");			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,23 +83,23 @@ public class MainGenerator {
 	
 	private static void test3() {
 		XsdToEcoreTransformer transformer = new XsdToEcoreTransformer();
-		transformer.setXsd("eclassXML/dictionary.xsd");
+		transformer.setXsd("examples/eclassXML/dictionary.xsd");
 		Resource xsdResource = transformer.getResult();
 		
 		
 		MultiEcoreToGenericEcoreTransformer simplifiedTransformer = new MultiEcoreToGenericEcoreTransformer();
-		simplifiedTransformer.setTargetFilename("dictionarySimple");
-		simplifiedTransformer.addXsdEcore("eclassXML/dictionary.xsd");
+		simplifiedTransformer.setTargetFilename("examples/dictionarySimple");
+		simplifiedTransformer.addXsdEcore("examples/eclassXML/dictionary.xsd");
 		EClass ecoreRoot = simplifiedTransformer.getRootClass();
 		simplifiedTransformer.getResult();
 		simplifiedTransformer.saveResult();
 		//Resource complexXmi = transformer.loadXmlAsXmi("ontoML/eClass9_1_BASIC_EN_SG_90.xml");
 		//transformer.saveInstance(complexXmi, "ontoML/eClass9_1_BASIC_EN_SG_90_complex.xmi");
-		Resource simplifiedXmi = simplifiedTransformer.loadXml("eclassXML/eClass9_1_BASIC_EN_SG_27_cleaned.xml");
+		Resource simplifiedXmi = simplifiedTransformer.loadXml("examples/eclassXML/eClass9_1_BASIC_EN_SG_27_cleaned.xml");
 		CustomSerializer serializer = new CustomSerializer();
 		
 		try {
-			serializer.writeOutput(simplifiedXmi, "eclassXML/eClass9_1_BASIC_EN_SG_27_cleaned_simple2.xmi");			
+			serializer.writeOutput(simplifiedXmi, "examples/eclassXML/eClass9_1_BASIC_EN_SG_27_cleaned_simple2.xmi");			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,23 +117,23 @@ public class MainGenerator {
 	
 	private static void testNamespace() {
 		XsdToEcoreTransformer transformer = new XsdToEcoreTransformer();
-		transformer.setXsd("namespaceExample.xsd");
+		transformer.setXsd("examples/namespaceExample.xsd");
 		Resource xsdResource = transformer.getResult();
 		
 		
 		MultiEcoreToGenericEcoreTransformer simplifiedTransformer = new MultiEcoreToGenericEcoreTransformer();
-		simplifiedTransformer.setTargetFilename("namespaceExampleSimple");
-		simplifiedTransformer.addXsdEcore("namespaceExample.xsd");
+		simplifiedTransformer.setTargetFilename("examples/namespaceExampleSimple");
+		simplifiedTransformer.addXsdEcore("examples/namespaceExample.xsd");
 		EClass ecoreRoot = simplifiedTransformer.getRootClass();
 		simplifiedTransformer.getResult();
 		simplifiedTransformer.saveResult();
 		//Resource complexXmi = transformer.loadXmlAsXmi("ontoML/eClass9_1_BASIC_EN_SG_90.xml");
 		//transformer.saveInstance(complexXmi, "ontoML/eClass9_1_BASIC_EN_SG_90_complex.xmi");
-		Resource simplifiedXmi = simplifiedTransformer.loadXml("namespaceExample.xml");
+		Resource simplifiedXmi = simplifiedTransformer.loadXml("examples/namespaceExample.xml");
 		CustomSerializer serializer = new CustomSerializer();
 		
 		try {
-			serializer.writeOutput(simplifiedXmi, "namespaceExample_simple.xmi");			
+			serializer.writeOutput(simplifiedXmi, "examples/namespaceExample_simple.xmi");			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

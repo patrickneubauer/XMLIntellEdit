@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ISO TC 184/SC 4/WG 2 N869 - ISO 13584-32 OntoML - XML schema
+-->
+<!--
+
+The following permission notice and disclaimer shall be included in all copies of this DTD/XML Schema ("the Schema"), 
+and derivations of the Schema:
+
+copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, 
+installing and using software based on the Schema, and to permit persons to whom the Schema is furnished to do so, 
+subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE SCHEMA DEFINED IN ISO 13584-32, AND SHOULD NOT BE INTERPRETED AS COMPLYING 
+WITH THAT STANDARD
+
+-->
+<xs:schema xmlns="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="basic.xsd"/>
+	<xs:include schemaLocation="identifier.xsd"/>
+	<xs:include schemaLocation="translation.xsd"/>
+	<!-- Global element -->
+	<xs:element name="supplier" type="SUPPLIER_Type"/>
+	<!-- Simple type definitions -->
+	<xs:simpleType name="SUPPLIER_CODE_TYPE_Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="70"/>
+			<xs:pattern value="[^\-]*"/>
+			<xs:pattern value="[^\s]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SUPPLIER_Type" abstract="false">
+		<xs:sequence>
+			<xs:element name="date_of_original_definition" type="DATE_TYPE_Type" minOccurs="0"/>
+			<xs:element name="date_of_current_version" type="DATE_TYPE_Type" minOccurs="0"/>
+			<xs:element name="date_of_current_revision" type="DATE_TYPE_Type" minOccurs="0"/>
+			<xs:element name="revision" type="REVISION_TYPE_Type"/>
+			<xs:element name="status" type="STATUS_Type" minOccurs="0"/>
+			<xs:element name="is_deprecated" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="is_deprecated_interpretation" type="TEXT_Type" minOccurs="0"/>
+			<xs:element name="org" type="ORGANIZATION_Type"/>
+			<xs:element name="internal_location" type="xs:string" minOccurs="0"/>
+			<xs:element name="street_number" type="xs:string" minOccurs="0"/>
+			<xs:element name="street" type="xs:string" minOccurs="0"/>
+			<xs:element name="postal_box" type="xs:string" minOccurs="0"/>
+			<xs:element name="town" type="xs:string" minOccurs="0"/>
+			<xs:element name="region" type="xs:string" minOccurs="0"/>
+			<xs:element name="postal_code" type="xs:string" minOccurs="0"/>
+			<xs:element name="country" type="xs:string" minOccurs="0"/>
+			<xs:element name="facsimile_number" type="xs:string" minOccurs="0"/>
+			<xs:element name="telephone_number" type="xs:string" minOccurs="0"/>
+			<xs:element name="electronic_mail_address" type="xs:string" minOccurs="0"/>
+			<xs:element name="telex_number" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="SupplierId" use="required"/>
+	</xs:complexType>
+</xs:schema>

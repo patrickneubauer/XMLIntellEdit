@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="eclassxmlschemadictionary_2_0Simplified" nsURI="urn:eclass:xml-schema:dictionary:2.0simplified" nsPrefix="_0s">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ECLASSDICTIONARY">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ontoml" lowerBound="1" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple1.ecore#//ONTOML"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" containment="true">
+      <eType xsi:type="ecore:EClass" href="dictionarySimple6.ecore#//EXTENSIONS"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

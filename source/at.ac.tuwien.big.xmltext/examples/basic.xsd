@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ISO TC 184/SC 4/WG 2 N869 - ISO 13584-32 OntoML - XML schema
+-->
+<!--
+
+The following permission notice and disclaimer shall be included in all copies of this DTD/XML Schema ("the Schema"), 
+and derivations of the Schema:
+
+© ISO 2010 — All rights reserved
+
+Permission is hereby granted, free of charge in perpetuity, to any person obtaining a copy of the Schema, to use, 
+copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, 
+installing and using software based on the Schema, and to permit persons to whom the Schema is furnished to do so, 
+subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE SCHEMA DEFINED IN ISO 13584-32, AND SHOULD NOT BE INTERPRETED AS COMPLYING 
+WITH THAT STANDARD
+
+-->
+<xs:schema xmlns="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<!--<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation=".\mathml2\mathml2.xsd"/>-->
+	<xs:simpleType name="COUNTRY_CODE_Type">
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:pattern value="[^\-]*"/>
+			<xs:pattern value="[^\s]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DATE_TYPE_Type">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="LANGUAGE_CODE_Type">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="3"/>
+			<xs:pattern value="[^\-]*"/>
+			<xs:pattern value="[^\s]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REVISION_TYPE_Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="STATUS_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[^\-]*"/>
+			<xs:pattern value="[^\s]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VALUE_CODE_TYPE_Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="35"/>
+			<xs:pattern value="[^\-]*"/>
+			<xs:pattern value="[^\s]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VALUE_FORMAT_TYPE_Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="80"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="MATHEMATICAL_STRING_Type" abstract="false">
+		<xs:sequence>
+			<xs:element name="text_representation" type="xs:string"/>
+			<!--<xs:element name="mathml_representation" type="mml:math.type" minOccurs="0"/>-->
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ORGANIZATION_Type" abstract="false">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="0"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ISO TC 184/SC 4/WG 12 N6650 - ISO/TS 29002-4 Basic - XML schema
+-->
+<!--
+The following permission notice and disclaimer shall be included in all copies of this XML schema ("the Schema"), and derivations of the Schema:
+
+Permission is hereby granted, free of charge in perpetuity, to any person obtaining a copy of the Schema, to use, copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, installing and using software based on the  Schema, and to permit persons to whom the Schema is furnished to do so, subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE SCHEMA DEFINED IN ISO/TS 29002-4, AND SHOULD NOT BE INTERPRETED AS COMPLYING WITH THAT STANDARD.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:basic="urn:iso:std:iso:ts:29002:-4:ed-1:tech:xml-schema:basic" xmlns:id="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" targetNamespace="urn:iso:std:iso:ts:29002:-4:ed-1:tech:xml-schema:basic" elementFormDefault="qualified">
+	<xs:import namespace="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" schemaLocation="identifier.xsd"/>
+	<!-- Global Types -->
+	<!-- Day Interval -->
+	<xs:simpleType name="day_interval_Type">
+		<xs:union memberTypes="xs:gYear xs:gYearMonth xs:date"/>
+	</xs:simpleType>
+	<!-- ASN.1 Identifier -->
+	<xs:simpleType name="ASN1_identifier_Type">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<!-- International Text -->
+	<xs:complexType name="international_text_Type">
+		<xs:sequence>
+			<xs:element name="local_string" type="basic:language_string_Type" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ISO Country Code -->
+	<xs:simpleType name="ISO_country_code_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ISO Currency Code -->
+	<xs:simpleType name="ISO_currency_code_Type">
+		<xs:restriction base="xs:string">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ISO Language Code -->
+	<xs:simpleType name="ISO_language_code_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-z]{2}"/>
+			<xs:pattern value="[a-z]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Language String -->
+	<xs:complexType name="language_string_Type">
+		<xs:sequence>
+			<xs:element name="content" type="xs:string"/>
+			<xs:element name="language_ref" type="id:IRDI_type" minOccurs="0"/>
+			<xs:sequence minOccurs="0">
+				<xs:element name="language_code" type="basic:ISO_language_code_Type"/>
+				<xs:element name="country_code" type="basic:ISO_country_code_Type" minOccurs="0"/>
+			</xs:sequence>
+			<!-- Constraint: language or language_code (or both) must be specified. -->
+			<!-- Constraint: If both language and language_code are specified, then language and the combination of language_code and country_code must denote the same localized language. -->
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

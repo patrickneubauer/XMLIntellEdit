@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ISO TC 184/SC 4/WG 2 N869 - ISO 13584-32 OntoML - XML schema
+-->
+<!--
+
+The following permission notice and disclaimer shall be included in all copies of this DTD/XML Schema ("the Schema"), 
+and derivations of the Schema:
+
+© ISO 2010 — All rights reserved
+
+Permission is hereby granted, free of charge in perpetuity, to any person obtaining a copy of the Schema, to use, 
+copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, 
+installing and using software based on the Schema, and to permit persons to whom the Schema is furnished to do so, 
+subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE SCHEMA DEFINED IN ISO 13584-32, AND SHOULD NOT BE INTERPRETED AS COMPLYING 
+WITH THAT STANDARD
+
+-->
+<xs:schema xmlns="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" xmlns:idt="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" schemaLocation="./ISO29002/identifier.xsd"/>
+	<xs:simpleType name="APosterioriSemanticRelationId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#CE\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#CE\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#CE\-([A-Z0-9_:\.]{1,71})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ClassId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#01\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#01\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#01\-([A-Z0-9_:\.]{1,71})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ConstraintId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#04\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#04\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#04\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CurrencyId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#08\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#08\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#08\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataTypeId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#09\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#09\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#09\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DicUnitId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#05\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#05\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#05\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DicValueId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#07\-([A-Z0-9:_\.]{1,35})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#07\-([A-Z0-9:_\.]{1,35})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#07\-([A-Z0-9:_\.]{1,35})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#10\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#10\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#10\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OntologyId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#11\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#11\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#11\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PropertyId">
+		<xs:restriction base="idt:IRDI_type">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?#02\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#02\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})#02\-([A-Z0-9:_\.]{1,71})#[0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SupplierId">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})(\-([A-Z0-9:_\.]{1,35})((\-[019])(\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5}))?)?)?"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-([A-Z0-9:_\.]{1,35})\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})"/>
+			<xs:pattern value="([0-9]{4})\-([A-Z0-9:_\.]{1,35})\-\-\-([A-Z0-9]{1,10})_([A-Z0-9]{0,10})_([0-9]{1,5})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CLASS_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:attribute name="class_ref" type="ClassId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="CLASSES_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:sequence>
+			<xs:element name="class" type="CLASS_REFERENCE_Type" nillable="false" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DATATYPE_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:attribute name="datatype_ref" type="DataTypeId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="DATATYPES_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:sequence>
+			<xs:element name="datatype" type="DATATYPE_REFERENCE_Type" nillable="false" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DIC_UNIT_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:attribute name="dic_unit_ref" type="DicUnitId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="DIC_UNITS_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:sequence>
+			<xs:element name="dic_unit" type="DIC_UNIT_REFERENCE_Type" nillable="false" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DICTIONARY_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:attribute name="dictionary_ref" type="OntologyId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="DICTIONARIES_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:sequence>
+			<xs:element name="dictionary" type="DICTIONARY_REFERENCE_Type" nillable="false" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DOCUMENT_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:attribute name="document_ref" type="DocumentId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="DOCUMENTS_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:sequence>
+			<xs:element name="document" type="DOCUMENT_REFERENCE_Type" nillable="false" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PROPERTY_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:attribute name="property_ref" type="PropertyId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="PROPERTIES_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:sequence>
+			<xs:element name="property" type="PROPERTY_REFERENCE_Type" nillable="false" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SUPPLIER_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:attribute name="supplier_ref" type="SupplierId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="SUPPLIERS_REFERENCE_Type" abstract="false" mixed="false">
+		<xs:sequence>
+			<xs:element name="supplier" type="SUPPLIER_REFERENCE_Type" nillable="false" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
