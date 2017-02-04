@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="comexampleSimplified" nsURI="http://example.com/simplified" nsPrefix="examples">
+  <eClassifiers xsi:type="ecore:EClass" name="AGlobal" eSuperTypes="//MixedBaseClass">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aGlobalElements" upperBound="-1" eType="//AGlobal" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MixedData" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MixedText" eSuperTypes="//MixedData"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MixedFeature" eSuperTypes="//MixedData"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MixedBaseClass" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mixed" upperBound="-1" eType="//MixedData" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

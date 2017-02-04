@@ -1,0 +1,1984 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!--EXPORT_PROGRAM:=1.1.0-eCl@ss XML 2.0 export-->
+<!--File saved on: 2015-11-26 14:52:37.523 GMT-->
+<!--XML Schema used: eCl@ss XML 2 0-->
+<dic:eclass_dictionary xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basic="urn:iso:std:iso:ts:29002:-4:ed-1:tech:xml-schema:basic" xmlns:cat="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:catalogue" xmlns:cmn="urn:eclass:xml-schema:common:2.0" xmlns:dic="urn:eclass:xml-schema:dictionary:2.0" xmlns:dt="urn:eclass:template:xml-schema:data-type:2.0" xmlns:ext="urn:x-ontoml-extensions:schema:core" xmlns:hea="urn:eclass:xml-schema:header:2.0" xmlns:idt="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" xmlns:ontoml="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" xmlns:val="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:value">
+  <hea:header>
+    <schema_version>eCl@ss XML 2 0</schema_version>
+    <generator_version>1.1.0-eCl@ss XML 2.0 export</generator_version>
+    <generation_date>2015-11-26T14:52:37.523Z</generation_date>
+    <creator>
+      <cmn:organisation>eCl@ss e.V.</cmn:organisation>
+      <cmn:contact>
+        <cmn:email>info@eclass.eu</cmn:email>
+        <cmn:url>http://www.eclass-cdp.com</cmn:url>
+      </cmn:contact>
+    </creator>
+    <authorisation>
+      <cmn:name>Christian Eck</cmn:name>
+      <cmn:contact>
+        <cmn:email>eck@eclass-office.com</cmn:email>
+      </cmn:contact>
+    </authorisation>
+    <content_date>2015-11-13T20:24:05.315Z</content_date>
+    <content_identification>
+      <cmn:irdi>0173-1#11-ECLASS91#001</cmn:irdi>
+    </content_identification>
+    <content_description language_code="ENG">eCl@ss9.1 BASIC</content_description>
+    <content_language language_ref="0112-1#LG-EN#001"/>
+    <originating_system>eCl@ss ContentDevelopmentPlatform</originating_system>
+  </hea:header>
+  <ontoml:ontoml>
+    <header id="0173-1#11-ECLASS91#001">
+      <global_language language_code="en"/>
+      <description>eCl@ss9.1 BASIC</description>
+      <version>eCl@ss XML 2 0</version>
+      <name>eClass9_1_BASIC_EN_SG_90.xml</name>
+      <date_time_stamp>2015-11-26T14:52:37.526Z</date_time_stamp>
+      <author>eCl@ss e.V. info@eclass.eu</author>
+      <organisation>ECLASS</organisation>
+      <pre_processor_version>1.1.0-eCl@ss XML 2.0 export</pre_processor_version>
+      <originating_system>eCl@ss ContentDevelopmentPlatform</originating_system>
+      <authorisation>Christian Eck</authorisation>
+      <ontoml_information>
+        <revision>9.1</revision>
+        <preferred_name>
+          <label>eCl@ss9.1</label>
+        </preferred_name>
+      </ontoml_information>
+      <ontoml_structure>
+        <source_document_identifier>869</source_document_identifier>
+        <status>IS</status>
+        <name>ONTOML</name>
+        <date>2010</date>
+      </ontoml_structure>
+    </header>
+    <dictionary>
+      <contained_classes>
+        <ontoml:class xsi:type="ontoml:CATEGORIZATION_CLASS_Type" id="0173-1#01-ACL240#004">
+          <date_of_original_definition>2008-03-29Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Interim class (unspecified)</label>
+          </preferred_name>
+          <definition>
+            <text>-no definition</text>
+          </definition>
+          <its_superclass class_ref="0173-1#01-AAA002#001"/>
+          <hierarchical_position>90000000</hierarchical_position>
+        </ontoml:class>
+        <ontoml:class xsi:type="ontoml:CATEGORIZATION_CLASS_Type" id="0173-1#01-ACL241#004">
+          <date_of_original_definition>2008-03-29Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Interim classification (unspecified)</label>
+          </preferred_name>
+          <definition>
+            <text>-no definition</text>
+          </definition>
+          <its_superclass class_ref="0173-1#01-ACL240#004"/>
+          <hierarchical_position>90900000</hierarchical_position>
+        </ontoml:class>
+        <ontoml:class xsi:type="ontoml:CATEGORIZATION_CLASS_Type" id="0173-1#01-ACL242#004">
+          <date_of_original_definition>2008-03-29Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Interim classification (unspecified)</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Group (3rd level) for objects that cannot be classified into other specified groups in the existing structure, but that are classified to their parent-class on the 2nd level. A xx-xx-90-00-class cannot have any other sub-groups besides the generic xx-xx-90-90-class (&#x2026;(Other, unspecified)) to be generally valid within the parent class on the 2nd level</text>
+          </definition>
+          <its_superclass class_ref="0173-1#01-ACL241#004"/>
+          <hierarchical_position>90909000</hierarchical_position>
+        </ontoml:class>
+        <ontoml:class xsi:type="ontoml:CATEGORIZATION_CLASS_Type" id="0173-1#01-ACL243#010">
+          <date_of_original_definition>2008-03-29Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Interim classification (unspecified)</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Sub-group (4th level) for objects that cannot be classified into other specified sub-groups in the existing structure, but that are classified to their parent-class on the 3rd level</text>
+          </definition>
+          <note>
+            <text country_code="US" language_code="en">A 90-class is not further specified with the help of properties (apart from the basic properties) nor keywords in order to be universally valid within its parent-class on the 3rd level.</text>
+          </note>
+          <its_superclass class_ref="0173-1#01-ACL242#004"/>
+          <hierarchical_position>90909090</hierarchical_position>
+        </ontoml:class>
+        <ontoml:class xsi:type="ontoml:ITEM_CLASS_CASE_OF_Type" id="0173-1---BASIC_1_1#01-DAC090#008">
+          <date_of_original_definition>2009-07-17Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">AC_default_SG90</label>
+          </preferred_name>
+          <definition>
+            <text>-</text>
+          </definition>
+          <its_superclass class_ref="0173-1---BASIC_1_1#01-AAA001#001"/>
+          <described_by>
+            <property property_ref="0173-1#02-AAE670#003"/>
+            <property property_ref="0173-1#02-AAQ326#001"/>
+            <property property_ref="0173-1#02-AAD931#004"/>
+            <property property_ref="0173-1#02-BAA271#007"/>
+            <property property_ref="0173-1#02-AAO663#002"/>
+            <property property_ref="0173-1#02-AAO677#001"/>
+            <property property_ref="0173-1#02-BAA001#006"/>
+            <property property_ref="0173-1#02-BAD847#003"/>
+            <property property_ref="0173-1#02-AAO676#002"/>
+            <property property_ref="0173-1#02-AAP805#002"/>
+            <property property_ref="0173-1#02-BAA316#005"/>
+            <property property_ref="0173-1#02-BAA002#004"/>
+            <property property_ref="0173-1#02-AAO847#003"/>
+            <property property_ref="0173-1#02-BAB542#004"/>
+            <property property_ref="0173-1#02-AAO735#002"/>
+            <property property_ref="0173-1#02-AAO736#003"/>
+            <property property_ref="0173-1#02-BAA059#006"/>
+            <property property_ref="0173-1#02-AAM551#001"/>
+            <property property_ref="0173-1#02-AAU734#001"/>
+            <property property_ref="0173-1#02-AAU733#001"/>
+            <property property_ref="0173-1#02-AAU732#001"/>
+            <property property_ref="0173-1#02-AAU731#001"/>
+            <property property_ref="0173-1#02-AAU730#001"/>
+            <property property_ref="0173-1#02-AAU729#001"/>
+            <property property_ref="0173-1#02-AAU728#001"/>
+            <property property_ref="0173-1#02-AAO742#002"/>
+          </described_by>
+          <instance_sharable>true</instance_sharable>
+          <is_case_of>
+            <class class_ref="0173-1#01-ACL243#010"/>
+          </is_case_of>
+        </ontoml:class>
+        <ontoml:class xsi:type="ontoml:ITEM_CLASS_CASE_OF_Type" id="0173-1---BASIC_1_1#01-ADB911#006">
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Interim classification (unspecified)</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Sub-group (4th level) for objects that cannot be classified into other specified sub-groups in the existing structure, but that are classified to their parent-class on the 3rd level</text>
+          </definition>
+          <note>
+            <text country_code="US" language_code="en">A 90-class is not further specified with the help of properties (apart from the basic properties) nor keywords in order to be universally valid within its parent-class on the 3rd level.</text>
+          </note>
+          <its_superclass class_ref="0173-1---BASIC_1_1#01-AAA001#001"/>
+          <described_by>
+            <property property_ref="0173-1#02-AAE670#003"/>
+            <property property_ref="0173-1#02-AAQ326#001"/>
+            <property property_ref="0173-1#02-AAD931#004"/>
+            <property property_ref="0173-1#02-BAA271#007"/>
+            <property property_ref="0173-1#02-AAO663#002"/>
+            <property property_ref="0173-1#02-AAO677#001"/>
+            <property property_ref="0173-1#02-BAA001#006"/>
+            <property property_ref="0173-1#02-BAD847#003"/>
+            <property property_ref="0173-1#02-AAO676#002"/>
+            <property property_ref="0173-1#02-AAP805#002"/>
+            <property property_ref="0173-1#02-BAA316#005"/>
+            <property property_ref="0173-1#02-BAA002#004"/>
+            <property property_ref="0173-1#02-AAO847#003"/>
+            <property property_ref="0173-1#02-BAB542#004"/>
+            <property property_ref="0173-1#02-AAO735#002"/>
+            <property property_ref="0173-1#02-AAO736#003"/>
+            <property property_ref="0173-1#02-BAA059#006"/>
+            <property property_ref="0173-1#02-AAM551#001"/>
+            <property property_ref="0173-1#02-AAU734#001"/>
+            <property property_ref="0173-1#02-AAU733#001"/>
+            <property property_ref="0173-1#02-AAU732#001"/>
+            <property property_ref="0173-1#02-AAU731#001"/>
+            <property property_ref="0173-1#02-AAU730#001"/>
+            <property property_ref="0173-1#02-AAU729#001"/>
+            <property property_ref="0173-1#02-AAU728#001"/>
+            <property property_ref="0173-1#02-AAO742#002"/>
+            <property property_ref="0173-1#02-AAO673#001"/>
+            <property property_ref="0173-1#02-AAA305#008"/>
+            <property property_ref="0173-1#02-AAB146#005"/>
+            <property property_ref="0173-1#02-AAS244#001"/>
+            <property property_ref="0173-1#02-AAB110#005"/>
+            <property property_ref="0173-1#02-AAQ199#002"/>
+            <property property_ref="0173-1#02-AAO993#001"/>
+          </described_by>
+          <instance_sharable>true</instance_sharable>
+          <is_case_of>
+            <class class_ref="0173-1#01-ACL243#010"/>
+          </is_case_of>
+        </ontoml:class>
+        <ontoml:class xsi:type="ontoml:ITEM_CLASS_Type" id="0173-1#01-RAA001#001">
+          <date_of_original_definition>2000-01-01Z</date_of_original_definition>
+          <date_of_current_version>2000-01-01Z</date_of_current_version>
+          <date_of_current_revision>2000-01-01Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">eCl@ss</label>
+          </preferred_name>
+          <definition>
+            <text>-</text>
+          </definition>
+        </ontoml:class>
+        <ontoml:class xsi:type="ontoml:CATEGORIZATION_CLASS_Type" id="0173-1#01-AAA002#001">
+          <date_of_original_definition>2006-12-19Z</date_of_original_definition>
+          <date_of_current_version>2006-12-19Z</date_of_current_version>
+          <date_of_current_revision>2006-12-19Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">eCl@ss</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">eCl@ss</text>
+          </definition>
+          <hierarchical_position></hierarchical_position>
+        </ontoml:class>
+        <ontoml:class xsi:type="ontoml:ITEM_CLASS_Type" id="0173-1---BASIC_1_1#01-AAA001#001">
+          <date_of_original_definition>2007-01-24Z</date_of_original_definition>
+          <date_of_current_version>2007-01-24Z</date_of_current_version>
+          <date_of_current_revision>2007-01-24Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">eCl@ss Application Classes</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">eCl@ss</text>
+          </definition>
+          <its_superclass class_ref="0173-1#01-RAA001#001"/>
+          <instance_sharable>true</instance_sharable>
+        </ontoml:class>
+      </contained_classes>
+      <contained_suppliers>
+        <ontoml:supplier id="0173-1">
+          <revision>1</revision>
+          <org>
+            <id>0173-1</id>
+            <name>eCl@ss</name>
+          </org>
+        </ontoml:supplier>
+      </contained_suppliers>
+      <contained_properties>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-BAD847#003">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+          <date_of_current_version>2009-08-11Z</date_of_current_version>
+          <date_of_current_revision>2009-08-11Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <is_deprecated>true</is_deprecated>
+          <preferred_name>
+            <label country_code="US" language_code="en">Manufacturer product number</label>
+          </preferred_name>
+          <short_name>
+            <label country_code="US" language_code="en">MAN_PROD_NUM</label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">unique product identifier of the manufacturer</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">With this article number the customer is able to order an article or service from the manufacturer or a supplier.</text>
+          </remark>
+          <det_classification>A51</det_classification>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAM551#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2011-02-11Z</date_of_current_version>
+          <date_of_current_revision>2011-02-11Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Supplier product designation</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">brand-neutral name which the supplier uses for his product or service</text>
+          </definition>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAO673#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2011-02-11Z</date_of_current_version>
+          <date_of_current_revision>2011-02-11Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Health Industry Barcode</label>
+          </preferred_name>
+          <short_name>
+            <label country_code="US" language_code="en">HIBC</label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">a coded character string in Code 128 assigned by the manufacturer for unambiguous product identification, as HIBC carries product data for enterprise resource planning and enables traceability of automatic data collection at each point of the supply chain</text>
+          </definition>
+          <source_doc_of_definition xsi:type="ontoml:IDENTIFIED_DOCUMENT_Type">
+            <document_identifier>
+              <label country_code="US" language_code="en">EHIBCC EN1571</label>
+            </document_identifier>
+          </source_doc_of_definition>
+          <remark>
+            <text country_code="US" language_code="en">The main code contains the identification of manufacturer, article number, packaging index and a check digit, secondary code charge / serial number, expiry date and quantity index. Advanced information is possibly connected with Data Identifier of the superior FACT-standard. Worldwide protect by label '+'.</text>
+          </remark>
+          <det_classification>A91</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAO677#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2011-02-11Z</date_of_current_version>
+          <date_of_current_revision>2011-02-11Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Manufacturer name</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">Preliminary establishment of the designation of the manufacturer subject to changes by future EU directives and/or European standards.</text>
+          </remark>
+          <det_classification>A21</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAO993#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2011-02-11Z</date_of_current_version>
+          <date_of_current_revision>2011-02-11Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Version of UMDNS</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">version number of Universal Medical Device Nomenclature System (UMDNS)</text>
+          </definition>
+          <det_classification>A62</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAQ326#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2011-02-11Z</date_of_current_version>
+          <date_of_current_revision>2011-02-11Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">additional link address</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">site address where you can view information about the product or to communicate</text>
+          </definition>
+          <det_classification>A62</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAQ199#002">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2011-11-18Z</date_of_current_version>
+          <date_of_current_revision>2011-11-18Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Universal Medical Device Nomenclature System</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Universal Medical Device Nomenclature System (UMDNS) developed by ECRI for the purpose of coding of medical devices. This nomenclature consists of terms and a randomly made numerical codification, provided with additionally modes of links as synonyms and related and congeneric and specific terms</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">UMDNS classification is required for tenders throughout Europe plus for reporting of medical device incidents</text>
+          </remark>
+          <det_classification>A62</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAO676#002">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2011-11-18Z</date_of_current_version>
+          <date_of_current_revision>2011-11-18Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Manufacturer product number</label>
+          </preferred_name>
+          <short_name>
+            <label country_code="US" language_code="en">MAN_PROD_NUM</label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">unique product identifier of the manufacturer</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">With this article number the customer is able to order an article or service from the manufacturer or a supplier.</text>
+          </remark>
+          <det_classification>A51</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAO735#002">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2011-11-18Z</date_of_current_version>
+          <date_of_current_revision>2011-11-18Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Supplier name</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Name of supplier which provides the customer with an article (product or service)</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">The supplier as contractor in a contractual relationship can, for example, be a manufacturer, a distributor, an importer, a retail dealer or chain, an assembly company or service organization. The supplier can be any legal entity which is responsible for the quality of the product before it is taken by the customer. In the context of transport services the supplier can also be the person or organization which delivers an article or a service to the buyer.</text>
+          </remark>
+          <det_classification>A91</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAS244#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2012-11-27Z</date_of_original_definition>
+          <date_of_current_version>2012-11-27Z</date_of_current_version>
+          <date_of_current_revision>2012-11-27Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Pharmaceutical central number</label>
+          </preferred_name>
+          <short_name>
+            <label country_code="US" language_code="en"></label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">eight-digit (7 numbers + check digit) standardized identification key within Germany ruled by the Informationsstelle f&#xfc;r Arzneispezialit&#xe4;ten (IfA) to specify unambiguously medicinal products and other products sold at pharmacies concerning name, medicinal form, strength of active substance and packaging size</text>
+          </definition>
+          <source_doc_of_definition xsi:type="ontoml:IDENTIFIED_DOCUMENT_Type">
+            <document_identifier>
+              <label country_code="US" language_code="en">IFA GmbH</label>
+            </document_identifier>
+          </source_doc_of_definition>
+          <det_classification>A91</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAP805#002">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2012-11-27Z</date_of_current_version>
+          <date_of_current_revision>2012-11-27Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Product name</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">designation for a product defined by manufacturer or sales organization</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">COMMENT 1: The designation product is applicable to all tangible goods as well as to all intangible goods (e.g. a service, consultation, intellectual property, software). COMMENT 2: Many products are marketed under a special name to indicate their origin</text>
+          </remark>
+          <det_classification>A51</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAD931#004">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2009-08-10Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">customs tariff number (TARIC)</label>
+          </preferred_name>
+          <synonymous_names>
+            <label country_code="US" language_code="en">TARIC</label>
+          </synonymous_names>
+          <short_name>
+            <label country_code="US" language_code="en">TARIC</label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">EU uniformed number system conforming regulation (EWG) No. 2658/87 from 23 july 1987 concerning custom numbers and customs</text>
+          </definition>
+          <det_classification>A51</det_classification>
+          <domain xsi:type="ontoml:INT_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAE670#003">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2009-08-10Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <is_deprecated>true</is_deprecated>
+          <preferred_name>
+            <label country_code="US" language_code="en">additional link address</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">site address where you can view information about the product or to communicate</text>
+          </definition>
+          <det_classification>A62</det_classification>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-BAA001#006">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <is_deprecated>true</is_deprecated>
+          <preferred_name>
+            <label country_code="US" language_code="en">Manufacturer name</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation used by manufacturer</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">Preliminary establishment of the designation of the manufacturer subject to changes by future EU directives and/or European standards.</text>
+          </remark>
+          <det_classification>A21</det_classification>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-BAA002#004">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <is_deprecated>true</is_deprecated>
+          <preferred_name>
+            <label country_code="US" language_code="en">Product type description</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">name of the product family or variant</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">A product type can also be an abbreviation or coded type</text>
+          </remark>
+          <det_classification>A51</det_classification>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-BAA059#006">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <is_deprecated>true</is_deprecated>
+          <preferred_name>
+            <label country_code="US" language_code="en">Supplier product number</label>
+          </preferred_name>
+          <short_name>
+            <label country_code="US" language_code="en">SUP_PROD_NUM</label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">unique product order identifier of the supplier</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">The customer can use this number to order the article (or service) from the manufacturer or supplier.</text>
+          </remark>
+          <det_classification>A91</det_classification>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-BAA271#007">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <is_deprecated>true</is_deprecated>
+          <preferred_name>
+            <label country_code="US" language_code="en">GTIN</label>
+          </preferred_name>
+          <synonymous_names>
+            <label country_code="US" language_code="en">EAN CODE</label>
+          </synonymous_names>
+          <short_name>
+            <label country_code="US" language_code="en">GTIN</label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">internationally unique and unambiguous article number for products and services (Global Trade Item Number, formerly EAN)</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">The most common EAN-number is a 13 digit number. The first two or three digits represent the national institute responsible for assigning numbers and thus indicate the country of manufacture. The following five or four places are used for the manufacturer's characterization. Five additional digits are provided for the manufacturer's article number. The 13th and last digit is a check digit.</text>
+          </remark>
+          <det_classification>A91</det_classification>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-BAA316#005">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <is_deprecated>true</is_deprecated>
+          <preferred_name>
+            <label country_code="US" language_code="en">Product name</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">designation for a product defined by manufacturer or sales organization</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">COMMENT 1: The designation product is applicable to all tangible goods as well as to all intangible goods (e.g. a service, consultation, intellectual property, software). COMMENT 2: Many products are marketed under a special name to indicate their origin,</text>
+          </remark>
+          <det_classification>A51</det_classification>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-BAB542#004">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <is_deprecated>true</is_deprecated>
+          <preferred_name>
+            <label country_code="US" language_code="en">Supplier name</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Name of supplier which provides the customer with an article (product or service)</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">The supplier as contractor in a contractual relationship can, for example, be a manufacturer, a distributor, an importer, a retail dealer or chain, an assembly company or service organization. The supplier can be any legal entity which is responsible for the quality of the product before it is taken by the customer. In the context of transport services the supplier can also be the person or organization which delivers an article or a service to the buyer.</text>
+          </remark>
+          <det_classification>A91</det_classification>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAB110#005">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2008-03-29Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Size of glove</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">standardized measurement to manufacture gloves in series</text>
+          </definition>
+          <source_doc_of_definition xsi:type="ontoml:IDENTIFIED_DOCUMENT_Type">
+            <document_identifier>
+              <label country_code="US" language_code="en">Ortovox. So ermitteln Sie Ihre Handschuhgr&#xf6;&#xdf;e [online]. Updated 03 June 2007 [cited 06 March 2007] Available from: &lt;http://www.ortovox.com/typo7/index.php?id=271></label>
+            </document_identifier>
+          </source_doc_of_definition>
+          <det_classification>A58</det_classification>
+          <domain xsi:type="ontoml:NAMED_TYPE_Type">
+            <referred_type datatype_ref="0173-1#09-AAB473#004"/>
+          </domain>
+          <suggested_value_list>true</suggested_value_list>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAB146#005">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2008-03-29Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Material of glove</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">material (fabric, raw material) the glove is made of (having regard to its outward form and/or the process of formation resp. of manufacture)</text>
+          </definition>
+          <det_classification>A57</det_classification>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAO736#003">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2014-11-30Z</date_of_current_version>
+          <date_of_current_revision>2014-11-30Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Supplier product number</label>
+          </preferred_name>
+          <short_name>
+            <label country_code="US" language_code="en">SUP_PROD_NUM</label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">unique product order identifier of the supplier</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">The customer can use this number to order the article (or service) from the manufacturer or supplier.</text>
+          </remark>
+          <det_classification>A91</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAO663#002">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2014-11-30Z</date_of_current_version>
+          <date_of_current_revision>2014-11-30Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">GTIN</label>
+          </preferred_name>
+          <short_name>
+            <label country_code="US" language_code="en">GTIN</label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">internationally unique and unambiguous article number for products and services (Global Trade Item Number, formerly EAN)</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">The most common EAN-number is a 13 digit number. The first two or three digits represent the national institute responsible for assigning numbers and thus indicate the country of manufacture. The following five or four places are used for the manufacturer's characterization. Five additional digits are provided for the manufacturer's article number. The 13th and last digit is a check digit.</text>
+          </remark>
+          <det_classification>A91</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAA305#008">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2008-03-29Z</date_of_original_definition>
+          <date_of_current_version>2014-11-30Z</date_of_current_version>
+          <date_of_current_revision>2014-11-30Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">allergenic potential</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">definition of contained or not contained materials and substances which are able to cause an allergic immune response intracorporally depending on their nature and properties or because of their state</text>
+          </definition>
+          <det_classification>A57</det_classification>
+          <domain xsi:type="ontoml:NAMED_TYPE_Type">
+            <referred_type datatype_ref="0173-1#09-AAB203#006"/>
+          </domain>
+          <suggested_value_list>true</suggested_value_list>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAU728#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2015-11-13Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Supplier product family</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">2nd level of a 3 level supplier specific product hierarchy</text>
+          </definition>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAU729#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2015-11-13Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Supplier product root</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Top level of a 3 level supplier specific product hierarchy</text>
+          </definition>
+          <note>
+            <text country_code="US" language_code="en">could be used for building variants</text>
+          </note>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAU730#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2015-11-13Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Supplier product description</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Description of the product, it's technical features and implementation if needed (long text)</text>
+          </definition>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAU731#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2015-11-13Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Manufacturer product family</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">2nd level of a 3 level manufacturer specific product hierarchy</text>
+          </definition>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAU732#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2015-11-13Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Manufacturer product root</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Top level of a 3 level manufacturer specific product hierarchy</text>
+          </definition>
+          <note>
+            <text country_code="US" language_code="en">could be used for building variants</text>
+          </note>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAU733#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2015-11-13Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Manufacturer product order suffix</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">By the manufacturer awarded string for the identification of additional attributes, not by a structured manufacturer item number may be expressed</text>
+          </definition>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAU734#001">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2015-11-13Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Manufacturer product description</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">Description of the product, it's technical features and implementation if needed (long text)</text>
+          </definition>
+          <domain xsi:type="ontoml:TRANSLATABLE_STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAO742#002">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Brand</label>
+          </preferred_name>
+          <short_name>
+            <label country_code="US" language_code="en">BRAND</label>
+          </short_name>
+          <definition>
+            <text country_code="US" language_code="en">Part of the naming for the support and the recognition of the brand position of products and services consisting of words, numbers, letters or other characters. Registered brands and trademarks are indicated with the appropriate protective signs (&#xae; or TM)</text>
+          </definition>
+          <det_classification>A51</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+        <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAO847#003">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+          <date_of_current_version>2015-11-13Z</date_of_current_version>
+          <date_of_current_revision>2015-11-13Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">description of product type</label>
+          </preferred_name>
+          <definition>
+            <text country_code="US" language_code="en">name of the product family or variant</text>
+          </definition>
+          <remark>
+            <text country_code="US" language_code="en">A product type can also be an abbreviation or coded type</text>
+          </remark>
+          <det_classification>A51</det_classification>
+          <domain xsi:type="ontoml:STRING_TYPE_Type"/>
+        </ontoml:property>
+      </contained_properties>
+      <contained_datatypes>
+        <ontoml:datatype id="0173-1#09-AAB203#006">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2008-03-29Z</date_of_original_definition>
+          <date_of_current_version>2014-11-30Z</date_of_current_version>
+          <date_of_current_revision>2014-11-30Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">allergenic potential</label>
+          </preferred_name>
+          <type_definition xsi:type="ontoml:STRING_TYPE_Type">
+            <constraints>
+              <constraint xsi:type="ontoml:ENUMERATION_CONSTRAINT_Type">
+                <subset>
+                  <val:string_value>containing phthalate</val:string_value>
+                  <val:string_value>free of phthalate</val:string_value>
+                  <val:string_value>not specified</val:string_value>
+                  <val:string_value>polyvinylchloride-free</val:string_value>
+                  <val:string_value>polyvinylchloride-containing</val:string_value>
+                  <val:string_value>free of colophony</val:string_value>
+                  <val:string_value>colophony-containing</val:string_value>
+                  <val:string_value>AAJ021</val:string_value>
+                  <val:string_value>AAJ020</val:string_value>
+                  <val:string_value>AAA936</val:string_value>
+                  <val:string_value>AAA317</val:string_value>
+                  <val:string_value>containing carbamates</val:string_value>
+                  <val:string_value>containing guanidine</val:string_value>
+                  <val:string_value>containing mercaptobenzothiazoles</val:string_value>
+                  <val:string_value>containing thiourea</val:string_value>
+                  <val:string_value>containing thiurams</val:string_value>
+                  <val:string_value>AAJ023</val:string_value>
+                  <val:string_value>AAJ022</val:string_value>
+                  <val:string_value>AAJ025</val:string_value>
+                  <val:string_value>AAJ024</val:string_value>
+                  <val:string_value>AAJ027</val:string_value>
+                  <val:string_value>AAJ026</val:string_value>
+                  <val:string_value>AAJ029</val:string_value>
+                  <val:string_value>AAJ028</val:string_value>
+                  <val:string_value>free of carbamates</val:string_value>
+                  <val:string_value>free of guanidine</val:string_value>
+                  <val:string_value>free of mercaptobenzothiazoles</val:string_value>
+                  <val:string_value>free of thiourea</val:string_value>
+                  <val:string_value>free of thiurams</val:string_value>
+                  <val:string_value>AAJ031</val:string_value>
+                  <val:string_value>AAJ030</val:string_value>
+                  <val:string_value>AAB200</val:string_value>
+                  <val:string_value>AAA595</val:string_value>
+                  <val:string_value>AAA577</val:string_value>
+                  <val:string_value>AAJ033</val:string_value>
+                  <val:string_value>AAJ032</val:string_value>
+                  <val:string_value>AAJ035</val:string_value>
+                  <val:string_value>AAJ034</val:string_value>
+                </subset>
+                <value_meaning>
+                  <its_values>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAW820#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">containing phthalate</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>1</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAW819#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">free of phthalate</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>2</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAW411#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">not specified</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>3</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAW263#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">polyvinylchloride-free</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>4</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAW262#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">polyvinylchloride-containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>5</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAW202#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">free of colophony</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>6</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAW201#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">colophony-containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>7</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ021#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">BBP-containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>8</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ020#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">BBP-free</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>9</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAA936#003">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">chromium containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>10</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAA317#003">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">chromium free</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>11</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV561#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">containing carbamates</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>12</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV565#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">containing guanidine</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>13</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV559#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">containing mercaptobenzothiazoles</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>14</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV567#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">containing thiourea</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>15</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV563#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">containing thiurams</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>16</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ023#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">DBP-containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>17</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ022#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">DBP-free</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>18</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ025#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">DEHP-containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>19</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ024#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">DEHP-free</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>20</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ027#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">DIDP-containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>21</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ026#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">DIDP-free</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>22</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ029#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">DINP-containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>23</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ028#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">DINP-free</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>24</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV560#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">free of carbamates</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>25</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV564#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">free of guanidine</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>26</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV558#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">free of mercaptobenzothiazoles</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>27</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV566#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">free of thiourea</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>28</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAV562#001">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">free of thiurams</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>29</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ031#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">latex containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>30</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ030#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">latexfree</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>31</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAB200#003">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">nickel containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>32</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAA595#003">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">nickel free</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>33</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAA577#003">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">non-valued</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>34</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ033#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">powder containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>35</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ032#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">powderfree</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>36</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ035#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">PVC-containing</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>37</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAJ034#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">PVC-free</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <is_deprecated>true</is_deprecated>
+                      <value_code>38</value_code>
+                    </dic_value>
+                  </its_values>
+                </value_meaning>
+              </constraint>
+            </constraints>
+          </type_definition>
+        </ontoml:datatype>
+        <ontoml:datatype id="0173-1#09-AAB473#004">
+          <name_scope class_ref="0173-1#01-RAA001#001"/>
+          <date_of_original_definition>2008-03-29Z</date_of_original_definition>
+          <date_of_current_version>2013-11-28Z</date_of_current_version>
+          <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+          <revision>1</revision>
+          <status>66</status>
+          <source_language country_code="US" language_code="en"/>
+          <preferred_name>
+            <label country_code="US" language_code="en">Size of glove</label>
+          </preferred_name>
+          <type_definition xsi:type="ontoml:STRING_TYPE_Type">
+            <constraints>
+              <constraint xsi:type="ontoml:ENUMERATION_CONSTRAINT_Type">
+                <subset>
+                  <val:string_value>AAK432</val:string_value>
+                  <val:string_value>AAK433</val:string_value>
+                  <val:string_value>AAK434</val:string_value>
+                  <val:string_value>AAK435</val:string_value>
+                  <val:string_value>AAK436</val:string_value>
+                </subset>
+                <value_meaning>
+                  <its_values>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAK432#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">L</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>1</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAK433#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">M</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>2</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAK434#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">S</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>3</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAK435#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">XL</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>4</value_code>
+                    </dic_value>
+                    <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAK436#004">
+                      <preferred_name>
+                        <label country_code="US" language_code="en">XS</label>
+                      </preferred_name>
+                      <definition>
+                        <text>-</text>
+                      </definition>
+                      <value_code>5</value_code>
+                    </dic_value>
+                  </its_values>
+                </value_meaning>
+              </constraint>
+            </constraints>
+          </type_definition>
+        </ontoml:datatype>
+      </contained_datatypes>
+    </dictionary>
+  </ontoml:ontoml>
+  <ext:extensions>
+    <ext:contained_ea_templates>
+      <ext:ea_template id="bd1e699ae7b14354a33f7b7a7df58a4e">
+        <ext:type_of_entity>01</ext:type_of_entity>
+        <ext:type_of_value xsi:type="ontoml:STRING_TYPE_Type"/>
+        <ext:code>E132</ext:code>
+        <ext:source_language country_code="DE" language_code="de"/>
+        <ext:short_name>
+          <label country_code="US" language_code="en">Z21</label>
+        </ext:short_name>
+        <ext:preferred_name>
+          <label country_code="US" language_code="en">CC_restricts_CR_acces</label>
+        </ext:preferred_name>
+      </ext:ea_template>
+      <ext:ea_template id="bc6b36b4ee0440f4b6f8c2e5f250f6f0">
+        <ext:type_of_entity>02</ext:type_of_entity>
+        <ext:type_of_value xsi:type="ontoml:INT_TYPE_Type"/>
+        <ext:code>DBC</ext:code>
+        <ext:source_language country_code="US" language_code="en"/>
+        <ext:short_name>
+          <label country_code="US" language_code="en">Digits before comma</label>
+        </ext:short_name>
+        <ext:preferred_name>
+          <label country_code="US" language_code="en">Digits before comma</label>
+        </ext:preferred_name>
+      </ext:ea_template>
+      <ext:ea_template id="e75d1d4ff7614942a3143d27f5afbf9f">
+        <ext:type_of_entity>02</ext:type_of_entity>
+        <ext:type_of_value xsi:type="ontoml:INT_TYPE_Type"/>
+        <ext:code>DAC</ext:code>
+        <ext:source_language country_code="US" language_code="en"/>
+        <ext:short_name>
+          <label country_code="US" language_code="en">Digits after comma</label>
+        </ext:short_name>
+        <ext:preferred_name>
+          <label country_code="US" language_code="en">Digits after comma</label>
+        </ext:preferred_name>
+      </ext:ea_template>
+      <ext:ea_template id="12345678901234567890123456789012">
+        <ext:type_of_entity>01</ext:type_of_entity>
+        <ext:type_of_value xsi:type="ontoml:INT_TYPE_Type"/>
+        <ext:code>CORRECTION</ext:code>
+        <ext:source_language country_code="US" language_code="en"/>
+        <ext:short_name>
+          <label country_code="US" language_code="en">Correction</label>
+        </ext:short_name>
+        <ext:preferred_name>
+          <label country_code="US" language_code="en">Correction</label>
+        </ext:preferred_name>
+      </ext:ea_template>
+      <ext:ea_template id="571f168c5f324b0d89c3be68a71569b8">
+        <ext:type_of_entity>02</ext:type_of_entity>
+        <ext:type_of_value xsi:type="ontoml:STRING_TYPE_Type"/>
+        <ext:code>PROP_QUANTITY_CONNECTION</ext:code>
+        <ext:source_language country_code="US" language_code="en"/>
+        <ext:short_name>
+          <label country_code="US" language_code="en">Connection property-quantity</label>
+        </ext:short_name>
+        <ext:preferred_name>
+          <label country_code="US" language_code="en">Connection property-quantity</label>
+        </ext:preferred_name>
+      </ext:ea_template>
+      <ext:ea_template id="0f6948d9497d472da4ee16ece61b47cd">
+        <ext:type_of_entity>02</ext:type_of_entity>
+        <ext:type_of_value xsi:type="ontoml:INT_TYPE_Type"/>
+        <ext:code>MXL</ext:code>
+        <ext:source_language country_code="US" language_code="en"/>
+        <ext:short_name>
+          <label country_code="US" language_code="en"> Maximum string length</label>
+        </ext:short_name>
+        <ext:preferred_name>
+          <label country_code="US" language_code="en"> Maximum string length</label>
+        </ext:preferred_name>
+      </ext:ea_template>
+      <ext:ea_template id="ddbf46fc03854aaab471390e45f69d71">
+        <ext:type_of_entity>02</ext:type_of_entity>
+        <ext:type_of_value xsi:type="ontoml:STRING_TYPE_Type"/>
+        <ext:code>PROP_VALENCY</ext:code>
+        <ext:source_language country_code="US" language_code="en"/>
+        <ext:short_name>
+          <label country_code="US" language_code="en">Property valency</label>
+        </ext:short_name>
+        <ext:preferred_name>
+          <label country_code="US" language_code="en">Property valency</label>
+        </ext:preferred_name>
+      </ext:ea_template>
+    </ext:contained_ea_templates>
+    <ext:contained_ea_instances>
+      <ext:entity_eas entity_ref="0173-1#02-BAD847#003">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAM551#001">
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAO673#001">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>49</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAO677#001">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAO993#001">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>6</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAQ326#001">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>1024</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAQ199#002">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAO676#002">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAO735#002">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>32</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAS244#001">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>8</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAP805#002">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAD931#004">
+        <ext:ea template_id="bc6b36b4ee0440f4b6f8c2e5f250f6f0">
+          <val:integer_value>11</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAE670#003">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>1024</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-BAA001#006">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-BAA002#004">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>265</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-BAA059#006">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-BAA271#007">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>32</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-BAA316#005">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-BAB542#004">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>32</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAB110#005">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>3</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAB146#005">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>256</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAO736#003">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAO663#002">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>14</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAA305#008">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>256</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAU728#001">
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAU729#001">
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAU730#001">
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAU731#001">
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAU732#001">
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAU733#001">
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAU734#001">
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>univalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAO742#002">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>64</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#02-AAO847#003">
+        <ext:ea template_id="0f6948d9497d472da4ee16ece61b47cd">
+          <val:integer_value>265</val:integer_value>
+        </ext:ea>
+        <ext:ea template_id="ddbf46fc03854aaab471390e45f69d71">
+          <val:string_value>multivalent</val:string_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#01-ACL240#004">
+        <ext:ea template_id="bd1e699ae7b14354a33f7b7a7df58a4e">
+          <val:integer_value>0</val:integer_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#01-ACL242#004">
+        <ext:ea template_id="bd1e699ae7b14354a33f7b7a7df58a4e">
+          <val:integer_value>0</val:integer_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#01-ACL241#004">
+        <ext:ea template_id="bd1e699ae7b14354a33f7b7a7df58a4e">
+          <val:integer_value>0</val:integer_value>
+        </ext:ea>
+      </ext:entity_eas>
+      <ext:entity_eas entity_ref="0173-1#01-ACL243#010">
+        <ext:ea template_id="bd1e699ae7b14354a33f7b7a7df58a4e">
+          <val:integer_value>0</val:integer_value>
+        </ext:ea>
+      </ext:entity_eas>
+    </ext:contained_ea_instances>
+    <ext:contained_rel_deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#01-ACL243#010</ext:context>
+        <ext:entity>0173-1---BASIC_1_1#01-DAC090#008</ext:entity>
+        <ext:rel_type>DEPRECIATION ICO AC-CC</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-DAC090#008</ext:context>
+        <ext:entity>0173-1#02-AAE670#003</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-DAC090#008</ext:context>
+        <ext:entity>0173-1#02-BAA271#007</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-DAC090#008</ext:context>
+        <ext:entity>0173-1#02-BAA001#006</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-DAC090#008</ext:context>
+        <ext:entity>0173-1#02-BAD847#003</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-DAC090#008</ext:context>
+        <ext:entity>0173-1#02-BAA316#005</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-DAC090#008</ext:context>
+        <ext:entity>0173-1#02-BAA002#004</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-DAC090#008</ext:context>
+        <ext:entity>0173-1#02-BAB542#004</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-DAC090#008</ext:context>
+        <ext:entity>0173-1#02-BAA059#006</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-AAO673#001</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-AAA305#008</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-AAB146#005</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-AAS244#001</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-AAB110#005</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-AAQ199#002</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-AAO993#001</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-AAE670#003</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-BAA271#007</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-BAA001#006</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-BAD847#003</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-BAA316#005</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-BAA002#004</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-BAB542#004</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1---BASIC_1_1#01-ADB911#006</ext:context>
+        <ext:entity>0173-1#02-BAA059#006</ext:entity>
+        <ext:rel_type>DEPRECIATION C-P</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ021#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ020#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ023#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ022#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ025#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ024#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ027#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ026#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ029#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ028#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ035#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+      <ext:deprecation>
+        <ext:context>0173-1#09-AAB203#006</ext:context>
+        <val:controlled_value value_ref="0173-1#07-AAJ034#004"/>
+        <ext:rel_type>DEPRECIATION D-V</ext:rel_type>
+      </ext:deprecation>
+    </ext:contained_rel_deprecation>
+  </ext:extensions>
+</dic:eclass_dictionary>
