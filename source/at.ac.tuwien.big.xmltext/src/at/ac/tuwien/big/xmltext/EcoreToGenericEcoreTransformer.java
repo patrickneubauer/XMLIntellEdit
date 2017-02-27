@@ -121,7 +121,7 @@ public class EcoreToGenericEcoreTransformer {
 				ecoreResource, targetName);
 		struct.getIdAttribute();
 		rootClass = struct.getEcoreRoot();
-		this.result = struct.getEcoreResource();
+		this.result = struct.getEcoreResources().iterator().next();
 	}
 	
 	public void saveResult() {

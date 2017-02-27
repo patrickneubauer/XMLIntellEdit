@@ -8,7 +8,8 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: at.ac.tuwien.big.xmltext.ecoretransform.impl,
+Export-Package: at.ac.tuwien.big.xmltext,
+ at.ac.tuwien.big.xmltext.ecoretransform.impl,
  library3Simplified,
  library3Simplified.impl,
  library3Simplified.util,

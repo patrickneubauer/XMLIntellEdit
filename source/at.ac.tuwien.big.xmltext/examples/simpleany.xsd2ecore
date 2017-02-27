@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd2ecore:XSD2EcoreMappingRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsd2ecore="http://www.eclipse.org/emf/2002/XSD2Ecore" inputs="platform:/resource/at.ac.tuwien.big.xmltext/examples/simpleany.xsd#/"
+    outputs="platform:/resource/at.ac.tuwien.big.xmltext/examples/simpleany.ecore#/"/>

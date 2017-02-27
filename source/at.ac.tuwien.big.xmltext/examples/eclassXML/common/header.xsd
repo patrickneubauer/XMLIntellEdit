@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+eCl@ssXML 2.0 - XML Schema
+-->
+<!--
+
+eCl@ssXML 2.0
+
+The following permission notice and disclaimer shall be included in all copies of this DTD/XML Schema ("the Schema"), 
+and derivations of the Schema:
+
+© eClass e.v. 2012 - All rights reserved
+
+Permission is hereby granted, free of charge in perpetuity, to any person obtaining a copy of the Schema, to use, 
+copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, 
+installing and using software based on the Schema, and to permit persons to whom the Schema is furnished to do so, 
+subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE eClassXML 2.0 DICTIONARY SCHEMA, AND SHOULD NOT BE INTERPRETED AS COMPLYING 
+WITH THAT SCHEMA
+
+
+
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hea="urn:eclass:xml-schema:header:2.0" xmlns:cmn="urn:eclass:xml-schema:common:2.0" targetNamespace="urn:eclass:xml-schema:header:2.0" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="2.0">
+	<xsd:import namespace="urn:eclass:xml-schema:common:2.0" schemaLocation="./common.xsd"/>
+	<xsd:element name="header" type="hea:DOCUMENTHEADER_Type"/>
+	<xsd:complexType name="DOCUMENTHEADER_Type">
+		<xsd:annotation>
+			<xsd:documentation>General Information on the file</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="schema_version">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="eCl@ss XML 2.0"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="generator_version" type="xsd:string"/>
+			<xsd:element name="generation_date" type="xsd:dateTime"/>
+			<xsd:element name="creator" type="cmn:PARTY_Type"/>
+			<xsd:element name="authorisation" type="cmn:PARTY_Type" minOccurs="0"/>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="content_version" type="xsd:string"/>
+				<xsd:element name="content_date" type="xsd:dateTime"/>
+			</xsd:choice>
+			<xsd:choice>
+				<xsd:element name="content_identification" type="cmn:IDENTIFICATION_Type"/>
+				<xsd:sequence>
+					<xsd:element name="conversation_identification" type="cmn:IDENTIFICATION_Type"/>
+					<xsd:element name="message" type="hea:MESSAGE_Type"/>
+					<xsd:element name="in_reply_to" type="hea:MESSAGE_Type" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:choice>
+			<xsd:element name="content_description" type="cmn:TYPEDSTRING_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="content_model_type" type="cmn:CONTENT_MODEL_Type" minOccurs="0" />
+			<xsd:element name="content_sg_number" type="xsd:integer" minOccurs="0"/>
+			<xsd:element name="content_language" type="cmn:LOCALE_Type"/>
+			<xsd:element name="originating_system" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MESSAGE_Type">
+		<xsd:sequence>
+			<xsd:element name="identification" type="cmn:IDENTIFICATION_Type"/>
+			<xsd:element name="sender" type="cmn:PARTY_Type"/>
+			<xsd:element name="recipient" type="cmn:PARTY_Type"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
