@@ -10,25 +10,25 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 
 
-public interface InstanceCreator extends Creater<EObject, EClass> {
+public interface InstanceCreator  {
 	
 	InstanceCreator DEFAULT = new InstanceCreator() {
 		
 		@Override
-		public EObject createInstance(EClass cl) {
+		public EObject createInstance(EObject container, EClass cl) {
 			return MyEcoreUtil.createInstanceStatic(cl);
 		}
 	};
 
-	public EObject createInstance(EClass cl);
+	public EObject createInstance(EObject container, EClass cl);
 	
-	@Override
-	public default EObject create(EClass cl) {
-		return createInstance(cl);
+	
+	public default EObject create(EObject container, EClass cl) {
+		return createInstance(container,cl);
 	}
 
 	public default EObject copyBasic(EObject targetObject) {
-		EObject ret = createInstance(targetObject.eClass());
+		EObject ret = createInstance(targetObject.eContainer(),targetObject.eClass());
 		for (EStructuralFeature esf: targetObject.eClass().getEAllStructuralFeatures()) {
 			if (esf.isMany()) {
 				ret.eSet(esf, new BasicEList((Collection)targetObject.eGet(esf)));

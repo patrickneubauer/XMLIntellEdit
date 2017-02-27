@@ -53,7 +53,11 @@ public class PatchUtil {
 			//Set the first elements
 			int common = Math.min(original.size(),revised.size());
 			for (int i = 0; i < common; ++i) {
-				source.set(i+newPos, (T)revised.getLines().get(i));
+				if (source instanceof AbstractEList) {
+					((AbstractEList) source).setUnique(newPos+i, (T)revised.getLines().get(i));
+				} else {
+					source.set(newPos+i, (T)revised.getLines().get(i));
+				}
 				System.out.println("Set["+(newPos+i)+"] = "+revised.getLines().get(i));
 			}
 			//Remove all others - das passt vielleicht nicht!
@@ -72,6 +76,7 @@ public class PatchUtil {
 				}
 			}
 		}
+		source = source;
 	}
 	
 	public static void main(String[] args) {

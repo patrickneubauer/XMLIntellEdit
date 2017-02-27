@@ -2,6 +2,8 @@ package at.ac.tuwien.big.xtext.equalizer.impl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
@@ -19,6 +21,16 @@ public class SimpleModelCorrespondance implements ModelCorrespondance {
 	
 	private Map<EObject, EObject> rightToLeft = new HashMap<EObject, EObject>();
 	private Map<EObject, EObject> leftToRight = new HashMap<EObject, EObject>();
+	
+
+	public Set<Entry<EObject,EObject>> getEntriesL2R() {
+		return leftToRight.entrySet();
+	}
+	
+	public Set<Entry<EObject,EObject>> getEntriesR2L() {
+		return rightToLeft.entrySet();
+	}
+	
 
 	@Override
 	public EObject getLeftObject(EObject right) {
@@ -71,5 +83,6 @@ public class SimpleModelCorrespondance implements ModelCorrespondance {
 		}
 		return ret;
 	}
+
 
 }

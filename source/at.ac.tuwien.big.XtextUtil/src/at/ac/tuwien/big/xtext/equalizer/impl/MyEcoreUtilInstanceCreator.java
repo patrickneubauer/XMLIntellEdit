@@ -9,7 +9,7 @@ import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 public class MyEcoreUtilInstanceCreator implements InstanceCreator {
 
 	@Override
-	public EObject createInstance(EClass cl) {
+	public EObject createInstance(EObject cont, EClass cl) {
 		return MyEcoreUtil.newInstance(cl);
 	}
 

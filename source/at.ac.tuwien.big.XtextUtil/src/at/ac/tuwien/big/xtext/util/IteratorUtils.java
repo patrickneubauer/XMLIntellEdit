@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
@@ -17,6 +18,38 @@ import org.eclipse.emf.ecore.EObject;
 import java.util.Map.Entry;
 
 public class IteratorUtils {
+	
+	public static<T> List<T> convert(List<T> start, Map<T,T> map) {
+		List<T> ret = new ArrayList<>();
+		for (T t: start) {
+			ret.add(map.getOrDefault(t, t));
+		}
+		return ret;
+	}
+	
+	public static<T> String concat(Iterable<T> iterable, SimpleFunction<T, ?> stringBuilding) {
+		return concat(iterable,stringBuilding,"",", ","");
+	}
+	
+	public static<T> String concat(Iterable<T> iterable, SimpleFunction<T, ?> stringBuilding, String middle) {
+		return concat(iterable,stringBuilding,"",middle,"");
+	}
+	
+	public static<T> String concat(Iterable<T> iterable, SimpleFunction<T, ?> stringBuilding,  String start, String middle,String end) {
+		StringBuilder ret = new StringBuilder();
+		ret.append(start);
+		boolean first = true;
+		for (T t: iterable) {
+			if (!first) {
+				ret.append(middle);
+			} else {
+				first = false;
+			}
+			ret.append(stringBuilding.applyTo(t));
+		}
+		ret.append(end);
+		return ret.toString();
+	}
 	
 	public static abstract class CalculatingIterator<T> implements Iterator<T> {
 		

@@ -498,6 +498,11 @@ public class MyEcoreUtil {
 	}
 
 
+	public static String getName(EStructuralFeature esf) {
+		return esf.getEContainingClass().getName()+"."+esf.getName();
+	}
+
+
 
 
 }

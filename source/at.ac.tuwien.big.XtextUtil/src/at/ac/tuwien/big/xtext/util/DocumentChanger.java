@@ -44,49 +44,11 @@ public class DocumentChanger {
 					++curLinePos;
 				}
 				curLinePos+= revised.getLines().size();
-				if (original.getLines().size() == 0) {
-					StringBuilder totalString = new StringBuilder();
-					for (String str: (List<String>)revised.getLines()) {
-						totalString.append(str);
-						totalString.append("\n");
-					}
-					if (revised.getLines().size()+revised.getPosition() == newLines.size()) {
-						totalString.replace(totalString.length()-1,totalString.length(),"");
-					}
-					String str = totalString.toString();
-					try {
-						doc.replace(curCharPos, 0, str);
-					} catch (BadLocationException e) {
-						e.printStackTrace();
-					}
-					curCharPos+= str.length();
-					//Insert
-				} else if (revised.getLines().size() == 0) {
-					//Delete
-					StringBuilder totalString = new StringBuilder();
-					int deleteCount = 0;
-					for (String str: (List<String>)original.getLines()) {
-						deleteCount+= str.length()+1;
-					}
-					if (original.getLines().size()+original.getPosition() == oldLines.size()) {
-						--deleteCount;
-					}
-					try {
-						doc.replace(curCharPos, deleteCount,"");
-					} catch (BadLocationException e) {
-						e.printStackTrace();
-					}
-					
-				} else {
-					//Update
-					if (original.getLines().size() != revised.getLines().size()) {
-						System.err.println("Expectation violated!");
-						doc.set(newContent);
-						return;
-					}
-					for (int i = 0; i < original.getLines().size(); ++i) {
-						List<Character> start = asList((String)original.getLines().get(i));
-						List<Character> end = asList((String)revised.getLines().get(i));
+				
+				int minLength = Math.min(original.getLines().size(), revised.getLines().size());
+				for (int i = 0; i < minLength; ++i) {
+					List<Character> start = asList((String)original.getLines().get(i));
+					List<Character> end = asList((String)revised.getLines().get(i));
 		            Patch deltaPatch = DiffUtils.diff(start, end);
 		            List<Delta> strDeltas = deltaPatch.getDeltas();
 		            int oldCharPos = curCharPos;
@@ -113,11 +75,40 @@ public class DocumentChanger {
 		            	System.err.println();
 		            }
 
+				}
+				if (minLength < revised.getLines().size()) {
+					StringBuilder totalString = new StringBuilder();
+					for (int i = minLength; i < revised.getLines().size(); ++i) {
+						totalString.append(revised.getLines().get(i));
+						totalString.append("\n");
 					}
-					
-//					if (revised.getLines().size()+revised.getPosition() != newLines.size()) {
-//						++curCharPos;
-//					}
+					if (revised.getLines().size()+revised.getPosition() == newLines.size()) {
+						//totalString.replace(totalString.length()-1,totalString.length(),"");
+					}
+					String str = totalString.toString();
+					try {
+						doc.replace(curCharPos, 0, str);
+					} catch (BadLocationException e) {
+						e.printStackTrace();
+					}
+					curCharPos+= str.length();
+					//Insert
+				}
+				if (minLength < original.getLines().size()) {
+						//Delete
+						StringBuilder totalString = new StringBuilder();
+						int deleteCount = 0;
+						for (int i = minLength; i < original.getLines().size(); ++i) {
+							deleteCount+= ((String)original.getLines().get(i)).length()+1;
+						}
+						if (original.getLines().size()+original.getPosition() == oldLines.size()) {
+							--deleteCount;
+						}
+						try {
+							doc.replace(curCharPos, deleteCount,"");
+						} catch (BadLocationException e) {
+							e.printStackTrace();
+						} 
 				}
 			}
 	  }

@@ -60,6 +60,7 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 		PatchUtil.applyPatch(target,source);
 	}
 	
+	/**return new targetEl having class of srcel*/
 	public EObject fakeCast(EObject targetEl, EObject srcEl) {
 		if ("VEObject".equals(srcEl.getClass().getName())) {
 			//TODO: Much reflection ...
@@ -77,7 +78,7 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 			//vmv.getInstances().setClass(uuid, name);
 			return srcEl;
 		} else {
-			EObject ret = creator.createInstance(srcEl.eClass());
+			EObject ret = creator.createInstance(targetEl.eContainer(),srcEl.eClass());
 			//Copy same features
 			//Only if targetEl is not a VObject
 			//But it would probably work ...
@@ -162,13 +163,17 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 			}
 		}
 		
+		Map<EObject,EObject> associated = new HashMap<>();
+		
 		//Second step: Try to Associate by name
 		for (EObject src: missingEobject) {
 			//We know it currently has no correspondant
 			EObject targetObject = null;
 			//Try to find an unassociated with same name
 			EObject container = src.eContainer();
+			EObject parentCorr = null;
 			if (src.eClass() != null) {
+				Collection col = null;
 				EStructuralFeature nameFeature = src.eClass().getEIDAttribute();
 				if (nameFeature == null) {
 					nameFeature = src.eClass().getEStructuralFeature("name");
@@ -176,55 +181,96 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 						nameFeature = src.eClass().getEStructuralFeature("id");	
 					}
 				}
+				EStructuralFeature containingFeat = null;
 				if (container != null)  {
-					EObject parentCorr = getCorrespondant(container);
+					parentCorr = getCorrespondant(container);
 					if (parentCorr != null) {
-						EStructuralFeature containingFeat = src.eContainingFeature();
-						Collection col = MyEcoreUtil.getAsCollection(parentCorr, containingFeat);
+						containingFeat = src.eContainingFeature();
+						col = MyEcoreUtil.getAsCollection(parentCorr, containingFeat);
 						if (col == null) {
 							System.err.println("Feature "+containingFeat+" produced a null coll on "+parentCorr+"!");
 							col = MyEcoreUtil.getAsCollection(parentCorr, containingFeat);
 						} else {
-							if (nameFeature != null) {
-								Object nameFeatureVal = src.eGet(nameFeature);						
-								if (containingFeat instanceof EReference) {
-									for (Object o: col) {
-										if (o instanceof EObject) {
-											EObject eo = (EObject)o;
-											if (eo.eClass() != null && nameFeature.getEContainingClass().isSuperTypeOf(eo.eClass())) {
-												Object compare = eo.eGet(nameFeature);
-												if (Objects.equals(nameFeatureVal, compare)) {
-													//Das ist guter correspondant - schaue, ob unassociated!
-													if (subCor.getLeftObject(eo) == null) {
-														System.out.println("Name-Associating "+src+" to "+eo+"!");
-														targetObject = eo;
-														break;
-													}
-												}
-											}
+							
+						}
+					}
+				} else {
+					//Check resource
+					col = target;
+				}
+				if (nameFeature != null && col != null) {
+					Object nameFeatureVal = src.eGet(nameFeature);						
+					if (containingFeat instanceof EReference) {
+						for (Object o: col) {
+							if (o instanceof EObject) {
+								EObject eo = (EObject)o;
+								if (eo.eClass() != null && nameFeature.getEContainingClass().isSuperTypeOf(eo.eClass())) {
+									Object compare = eo.eGet(nameFeature);
+									if (Objects.equals(nameFeatureVal, compare)) {
+										//Das ist guter correspondant - schaue, ob unassociated!
+										if (subCor.getLeftObject(eo) == null) {
+											System.out.println("Name-Associating "+src+" to "+eo+"!");
+											targetObject = eo;
+											break;
 										}
 									}
 								}
 							}
-							if (targetObject == null) {
-								for (Object o: col) {
-									if (o instanceof EObject) {
-										EObject eo = (EObject)o;
-										if (eo.eClass() != null) {
-											//Das ist schlechter correspondant - aber gibt halt nichts besseres
-											if (subCor.getLeftObject(eo) == null) {
-												System.out.println("Desparate-Associating "+src+" to "+eo+"!");
-												targetObject = eo;
-												break;
-											}
-										}
-									}
-								}
-							}
-
 						}
 					}
 				}
+			}
+			if (targetObject != null) {
+				associated.put(src, targetObject);
+			}
+
+		}
+			
+
+		//Third step: Try to Associate by any
+		for (EObject src: missingEobject) {
+			//We know it currently has no correspondant
+			EObject targetObject = associated.get(src);
+			//Try to find an unassociated with same name
+			EObject container = src.eContainer();
+			EObject parentCorr = null;
+			if (targetObject == null && src.eClass() != null) {
+				Collection col = null;
+			
+				EStructuralFeature containingFeat = null;
+				if (container != null)  {
+					parentCorr = getCorrespondant(container);
+					if (parentCorr != null) {
+						containingFeat = src.eContainingFeature();
+						
+							col = MyEcoreUtil.getAsCollection(parentCorr, containingFeat);
+							if (col == null) {
+								System.err.println("Feature "+containingFeat+" produced a null coll on "+parentCorr+"!");
+								col = MyEcoreUtil.getAsCollection(parentCorr, containingFeat);
+							} else {
+								
+							}
+					}
+				} else {
+					//Check resource
+					col = target;
+				}
+				if (targetObject == null && col != null) {
+					for (Object o: col) {
+						if (o instanceof EObject) {
+							EObject eo = (EObject)o;
+							if (eo.eClass() != null) {
+								//Das ist schlechter correspondant - aber gibt halt nichts besseres
+								if (subCor.getLeftObject(eo) == null) {
+									System.out.println("Desparate-Associating "+src+" to "+eo+"!");
+									targetObject = eo;
+									break;
+								}
+							}
+						}
+					}
+				}
+
 			}
 			
 			if (targetObject != null) {
@@ -235,7 +281,7 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 			//Given up, now just create it
 			if (targetObject == null) {
 				//create
-				targetObject = creator.createInstance(src.eClass());
+				targetObject = creator.createInstance(parentCorr,src.eClass());
 			} 
 			
 			subCor.putCorrespondence(src, targetObject);

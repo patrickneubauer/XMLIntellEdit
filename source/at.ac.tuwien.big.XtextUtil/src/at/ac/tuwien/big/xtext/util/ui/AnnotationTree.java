@@ -3,8 +3,10 @@ package at.ac.tuwien.big.xtext.util.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jface.text.source.Annotation;
 
-public class AnnotationTree<T> {
+
+public class AnnotationTree<T extends Annotation> {
 	
 	private AnnotationTree<T> parent;
 	
@@ -39,7 +41,9 @@ public class AnnotationTree<T> {
 		for (AnnotationTree<T> sub: childTrees) {
 			doOwn |= sub.getMostSpecificAnnotations(startOffset, endOffset, list);
 		}
+		boolean ownAnnot = false;
 		if (!doOwn) {
+			List<T> annotations = new ArrayList<>(this.annotations);
 			list.addAll(annotations);
 		}
 		return true;
