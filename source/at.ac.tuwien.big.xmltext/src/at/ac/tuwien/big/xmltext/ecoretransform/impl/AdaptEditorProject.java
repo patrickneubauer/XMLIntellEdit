@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.google.common.io.Files;
 
+import at.ac.tuwien.big.xmltext.ecoretransform.impl.AbstractAdapter.FileType;
 import mypackage.Settings;
 import mypackage.XsdToXtextGenerator;
 
@@ -35,6 +36,7 @@ public class AdaptEditorProject {
 			e.printStackTrace();
 		}
 		AbstractEditorAdapter adapter = new AbstractEditorAdapter(new File(rootFolder.getAbsolutePath()+File.separator+Settings.LANGUAGE_PROJECT_NAME),packageUri,Settings.LANGUAGE_NAME);
-		adapter.run();
+		adapter.adaptPackage(FileType.SRCGEN, ".ui.contentassist", "Abstract", "ProposalProvider.java", adapter::adaptServiceProposalProviderProvider);
+		//adapter.run();
 	}
 }

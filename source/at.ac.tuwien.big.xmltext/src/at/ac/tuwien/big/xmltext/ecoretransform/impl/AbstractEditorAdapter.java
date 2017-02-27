@@ -164,7 +164,7 @@ public class AbstractEditorAdapter extends AbstractAdapter {
 		
 		
 		adaptPackage(FileType.SRC, ".ui.quickfix", "", "QuickfixProvider.xtend", this::adaptQuickfixProvider);
-		adaptPackage(FileType.SRCGEN, ".ui", "Abstract", "ProposalProvider.java", this::adaptServiceProposalProviderProvider);
+		adaptPackage(FileType.SRCGEN, ".ui.contentassist", "Abstract", "ProposalProvider.java", this::adaptServiceProposalProviderProvider);
 		copyFile(FileType.SRC,".ui",new File("template/MyXtextEditor.java"),this::xtextAdapter);
 		copyFolder(".ui/icons",new File("template/icons"));
 		replacePackage(FileType.SRC, ".ui", "", "UiModule.xtend", projectShortName+"UiModule.java",this::adaptUiModule);
