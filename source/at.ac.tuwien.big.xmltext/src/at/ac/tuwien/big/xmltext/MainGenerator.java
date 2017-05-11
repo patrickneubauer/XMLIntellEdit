@@ -153,8 +153,43 @@ public class MainGenerator {
 		generator.generateModelCode();
 	}*/
 	
+
+	private static void testBGFExample() {
+		XsdToEcoreTransformer transformer = new XsdToEcoreTransformer();
+		transformer.setXsd("bgf/bgf.xsd");
+		Resource xsdResource = transformer.getResult();
+		EcoreToGenericEcoreTransformer simplifiedTransformer = new EcoreToGenericEcoreTransformer();
+		simplifiedTransformer.setTargetFilename("bgf/bgfbla.ecore");
+		simplifiedTransformer.setXsdEcore(xsdResource);
+		Resource ecoreResource = simplifiedTransformer.getResult();
+		EClass ecoreRoot = simplifiedTransformer.getRootClass();
+		simplifiedTransformer.saveResult();
+		Resource complexXmi = transformer.loadXmlAsXmi("bgf/ada-kellogg.xml");
+		transformer.saveInstance(complexXmi, "bgf/ada-kelloggcomplex.xmi");
+		transformer.saveInstance(complexXmi, "bgf/ada-kelloggcomplex.xml");
+		Resource simplifiedXmi = simplifiedTransformer.loadXml("bgf/ada-kellogg.xml");
+		CustomSerializer serializer = new CustomSerializer();
+		
+		try {
+			serializer.writeOutput(simplifiedXmi, "bgf/ada-kelloggsimple.xmi");
+			serializer.writeOutput(simplifiedXmi, "bgf/ada-kelloggsimple.xml");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (true) {return;}
+		File current = new File("").getAbsoluteFile();
+		System.out.println("Current: "+current);
+		EcoreResourceGenerator generator = new EcoreResourceGenerator(XsdToXtextGenerator.ECORE_FILE_NAME,
+				XsdToXtextGenerator.GENMODEL_FILE_NAME, Settings.LANGUAGE_PROJECT_NAME,current.getParentFile().getAbsolutePath());
+		generator.generateModelCode();
+	}
+	
 	public static void main(String[] args) {
-		testLibrary3Example();
+		testBGFExample();
 	/*	testEClassBasicExample90();
 		testEClassBasicExample27();
 		testNamespace();*/

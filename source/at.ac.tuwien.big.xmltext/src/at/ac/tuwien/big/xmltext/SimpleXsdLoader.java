@@ -15,9 +15,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.BasicExtendedMetaData;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.AbstractNegatedToken;
 import org.eclipse.xtext.AbstractRule;
@@ -75,6 +79,11 @@ public class SimpleXsdLoader {
 	}
 	
 
+	public Resource getXSD() {
+		return genTrafo.getXSD();
+	}
+	
+
 	public void loadXsd(String xsdFilename) {
 		genTrafo = new EcoreToGenericEcoreTransformer();
 		genTrafo.setXsdEcore(xsdFilename);
@@ -82,6 +91,7 @@ public class SimpleXsdLoader {
 	}
 	
 	private void loadXsd(EcoreToGenericEcoreTransformer trafo) {
+		
 		try {
 			genTrafo.setTargetFilename(File.createTempFile("test", ".ecore").getAbsolutePath());
 		} catch (IOException e) {
@@ -89,10 +99,11 @@ public class SimpleXsdLoader {
 			e.printStackTrace();
 		}
 		Resource result = trafo.getResult();
+		result.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml", new GenericXMLResourceFactoryImpl());
 		System.out.println("result: "+result);
 		System.out.println("resultset : "+result.getResourceSet());
 		
-		result.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml", new GenericXMLResourceFactoryImpl());
+		
 	}
 	
 	public EcoreToGenericEcoreTransformer getTransformer() {
@@ -228,7 +239,7 @@ public class SimpleXsdLoader {
 		@Override
 		public void saveEcore() {
 			try {
-				xmiRes.save(new HashMap<>());
+				xmiRes.save(ecoreOptions());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -237,16 +248,27 @@ public class SimpleXsdLoader {
 		@Override
 		public void saveXML() {
 			try {
-				xmlRes.save(new HashMap<>());
+				xmlRes.save(xmlOptions());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		public Map<Object,Object> xmlOptions() {
+			Map<Object,Object> ret = new HashMap<Object, Object>();
+			ret.put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+			ret.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+			return ret;
+		}
+		
+		public Map<Object,Object> ecoreOptions() {
+			return new HashMap<Object, Object>();
 		}
 
 		@Override
 		public void saveEcore(OutputStream os) {
 			try {
-				xmiRes.save(os,new HashMap<>());
+				xmiRes.save(os,ecoreOptions());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -255,7 +277,7 @@ public class SimpleXsdLoader {
 		@Override
 		public void saveXML(OutputStream os) {
 			try {
-				xmlRes.save(os, new HashMap<>());
+				xmlRes.save(os, xmlOptions());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -266,7 +288,7 @@ public class SimpleXsdLoader {
 			this.xmiRes = res;
 			if (!res.isLoaded()) {
 				try {
-					xmiRes.load(new HashMap<>());
+					xmiRes.load(ecoreOptions());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -279,7 +301,7 @@ public class SimpleXsdLoader {
 			this.xmlRes = res;
 			if (!res.isLoaded()) {
 				try {
-					xmlRes.load(new HashMap<>());
+					xmlRes.load(xmlOptions());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -454,4 +476,6 @@ public class SimpleXsdLoader {
 	public static void main(String[] args) {
 	
 	}
+
+
 }

@@ -1,14 +1,23 @@
 package at.ac.tuwien.big.xmltext;
 
 import java.io.File;
+import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.BasicExtendedMetaData;
+import org.eclipse.emf.ecore.util.BasicExtendedMetaData.EClassifierExtendedMetaData;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.xtext.AbstractElement;
@@ -95,10 +104,34 @@ public class XtextToBGF {
 		resourceSet = i.getInstance(XtextResourceSet.class);
 	}
 	
+	private void changeMetadata(Resource xsd) {
+		for (EObject eobj: (Iterable<EObject>)()->xsd.getAllContents()) {
+			if (eobj instanceof EClass) {
+				EClass cl = (EClass)eobj;
+				EAnnotation annot = cl.getEAnnotation("http:///org/eclipse/emf/ecore/util/ExtendedMetaData");
+				if (annot != null) {
+					//Warum wird das nicht normal geladen??
+					System.out.println("Annotation: "+annot+" for "+cl.getName());
+					if ("grammar_._type".equals(annot.getDetails().get("name"))) {
+						annot.getDetails().put("name","grammar");
+					}
+				}
+				if (cl instanceof EClassImpl) {
+					EClassImpl cli = (EClassImpl)cl;
+					EClassifierExtendedMetaData emd = cli.getExtendedMetaData();
+					if ("grammar_._type".equals(emd.getName())) {
+						emd.setName("grammar");
+					}
+				}
+			}
+		}
+	}
+	
 	public XtextToBGF(String bgfXsdFileName) {
 		initXtext();
 		loader = new SimpleXsdLoader();
 		loader.loadXsd(bgfXsdFileName);
+		changeMetadata(loader.getXSD());
 		int lastPoint = bgfXsdFileName.lastIndexOf('.');
 		if (lastPoint != -1) {
 			bgfXsdFileName = bgfXsdFileName.substring(0,lastPoint)+".ecore";
@@ -112,6 +145,7 @@ public class XtextToBGF {
 		initXtext();
 		loader = new SimpleXsdLoader();
 		loader.loadXsd(bgfXsdFileName);
+		changeMetadata(loader.getXSD());
 		loader.ensureGenericEcore(bgfEcoreFileName);
 		loader.getTransformer().getResult().getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put(BGF_EXT, new XMLResourceFactoryImpl());
 	}
@@ -412,7 +446,7 @@ public class XtextToBGF {
 	private boolean handleKeyword(Expression sup, Grammar g, AbstractRule rule, Keyword el, Map<EObject,EObject> trafoMap, int level) {
 		String card = el.getCardinality();
 		wrapCardinality(sup, card, (ss)->{
-			sup.setTerminal(el.getValue());
+			ss.setTerminal(el.getValue());
 		});
 		return true;
 	}
@@ -572,10 +606,12 @@ public class XtextToBGF {
 				problemLog = new ArrayList<XtextToBGF.Problem>();
 			}
 		} else {
-			Resource r = resourceSet.getResource(URI.createFileURI(xtext.getAbsolutePath()), true);
+			resourceSet.addLoadOption(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+			Resource r = resourceSet.getResource(loader.createFileURI(xtext.getAbsolutePath()), true);
 			loader.writeTransformationResult(transformation, r, bgf.getAbsolutePath());
 		}
 	}
+	
 	
 	public void reportProblems(boolean alsoSuccessful) {
 		for (FileProblems prob: fileProblems) {
