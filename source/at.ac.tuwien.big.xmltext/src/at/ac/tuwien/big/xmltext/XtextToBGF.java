@@ -223,7 +223,7 @@ public class XtextToBGF {
 		expr.setChoice(choice);
 		for (EnumLiteralDeclaration eld: elds) {
 			Expression e = fact().createExpression();
-			e.setTerminal(eld.getLiteral().getValue());
+			e.setTerminal(getEncTerminal(eld.getLiteral().getValue()));
 			choice.getExpressions().add(e);
 		}
 	}
@@ -302,8 +302,15 @@ public class XtextToBGF {
 				char first = lval.charAt(0);
 				char second = rval.charAt(0);
 				for (char f = first; f < second; ++f) {
+					
 					Expression sexpr = fact().createExpression();
-					sexpr.setTerminal(f+"");
+					//if (!Character.isJavaIdentifierPart(f)) {
+						//Unicode
+						
+					//	sexpr.setTerminal("\\u"+Integer.toHexString(f | 0x10000).substring(1));
+					//} else {
+						sexpr.setTerminal(getEncTerminal(f+""));
+					//}
 					choice.getExpressions().add(sexpr);
 				}
 				ss.setChoice(choice);
@@ -312,6 +319,18 @@ public class XtextToBGF {
 		return true;
 	}
 	
+	public String getEncTerminal(String ter) {
+		StringBuilder ret = new StringBuilder();
+		for (int i = 0; i < ter.length(); ++i) {
+			char c = ter.charAt(i);
+			if (Character.isJavaIdentifierPart(c)) {
+				ret.append("\\u"+Integer.toHexString(c | 0x10000).substring(1));
+			} else {
+				ret.append(c);
+			}
+		}
+		return ret.toString();
+	}
 
 	private boolean handleAlternatives(Expression sup, Grammar g, AbstractRule rule, Alternatives el, Map<EObject,EObject> trafoMap, int level) {
 		String card = el.getCardinality();
@@ -446,7 +465,7 @@ public class XtextToBGF {
 	private boolean handleKeyword(Expression sup, Grammar g, AbstractRule rule, Keyword el, Map<EObject,EObject> trafoMap, int level) {
 		String card = el.getCardinality();
 		wrapCardinality(sup, card, (ss)->{
-			ss.setTerminal(el.getValue());
+			ss.setTerminal(getEncTerminal(el.getValue()));
 		});
 		return true;
 	}

@@ -257,7 +257,11 @@ public class SimpleXsdLoader {
 		public Map<Object,Object> xmlOptions() {
 			Map<Object,Object> ret = new HashMap<Object, Object>();
 			ret.put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+			ret.put(XMLResource.OPTION_ENCODING, "UTF-8");
 			ret.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+			ret.put(XMLResource.OPTION_XML_VERSION, "1.1");
+			ret.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
+			 
 			return ret;
 		}
 		
