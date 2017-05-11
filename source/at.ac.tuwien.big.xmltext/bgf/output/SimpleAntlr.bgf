@@ -163,7 +163,7 @@
         <bgf:expression>
           <value>string</value>
         </bgf:expression>
-        <bgf:expression/>
+        <bgf:expression><value>int</value></bgf:expression>
       </choice>
     </bgf:expression>
   </bgf:production>

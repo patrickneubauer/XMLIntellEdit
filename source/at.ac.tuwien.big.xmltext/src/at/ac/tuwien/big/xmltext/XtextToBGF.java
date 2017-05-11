@@ -1,6 +1,10 @@
 package at.ac.tuwien.big.xmltext;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -344,7 +348,7 @@ public class XtextToBGF {
 		boolean[] ret = new boolean[]{false};
 		if (el.getElements().size() > 1) {
 			Choice choice = fact().createChoice();
-			sup.setChoice(choice);
+			//sup.setChoice(choice);
 			for (AbstractElement sel: el.getElements()) {
 				Expression sex = fact().createExpression();
 				if (handleAbstractElement(sex, g, rule, sel, trafoMap, level+1)) {
@@ -635,6 +639,23 @@ public class XtextToBGF {
 			resourceSet.addLoadOption(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 			Resource r = resourceSet.getResource(loader.createFileURI(xtext.getAbsolutePath()), true);
 			loader.writeTransformationResult(transformation, r, bgf.getAbsolutePath());
+			//Value postprocessing
+			StringBuilder builder = new StringBuilder();
+			try (BufferedReader reader = new BufferedReader(new FileReader(bgf.getAbsoluteFile()))) {
+				String s;
+				while ((s = reader.readLine()) != null) {
+					builder.append(s);
+					builder.append("\n");
+				}
+				String total = builder.toString().replace("<bgf:expression/>", "<bgf:expression><value>int</value></bgf:expression>");
+				total = total.substring(0,total.length()-1);
+				FileOutputStream fos = new FileOutputStream(bgf.getAbsoluteFile());
+				fos.write(total.getBytes());
+				fos.flush();
+				fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

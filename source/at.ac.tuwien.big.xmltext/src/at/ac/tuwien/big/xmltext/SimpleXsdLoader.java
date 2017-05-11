@@ -261,6 +261,7 @@ public class SimpleXsdLoader {
 			ret.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 			ret.put(XMLResource.OPTION_XML_VERSION, "1.1");
 			ret.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
+			ret.put(XMLResource.OPTION_KEEP_DEFAULT_CONTENT, Boolean.TRUE);
 			 
 			return ret;
 		}
