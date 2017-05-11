@@ -319,11 +319,18 @@ public class XtextToBGF {
 		return true;
 	}
 	
+	 public boolean isPrintableChar( char c ) {
+	        Character.UnicodeBlock block = Character.UnicodeBlock.of( c );
+	        return (!Character.isISOControl(c)) &&
+	                block != null &&
+	                block != Character.UnicodeBlock.SPECIALS;
+	    }
+	
 	public String getEncTerminal(String ter) {
 		StringBuilder ret = new StringBuilder();
 		for (int i = 0; i < ter.length(); ++i) {
 			char c = ter.charAt(i);
-			if (Character.isJavaIdentifierPart(c)) {
+			if (!isPrintableChar(c)) {
 				ret.append("\\u"+Integer.toHexString(c | 0x10000).substring(1));
 			} else {
 				ret.append(c);
