@@ -1123,22 +1123,25 @@ public class TransformatorStructure {
 		return ret;			
 	}
 	
-	private final ValueTransformator<EEnumLiteral,EEnumLiteral> eenumTransformator = 
-			new ValueTransformator<EEnumLiteral,EEnumLiteral>() {
+	private final ValueTransformator<Object,Object> eenumTransformator = 
+			new ValueTransformator<Object,Object>() {
 
 				@Override
-				public EEnumLiteral convertToEcore(EEnumLiteral xml) {
-					EEnumLiteral ret = copiedEEnumLiterals.get(xml);
-					if (ret == null) {
-						String fragment = xml.eResource().getURIFragment(xml);
+				public Object convertToEcore(Object xml) {
+					System.err.println("Convert to ecore needs to be reworked: was enumliteral->enumliteral, but appearanly others can be there too");
+					Object ret = copiedEEnumLiterals.get(xml);
+					if (ret == null && ret instanceof EEnumLiteral) {
+						String fragment = ((EEnumLiteral)xml).eResource().getURIFragment((EEnumLiteral)xml);
 						EObject eobj = fragmentToXmlObject.get(fragment);
 						ret = copiedEEnumLiterals.get(eobj);
+					} else {
+						ret = xml; //Try??
 					}
 					return ret;
 				}
 
 				@Override
-				public EEnumLiteral convertToXml(EEnumLiteral eobject) {
+				public Object convertToXml(Object eobject) {
 					return backEEnumLiteral.get(eobject);
 				}
 		};

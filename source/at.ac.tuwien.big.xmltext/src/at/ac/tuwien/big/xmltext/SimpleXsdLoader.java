@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,8 +52,13 @@ import org_sl_planet_bgfSimplified.Choice;
 import org_sl_planet_bgfSimplified.Expression;
 import org_sl_planet_bgfSimplified.Grammar;
 import org_sl_planet_bgfSimplified.Not;
+import org_sl_planet_bgfSimplified.Optional;
 import org_sl_planet_bgfSimplified.Org_sl_planet_bgfSimplifiedFactory;
+import org_sl_planet_bgfSimplified.Plus;
 import org_sl_planet_bgfSimplified.Production;
+import org_sl_planet_bgfSimplified.Sequence;
+import org_sl_planet_bgfSimplified.Star;
+import org_sl_planet_bgfSimplified.Value;
 import org_sl_planet_bgfSimplified.util.Org_sl_planet_bgfSimplifiedAdapterFactory;
 
 public class SimpleXsdLoader {
@@ -469,7 +475,7 @@ public class SimpleXsdLoader {
 	}
 	
 	private void handleParserRule(Grammar g, ParserRule rule, AbstractElement el, Expression expr, Map<EObject, EObject> trafoMap) {
-		handleAbstractElement(g,rule,el,trafoMap,0);
+		handleAbstractElement(expr, g,rule,el,trafoMap,0);
 		for (AbstractRule subRule: rule.getHiddenTokens()) {
 			handleRule(g, subRule, trafoMap);
 		}
@@ -477,118 +483,244 @@ public class SimpleXsdLoader {
 	
 
 	private void handleTerminalRule(Grammar g, TerminalRule rule, AbstractElement el, Expression expr, Map<EObject, EObject> trafoMap) {
-		handleAbstractElement(g,rule,el,trafoMap,0);
+		handleAbstractElement(expr,g,rule,el,trafoMap,0);
 	}
 	
-	private void handleNegation(Grammar g, AbstractRule rule, AbstractNegatedToken el, Map<EObject,EObject> trafoMap, int level) {
+	private void handleNegation(Expression sup, Grammar g, AbstractRule rule, AbstractNegatedToken el, Map<EObject,EObject> trafoMap, int level) {
 		Not not = fact().createNot();
-		Expression expr = fact().createExpression();
-		trafoMap.putIfAbsent(rule, expr);
-		trafoMap.put(el, expr);
-		expr.setNot(not);
+		sup.setNot(not);
 		
 		AbstractElement sel = el.getTerminal();
-		handleAbstractElement(g, rule, sel, trafoMap, level+1);
-		
-		not.setExpression((Expression)trafoMap.get(sel));		
+		Expression expr = fact().createExpression();
+		handleAbstractElement(expr,g, rule, sel, trafoMap, level+1);
+		not.setExpression((Expression)trafoMap.get(sel));
 	}
 	
-	private void handleAction(Grammar g, AbstractRule rule, Action el, Map<EObject,EObject> trafoMap, int level) {
+	private void handleAction(Expression sup, Grammar g, AbstractRule rule, Action el, Map<EObject,EObject> trafoMap, int level) {
 		//Ignore
 	}
 	
-	private void handleAssignment(Grammar g, AbstractRule rule, Assignment el, Map<EObject,EObject> trafoMap, int level) {
-		handleAbstractElement(g,rule,el.getTerminal(),trafoMap,level+1);
+	private void handleAssignment(Expression sup, Grammar g, AbstractRule rule, Assignment el, Map<EObject,EObject> trafoMap, int level) {
+		handleAbstractElement(sup,g,rule,el.getTerminal(),trafoMap,level+1);
 	}
 	
 
-	private void handleCharacterRange(Grammar g, AbstractRule rule, CharacterRange el, Map<EObject,EObject> trafoMap, int level) {
-		//Map to a choice
-		//Hmm, aber das ist blöd
-		Keyword lword = el.getLeft();
-		Keyword rword = el.getRight();
+	private void handleCharacterRange(Expression sup, Grammar g, AbstractRule rule, CharacterRange el, Map<EObject,EObject> trafoMap, int level) {
+		String card = el.getCardinality();
+		wrapCardinality(sup, card, (ss)->{
+			//Map to a choice
+			//Hmm, aber das ist blöd
+			Keyword lword = el.getLeft();
+			Keyword rword = el.getRight();
+			//Assume it's just a character
+			String lval = lword.getValue();
+			String rval = rword.getValue();
+			if (lval.length() != 1 || rval.length() != 1) {
+				System.err.println("Strange chracter range: "+lword+" - "+rword);
+			} else {
+				Choice choice = fact().createChoice();
+				char first = lval.charAt(0);
+				char second = rval.charAt(0);
+				for (char f = first; f < second; ++f) {
+					Expression sexpr = fact().createExpression();
+					sexpr.setTerminal(f+"");
+					choice.getExpressions().add(sexpr);
+				}
+				ss.setChoice(choice);
+			}
+		});
+	
 	}
 	
 
-	private void handleAlternatives(Grammar g, AbstractRule rule, Alternatives el, Map<EObject,EObject> trafoMap, int level) {
-		Choice choice = fact().createChoice();
+	private void handleAlternatives(Expression sup, Grammar g, AbstractRule rule, Alternatives el, Map<EObject,EObject> trafoMap, int level) {
+		String card = el.getCardinality();
+		if (el.getElements().size() > 1) {
+			Choice choice = fact().createChoice();
+			sup.setChoice(choice);
+			for (AbstractElement sel: el.getElements()) {
+				Expression sex = fact().createExpression();
+				handleAbstractElement(sex, g, rule, sel, trafoMap, level+1);
+				choice.getExpressions().add(sex);
+			}
+			wrapCardinality(sup, card, (sexpr)->sexpr.setChoice(choice));
+			
+		} else if (el.getElements().size()>0){
+			AbstractElement sel = el.getElements().iterator().next();
+			wrapCardinality(sup, card, (sexpr)->handleAbstractElement(sexpr, g, rule, sel, trafoMap, level));
+		}
+		
+	}
+	
+	public int[] cards(String card) {
+		if ("*".equals(card)) {
+			return new int[]{0,-1};
+		} else if ("+".equals(card)) {
+			return new int[]{1,-1};
+		} else if ("?".equals(card)) {
+			return new int[]{0,1};
+		} else {
+			return new int[]{1,1};
+		}
+	}
+	
+	private interface BaseMethod<T> {
+		public void handle(Expression sexpr);
+	}
+	
+	private<T> void wrapCardinality(Expression sup, String card, BaseMethod<T> baseMethod) {
+		if (card == null) {
+			card = "";
+		}
+		if (card.equals("*")) {
+			Star star = fact().createStar();
+			Expression sexpr = fact().createExpression();
+			baseMethod.handle(sexpr);
+			star.setExpression(sexpr);
+			sup.setStar(star);
+		} else if (card.equals("+")) {
+			Plus star = fact().createPlus();
+			Expression sexpr = fact().createExpression();
+			baseMethod.handle(sexpr);
+			star.setExpression(sexpr);
+			sup.setPlus(star);;
+		} else if (card.equals("?")) {
+			Optional star = fact().createOptional();
+			Expression sexpr = fact().createExpression();
+			baseMethod.handle(sexpr);
+			star.setExpression(sexpr);
+			sup.setOptional(star);;
+		} else {
+			baseMethod.handle(sup);			
+		}
+	}
+
+	private void handleGroupPseudoAbstract(Expression sup, Grammar g, AbstractRule rule, CompoundElement el, Map<EObject,EObject> trafoMap, int level) {
+
+		String card = el.getCardinality();
+		int[] cards = cards(card);
+		if (el.getElements().size() > 1) {
+			Sequence choice = fact().createSequence();
+			for (AbstractElement sel: el.getElements()) {
+				Expression sex = fact().createExpression();
+				handleAbstractElement(sex, g, rule, sel, trafoMap, level+1);
+				choice.getExpressions().add(sex);
+			}
+			wrapCardinality(sup, card, (sexpr)->sexpr.setSequence(choice));
+			
+		} else if (el.getElements().size()>0){
+			AbstractElement sel = el.getElements().iterator().next();
+			wrapCardinality(sup, card, (sexpr)->handleAbstractElement(sexpr, g, rule, sel, trafoMap, level));
+		}
+	}
+	
+	private void handleGroup(Expression sup, Grammar g, AbstractRule rule, Group el, Map<EObject,EObject> trafoMap, int level) {
+		handleGroupPseudoAbstract(sup, g, rule, el, trafoMap, level);
 		
 	}
 	
 
-	private void handleGroup(Grammar g, AbstractRule rule, Group el, Map<EObject,EObject> trafoMap, int level) {
+	private void handleUnorderedGroup(Expression sup, Grammar g, AbstractRule rule, UnorderedGroup el, Map<EObject,EObject> trafoMap, int level) {
+		//?? wie transformiere ich das
+		System.err.println("Unordered group not supported!");
+		handleGroupPseudoAbstract(sup, g, rule, el, trafoMap, level);
+	}
+	
+
+	private void handleCrossReference(Expression sup, Grammar g, AbstractRule rule, CrossReference el, Map<EObject,EObject> trafoMap, int level) {
+		//TODO:???
+		handleAbstractElement(sup, g, rule, el.getTerminal(), trafoMap, level+1);
+	}
+	
+
+	private void handleEOF(Expression sup, Grammar g, AbstractRule rule, EOF el, Map<EObject,EObject> trafoMap, int level) {
+		//Ignore?
+	}
+	
+
+	private void handleKeyword(Expression sup, Grammar g, AbstractRule rule, Keyword el, Map<EObject,EObject> trafoMap, int level) {
+		String card = el.getCardinality();
+		wrapCardinality(sup, card, (ss)->{
+			sup.setTerminal(el.getValue());
+		});
 		
 	}
 	
 
-	private void handleUnorderedGroup(Grammar g, AbstractRule rule, UnorderedGroup el, Map<EObject,EObject> trafoMap, int level) {
+	private void handleRuleCall(Expression sup, Grammar g, AbstractRule rule, RuleCall el, Map<EObject,EObject> trafoMap, int level) {
+		String ruleName = el.getRule().getName();
+		String card = el.getCardinality();
+		wrapCardinality(sup, card, 
+				(ss)->{
+					/*if ("EInt".equals(ruleName) || "INT".equals(ruleName)) {
+						ss.setValue(Value.INT);
+					} else if ("ID".equals(ruleName) || "STRING".equals(ruleName)|| "String".equals(ruleName) || "EString".equals(ruleName)) {
+						ss.setValue(Value.STRING);
+					} else {*/
+						ss.setNonterminal(el.getRule().getName());
+					//}
+				}
+				);
 		
 	}
 	
 
-	private void handleCrossReference(Grammar g, AbstractRule rule, CrossReference el, Map<EObject,EObject> trafoMap, int level) {
-		
-	}
-	
-
-	private void handleEOF(Grammar g, AbstractRule rule, EOF el, Map<EObject,EObject> trafoMap, int level) {
-		
-	}
-	
-
-	private void handleKeyword(Grammar g, AbstractRule rule, Keyword el, Map<EObject,EObject> trafoMap, int level) {
-		
-	}
-	
-
-	private void handleRuleCall(Grammar g, AbstractRule rule, RuleCall el, Map<EObject,EObject> trafoMap, int level) {
-		
-	}
-	
-
-	private void handleWildcard(Grammar g, AbstractRule rule, Wildcard el, Map<EObject,EObject> trafoMap, int level) {
-		
+	private void handleWildcard(Expression sup, Grammar g, AbstractRule rule, Wildcard el, Map<EObject,EObject> trafoMap, int level) {
+		//??
+		System.err.println("Wildcard not supported!");
 	}
 
 	
-	private void handleAbstractElement(Grammar g, AbstractRule rule, AbstractElement el, Map<EObject,EObject> trafoMap, int level) {
+	private void handleAbstractElement(Expression expr, Grammar g, AbstractRule rule, AbstractElement el, Map<EObject,EObject> trafoMap, int level) {
+		trafoMap.putIfAbsent(rule, expr);
+		trafoMap.put(el, expr);
 		if (el instanceof AbstractNegatedToken) {
-			handleNegation(g, rule, (AbstractNegatedToken) el, trafoMap, level);
+			handleNegation(expr, g, rule, (AbstractNegatedToken) el, trafoMap, level);
 			//TODO: Stimmt das?
 		} else if (el instanceof Action) {
-			handleAction(g, rule, (Action) el, trafoMap, level);
+			handleAction(expr, g, rule, (Action) el, trafoMap, level);
 		} else if (el instanceof Assignment) {
-			handleAssignment(g, rule, (Assignment) el, trafoMap, level);
+			handleAssignment(expr, g, rule, (Assignment) el, trafoMap, level);
 		} else if (el instanceof CharacterRange) {
-			handleCharacterRange(g, rule, (CharacterRange) el, trafoMap, level);
+			handleCharacterRange(expr, g, rule, (CharacterRange) el, trafoMap, level);
 		} else if (el instanceof CompoundElement) {
 			if (el instanceof Alternatives) {
-				handleAlternatives(g, rule, (Alternatives) el, trafoMap, level);	
+				handleAlternatives(expr, g, rule, (Alternatives) el, trafoMap, level);	
 			} else if (el instanceof Group) {
-				handleGroup(g, rule, (Group) el, trafoMap, level);
+				handleGroup(expr, g, rule, (Group) el, trafoMap, level);
 			} else if (el instanceof UnorderedGroup) {
-				handleUnorderedGroup(g, rule, (UnorderedGroup) el, trafoMap, level);
+				handleUnorderedGroup(expr, g, rule, (UnorderedGroup) el, trafoMap, level);
 			}
 		} else if (el instanceof CrossReference) {
-			handleCrossReference(g, rule, (CrossReference) el, trafoMap, level);
+			handleCrossReference(expr, g, rule, (CrossReference) el, trafoMap, level);
 		}  else if (el instanceof EOF) {
-			handleEOF(g, rule, (EOF) el, trafoMap, level);
+			handleEOF(expr, g, rule, (EOF) el, trafoMap, level);
 		} else if (el instanceof Keyword) {
-			handleKeyword(g, rule, (Keyword) el, trafoMap, level);
+			handleKeyword(expr, g, rule, (Keyword) el, trafoMap, level);
 		} else if (el instanceof RuleCall) {
-			handleRuleCall(g, rule, (RuleCall) el, trafoMap, level);
+			handleRuleCall(expr, g, rule, (RuleCall) el, trafoMap, level);
 		} else if (el instanceof Wildcard) {
-			handleWildcard(g, rule, (Wildcard) el, trafoMap, level);
+			handleWildcard(expr, g, rule, (Wildcard) el, trafoMap, level);
 		}
 	}
 
 	
 	private void handleRule(Grammar g, AbstractRule rule, Map<EObject, EObject> trafoMap) {
+		//Filter out some default rules handled else
+		String rname = rule.getName();
+		/*if ("ID".equals(rname) || "EInt".equals(rname) || "EString".equals(rname) || "String".equals(rname) ||
+				 "STRING".equals(rname) || "INT".equals(rname)) {
+			return;
+		}*/
+		
+		
+		
 		AbstractElement el = rule.getAlternatives();
 		
 		//Add rule with choice for each terminal (?)
 		Production prod = fact().createProduction();
 		//prod.setLabel(rule.getName());
+		g.getProductions().add(prod);
 		prod.setNonterminal(rule.getName());
 		Expression expr = fact().createExpression();
 		prod.setExpression(expr);

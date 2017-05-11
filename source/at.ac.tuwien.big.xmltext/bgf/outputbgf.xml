@@ -2,4 +2,139 @@
 <bgfs:Grammar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bgfs="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/source/at.ac.tuwien.big.xmltext/bgf/bgf.xsdsimplified"
     xsi:schemaLocation="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/source/at.ac.tuwien.big.xmltext/bgf/bgf.xsdsimplified bgf.ecore">
   <roots>Library</roots>
+  <productions nonterminal="Library">
+    <expression>
+      <sequence>
+        <expressions/>
+        <expressions terminal="Library"/>
+        <expressions terminal="{"/>
+        <expressions>
+          <optional>
+            <expression>
+              <sequence>
+                <expressions terminal="books"/>
+                <expressions terminal="{"/>
+                <expressions nonterminal="Book"/>
+                <expressions>
+                  <star>
+                    <expression>
+                      <sequence>
+                        <expressions terminal=","/>
+                        <expressions nonterminal="Book"/>
+                      </sequence>
+                    </expression>
+                  </star>
+                </expressions>
+                <expressions terminal="}"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expressions>
+        <expressions>
+          <optional>
+            <expression>
+              <sequence>
+                <expressions terminal="customers"/>
+                <expressions terminal="{"/>
+                <expressions nonterminal="Customer"/>
+                <expressions>
+                  <star>
+                    <expression>
+                      <sequence>
+                        <expressions terminal=","/>
+                        <expressions nonterminal="Customer"/>
+                      </sequence>
+                    </expression>
+                  </star>
+                </expressions>
+                <expressions terminal="}"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expressions>
+        <expressions terminal="}"/>
+      </sequence>
+    </expression>
+  </productions>
+  <productions nonterminal="Book">
+    <expression>
+      <sequence>
+        <expressions terminal="Book"/>
+        <expressions/>
+        <expressions terminal="{"/>
+        <expressions terminal="title"/>
+        <expressions/>
+        <expressions terminal="author"/>
+        <expressions/>
+        <expressions terminal="pages"/>
+        <expressions/>
+        <expressions terminal="dimension"/>
+        <expressions/>
+        <expressions>
+          <optional>
+            <expression>
+              <sequence>
+                <expressions terminal="download"/>
+                <expressions/>
+              </sequence>
+            </expression>
+          </optional>
+        </expressions>
+        <expressions terminal="isbn"/>
+        <expressions/>
+        <expressions>
+          <optional>
+            <expression>
+              <sequence>
+                <expressions terminal="bookInfo"/>
+                <expressions nonterminal="BookInfo"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expressions>
+        <expressions terminal="}"/>
+      </sequence>
+    </expression>
+  </productions>
+  <productions nonterminal="Customer">
+    <expression>
+      <sequence>
+        <expressions terminal="Customer"/>
+        <expressions terminal="{"/>
+        <expressions terminal="firstName"/>
+        <expressions/>
+        <expressions terminal="lastName"/>
+        <expressions/>
+        <expressions>
+          <optional>
+            <expression>
+              <sequence>
+                <expressions terminal="borrowedBookSince"/>
+                <expressions/>
+              </sequence>
+            </expression>
+          </optional>
+        </expressions>
+        <expressions>
+          <optional>
+            <expression>
+              <sequence>
+                <expressions terminal="borrowedBookId"/>
+                <expressions/>
+              </sequence>
+            </expression>
+          </optional>
+        </expressions>
+        <expressions terminal="}"/>
+      </sequence>
+    </expression>
+  </productions>
+  <productions nonterminal="BookInfo">
+    <expression>
+      <sequence>
+        <expressions/>
+        <expressions terminal="BookInfo"/>
+      </sequence>
+    </expression>
+  </productions>
 </bgfs:Grammar>
