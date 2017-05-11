@@ -1,0 +1,768 @@
+/**
+ * Copyright (c) 2013 Puppet Labs, Inc. and other contributors, as listed below.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   Puppet Labs
+ */
+
+/* 
+ * Grammar for Puppet pp
+ * ---
+ * This grammar is for the puppet .pp (puppet manifest) language.
+ * The grammar is less restrictive than the actual language and deferrs much of the validation
+ * to the model validation step. This has the advantage that more specific error messages can be
+ * produced and gives an opportunity to provide quick fixes for common problems. It also means that
+ * while editing, a valid substructure may be recognized by the parser even if placed in the wrong
+ * context - this makes it easier to understand and fix what is wrong.
+ * The more lenient grammar is a LL(*) with backtracking grammar where all expressions are placed in
+ * an order of precedence. Typically, no distinction is made between left/right value expressions.
+ */ 
+grammar com.puppetlabs.geppetto.pp.dsl.PP hidden(WS, SL_COMMENT, ML_COMMENT)
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "platform:/resource/com.puppetlabs.geppetto.pp/model/PP.ecore" as pp
+
+PuppetManifest returns pp::PuppetManifest	
+	: {pp::PuppetManifest}
+		(statements += ExpressionList)*
+	;
+
+// -- EXPRESSION
+// (Refers to the expression with the lowest precedence)
+// Should be used by expressions that allow a single Expression
+Expression returns pp::Expression : 
+	RelationshipExpression
+	;
+
+// --EXPRESSION LIST
+// Should be used by expressions that allow a sequence of expressions (as such
+// a sequence can include non-parenthesized function calls (which are detected after
+// parsing)
+ExpressionList returns pp::Expression 
+	: RelationshipExpression ({pp::ExprList.expressions += current} ',' 
+		expressions += RelationshipExpression (',' 
+			expressions += RelationshipExpression)*)?
+	| SeparatorExpression
+	;
+		
+// LOWEST PRECEDENCE
+//  left  relationship
+//  left  assignment
+//  left  OR
+//  left  AND
+//  left  Relational: GREATEREQUAL GREATERTHAN LESSTHAN LESSEQUAL
+//  left  Equality: NOTEQUAL ISEQUAL
+//  left  Shift: LSHIFT RSHIFT
+//  left  Additive: '-' PLUS
+//  left  Multiplicative: TIMES DIV
+//  left  Matching: IN MATCH NOMATCH
+//  nonassoc UMINUS
+//  right NOT
+//  'primary'
+// HIGHEST
+
+
+// Relationship
+// Note that RelationshipExpression has lowest precedence since it has an operator
+// '<-' that otherwise clashes with LT UnaryMinus
+//
+// VALIDATION checks that left and right are one of: 
+// - ResourceExpression (but not a ResourceOverride, or virtual resource)
+// - ResourceReference
+// - CollectExpression
+EdgeOperator:  '->' | '<-' | '~>' | '<~' ;
+RelationshipExpression returns pp::Expression
+	: ResourceExpression 
+		({pp::RelationshipExpression.leftExpr = current}
+		opName = EdgeOperator 
+		rightExpr = ResourceExpression)* 
+  	;
+  	
+// -- ResourceExpression 
+// handles:
+// - resource definition 'name {'
+// - defaults for resource definitions  'Name {'
+// - resource overrides 'expr [exprlist] {'
+// - virtual and exported resources @name {, and @@name {
+// The parser makes no distinction between these and allows nested expresions compatible with all three
+// VALIDATION checks:
+// - if resourceClass != CLASS_REF, then ResourceBodies must have a name
+// - if resourceClass == CLASS_REF or AtExpression, 
+//		then only one ResourceBody is allowed, and ResourceBody can not have a name
+// - if resourceExpr = AtExpression the ResourceBody's attribute list may contain additions, otherwise not			
+//
+ResourceExpression returns pp::Expression
+	: AssignmentExpression 
+		({pp::ResourceExpression.resourceExpr = current}
+			'{'  
+				(resourceData += ResourceBody (';'  resourceData += ResourceBody)* ';'?)?
+			'}' 
+		)?
+	| {pp::ResourceExpression} resourceExpr = LiteralClass
+			'{'
+				(resourceData += ResourceBody (';'  resourceData += ResourceBody)* ';'?)?
+			'}' 
+	;
+
+// Note: allows all AttributeOperation subtypes but this depends on the parent's type
+// VALIDATION checks allowed types	
+ResourceBody returns pp::ResourceBody
+	: nameExpr = Expression  ':' attributes = AttributeOperations?
+	| attributes = AttributeOperations
+	;
+
+
+// VALIDATION: key is a NAME, op is supported and Expression is not null
+// CONTENT ASSIST: must have op and value as optional, or state is nearly always wrong for CA.
+AttributeOperation returns pp::AttributeOperation
+	: {pp::AttributeOperation} key = attributeName (op = ('=>' | '+>') value = Expression)?
+	;	
+
+// VALIDATION: checks that there are ',' between operations
+// NOTE: if ','	is mandatory in grammar, backtracking will think statement is a different (faulty)
+// statement.
+AttributeOperations returns pp::AttributeOperations
+	: attributes += AttributeOperation 
+		((','  attributes += AttributeOperation) | (attributes += AttributeOperation))* 
+		','?
+	;
+
+/*// NOTE: This construct is required due to an Xtext bug, it would be preferred to state (',' )? directly
+// in rules using endComma as this makes formatting work ok. The construct below will hide the  and
+// formatting needs to be aware of the  in an endComma.
+endComma : ',' ;
+* 
+*/
+
+// VALIDATION checks leftExpr must be '@' or Variable
+AssignmentExpression returns pp::Expression
+	: AppendExpression ({pp::AssignmentExpression.leftExpr = current}
+		'='  
+		rightExpr = AssignmentExpression
+	  )? 
+  	;
+
+// VALIDATION checks leftExpr must be Variable (does not seem to allow append to at - e.g. a[1] +=)
+AppendExpression returns pp::Expression
+	: OrExpression 
+		({pp::AppendExpression.leftExpr = current}
+		'+=' 
+		rightExpr = OrExpression
+	  )? 
+  	;
+
+OrExpression returns pp::Expression:
+	AndExpression ({pp::OrExpression.leftExpr = current}
+		'or'  
+		rightExpr = AndExpression
+	 )*
+	;
+	
+AndExpression returns pp::Expression:
+	RelationalExpression ({pp::AndExpression.leftExpr=current}
+		'and'  
+		rightExpr = RelationalExpression
+	 )*
+	;
+
+RelationalOperator : '>=' | '<=' | '>' | '<' ;
+RelationalExpression returns pp::Expression:
+	EqualityExpression ({pp::RelationalExpression.leftExpr=current} 
+		opName = RelationalOperator 
+		rightExpr = EqualityExpression
+	)*
+	;
+	
+EqualityOperator : '==' | '!=' ;
+EqualityExpression returns pp::Expression:
+	ShiftExpression ({pp::EqualityExpression.leftExpr=current}
+		opName = EqualityOperator 
+		rightExpr = ShiftExpression
+	)*
+	;
+
+ShiftOperator : '<<' | '>>' ;
+ShiftExpression returns pp::Expression:
+	AdditiveExpression ({pp::ShiftExpression.leftExpr=current}
+		opName=ShiftOperator  
+		rightExpr=AdditiveExpression
+	)*
+	;
+	
+AdditiveOperator : '+' | '-' ;	
+AdditiveExpression returns pp::Expression:
+	MultiplicativeExpression ({pp::AdditiveExpression.leftExpr=current} 
+		opName = AdditiveOperator 
+		rightExpr = MultiplicativeExpression
+	)*
+	;
+
+// '%' added in Puppet 3.2. Validated in older versions
+MultiplicativeOperator : '*' | '/' | '%' ;
+MultiplicativeExpression returns pp::Expression:
+	MatchingExpression ({pp::MultiplicativeExpression.leftExpr=current} 
+		opName = MultiplicativeOperator 
+		rightExpr = MatchingExpression
+	)*
+	;
+
+// VALIDATION checks regex rhs
+MatchingOperator : '=~' | '!~' ;
+MatchingExpression returns pp::Expression:
+	InExpression ({pp::MatchingExpression.leftExpr=current}
+		opName = MatchingOperator 
+		rightExpr = UnaryOrHigherExpression
+	)*
+	;
+
+InExpression returns pp::Expression:
+	UnaryOrHigherExpression ({pp::InExpression.leftExpr=current}
+		opName = 'in' 
+		rightExpr = CollectExpression
+	)*
+	;
+	
+UnaryOrHigherExpression returns pp::Expression
+	: UnaryMinusExpression
+	| NotExpression
+	| CollectExpression 
+	;
+	
+UnaryMinusExpression returns pp::UnaryMinusExpression
+	: '-'  expr = CollectExpression 
+	;
+	
+NotExpression returns pp::UnaryNotExpression
+	: '!'  expr = CollectExpression 
+	;
+
+// VALIDATION checks that CollectExpression classReference is a ClassReference, and that query expressions
+// conform to a limit set of supported expressions.
+CollectExpression  returns pp::Expression:
+	SelectorExpression ({pp::CollectExpression.classReference = current}
+		query = CollectQuery
+		('{'  
+			(attributes = AttributeOperations)?
+		'}' )?
+	)?
+	;
+
+// VALIDATION ensures that query only contains:
+//  - ('and' | 'or' | VariableExpression | LiteralName | '==' | '!=' | ParentesisesExpression )	
+CollectQuery returns pp::ICollectQuery
+	: VirtualCollectQuery
+	| ExportedCollectQuery
+	;
+		
+VirtualCollectQuery returns pp::ICollectQuery
+	: {pp::VirtualCollectQuery} '<|' (expr = Expression)? '|>' 
+	;
+	
+ExportedCollectQuery returns pp::ICollectQuery
+	: {pp::ExportedCollectQuery} '<<|' (expr = Expression)? '|>>' 
+	;
+	
+SelectorExpression returns pp::Expression
+	: AtExpression 
+		({pp::SelectorExpression.leftExpr = current}
+		 '?' 
+			( ('{' 
+				parameters += SelectorEntry 
+				((','  parameters += SelectorEntry) | (parameters += SelectorEntry))* ','? /* endcomma? */ 
+			   '}' )
+			   | parameters += SelectorEntry
+			)
+		)?
+	;
+
+// VALIDATION  checks lhs is a valid selector left value
+SelectorEntry returns pp::Expression
+	: Expression ({pp::SelectorEntry.leftExpr = current} '=>' rightExpr = Expression)?
+	;
+
+// Note: AtExpression serves dual purpose: ResourceReference and '#' access
+// VALIDATION: checks 2 level nesting constraint on At a[x][y] is ok but not a[x][y][z] if bug compatible mode
+// VALIDATION: checks At dual roles and validates accordingly (only single parameter for normal At) etc.	
+AtExpression  returns pp::Expression:
+	MethodCall 
+	(({pp::AtExpression.leftExpr=current}
+		'['  
+			(parameters += Expression (','  parameters += Expression)*)?
+		']' 
+	) ({pp::MethodCall.leftExpr = current} '.' (methodExpr = LiteralName
+		( parenthesized = LPARBoolean  // remember if an empty list had parentheses or not
+			(parameters+=Expression (',' parameters += Expression)* ','? /*endComma? */)?
+		')' )?)?
+		lambda = LambdaExpression? 
+	)*)*
+	;
+
+MethodCall returns pp::Expression
+	: FunctionCall ({pp::MethodCall.leftExpr = current} '.' (methodExpr = LiteralName
+		( parenthesized = LPARBoolean  // remember if an empty list had parentheses or not
+			(parameters+=Expression (',' parameters += Expression)* ','? /*endComma? */)?
+		')' )?)?
+		lambda = LambdaExpression? 
+	  )*
+	;
+
+LPARBoolean returns ecore::EBoolean : '(' ;
+	
+LambdaExpression returns pp::Lambda
+    : Java8Lambda
+    | RubyLambda
+    ;
+
+Java8Lambda returns pp::Lambda
+	: '|' {pp::JavaLambda} arguments = LambdaParameters? '|' (farrow ?= '=>')?
+	  '{'
+    	(statements += ExpressionList)* 
+	  '}'
+	;
+RubyLambda returns pp::Lambda
+    : LAMBDA '|' {pp::RubyLambda} arguments = LambdaParameters? '|'
+    	(statements += ExpressionList)* 
+      '}'
+    ;
+
+LambdaParameters returns pp::DefinitionArgumentList 
+	: (arguments += DefinitionArgument (',' arguments += DefinitionArgument)*) ','? /* endComma? */
+	;
+
+// FunctionCall has different syntax restrictions depending on context
+// - when used where only one expression can occur, parentheses are required around the arguments
+// To solve this, the parser does NOT recognize func x as a function call, this is instead treated as
+// a sequence of two expressions, a later step will need to determine if 'func' is a function, if so, how
+// many arguments it is supposed to take, and then validate if the input is correct.
+//
+// VALIDATION : functionExpr is a valid function name	
+
+FunctionCall returns pp::Expression
+	: PrimaryExpression (=>({pp::FunctionCall.leftExpr = current} '(')
+			(parameters+=Expression (',' parameters += Expression)* ','? /*endComma? */)?
+		  ')'
+		=>(lambda = LambdaExpression?) 
+	  )*
+	;
+    
+PrimaryExpression returns pp::Expression
+	: IfExpression
+	| UnlessExpression
+	| CaseExpression
+	| ImportExpression
+	| Definition
+	| HostClassDefinition
+	| NodeDefinition
+	| VirtualNameOrReference
+	| LiteralExpression
+	| VariableExpression
+	| ParenthisedExpression
+	;
+	
+NodeDefinition returns pp::NodeDefinition
+	: 'node' 
+		hostNames += HostReference (',' hostNames += HostReference)*
+		('inherits'  parentName = HostReference)?	
+		'{'  
+			(statements += ExpressionList)* 
+		'}' 
+	;
+
+HostReference returns pp::Expression
+	: StringExpression
+	| LiteralRegex
+	| LiteralDefault
+	| LiteralNameOrReference
+	;
+	
+HostClassDefinition returns pp::HostClassDefinition
+	: 'class'  
+		 className = classname  
+		arguments = DefinitionArgumentList?
+		('inherits'  parent = ParentName)?	
+		'{'  
+			statements += ExpressionList* 
+		'}'  
+	;
+	
+ParentName returns pp::LiteralExpression
+	: LiteralDefault
+	| LiteralClass
+	| LiteralNameOrReference
+	;
+
+Definition returns pp::Definition
+	: 	'define' 
+		 className = classname 
+		arguments = DefinitionArgumentList?
+		'{' 
+			(statements += ExpressionList)* 
+		'}'  
+	;
+			
+DefinitionArgumentList returns pp::DefinitionArgumentList
+	: {pp::DefinitionArgumentList}
+		'(' 
+			(arguments += DefinitionArgument (',' arguments += DefinitionArgument)*)? ','? /* endComma? */
+	  	')' 
+	;
+	
+// VALIDATION: Deprecated warning if name does not start with $
+// VALIDATION: Not all variations of SimplefiedVariableOrName are valid (with NS)
+// VALIDATION: value expr is RVALUE
+// 	
+DefinitionArgument returns pp::DefinitionArgument
+	: (puppetType = TypeExpression)? argName = UNION_VARIABLE_OR_NAME  ((op = '=' | op = '=>')  value = AssignmentExpression)?
+	;
+
+//-- CASE
+//
+CaseExpression returns pp::CaseExpression
+	: 'case'  switchExpr = AssignmentExpression 
+		'{'  cases += Case* 
+		'}'
+	;
+
+Case returns pp::Case
+	: values += AssignmentExpression (','  values += AssignmentExpression)* ':' 
+		'{'  
+			(statements += ExpressionList)* 
+		'}'  
+	;
+
+//-- UNLESS (is the same as if !(e) {}, but without support for "else"
+UnlessExpression returns pp::UnlessExpression
+	: 'unless' condExpr = AssignmentExpression '{' (statements += ExpressionList)* '}'
+		(=>'else' elseStatement = ElseExpression)?
+    ;
+	 
+//-- IF 
+//
+// VALIDATION: checks that the elseStatement is an Else of Elsif, and validate that Else or Elsif
+// only appears as parented by If, Else or Elseif
+IfExpression returns pp::IfExpression
+	: 'if'  
+		condExpr = AssignmentExpression 
+		'{'  
+			(statements += ExpressionList)*
+		'}' 
+			((=>'elsif' elseStatement=ElseIfExpression)|(=>'else' elseStatement=ElseExpression))?
+	;
+	
+ElseExpression returns pp::Expression
+	:  {pp::ElseExpression} 
+		'{' 
+			(statements += ExpressionList)*
+		'}' 
+	;
+	
+ElseIfExpression returns pp::Expression
+	: 	{pp::ElseIfExpression}
+		condExpr = AssignmentExpression 
+		'{' 
+			(statements += ExpressionList)*
+		'}' 
+			((=>'elsif' elseStatement=ElseIfExpression)|(=>'else' elseStatement=ElseExpression))?
+	;
+
+LiteralExpression returns pp::Expression
+	: LiteralBoolean
+	| LiteralUndef
+	| LiteralDefault
+	| LiteralList
+	| LiteralHash
+  	| LiteralRegex
+  	| StringExpression
+  	| LiteralNameOrReference
+	;
+		
+LiteralNameOrReference returns pp::LiteralNameOrReference
+	:  value = name 
+	;
+
+UNION_VARIABLE_OR_NAME 
+	: dollarVariable
+	| name
+	;
+	
+// validate that expr is not empty	
+ParenthisedExpression returns pp::ParenthesisedExpression
+	: '('  {pp::ParenthesisedExpression} expr = AssignmentExpression? ')' 
+	;
+
+SeparatorExpression returns pp::SeparatorExpression
+	: {pp::SeparatorExpression} ';'
+	;
+
+VirtualNameOrReference returns pp::VirtualNameOrReference 
+	: '@' exported = ATBoolean?   value = unionNameOrReference 
+	;
+
+// Kludge for a serialization issue using exported = '@'?
+// Note: has value converter
+ATBoolean returns ecore::EBoolean : '@' ;
+
+// VALIDATION: No interpolation takes place in DoubleQuotedStrings, a warning will be issued.
+// VALIDATION: Checks that import has at least one thing to import	
+ImportExpression returns pp::ImportExpression
+	: {pp::ImportExpression} 'import'  (values += QuotedString (','  values += QuotedString)*)?
+	;
+
+LiteralList returns pp::LiteralList
+	: {pp::LiteralList}
+		'['  
+			(elements += AssignmentExpression (',' elements += AssignmentExpression)* ','?)?
+		']' 
+	;
+
+LiteralHash returns pp::LiteralHash
+	: {pp::LiteralHash}
+		'{'  
+			(elements += HashEntry (',' elements += HashEntry)* )? ','? /* endComma? */
+		'}' 
+	;
+
+HashEntry returns pp::HashEntry
+	: key = AssignmentExpression '=>'  value = AssignmentExpression
+	;
+
+// TODO: Check constraints on LiteralNameOrString is ${name::name} allowed ?
+LiteralNameOrString returns pp::Expression
+	: StringExpression
+	| LiteralName
+	;
+	
+// has converter
+BooleanValue returns ecore::EBoolean: 'true' | 'false' ;
+
+LiteralBoolean 	returns pp::LiteralBoolean
+	: value = BooleanValue 
+	;
+
+LiteralDefault 	returns pp::LiteralDefault
+	: {pp::LiteralDefault} 'default' 
+	;
+	
+LiteralUndef 	returns pp::LiteralUndef
+	: {pp::LiteralUndef} 'undef'  
+	;
+	
+LiteralClass 	returns pp::LiteralClass
+	: {pp::LiteralClass} 'class'  
+	;
+
+StringExpression returns pp::Expression hidden(WS, SL_COMMENT, ML_COMMENT)
+	: SingleQuotedString
+	| UnquotedString
+	| DoubleQuotedString
+	;
+	
+QuotedString returns pp::IQuotedString hidden(WS, SL_COMMENT, ML_COMMENT)
+	: DoubleQuotedString
+	| SingleQuotedString
+	;
+	
+SingleQuotedString returns pp::SingleQuotedString  
+	: {pp::SingleQuotedString} text = sqText 
+	;
+
+// Special declarations to aid syntax coloring of a $ in a special place.	
+//DQT_DOLLAR : '$' ;
+
+// Double quoted string with expression interpolation
+// handles:
+// - $ <non variable char or {> is a verbatim $ included in the string
+// - $varname - evaluated and included in the string
+// - ${ expression } - evaluated and included in the string
+//
+DoubleQuotedString returns pp::DoubleQuotedString hidden()
+	: '"' {pp::DoubleQuotedString} stringPart += TextExpression* '"'
+	;
+
+TextExpression returns pp::TextExpression hidden()
+	: {pp::VerbatimTE} text = doubleStringCharacters
+	| {pp::ExpressionTE} '${'  expression = ExpressionWithHidden '}'
+	| {pp::VariableTE} varName = dollarVariable 
+	;
+
+// Consumation without creation is ok, if made optional where it is assigned, it is not possible to
+// insert WS and comments into ExpressioNTextExpression.
+ExpressionWithHidden returns pp::Expression hidden(WS, SL_COMMENT, ML_COMMENT):
+	{pp::ParenthesisedExpression} expr = (AssignmentExpression | LiteralKeyword)?
+;
+		
+StringPart returns pp::TextExpression /*hidden()*/: 
+	{pp::VerbatimTE} text = doubleStringCharacters? ;
+
+UnquotedString returns pp::Expression :
+	// allow comments between ${ and }
+	// validate that Expression is not empty == warning
+	{pp::UnquotedString} '${' expression = AssignmentExpression? '}' 
+	;
+
+// Has data conversion that strips leading/trailing single quotes
+sqText returns ecore::EString hidden():
+	=>'\'' singleStringCharacters? '\''
+	;
+
+// Has validation rule that checks regex validity	
+LiteralRegex returns pp::LiteralRegex
+	:  value = REGULAR_EXPRESSION 
+	;
+
+// VALIDATION: checks that the name is a NAME (and not a reference).
+LiteralName returns pp::LiteralName
+	: value = name 
+	;
+
+LiteralKeyword returns pp::LiteralNameOrReference
+	: value = keyword 
+	;
+
+VariableExpression returns pp::VariableExpression
+	: varName = dollarVariable 
+	; 
+
+TypeExpression returns pp::Expression:
+	TypeName 
+	({pp::AtExpression.leftExpr=current}
+		'['  
+			(parameters += Expression (','  parameters += Expression)*)?
+		']' 
+	)*
+	;
+
+// VALIDATION: checks that the name is a puppet Type
+TypeName returns pp::LiteralNameOrReference
+	: value = name 
+	;
+
+dollarVariable hidden()
+	: DOLLAR_VAR 
+	;
+	
+keyword : ('and' | 'case' | 'class' | 'default' | 'define' | 'else' | 'elsif' | 'in' |'inherits' 
+		| 'import' | 'node' | 'or' | 'undef' | 'true' | 'false' | 'if' | 'unless')
+	;
+
+attributeName : name | keyword | '*';
+
+name
+	// a puppet grammar glitch allows '::' any number of times (\w*::)*\w+. Validation checks correctness.
+	: WORD_CHARS
+	;
+
+classname : name | 'class';
+
+// captures names and references, complicated by the fact that a keyword may be part of the name
+// if the name contains '::' - for more info see the PPLexer
+unionNameOrReference
+	: WORD_CHARS | 'class' | 'default' 
+	;
+
+doubleStringCharacters hidden()
+	// special rules in lexer will deliver everything as one of these when in a string
+	: (WORD_CHARS
+	| ANY_OTHER
+	| WS
+	| '\\"'
+	| '\\\''
+	| '\\$'
+	| '\\${'
+	| '\\\\'
+		)+
+	;
+
+singleStringCharacters hidden()
+	// special rules in lexer will deliver everything as one of these when in a string
+	: (WORD_CHARS
+	| ANY_OTHER
+	| WS
+	| DOLLAR_VAR
+//	| '$' // terminates dq-, but not sq- string
+	| '${' // terminates dq-, but not sq- string
+	| '\\"'
+	| '\\\''
+	| '\\$'
+	| '\\${'
+	| '\\\\'
+		)+
+	;
+
+/************************************************************
+ * TERMINALS 
+ * (Please no terminals above, and no rules below...)
+ * IMPORTANT: An external lexer are used - the rules below are an aproximation. The names and
+ * number of terminals may not be changed without also updating the lexer.
+ */
+
+terminal ML_COMMENT : '/*' -> '*/' (' ' | '\u00A0' | '\t')* ('\r'? '\n')?
+;
+// accumulate all SL comments into one token
+terminal SL_COMMENT : '#' !('\r' | '\n')* ('\r'? '\n')? ;
+
+terminal WS	
+	// Note that second space is a UNICODE NBSP
+	: (' ' | '\u00A0' | '\t' | '\r' | '\n')+
+	;
+
+terminal DOLLAR_VAR :
+	'$' ('::')? ('0'..'9'|'a'..'z'|'A'..'Z'|'_')+ ('::' ('0'..'9'|'a'..'z'|'A'..'Z'|'_')+)*
+	;
+
+terminal WORD_CHARS :
+	('::')? ('0'..'9'|'a'..'z'|'A'..'Z'|'_'|'-')+ ('::' ('0'..'9'|'a'..'z'|'A'..'Z'|'_'|'-')+)*
+	;
+
+terminal NUMBER : NUMERIC;
+
+// Pseudo rule
+terminal LAMBDA : '{' WS '|';
+
+terminal fragment NUMERIC
+ 	: ('0' ('x'|'X') ('0'..'9'|'a'..'f'|'A'..'F')+)
+	| ('0'..'9')+ ('.' ('0'..'9')+)? (('e'|'E') '-'? ('0'..'9')+)?
+    ;
+
+terminal REGULAR_EXPRESSION 
+	// Special rules in the lexer must prevent the RE from being recognized
+	// except after ',' 'node', '{','}, '=~', '!~'
+	: '/' RE_BODY '/' RE_FLAGS?
+	;
+
+terminal fragment RE_BODY
+	: 	RE_FIRST_CHAR 
+		RE_FOLLOW_CHAR*
+	;
+
+terminal fragment RE_FIRST_CHAR
+	// regexp can not start with:
+	// - a '*' (illegal regexp, and makes it look like a MLCOMMENT start
+	// - a '/' since that makes it empty (which is an invalid regexp)
+	// - a NL since all of the regexp must be on one line
+	: (!('\n' | '*' | '/' | '\\') | RE_BACKSLASH_SEQUENCE)
+	;
+
+terminal fragment RE_FOLLOW_CHAR
+	// subsequent regexp chars include '*'
+	: (RE_FIRST_CHAR | '*')
+	;
+
+terminal fragment RE_BACKSLASH_SEQUENCE:
+	// Any character can be escaped except NL since all of the regexp must be on one line.
+	('\\' !'\n')  
+	;
+
+terminal fragment RE_FLAGS:
+	// RUBY REGEX flags: i o x m u e s n (optional, or in any order, but only use each once
+	// Puppet does not support these (currently), they are recognized to enable warning that
+	// they are not supported (no other meaning can be applied to letter appearing after
+	// the end '/' in a regexp. Check for supported flags can be done in validation if they
+	// become available.
+	('a'..'z')+
+	;
+
+terminal ANY_OTHER : . ;

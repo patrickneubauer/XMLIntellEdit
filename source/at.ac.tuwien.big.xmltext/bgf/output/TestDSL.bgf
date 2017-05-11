@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bgf:GrammarType xmlns:bgf="http://planet-sl.org/bgf">
+  <root>Library</root>
+  <production nonterminal="Library">
+    <expression>
+      <sequence>
+        <expression terminal="Library"/>
+        <expression terminal="{"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="books"/>
+                <expression terminal="{"/>
+                <expression nonterminal="Book"/>
+                <expression>
+                  <star>
+                    <expression>
+                      <sequence>
+                        <expression terminal=","/>
+                        <expression nonterminal="Book"/>
+                      </sequence>
+                    </expression>
+                  </star>
+                </expression>
+                <expression terminal="}"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="customers"/>
+                <expression terminal="{"/>
+                <expression nonterminal="Customer"/>
+                <expression>
+                  <star>
+                    <expression>
+                      <sequence>
+                        <expression terminal=","/>
+                        <expression nonterminal="Customer"/>
+                      </sequence>
+                    </expression>
+                  </star>
+                </expression>
+                <expression terminal="}"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="Book">
+    <expression>
+      <sequence>
+        <expression terminal="Book"/>
+        <expression value="string"/>
+        <expression terminal="{"/>
+        <expression terminal="title"/>
+        <expression value="string"/>
+        <expression terminal="author"/>
+        <expression value="string"/>
+        <expression terminal="pages"/>
+        <expression/>
+        <expression terminal="dimension"/>
+        <expression value="string"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="download"/>
+                <expression value="string"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression terminal="isbn"/>
+        <expression value="string"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="bookInfo"/>
+                <expression nonterminal="BookInfo"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="Customer">
+    <expression>
+      <sequence>
+        <expression terminal="Customer"/>
+        <expression terminal="{"/>
+        <expression terminal="firstName"/>
+        <expression value="string"/>
+        <expression terminal="lastName"/>
+        <expression value="string"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="borrowedBookSince"/>
+                <expression value="string"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="borrowedBookId"/>
+                <expression value="string"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="BookInfo">
+    <expression>
+      <sequence>
+        <expression terminal="BookInfo"/>
+      </sequence>
+    </expression>
+  </production>
+</bgf:GrammarType>

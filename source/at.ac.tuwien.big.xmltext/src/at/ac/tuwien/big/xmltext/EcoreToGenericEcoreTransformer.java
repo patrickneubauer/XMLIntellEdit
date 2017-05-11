@@ -166,6 +166,10 @@ public class EcoreToGenericEcoreTransformer {
 		return result;
 	}
 	
+	public Resource getXSD() {
+		return ecoreResource;
+	}
+	
 	public EClass getRootClass() {
 		if (result == null) {
 			calcResult();

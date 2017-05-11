@@ -1,0 +1,2600 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bgf:GrammarType xmlns:bgf="http://planet-sl.org/bgf">
+  <root>PuppetManifest</root>
+  <production nonterminal="WS">
+    <expression>
+      <plus>
+        <expression>
+          <choice>
+            <expression terminal=" "/>
+            <expression terminal="&#xa0;"/>
+            <expression terminal="&#x9;"/>
+            <expression terminal="&#xD;"/>
+            <expression terminal="&#xA;"/>
+          </choice>
+        </expression>
+      </plus>
+    </expression>
+  </production>
+  <production nonterminal="SL_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="#"/>
+        <expression>
+          <not>
+            <expression>
+              <choice>
+                <expression terminal="&#xD;"/>
+                <expression terminal="&#xA;"/>
+              </choice>
+            </expression>
+          </not>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ML_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="/*"/>
+        <expression>
+          <not>
+            <expression terminal="*/"/>
+          </not>
+        </expression>
+        <expression>
+          <star>
+            <expression>
+              <choice>
+                <expression terminal=" "/>
+                <expression terminal="&#xa0;"/>
+                <expression terminal="&#x9;"/>
+              </choice>
+            </expression>
+          </star>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="PuppetManifest">
+    <expression>
+      <sequence>
+        <expression nonterminal="ExpressionList"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="Expression">
+    <expression nonterminal="RelationshipExpression"/>
+  </production>
+  <production nonterminal="ExpressionList">
+    <expression>
+      <choice>
+        <expression>
+          <sequence>
+            <expression nonterminal="RelationshipExpression"/>
+            <expression>
+              <optional>
+                <expression>
+                  <sequence>
+                    <expression terminal=","/>
+                    <expression nonterminal="RelationshipExpression"/>
+                    <expression>
+                      <star>
+                        <expression>
+                          <sequence>
+                            <expression terminal=","/>
+                            <expression nonterminal="RelationshipExpression"/>
+                          </sequence>
+                        </expression>
+                      </star>
+                    </expression>
+                  </sequence>
+                </expression>
+              </optional>
+            </expression>
+          </sequence>
+        </expression>
+        <expression nonterminal="SeparatorExpression"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="EdgeOperator">
+    <expression>
+      <choice>
+        <expression terminal="->"/>
+        <expression terminal="&lt;-"/>
+        <expression terminal="~>"/>
+        <expression terminal="&lt;~"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="RelationshipExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="ResourceExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression nonterminal="EdgeOperator"/>
+                <expression nonterminal="ResourceExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ResourceExpression">
+    <expression>
+      <choice>
+        <expression>
+          <sequence>
+            <expression nonterminal="AssignmentExpression"/>
+            <expression>
+              <optional>
+                <expression>
+                  <sequence>
+                    <expression terminal="{"/>
+                    <expression>
+                      <optional>
+                        <expression>
+                          <sequence>
+                            <expression nonterminal="ResourceBody"/>
+                            <expression>
+                              <star>
+                                <expression>
+                                  <sequence>
+                                    <expression terminal=";"/>
+                                    <expression nonterminal="ResourceBody"/>
+                                  </sequence>
+                                </expression>
+                              </star>
+                            </expression>
+                            <expression terminal=";">
+                              <optional>
+                                <expression/>
+                              </optional>
+                            </expression>
+                          </sequence>
+                        </expression>
+                      </optional>
+                    </expression>
+                    <expression terminal="}"/>
+                  </sequence>
+                </expression>
+              </optional>
+            </expression>
+          </sequence>
+        </expression>
+        <expression>
+          <sequence>
+            <expression nonterminal="LiteralClass"/>
+            <expression terminal="{"/>
+            <expression>
+              <optional>
+                <expression>
+                  <sequence>
+                    <expression nonterminal="ResourceBody"/>
+                    <expression>
+                      <star>
+                        <expression>
+                          <sequence>
+                            <expression terminal=";"/>
+                            <expression nonterminal="ResourceBody"/>
+                          </sequence>
+                        </expression>
+                      </star>
+                    </expression>
+                    <expression terminal=";">
+                      <optional>
+                        <expression/>
+                      </optional>
+                    </expression>
+                  </sequence>
+                </expression>
+              </optional>
+            </expression>
+            <expression terminal="}"/>
+          </sequence>
+        </expression>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="ResourceBody">
+    <expression>
+      <choice>
+        <expression>
+          <sequence>
+            <expression nonterminal="Expression"/>
+            <expression terminal=":"/>
+            <expression nonterminal="AttributeOperations"/>
+          </sequence>
+        </expression>
+        <expression nonterminal="AttributeOperations"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="AttributeOperation">
+    <expression>
+      <sequence>
+        <expression nonterminal="attributeName"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression>
+                  <choice>
+                    <expression terminal="=>"/>
+                    <expression terminal="+>"/>
+                  </choice>
+                </expression>
+                <expression nonterminal="Expression"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="AttributeOperations">
+    <expression>
+      <sequence>
+        <expression nonterminal="AttributeOperation"/>
+        <expression>
+          <star>
+            <expression>
+              <choice>
+                <expression>
+                  <sequence>
+                    <expression terminal=","/>
+                    <expression nonterminal="AttributeOperation"/>
+                  </sequence>
+                </expression>
+                <expression nonterminal="AttributeOperation"/>
+              </choice>
+            </expression>
+          </star>
+        </expression>
+        <expression terminal=",">
+          <optional>
+            <expression/>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="AssignmentExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="AppendExpression"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="="/>
+                <expression nonterminal="AssignmentExpression"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="AppendExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="OrExpression"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="+="/>
+                <expression nonterminal="OrExpression"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="OrExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="AndExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression terminal="or"/>
+                <expression nonterminal="AndExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="AndExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="RelationalExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression terminal="and"/>
+                <expression nonterminal="RelationalExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="RelationalOperator">
+    <expression>
+      <choice>
+        <expression terminal=">="/>
+        <expression terminal="&lt;="/>
+        <expression terminal=">"/>
+        <expression terminal="&lt;"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="RelationalExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="EqualityExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression nonterminal="RelationalOperator"/>
+                <expression nonterminal="EqualityExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="EqualityOperator">
+    <expression>
+      <choice>
+        <expression terminal="=="/>
+        <expression terminal="!="/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="EqualityExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="ShiftExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression nonterminal="EqualityOperator"/>
+                <expression nonterminal="ShiftExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ShiftOperator">
+    <expression>
+      <choice>
+        <expression terminal="&lt;&lt;"/>
+        <expression terminal=">>"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="ShiftExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="AdditiveExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression nonterminal="ShiftOperator"/>
+                <expression nonterminal="AdditiveExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="AdditiveOperator">
+    <expression>
+      <choice>
+        <expression terminal="+"/>
+        <expression terminal="-"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="AdditiveExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="MultiplicativeExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression nonterminal="AdditiveOperator"/>
+                <expression nonterminal="MultiplicativeExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="MultiplicativeOperator">
+    <expression>
+      <choice>
+        <expression terminal="*"/>
+        <expression terminal="/"/>
+        <expression terminal="%"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="MultiplicativeExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="MatchingExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression nonterminal="MultiplicativeOperator"/>
+                <expression nonterminal="MatchingExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="MatchingOperator">
+    <expression>
+      <choice>
+        <expression terminal="=~"/>
+        <expression terminal="!~"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="MatchingExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="InExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression nonterminal="MatchingOperator"/>
+                <expression nonterminal="UnaryOrHigherExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="InExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="UnaryOrHigherExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression terminal="in"/>
+                <expression nonterminal="CollectExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="UnaryOrHigherExpression">
+    <expression>
+      <choice>
+        <expression nonterminal="UnaryMinusExpression"/>
+        <expression nonterminal="NotExpression"/>
+        <expression nonterminal="CollectExpression"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="UnaryMinusExpression">
+    <expression>
+      <sequence>
+        <expression terminal="-"/>
+        <expression nonterminal="CollectExpression"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="NotExpression">
+    <expression>
+      <sequence>
+        <expression terminal="!"/>
+        <expression nonterminal="CollectExpression"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="CollectExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="SelectorExpression"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression nonterminal="CollectQuery"/>
+                <expression>
+                  <optional>
+                    <expression>
+                      <sequence>
+                        <expression terminal="{"/>
+                        <expression nonterminal="AttributeOperations"/>
+                        <expression terminal="}"/>
+                      </sequence>
+                    </expression>
+                  </optional>
+                </expression>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="CollectQuery">
+    <expression>
+      <choice>
+        <expression nonterminal="VirtualCollectQuery"/>
+        <expression nonterminal="ExportedCollectQuery"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="VirtualCollectQuery">
+    <expression>
+      <sequence>
+        <expression terminal="&lt;|"/>
+        <expression nonterminal="Expression"/>
+        <expression terminal="|>"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ExportedCollectQuery">
+    <expression>
+      <sequence>
+        <expression terminal="&lt;&lt;|"/>
+        <expression nonterminal="Expression"/>
+        <expression terminal="|>>"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="SelectorExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="AtExpression"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="?"/>
+                <expression>
+                  <choice>
+                    <expression>
+                      <sequence>
+                        <expression terminal="{"/>
+                        <expression nonterminal="SelectorEntry"/>
+                        <expression>
+                          <star>
+                            <expression>
+                              <choice>
+                                <expression>
+                                  <sequence>
+                                    <expression terminal=","/>
+                                    <expression nonterminal="SelectorEntry"/>
+                                  </sequence>
+                                </expression>
+                                <expression nonterminal="SelectorEntry"/>
+                              </choice>
+                            </expression>
+                          </star>
+                        </expression>
+                        <expression terminal=",">
+                          <optional>
+                            <expression/>
+                          </optional>
+                        </expression>
+                        <expression terminal="}"/>
+                      </sequence>
+                    </expression>
+                    <expression nonterminal="SelectorEntry"/>
+                  </choice>
+                </expression>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="SelectorEntry">
+    <expression>
+      <sequence>
+        <expression nonterminal="Expression"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="=>"/>
+                <expression nonterminal="Expression"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="AtExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="MethodCall"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression>
+                  <sequence>
+                    <expression terminal="["/>
+                    <expression>
+                      <optional>
+                        <expression>
+                          <sequence>
+                            <expression nonterminal="Expression"/>
+                            <expression>
+                              <star>
+                                <expression>
+                                  <sequence>
+                                    <expression terminal=","/>
+                                    <expression nonterminal="Expression"/>
+                                  </sequence>
+                                </expression>
+                              </star>
+                            </expression>
+                          </sequence>
+                        </expression>
+                      </optional>
+                    </expression>
+                    <expression terminal="]"/>
+                  </sequence>
+                </expression>
+                <expression>
+                  <star>
+                    <expression>
+                      <sequence>
+                        <expression terminal="."/>
+                        <expression>
+                          <optional>
+                            <expression>
+                              <sequence>
+                                <expression nonterminal="LiteralName"/>
+                                <expression>
+                                  <optional>
+                                    <expression>
+                                      <sequence>
+                                        <expression nonterminal="LPARBoolean"/>
+                                        <expression>
+                                          <optional>
+                                            <expression>
+                                              <sequence>
+                                                <expression nonterminal="Expression"/>
+                                                <expression>
+                                                  <star>
+                                                    <expression>
+                                                      <sequence>
+                                                        <expression terminal=","/>
+                                                        <expression nonterminal="Expression"/>
+                                                      </sequence>
+                                                    </expression>
+                                                  </star>
+                                                </expression>
+                                                <expression terminal=",">
+                                                  <optional>
+                                                    <expression/>
+                                                  </optional>
+                                                </expression>
+                                              </sequence>
+                                            </expression>
+                                          </optional>
+                                        </expression>
+                                        <expression terminal=")"/>
+                                      </sequence>
+                                    </expression>
+                                  </optional>
+                                </expression>
+                              </sequence>
+                            </expression>
+                          </optional>
+                        </expression>
+                        <expression nonterminal="LambdaExpression"/>
+                      </sequence>
+                    </expression>
+                  </star>
+                </expression>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="MethodCall">
+    <expression>
+      <sequence>
+        <expression nonterminal="FunctionCall"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression terminal="."/>
+                <expression>
+                  <optional>
+                    <expression>
+                      <sequence>
+                        <expression nonterminal="LiteralName"/>
+                        <expression>
+                          <optional>
+                            <expression>
+                              <sequence>
+                                <expression nonterminal="LPARBoolean"/>
+                                <expression>
+                                  <optional>
+                                    <expression>
+                                      <sequence>
+                                        <expression nonterminal="Expression"/>
+                                        <expression>
+                                          <star>
+                                            <expression>
+                                              <sequence>
+                                                <expression terminal=","/>
+                                                <expression nonterminal="Expression"/>
+                                              </sequence>
+                                            </expression>
+                                          </star>
+                                        </expression>
+                                        <expression terminal=",">
+                                          <optional>
+                                            <expression/>
+                                          </optional>
+                                        </expression>
+                                      </sequence>
+                                    </expression>
+                                  </optional>
+                                </expression>
+                                <expression terminal=")"/>
+                              </sequence>
+                            </expression>
+                          </optional>
+                        </expression>
+                      </sequence>
+                    </expression>
+                  </optional>
+                </expression>
+                <expression nonterminal="LambdaExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="LPARBoolean">
+    <expression terminal="("/>
+  </production>
+  <production nonterminal="LambdaExpression">
+    <expression>
+      <choice>
+        <expression nonterminal="Java8Lambda"/>
+        <expression nonterminal="RubyLambda"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="Java8Lambda">
+    <expression>
+      <sequence>
+        <expression terminal="|"/>
+        <expression nonterminal="LambdaParameters"/>
+        <expression terminal="|"/>
+        <expression terminal="=>"/>
+        <expression terminal="{"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="RubyLambda">
+    <expression>
+      <sequence>
+        <expression nonterminal="LAMBDA"/>
+        <expression terminal="|"/>
+        <expression nonterminal="LambdaParameters"/>
+        <expression terminal="|"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="LambdaParameters">
+    <expression>
+      <sequence>
+        <expression>
+          <sequence>
+            <expression nonterminal="DefinitionArgument"/>
+            <expression>
+              <star>
+                <expression>
+                  <sequence>
+                    <expression terminal=","/>
+                    <expression nonterminal="DefinitionArgument"/>
+                  </sequence>
+                </expression>
+              </star>
+            </expression>
+          </sequence>
+        </expression>
+        <expression terminal=",">
+          <optional>
+            <expression/>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="FunctionCall">
+    <expression>
+      <sequence>
+        <expression nonterminal="PrimaryExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression>
+                  <sequence>
+                    <expression terminal="("/>
+                  </sequence>
+                </expression>
+                <expression>
+                  <optional>
+                    <expression>
+                      <sequence>
+                        <expression nonterminal="Expression"/>
+                        <expression>
+                          <star>
+                            <expression>
+                              <sequence>
+                                <expression terminal=","/>
+                                <expression nonterminal="Expression"/>
+                              </sequence>
+                            </expression>
+                          </star>
+                        </expression>
+                        <expression terminal=",">
+                          <optional>
+                            <expression/>
+                          </optional>
+                        </expression>
+                      </sequence>
+                    </expression>
+                  </optional>
+                </expression>
+                <expression terminal=")"/>
+                <expression nonterminal="LambdaExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="PrimaryExpression">
+    <expression>
+      <choice>
+        <expression nonterminal="IfExpression"/>
+        <expression nonterminal="UnlessExpression"/>
+        <expression nonterminal="CaseExpression"/>
+        <expression nonterminal="ImportExpression"/>
+        <expression nonterminal="Definition"/>
+        <expression nonterminal="HostClassDefinition"/>
+        <expression nonterminal="NodeDefinition"/>
+        <expression nonterminal="VirtualNameOrReference"/>
+        <expression nonterminal="LiteralExpression"/>
+        <expression nonterminal="VariableExpression"/>
+        <expression nonterminal="ParenthisedExpression"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="NodeDefinition">
+    <expression>
+      <sequence>
+        <expression terminal="node"/>
+        <expression nonterminal="HostReference"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression terminal=","/>
+                <expression nonterminal="HostReference"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="inherits"/>
+                <expression nonterminal="HostReference"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression terminal="{"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="HostReference">
+    <expression>
+      <choice>
+        <expression nonterminal="StringExpression"/>
+        <expression nonterminal="LiteralRegex"/>
+        <expression nonterminal="LiteralDefault"/>
+        <expression nonterminal="LiteralNameOrReference"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="HostClassDefinition">
+    <expression>
+      <sequence>
+        <expression terminal="class"/>
+        <expression nonterminal="classname"/>
+        <expression nonterminal="DefinitionArgumentList"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="inherits"/>
+                <expression nonterminal="ParentName"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression terminal="{"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ParentName">
+    <expression>
+      <choice>
+        <expression nonterminal="LiteralDefault"/>
+        <expression nonterminal="LiteralClass"/>
+        <expression nonterminal="LiteralNameOrReference"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="Definition">
+    <expression>
+      <sequence>
+        <expression terminal="define"/>
+        <expression nonterminal="classname"/>
+        <expression nonterminal="DefinitionArgumentList"/>
+        <expression terminal="{"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="DefinitionArgumentList">
+    <expression>
+      <sequence>
+        <expression terminal="("/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression nonterminal="DefinitionArgument"/>
+                <expression>
+                  <star>
+                    <expression>
+                      <sequence>
+                        <expression terminal=","/>
+                        <expression nonterminal="DefinitionArgument"/>
+                      </sequence>
+                    </expression>
+                  </star>
+                </expression>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression terminal=",">
+          <optional>
+            <expression/>
+          </optional>
+        </expression>
+        <expression terminal=")"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="DefinitionArgument">
+    <expression>
+      <sequence>
+        <expression nonterminal="TypeExpression"/>
+        <expression nonterminal="UNION_VARIABLE_OR_NAME"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression>
+                  <choice>
+                    <expression terminal="="/>
+                    <expression terminal="=>"/>
+                  </choice>
+                </expression>
+                <expression nonterminal="AssignmentExpression"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="CaseExpression">
+    <expression>
+      <sequence>
+        <expression terminal="case"/>
+        <expression nonterminal="AssignmentExpression"/>
+        <expression terminal="{"/>
+        <expression nonterminal="Case"/>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="Case">
+    <expression>
+      <sequence>
+        <expression nonterminal="AssignmentExpression"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression terminal=","/>
+                <expression nonterminal="AssignmentExpression"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+        <expression terminal=":"/>
+        <expression terminal="{"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="UnlessExpression">
+    <expression>
+      <sequence>
+        <expression terminal="unless"/>
+        <expression nonterminal="AssignmentExpression"/>
+        <expression terminal="{"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="else"/>
+                <expression nonterminal="ElseExpression"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="IfExpression">
+    <expression>
+      <sequence>
+        <expression terminal="if"/>
+        <expression nonterminal="AssignmentExpression"/>
+        <expression terminal="{"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+        <expression>
+          <optional>
+            <expression>
+              <choice>
+                <expression>
+                  <sequence>
+                    <expression terminal="elsif"/>
+                    <expression nonterminal="ElseIfExpression"/>
+                  </sequence>
+                </expression>
+                <expression>
+                  <sequence>
+                    <expression terminal="else"/>
+                    <expression nonterminal="ElseExpression"/>
+                  </sequence>
+                </expression>
+              </choice>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ElseExpression">
+    <expression>
+      <sequence>
+        <expression terminal="{"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ElseIfExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="AssignmentExpression"/>
+        <expression terminal="{"/>
+        <expression nonterminal="ExpressionList"/>
+        <expression terminal="}"/>
+        <expression>
+          <optional>
+            <expression>
+              <choice>
+                <expression>
+                  <sequence>
+                    <expression terminal="elsif"/>
+                    <expression nonterminal="ElseIfExpression"/>
+                  </sequence>
+                </expression>
+                <expression>
+                  <sequence>
+                    <expression terminal="else"/>
+                    <expression nonterminal="ElseExpression"/>
+                  </sequence>
+                </expression>
+              </choice>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="LiteralExpression">
+    <expression>
+      <choice>
+        <expression nonterminal="LiteralBoolean"/>
+        <expression nonterminal="LiteralUndef"/>
+        <expression nonterminal="LiteralDefault"/>
+        <expression nonterminal="LiteralList"/>
+        <expression nonterminal="LiteralHash"/>
+        <expression nonterminal="LiteralRegex"/>
+        <expression nonterminal="StringExpression"/>
+        <expression nonterminal="LiteralNameOrReference"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="LiteralNameOrReference">
+    <expression nonterminal="name"/>
+  </production>
+  <production nonterminal="UNION_VARIABLE_OR_NAME">
+    <expression>
+      <choice>
+        <expression nonterminal="dollarVariable"/>
+        <expression nonterminal="name"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="ParenthisedExpression">
+    <expression>
+      <sequence>
+        <expression terminal="("/>
+        <expression nonterminal="AssignmentExpression"/>
+        <expression terminal=")"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="SeparatorExpression">
+    <expression>
+      <sequence>
+        <expression terminal=";"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="VirtualNameOrReference">
+    <expression>
+      <sequence>
+        <expression terminal="@"/>
+        <expression nonterminal="ATBoolean"/>
+        <expression nonterminal="unionNameOrReference"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ATBoolean">
+    <expression terminal="@"/>
+  </production>
+  <production nonterminal="ImportExpression">
+    <expression>
+      <sequence>
+        <expression terminal="import"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression nonterminal="QuotedString"/>
+                <expression>
+                  <star>
+                    <expression>
+                      <sequence>
+                        <expression terminal=","/>
+                        <expression nonterminal="QuotedString"/>
+                      </sequence>
+                    </expression>
+                  </star>
+                </expression>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="LiteralList">
+    <expression>
+      <sequence>
+        <expression terminal="["/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression nonterminal="AssignmentExpression"/>
+                <expression>
+                  <star>
+                    <expression>
+                      <sequence>
+                        <expression terminal=","/>
+                        <expression nonterminal="AssignmentExpression"/>
+                      </sequence>
+                    </expression>
+                  </star>
+                </expression>
+                <expression terminal=",">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression terminal="]"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="LiteralHash">
+    <expression>
+      <sequence>
+        <expression terminal="{"/>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression nonterminal="HashEntry"/>
+                <expression>
+                  <star>
+                    <expression>
+                      <sequence>
+                        <expression terminal=","/>
+                        <expression nonterminal="HashEntry"/>
+                      </sequence>
+                    </expression>
+                  </star>
+                </expression>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+        <expression terminal=",">
+          <optional>
+            <expression/>
+          </optional>
+        </expression>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="HashEntry">
+    <expression>
+      <sequence>
+        <expression nonterminal="AssignmentExpression"/>
+        <expression terminal="=>"/>
+        <expression nonterminal="AssignmentExpression"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="LiteralNameOrString">
+    <expression>
+      <choice>
+        <expression nonterminal="StringExpression"/>
+        <expression nonterminal="LiteralName"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="BooleanValue">
+    <expression>
+      <choice>
+        <expression terminal="true"/>
+        <expression terminal="false"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="LiteralBoolean">
+    <expression nonterminal="BooleanValue"/>
+  </production>
+  <production nonterminal="LiteralDefault">
+    <expression>
+      <sequence>
+        <expression terminal="default"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="LiteralUndef">
+    <expression>
+      <sequence>
+        <expression terminal="undef"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="LiteralClass">
+    <expression>
+      <sequence>
+        <expression terminal="class"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="StringExpression">
+    <expression>
+      <choice>
+        <expression nonterminal="SingleQuotedString"/>
+        <expression nonterminal="UnquotedString"/>
+        <expression nonterminal="DoubleQuotedString"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="WS">
+    <expression>
+      <plus>
+        <expression>
+          <choice>
+            <expression terminal=" "/>
+            <expression terminal="&#xa0;"/>
+            <expression terminal="&#x9;"/>
+            <expression terminal="&#xD;"/>
+            <expression terminal="&#xA;"/>
+          </choice>
+        </expression>
+      </plus>
+    </expression>
+  </production>
+  <production nonterminal="SL_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="#"/>
+        <expression>
+          <not>
+            <expression>
+              <choice>
+                <expression terminal="&#xD;"/>
+                <expression terminal="&#xA;"/>
+              </choice>
+            </expression>
+          </not>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ML_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="/*"/>
+        <expression>
+          <not>
+            <expression terminal="*/"/>
+          </not>
+        </expression>
+        <expression>
+          <star>
+            <expression>
+              <choice>
+                <expression terminal=" "/>
+                <expression terminal="&#xa0;"/>
+                <expression terminal="&#x9;"/>
+              </choice>
+            </expression>
+          </star>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="QuotedString">
+    <expression>
+      <choice>
+        <expression nonterminal="DoubleQuotedString"/>
+        <expression nonterminal="SingleQuotedString"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="WS">
+    <expression>
+      <plus>
+        <expression>
+          <choice>
+            <expression terminal=" "/>
+            <expression terminal="&#xa0;"/>
+            <expression terminal="&#x9;"/>
+            <expression terminal="&#xD;"/>
+            <expression terminal="&#xA;"/>
+          </choice>
+        </expression>
+      </plus>
+    </expression>
+  </production>
+  <production nonterminal="SL_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="#"/>
+        <expression>
+          <not>
+            <expression>
+              <choice>
+                <expression terminal="&#xD;"/>
+                <expression terminal="&#xA;"/>
+              </choice>
+            </expression>
+          </not>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ML_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="/*"/>
+        <expression>
+          <not>
+            <expression terminal="*/"/>
+          </not>
+        </expression>
+        <expression>
+          <star>
+            <expression>
+              <choice>
+                <expression terminal=" "/>
+                <expression terminal="&#xa0;"/>
+                <expression terminal="&#x9;"/>
+              </choice>
+            </expression>
+          </star>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="SingleQuotedString">
+    <expression>
+      <sequence>
+        <expression nonterminal="sqText"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="DoubleQuotedString">
+    <expression>
+      <sequence>
+        <expression terminal="&quot;"/>
+        <expression nonterminal="TextExpression"/>
+        <expression terminal="&quot;"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="TextExpression">
+    <expression>
+      <choice>
+        <expression>
+          <sequence>
+            <expression nonterminal="doubleStringCharacters"/>
+          </sequence>
+        </expression>
+        <expression>
+          <sequence>
+            <expression terminal="${"/>
+            <expression nonterminal="ExpressionWithHidden"/>
+            <expression terminal="}"/>
+          </sequence>
+        </expression>
+        <expression>
+          <sequence>
+            <expression nonterminal="dollarVariable"/>
+          </sequence>
+        </expression>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="ExpressionWithHidden">
+    <expression>
+      <sequence>
+        <expression>
+          <choice>
+            <expression nonterminal="AssignmentExpression"/>
+            <expression nonterminal="LiteralKeyword"/>
+          </choice>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="WS">
+    <expression>
+      <plus>
+        <expression>
+          <choice>
+            <expression terminal=" "/>
+            <expression terminal="&#xa0;"/>
+            <expression terminal="&#x9;"/>
+            <expression terminal="&#xD;"/>
+            <expression terminal="&#xA;"/>
+          </choice>
+        </expression>
+      </plus>
+    </expression>
+  </production>
+  <production nonterminal="SL_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="#"/>
+        <expression>
+          <not>
+            <expression>
+              <choice>
+                <expression terminal="&#xD;"/>
+                <expression terminal="&#xA;"/>
+              </choice>
+            </expression>
+          </not>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="ML_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="/*"/>
+        <expression>
+          <not>
+            <expression terminal="*/"/>
+          </not>
+        </expression>
+        <expression>
+          <star>
+            <expression>
+              <choice>
+                <expression terminal=" "/>
+                <expression terminal="&#xa0;"/>
+                <expression terminal="&#x9;"/>
+              </choice>
+            </expression>
+          </star>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="StringPart">
+    <expression>
+      <sequence>
+        <expression nonterminal="doubleStringCharacters"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="UnquotedString">
+    <expression>
+      <sequence>
+        <expression terminal="${"/>
+        <expression nonterminal="AssignmentExpression"/>
+        <expression terminal="}"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="sqText">
+    <expression>
+      <sequence>
+        <expression terminal="'"/>
+        <expression>
+          <optional>
+            <expression nonterminal="singleStringCharacters"/>
+          </optional>
+        </expression>
+        <expression terminal="'"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="LiteralRegex">
+    <expression nonterminal="REGULAR_EXPRESSION"/>
+  </production>
+  <production nonterminal="LiteralName">
+    <expression nonterminal="name"/>
+  </production>
+  <production nonterminal="LiteralKeyword">
+    <expression nonterminal="keyword"/>
+  </production>
+  <production nonterminal="VariableExpression">
+    <expression nonterminal="dollarVariable"/>
+  </production>
+  <production nonterminal="TypeExpression">
+    <expression>
+      <sequence>
+        <expression nonterminal="TypeName"/>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression terminal="["/>
+                <expression>
+                  <optional>
+                    <expression>
+                      <sequence>
+                        <expression nonterminal="Expression"/>
+                        <expression>
+                          <star>
+                            <expression>
+                              <sequence>
+                                <expression terminal=","/>
+                                <expression nonterminal="Expression"/>
+                              </sequence>
+                            </expression>
+                          </star>
+                        </expression>
+                      </sequence>
+                    </expression>
+                  </optional>
+                </expression>
+                <expression terminal="]"/>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="TypeName">
+    <expression nonterminal="name"/>
+  </production>
+  <production nonterminal="dollarVariable">
+    <expression nonterminal="DOLLAR_VAR"/>
+  </production>
+  <production nonterminal="keyword">
+    <expression>
+      <choice>
+        <expression terminal="and"/>
+        <expression terminal="case"/>
+        <expression terminal="class"/>
+        <expression terminal="default"/>
+        <expression terminal="define"/>
+        <expression terminal="else"/>
+        <expression terminal="elsif"/>
+        <expression terminal="in"/>
+        <expression terminal="inherits"/>
+        <expression terminal="import"/>
+        <expression terminal="node"/>
+        <expression terminal="or"/>
+        <expression terminal="undef"/>
+        <expression terminal="true"/>
+        <expression terminal="false"/>
+        <expression terminal="if"/>
+        <expression terminal="unless"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="attributeName">
+    <expression>
+      <choice>
+        <expression nonterminal="name"/>
+        <expression nonterminal="keyword"/>
+        <expression terminal="*"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="name">
+    <expression nonterminal="WORD_CHARS"/>
+  </production>
+  <production nonterminal="classname">
+    <expression>
+      <choice>
+        <expression nonterminal="name"/>
+        <expression terminal="class"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="unionNameOrReference">
+    <expression>
+      <choice>
+        <expression nonterminal="WORD_CHARS"/>
+        <expression terminal="class"/>
+        <expression terminal="default"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="doubleStringCharacters">
+    <expression>
+      <plus>
+        <expression>
+          <choice>
+            <expression nonterminal="WORD_CHARS"/>
+            <expression nonterminal="ANY_OTHER"/>
+            <expression nonterminal="WS"/>
+            <expression terminal="\&quot;"/>
+            <expression terminal="\'"/>
+            <expression terminal="\$"/>
+            <expression terminal="\${"/>
+            <expression terminal="\\"/>
+          </choice>
+        </expression>
+      </plus>
+    </expression>
+  </production>
+  <production nonterminal="singleStringCharacters">
+    <expression>
+      <plus>
+        <expression>
+          <choice>
+            <expression nonterminal="WORD_CHARS"/>
+            <expression nonterminal="ANY_OTHER"/>
+            <expression nonterminal="WS"/>
+            <expression nonterminal="DOLLAR_VAR"/>
+            <expression terminal="${"/>
+            <expression terminal="\&quot;"/>
+            <expression terminal="\'"/>
+            <expression terminal="\$"/>
+            <expression terminal="\${"/>
+            <expression terminal="\\"/>
+          </choice>
+        </expression>
+      </plus>
+    </expression>
+  </production>
+  <production nonterminal="ML_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="/*"/>
+        <expression>
+          <not>
+            <expression terminal="*/"/>
+          </not>
+        </expression>
+        <expression>
+          <star>
+            <expression>
+              <choice>
+                <expression terminal=" "/>
+                <expression terminal="&#xa0;"/>
+                <expression terminal="&#x9;"/>
+              </choice>
+            </expression>
+          </star>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="SL_COMMENT">
+    <expression>
+      <sequence>
+        <expression terminal="#"/>
+        <expression>
+          <not>
+            <expression>
+              <choice>
+                <expression terminal="&#xD;"/>
+                <expression terminal="&#xA;"/>
+              </choice>
+            </expression>
+          </not>
+        </expression>
+        <expression>
+          <optional>
+            <expression>
+              <sequence>
+                <expression terminal="&#xD;">
+                  <optional>
+                    <expression/>
+                  </optional>
+                </expression>
+                <expression terminal="&#xA;"/>
+              </sequence>
+            </expression>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="WS">
+    <expression>
+      <plus>
+        <expression>
+          <choice>
+            <expression terminal=" "/>
+            <expression terminal="&#xa0;"/>
+            <expression terminal="&#x9;"/>
+            <expression terminal="&#xD;"/>
+            <expression terminal="&#xA;"/>
+          </choice>
+        </expression>
+      </plus>
+    </expression>
+  </production>
+  <production nonterminal="DOLLAR_VAR">
+    <expression>
+      <sequence>
+        <expression terminal="$"/>
+        <expression terminal="::">
+          <optional>
+            <expression/>
+          </optional>
+        </expression>
+        <expression>
+          <plus>
+            <expression>
+              <choice>
+                <expression>
+                  <choice>
+                    <expression terminal="0"/>
+                    <expression terminal="1"/>
+                    <expression terminal="2"/>
+                    <expression terminal="3"/>
+                    <expression terminal="4"/>
+                    <expression terminal="5"/>
+                    <expression terminal="6"/>
+                    <expression terminal="7"/>
+                    <expression terminal="8"/>
+                  </choice>
+                </expression>
+                <expression>
+                  <choice>
+                    <expression terminal="a"/>
+                    <expression terminal="b"/>
+                    <expression terminal="c"/>
+                    <expression terminal="d"/>
+                    <expression terminal="e"/>
+                    <expression terminal="f"/>
+                    <expression terminal="g"/>
+                    <expression terminal="h"/>
+                    <expression terminal="i"/>
+                    <expression terminal="j"/>
+                    <expression terminal="k"/>
+                    <expression terminal="l"/>
+                    <expression terminal="m"/>
+                    <expression terminal="n"/>
+                    <expression terminal="o"/>
+                    <expression terminal="p"/>
+                    <expression terminal="q"/>
+                    <expression terminal="r"/>
+                    <expression terminal="s"/>
+                    <expression terminal="t"/>
+                    <expression terminal="u"/>
+                    <expression terminal="v"/>
+                    <expression terminal="w"/>
+                    <expression terminal="x"/>
+                    <expression terminal="y"/>
+                  </choice>
+                </expression>
+                <expression>
+                  <choice>
+                    <expression terminal="A"/>
+                    <expression terminal="B"/>
+                    <expression terminal="C"/>
+                    <expression terminal="D"/>
+                    <expression terminal="E"/>
+                    <expression terminal="F"/>
+                    <expression terminal="G"/>
+                    <expression terminal="H"/>
+                    <expression terminal="I"/>
+                    <expression terminal="J"/>
+                    <expression terminal="K"/>
+                    <expression terminal="L"/>
+                    <expression terminal="M"/>
+                    <expression terminal="N"/>
+                    <expression terminal="O"/>
+                    <expression terminal="P"/>
+                    <expression terminal="Q"/>
+                    <expression terminal="R"/>
+                    <expression terminal="S"/>
+                    <expression terminal="T"/>
+                    <expression terminal="U"/>
+                    <expression terminal="V"/>
+                    <expression terminal="W"/>
+                    <expression terminal="X"/>
+                    <expression terminal="Y"/>
+                  </choice>
+                </expression>
+                <expression terminal="_"/>
+              </choice>
+            </expression>
+          </plus>
+        </expression>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression terminal="::"/>
+                <expression>
+                  <plus>
+                    <expression>
+                      <choice>
+                        <expression>
+                          <choice>
+                            <expression terminal="0"/>
+                            <expression terminal="1"/>
+                            <expression terminal="2"/>
+                            <expression terminal="3"/>
+                            <expression terminal="4"/>
+                            <expression terminal="5"/>
+                            <expression terminal="6"/>
+                            <expression terminal="7"/>
+                            <expression terminal="8"/>
+                          </choice>
+                        </expression>
+                        <expression>
+                          <choice>
+                            <expression terminal="a"/>
+                            <expression terminal="b"/>
+                            <expression terminal="c"/>
+                            <expression terminal="d"/>
+                            <expression terminal="e"/>
+                            <expression terminal="f"/>
+                            <expression terminal="g"/>
+                            <expression terminal="h"/>
+                            <expression terminal="i"/>
+                            <expression terminal="j"/>
+                            <expression terminal="k"/>
+                            <expression terminal="l"/>
+                            <expression terminal="m"/>
+                            <expression terminal="n"/>
+                            <expression terminal="o"/>
+                            <expression terminal="p"/>
+                            <expression terminal="q"/>
+                            <expression terminal="r"/>
+                            <expression terminal="s"/>
+                            <expression terminal="t"/>
+                            <expression terminal="u"/>
+                            <expression terminal="v"/>
+                            <expression terminal="w"/>
+                            <expression terminal="x"/>
+                            <expression terminal="y"/>
+                          </choice>
+                        </expression>
+                        <expression>
+                          <choice>
+                            <expression terminal="A"/>
+                            <expression terminal="B"/>
+                            <expression terminal="C"/>
+                            <expression terminal="D"/>
+                            <expression terminal="E"/>
+                            <expression terminal="F"/>
+                            <expression terminal="G"/>
+                            <expression terminal="H"/>
+                            <expression terminal="I"/>
+                            <expression terminal="J"/>
+                            <expression terminal="K"/>
+                            <expression terminal="L"/>
+                            <expression terminal="M"/>
+                            <expression terminal="N"/>
+                            <expression terminal="O"/>
+                            <expression terminal="P"/>
+                            <expression terminal="Q"/>
+                            <expression terminal="R"/>
+                            <expression terminal="S"/>
+                            <expression terminal="T"/>
+                            <expression terminal="U"/>
+                            <expression terminal="V"/>
+                            <expression terminal="W"/>
+                            <expression terminal="X"/>
+                            <expression terminal="Y"/>
+                          </choice>
+                        </expression>
+                        <expression terminal="_"/>
+                      </choice>
+                    </expression>
+                  </plus>
+                </expression>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="WORD_CHARS">
+    <expression>
+      <sequence>
+        <expression terminal="::">
+          <optional>
+            <expression/>
+          </optional>
+        </expression>
+        <expression>
+          <plus>
+            <expression>
+              <choice>
+                <expression>
+                  <choice>
+                    <expression terminal="0"/>
+                    <expression terminal="1"/>
+                    <expression terminal="2"/>
+                    <expression terminal="3"/>
+                    <expression terminal="4"/>
+                    <expression terminal="5"/>
+                    <expression terminal="6"/>
+                    <expression terminal="7"/>
+                    <expression terminal="8"/>
+                  </choice>
+                </expression>
+                <expression>
+                  <choice>
+                    <expression terminal="a"/>
+                    <expression terminal="b"/>
+                    <expression terminal="c"/>
+                    <expression terminal="d"/>
+                    <expression terminal="e"/>
+                    <expression terminal="f"/>
+                    <expression terminal="g"/>
+                    <expression terminal="h"/>
+                    <expression terminal="i"/>
+                    <expression terminal="j"/>
+                    <expression terminal="k"/>
+                    <expression terminal="l"/>
+                    <expression terminal="m"/>
+                    <expression terminal="n"/>
+                    <expression terminal="o"/>
+                    <expression terminal="p"/>
+                    <expression terminal="q"/>
+                    <expression terminal="r"/>
+                    <expression terminal="s"/>
+                    <expression terminal="t"/>
+                    <expression terminal="u"/>
+                    <expression terminal="v"/>
+                    <expression terminal="w"/>
+                    <expression terminal="x"/>
+                    <expression terminal="y"/>
+                  </choice>
+                </expression>
+                <expression>
+                  <choice>
+                    <expression terminal="A"/>
+                    <expression terminal="B"/>
+                    <expression terminal="C"/>
+                    <expression terminal="D"/>
+                    <expression terminal="E"/>
+                    <expression terminal="F"/>
+                    <expression terminal="G"/>
+                    <expression terminal="H"/>
+                    <expression terminal="I"/>
+                    <expression terminal="J"/>
+                    <expression terminal="K"/>
+                    <expression terminal="L"/>
+                    <expression terminal="M"/>
+                    <expression terminal="N"/>
+                    <expression terminal="O"/>
+                    <expression terminal="P"/>
+                    <expression terminal="Q"/>
+                    <expression terminal="R"/>
+                    <expression terminal="S"/>
+                    <expression terminal="T"/>
+                    <expression terminal="U"/>
+                    <expression terminal="V"/>
+                    <expression terminal="W"/>
+                    <expression terminal="X"/>
+                    <expression terminal="Y"/>
+                  </choice>
+                </expression>
+                <expression terminal="_"/>
+                <expression terminal="-"/>
+              </choice>
+            </expression>
+          </plus>
+        </expression>
+        <expression>
+          <star>
+            <expression>
+              <sequence>
+                <expression terminal="::"/>
+                <expression>
+                  <plus>
+                    <expression>
+                      <choice>
+                        <expression>
+                          <choice>
+                            <expression terminal="0"/>
+                            <expression terminal="1"/>
+                            <expression terminal="2"/>
+                            <expression terminal="3"/>
+                            <expression terminal="4"/>
+                            <expression terminal="5"/>
+                            <expression terminal="6"/>
+                            <expression terminal="7"/>
+                            <expression terminal="8"/>
+                          </choice>
+                        </expression>
+                        <expression>
+                          <choice>
+                            <expression terminal="a"/>
+                            <expression terminal="b"/>
+                            <expression terminal="c"/>
+                            <expression terminal="d"/>
+                            <expression terminal="e"/>
+                            <expression terminal="f"/>
+                            <expression terminal="g"/>
+                            <expression terminal="h"/>
+                            <expression terminal="i"/>
+                            <expression terminal="j"/>
+                            <expression terminal="k"/>
+                            <expression terminal="l"/>
+                            <expression terminal="m"/>
+                            <expression terminal="n"/>
+                            <expression terminal="o"/>
+                            <expression terminal="p"/>
+                            <expression terminal="q"/>
+                            <expression terminal="r"/>
+                            <expression terminal="s"/>
+                            <expression terminal="t"/>
+                            <expression terminal="u"/>
+                            <expression terminal="v"/>
+                            <expression terminal="w"/>
+                            <expression terminal="x"/>
+                            <expression terminal="y"/>
+                          </choice>
+                        </expression>
+                        <expression>
+                          <choice>
+                            <expression terminal="A"/>
+                            <expression terminal="B"/>
+                            <expression terminal="C"/>
+                            <expression terminal="D"/>
+                            <expression terminal="E"/>
+                            <expression terminal="F"/>
+                            <expression terminal="G"/>
+                            <expression terminal="H"/>
+                            <expression terminal="I"/>
+                            <expression terminal="J"/>
+                            <expression terminal="K"/>
+                            <expression terminal="L"/>
+                            <expression terminal="M"/>
+                            <expression terminal="N"/>
+                            <expression terminal="O"/>
+                            <expression terminal="P"/>
+                            <expression terminal="Q"/>
+                            <expression terminal="R"/>
+                            <expression terminal="S"/>
+                            <expression terminal="T"/>
+                            <expression terminal="U"/>
+                            <expression terminal="V"/>
+                            <expression terminal="W"/>
+                            <expression terminal="X"/>
+                            <expression terminal="Y"/>
+                          </choice>
+                        </expression>
+                        <expression terminal="_"/>
+                        <expression terminal="-"/>
+                      </choice>
+                    </expression>
+                  </plus>
+                </expression>
+              </sequence>
+            </expression>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="NUMBER">
+    <expression nonterminal="NUMERIC"/>
+  </production>
+  <production nonterminal="LAMBDA">
+    <expression>
+      <sequence>
+        <expression terminal="{"/>
+        <expression nonterminal="WS"/>
+        <expression terminal="|"/>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="NUMERIC">
+    <expression>
+      <choice>
+        <expression>
+          <sequence>
+            <expression terminal="0"/>
+            <expression>
+              <choice>
+                <expression terminal="x"/>
+                <expression terminal="X"/>
+              </choice>
+            </expression>
+            <expression>
+              <plus>
+                <expression>
+                  <choice>
+                    <expression>
+                      <choice>
+                        <expression terminal="0"/>
+                        <expression terminal="1"/>
+                        <expression terminal="2"/>
+                        <expression terminal="3"/>
+                        <expression terminal="4"/>
+                        <expression terminal="5"/>
+                        <expression terminal="6"/>
+                        <expression terminal="7"/>
+                        <expression terminal="8"/>
+                      </choice>
+                    </expression>
+                    <expression>
+                      <choice>
+                        <expression terminal="a"/>
+                        <expression terminal="b"/>
+                        <expression terminal="c"/>
+                        <expression terminal="d"/>
+                        <expression terminal="e"/>
+                      </choice>
+                    </expression>
+                    <expression>
+                      <choice>
+                        <expression terminal="A"/>
+                        <expression terminal="B"/>
+                        <expression terminal="C"/>
+                        <expression terminal="D"/>
+                        <expression terminal="E"/>
+                      </choice>
+                    </expression>
+                  </choice>
+                </expression>
+              </plus>
+            </expression>
+          </sequence>
+        </expression>
+        <expression>
+          <sequence>
+            <expression>
+              <plus>
+                <expression>
+                  <choice>
+                    <expression terminal="0"/>
+                    <expression terminal="1"/>
+                    <expression terminal="2"/>
+                    <expression terminal="3"/>
+                    <expression terminal="4"/>
+                    <expression terminal="5"/>
+                    <expression terminal="6"/>
+                    <expression terminal="7"/>
+                    <expression terminal="8"/>
+                  </choice>
+                </expression>
+              </plus>
+            </expression>
+            <expression>
+              <optional>
+                <expression>
+                  <sequence>
+                    <expression terminal="."/>
+                    <expression>
+                      <plus>
+                        <expression>
+                          <choice>
+                            <expression terminal="0"/>
+                            <expression terminal="1"/>
+                            <expression terminal="2"/>
+                            <expression terminal="3"/>
+                            <expression terminal="4"/>
+                            <expression terminal="5"/>
+                            <expression terminal="6"/>
+                            <expression terminal="7"/>
+                            <expression terminal="8"/>
+                          </choice>
+                        </expression>
+                      </plus>
+                    </expression>
+                  </sequence>
+                </expression>
+              </optional>
+            </expression>
+            <expression>
+              <optional>
+                <expression>
+                  <sequence>
+                    <expression>
+                      <choice>
+                        <expression terminal="e"/>
+                        <expression terminal="E"/>
+                      </choice>
+                    </expression>
+                    <expression terminal="-">
+                      <optional>
+                        <expression/>
+                      </optional>
+                    </expression>
+                    <expression>
+                      <plus>
+                        <expression>
+                          <choice>
+                            <expression terminal="0"/>
+                            <expression terminal="1"/>
+                            <expression terminal="2"/>
+                            <expression terminal="3"/>
+                            <expression terminal="4"/>
+                            <expression terminal="5"/>
+                            <expression terminal="6"/>
+                            <expression terminal="7"/>
+                            <expression terminal="8"/>
+                          </choice>
+                        </expression>
+                      </plus>
+                    </expression>
+                  </sequence>
+                </expression>
+              </optional>
+            </expression>
+          </sequence>
+        </expression>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="REGULAR_EXPRESSION">
+    <expression>
+      <sequence>
+        <expression terminal="/"/>
+        <expression nonterminal="RE_BODY"/>
+        <expression terminal="/"/>
+        <expression>
+          <optional>
+            <expression nonterminal="RE_FLAGS"/>
+          </optional>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="RE_BODY">
+    <expression>
+      <sequence>
+        <expression nonterminal="RE_FIRST_CHAR"/>
+        <expression>
+          <star>
+            <expression nonterminal="RE_FOLLOW_CHAR"/>
+          </star>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="RE_FIRST_CHAR">
+    <expression>
+      <choice>
+        <expression>
+          <not>
+            <expression>
+              <choice>
+                <expression terminal="&#xA;"/>
+                <expression terminal="*"/>
+                <expression terminal="/"/>
+                <expression terminal="\"/>
+              </choice>
+            </expression>
+          </not>
+        </expression>
+        <expression nonterminal="RE_BACKSLASH_SEQUENCE"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="RE_FOLLOW_CHAR">
+    <expression>
+      <choice>
+        <expression nonterminal="RE_FIRST_CHAR"/>
+        <expression terminal="*"/>
+      </choice>
+    </expression>
+  </production>
+  <production nonterminal="RE_BACKSLASH_SEQUENCE">
+    <expression>
+      <sequence>
+        <expression terminal="\"/>
+        <expression>
+          <not>
+            <expression terminal="&#xA;"/>
+          </not>
+        </expression>
+      </sequence>
+    </expression>
+  </production>
+  <production nonterminal="RE_FLAGS">
+    <expression>
+      <plus>
+        <expression>
+          <choice>
+            <expression terminal="a"/>
+            <expression terminal="b"/>
+            <expression terminal="c"/>
+            <expression terminal="d"/>
+            <expression terminal="e"/>
+            <expression terminal="f"/>
+            <expression terminal="g"/>
+            <expression terminal="h"/>
+            <expression terminal="i"/>
+            <expression terminal="j"/>
+            <expression terminal="k"/>
+            <expression terminal="l"/>
+            <expression terminal="m"/>
+            <expression terminal="n"/>
+            <expression terminal="o"/>
+            <expression terminal="p"/>
+            <expression terminal="q"/>
+            <expression terminal="r"/>
+            <expression terminal="s"/>
+            <expression terminal="t"/>
+            <expression terminal="u"/>
+            <expression terminal="v"/>
+            <expression terminal="w"/>
+            <expression terminal="x"/>
+            <expression terminal="y"/>
+          </choice>
+        </expression>
+      </plus>
+    </expression>
+  </production>
+  <production nonterminal="ANY_OTHER">
+    <expression>
+      <any/>
+    </expression>
+  </production>
+</bgf:GrammarType>
