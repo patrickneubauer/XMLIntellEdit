@@ -456,7 +456,13 @@ public class SimpleXsdLoader {
 	}
 	
 	public void getEnumLiteralDeclarations(AbstractElement el, List<EnumLiteralDeclaration> eld) {
-		
+		if (el instanceof EnumLiteralDeclaration) {
+			eld.add((EnumLiteralDeclaration)el);
+		} else if (el instanceof CompoundElement) {
+			for (AbstractElement sel: ((CompoundElement) el).getElements()) {
+				getEnumLiteralDeclarations(sel, eld);
+			}
+		}
 	}
 	
 	
@@ -486,26 +492,30 @@ public class SimpleXsdLoader {
 		handleAbstractElement(expr,g,rule,el,trafoMap,0);
 	}
 	
-	private void handleNegation(Expression sup, Grammar g, AbstractRule rule, AbstractNegatedToken el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleNegation(Expression sup, Grammar g, AbstractRule rule, AbstractNegatedToken el, Map<EObject,EObject> trafoMap, int level) {
 		Not not = fact().createNot();
 		sup.setNot(not);
 		
 		AbstractElement sel = el.getTerminal();
 		Expression expr = fact().createExpression();
-		handleAbstractElement(expr,g, rule, sel, trafoMap, level+1);
+		if (!handleAbstractElement(expr,g, rule, sel, trafoMap, level+1)) {
+			return false;
+		}
 		not.setExpression((Expression)trafoMap.get(sel));
+		return true;
 	}
 	
-	private void handleAction(Expression sup, Grammar g, AbstractRule rule, Action el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleAction(Expression sup, Grammar g, AbstractRule rule, Action el, Map<EObject,EObject> trafoMap, int level) {
 		//Ignore
+		return false;
 	}
 	
-	private void handleAssignment(Expression sup, Grammar g, AbstractRule rule, Assignment el, Map<EObject,EObject> trafoMap, int level) {
-		handleAbstractElement(sup,g,rule,el.getTerminal(),trafoMap,level+1);
+	private boolean handleAssignment(Expression sup, Grammar g, AbstractRule rule, Assignment el, Map<EObject,EObject> trafoMap, int level) {
+		return handleAbstractElement(sup,g,rule,el.getTerminal(),trafoMap,level+1);
 	}
 	
 
-	private void handleCharacterRange(Expression sup, Grammar g, AbstractRule rule, CharacterRange el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleCharacterRange(Expression sup, Grammar g, AbstractRule rule, CharacterRange el, Map<EObject,EObject> trafoMap, int level) {
 		String card = el.getCardinality();
 		wrapCardinality(sup, card, (ss)->{
 			//Map to a choice
@@ -529,26 +539,30 @@ public class SimpleXsdLoader {
 				ss.setChoice(choice);
 			}
 		});
-	
+		return true;
 	}
 	
 
-	private void handleAlternatives(Expression sup, Grammar g, AbstractRule rule, Alternatives el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleAlternatives(Expression sup, Grammar g, AbstractRule rule, Alternatives el, Map<EObject,EObject> trafoMap, int level) {
 		String card = el.getCardinality();
+		boolean[] ret = new boolean[]{false};
 		if (el.getElements().size() > 1) {
 			Choice choice = fact().createChoice();
 			sup.setChoice(choice);
 			for (AbstractElement sel: el.getElements()) {
 				Expression sex = fact().createExpression();
-				handleAbstractElement(sex, g, rule, sel, trafoMap, level+1);
-				choice.getExpressions().add(sex);
+				if (handleAbstractElement(sex, g, rule, sel, trafoMap, level+1)) {
+					choice.getExpressions().add(sex);
+					ret[0] = true;
+				}
 			}
 			wrapCardinality(sup, card, (sexpr)->sexpr.setChoice(choice));
 			
 		} else if (el.getElements().size()>0){
 			AbstractElement sel = el.getElements().iterator().next();
-			wrapCardinality(sup, card, (sexpr)->handleAbstractElement(sexpr, g, rule, sel, trafoMap, level));
+			wrapCardinality(sup, card, (sexpr)->ret[0]|=handleAbstractElement(sexpr, g, rule, sel, trafoMap, level));
 		}
+		return ret[0];
 		
 	}
 	
@@ -595,123 +609,133 @@ public class SimpleXsdLoader {
 		}
 	}
 
-	private void handleGroupPseudoAbstract(Expression sup, Grammar g, AbstractRule rule, CompoundElement el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleGroupPseudoAbstract(Expression sup, Grammar g, AbstractRule rule, CompoundElement el, Map<EObject,EObject> trafoMap, int level) {
 
 		String card = el.getCardinality();
 		int[] cards = cards(card);
+		boolean[] ret = new boolean[]{false};
 		if (el.getElements().size() > 1) {
 			Sequence choice = fact().createSequence();
 			for (AbstractElement sel: el.getElements()) {
 				Expression sex = fact().createExpression();
-				handleAbstractElement(sex, g, rule, sel, trafoMap, level+1);
-				choice.getExpressions().add(sex);
+				if (handleAbstractElement(sex, g, rule, sel, trafoMap, level+1)) {
+					choice.getExpressions().add(sex);
+					ret[0] = true;
+				}
 			}
 			wrapCardinality(sup, card, (sexpr)->sexpr.setSequence(choice));
 			
 		} else if (el.getElements().size()>0){
 			AbstractElement sel = el.getElements().iterator().next();
-			wrapCardinality(sup, card, (sexpr)->handleAbstractElement(sexpr, g, rule, sel, trafoMap, level));
+			wrapCardinality(sup, card, (sexpr)->ret[0]|=handleAbstractElement(sexpr, g, rule, sel, trafoMap, level));
 		}
+		return ret[0];
 	}
 	
-	private void handleGroup(Expression sup, Grammar g, AbstractRule rule, Group el, Map<EObject,EObject> trafoMap, int level) {
-		handleGroupPseudoAbstract(sup, g, rule, el, trafoMap, level);
+	private boolean handleGroup(Expression sup, Grammar g, AbstractRule rule, Group el, Map<EObject,EObject> trafoMap, int level) {
+		return handleGroupPseudoAbstract(sup, g, rule, el, trafoMap, level);
 		
 	}
 	
 
-	private void handleUnorderedGroup(Expression sup, Grammar g, AbstractRule rule, UnorderedGroup el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleUnorderedGroup(Expression sup, Grammar g, AbstractRule rule, UnorderedGroup el, Map<EObject,EObject> trafoMap, int level) {
 		//?? wie transformiere ich das
 		System.err.println("Unordered group not supported!");
-		handleGroupPseudoAbstract(sup, g, rule, el, trafoMap, level);
+		return handleGroupPseudoAbstract(sup, g, rule, el, trafoMap, level);
 	}
 	
 
-	private void handleCrossReference(Expression sup, Grammar g, AbstractRule rule, CrossReference el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleCrossReference(Expression sup, Grammar g, AbstractRule rule, CrossReference el, Map<EObject,EObject> trafoMap, int level) {
 		//TODO:???
-		handleAbstractElement(sup, g, rule, el.getTerminal(), trafoMap, level+1);
+		return handleAbstractElement(sup, g, rule, el.getTerminal(), trafoMap, level+1);
 	}
 	
 
-	private void handleEOF(Expression sup, Grammar g, AbstractRule rule, EOF el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleEOF(Expression sup, Grammar g, AbstractRule rule, EOF el, Map<EObject,EObject> trafoMap, int level) {
 		//Ignore?
+		return false;
 	}
 	
 
-	private void handleKeyword(Expression sup, Grammar g, AbstractRule rule, Keyword el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleKeyword(Expression sup, Grammar g, AbstractRule rule, Keyword el, Map<EObject,EObject> trafoMap, int level) {
 		String card = el.getCardinality();
 		wrapCardinality(sup, card, (ss)->{
 			sup.setTerminal(el.getValue());
 		});
-		
+		return true;
 	}
 	
 
-	private void handleRuleCall(Expression sup, Grammar g, AbstractRule rule, RuleCall el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleRuleCall(Expression sup, Grammar g, AbstractRule rule, RuleCall el, Map<EObject,EObject> trafoMap, int level) {
 		String ruleName = el.getRule().getName();
 		String card = el.getCardinality();
+		System.out.println("Handle rule "+ruleName);
 		wrapCardinality(sup, card, 
 				(ss)->{
-					/*if ("EInt".equals(ruleName) || "INT".equals(ruleName)) {
+					if ("EInt".equals(ruleName) || "INT".equals(ruleName)) {
 						ss.setValue(Value.INT);
 					} else if ("ID".equals(ruleName) || "STRING".equals(ruleName)|| "String".equals(ruleName) || "EString".equals(ruleName)) {
 						ss.setValue(Value.STRING);
-					} else {*/
+					} else {
 						ss.setNonterminal(el.getRule().getName());
-					//}
+					}
 				}
 				);
-		
+		return true;
 	}
 	
 
-	private void handleWildcard(Expression sup, Grammar g, AbstractRule rule, Wildcard el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleWildcard(Expression sup, Grammar g, AbstractRule rule, Wildcard el, Map<EObject,EObject> trafoMap, int level) {
 		//??
 		System.err.println("Wildcard not supported!");
+		return false;
 	}
 
 	
-	private void handleAbstractElement(Expression expr, Grammar g, AbstractRule rule, AbstractElement el, Map<EObject,EObject> trafoMap, int level) {
+	private boolean handleAbstractElement(Expression expr, Grammar g, AbstractRule rule, AbstractElement el, Map<EObject,EObject> trafoMap, int level) {
 		trafoMap.putIfAbsent(rule, expr);
 		trafoMap.put(el, expr);
 		if (el instanceof AbstractNegatedToken) {
-			handleNegation(expr, g, rule, (AbstractNegatedToken) el, trafoMap, level);
+			return handleNegation(expr, g, rule, (AbstractNegatedToken) el, trafoMap, level);
 			//TODO: Stimmt das?
 		} else if (el instanceof Action) {
-			handleAction(expr, g, rule, (Action) el, trafoMap, level);
+			return handleAction(expr, g, rule, (Action) el, trafoMap, level);
 		} else if (el instanceof Assignment) {
-			handleAssignment(expr, g, rule, (Assignment) el, trafoMap, level);
+			return handleAssignment(expr, g, rule, (Assignment) el, trafoMap, level);
 		} else if (el instanceof CharacterRange) {
-			handleCharacterRange(expr, g, rule, (CharacterRange) el, trafoMap, level);
+			return handleCharacterRange(expr, g, rule, (CharacterRange) el, trafoMap, level);
 		} else if (el instanceof CompoundElement) {
 			if (el instanceof Alternatives) {
-				handleAlternatives(expr, g, rule, (Alternatives) el, trafoMap, level);	
+				return handleAlternatives(expr, g, rule, (Alternatives) el, trafoMap, level);	
 			} else if (el instanceof Group) {
-				handleGroup(expr, g, rule, (Group) el, trafoMap, level);
+				return handleGroup(expr, g, rule, (Group) el, trafoMap, level);
 			} else if (el instanceof UnorderedGroup) {
-				handleUnorderedGroup(expr, g, rule, (UnorderedGroup) el, trafoMap, level);
+				return handleUnorderedGroup(expr, g, rule, (UnorderedGroup) el, trafoMap, level);
 			}
 		} else if (el instanceof CrossReference) {
-			handleCrossReference(expr, g, rule, (CrossReference) el, trafoMap, level);
+			return handleCrossReference(expr, g, rule, (CrossReference) el, trafoMap, level);
 		}  else if (el instanceof EOF) {
-			handleEOF(expr, g, rule, (EOF) el, trafoMap, level);
+			return handleEOF(expr, g, rule, (EOF) el, trafoMap, level);
 		} else if (el instanceof Keyword) {
-			handleKeyword(expr, g, rule, (Keyword) el, trafoMap, level);
+			return handleKeyword(expr, g, rule, (Keyword) el, trafoMap, level);
 		} else if (el instanceof RuleCall) {
-			handleRuleCall(expr, g, rule, (RuleCall) el, trafoMap, level);
+			return handleRuleCall(expr, g, rule, (RuleCall) el, trafoMap, level);
 		} else if (el instanceof Wildcard) {
-			handleWildcard(expr, g, rule, (Wildcard) el, trafoMap, level);
+			return handleWildcard(expr, g, rule, (Wildcard) el, trafoMap, level);
+		} else {
+			System.err.println("Unknown element "+el);
 		}
+		return false;
 	}
 
 	
 	private void handleRule(Grammar g, AbstractRule rule, Map<EObject, EObject> trafoMap) {
 		//Filter out some default rules handled else
 		String rname = rule.getName();
-		/*if ("ID".equals(rname) || "EInt".equals(rname) || "EString".equals(rname) || "String".equals(rname) ||
+		if ("ID".equals(rname) || "EInt".equals(rname) || "EString".equals(rname) || "String".equals(rname) ||
 				 "STRING".equals(rname) || "INT".equals(rname)) {
 			return;
-		}*/
+		}
 		
 		
 		

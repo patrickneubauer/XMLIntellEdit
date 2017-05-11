@@ -20,6 +20,7 @@ import javax.activation.UnsupportedDataTypeException;
 import javax.naming.event.ObjectChangeListener;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -81,6 +82,7 @@ public class TransformatorStructure {
 	private Map<EEnum,EEnum> copiedEEnums = new HashMap<EEnum, EEnum>();
 	private Map<EEnumLiteral,EEnumLiteral> copiedEEnumLiterals = new HashMap<EEnumLiteral, EEnumLiteral>();
 	private Map<EEnumLiteral,EEnumLiteral> backEEnumLiteral = new HashMap<EEnumLiteral, EEnumLiteral>();
+	private Map<String,EEnumLiteral> backEEnumLiteralStr = new HashMap<String, EEnumLiteral>();
 	private Map<EClass, EClass> xmlToEcoreClasses = new HashMap<EClass, EClass>();
 	private Map<EClass, EClass> ecoreToXmlClasses = new HashMap<EClass, EClass>();
 	
@@ -145,6 +147,7 @@ public class TransformatorStructure {
 					EEnumLiteral back = (EEnumLiteral)target.getEObject(source.getURIFragment(lit));
 					copiedEEnumLiterals.put(lit, back);
 					backEEnumLiteral.put(back, lit);
+					backEEnumLiteralStr.put(eenum.getName()+"."+lit.getLiteral(), lit);
 				}
 				//Ignore for now
 			} else if (eobj instanceof EDataType) {
@@ -762,7 +765,7 @@ public class TransformatorStructure {
 				eenums.add(targetEEnum);
 				//Ignore for now
 			} else if (eobj instanceof EDataType) {
-				//???
+				//??
 			} else if (eobj instanceof EAttribute) {
 				//Have handled every important above?
 			} else if (eobj instanceof EReference) {
@@ -1114,6 +1117,7 @@ public class TransformatorStructure {
 			if (target == null) {
 				copiedEEnumLiterals.put(lit, target = EcoreFactory.eINSTANCE.createEEnumLiteral());
 				backEEnumLiteral.put(target, lit);
+				backEEnumLiteralStr.put(from.getName()+"."+lit.getLiteral(), lit);
 				target.setLiteral(lit.getLiteral());
 				target.setName(lit.getName());
 				target.setValue(lit.getValue());
@@ -1123,29 +1127,35 @@ public class TransformatorStructure {
 		return ret;			
 	}
 	
-	private final ValueTransformator<Object,Object> eenumTransformator = 
-			new ValueTransformator<Object,Object>() {
+	public ValueTransformator<Object, Object> eenumTransformator(EEnum forEEnum) {
+		return new ValueTransformator<Object,Object>() {
 
-				@Override
-				public Object convertToEcore(Object xml) {
-					System.err.println("Convert to ecore needs to be reworked: was enumliteral->enumliteral, but appearanly others can be there too");
-					Object ret = copiedEEnumLiterals.get(xml);
-					if (ret == null && ret instanceof EEnumLiteral) {
-						String fragment = ((EEnumLiteral)xml).eResource().getURIFragment((EEnumLiteral)xml);
-						EObject eobj = fragmentToXmlObject.get(fragment);
-						ret = copiedEEnumLiterals.get(eobj);
-					} else {
-						ret = xml; //Try??
-					}
-					return ret;
+			@Override
+			public Object convertToEcore(Object xml) {
+				System.err.println("Convert to ecore needs to be reworked: was enumliteral->enumliteral, but appearanly others can be there too");
+				Object ret = copiedEEnumLiterals.get(xml);
+				if (ret == null && ret instanceof EEnumLiteral) {
+					String fragment = ((EEnumLiteral)xml).eResource().getURIFragment((EEnumLiteral)xml);
+					EObject eobj = fragmentToXmlObject.get(fragment);
+					ret = copiedEEnumLiterals.get(eobj);
+				} else {
+					ret = xml; //Try??
 				}
+				return ret;
+			}
 
-				@Override
-				public Object convertToXml(Object eobject) {
-					return backEEnumLiteral.get(eobject);
+			@Override
+			public Object convertToXml(Object eobject) {
+				Object ret = backEEnumLiteral.get(eobject);
+				if (ret == null && eobject instanceof Enumerator) {
+					Enumerator enumerator = (Enumerator)eobject;
+					String totalStr = forEEnum.getName()+"."+enumerator.getLiteral();
+					ret = backEEnumLiteralStr.get(totalStr);
 				}
+				return ret;
+			}
 		};
-	
+	}
 
 		
 		public boolean augmentAttributeBasic(EAttribute xmlAttribute, EAttribute ecoreAttribute) {
@@ -1163,7 +1173,7 @@ public class TransformatorStructure {
 				} else {
 					EAttributeTransformatorImpl tfi = new EAttributeTransformatorImpl(xmlAttribute, ecoreAttribute,
 							new CollectionValueTransformationImpl(EEnumLiteral.class,
-									EEnumLiteral.class, eenumTransformator));
+									EEnumLiteral.class, eenumTransformator(targetEEnum)));
 					xmlToEcoreAttr.put(xmlAttribute, tfi);
 					ecoreToXmlAttr.put(ecoreAttribute, tfi);
 					return true;
@@ -1342,7 +1352,7 @@ public class TransformatorStructure {
 				contCl.getEStructuralFeatures().add(ecoreAttribute);
 				EAttributeTransformatorImpl tfi = new EAttributeTransformatorImpl(xmlAttribute, ecoreAttribute,
 						new CollectionValueTransformationImpl(EEnumLiteral.class,
-								EEnumLiteral.class, eenumTransformator));
+								EEnumLiteral.class, eenumTransformator(targetEEnum)));
 				xmlToEcoreAttr.put(xmlAttribute, tfi);
 				ecoreToXmlAttr.put(ecoreAttribute, tfi);
 				EObject eobj;
