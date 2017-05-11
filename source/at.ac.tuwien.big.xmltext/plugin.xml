@@ -57,4 +57,12 @@
             genModel="simpleany.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated bgf -->
+      <package
+            uri="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/source/at.ac.tuwien.big.xmltext/bgf/bgf.xsdsimplified"
+            class="org_sl_planet_bgfSimplified.Org_sl_planet_bgfSimplifiedPackage"
+            genModel="bgf/bgf.genmodel"/>
+   </extension>
+
 </plugin>

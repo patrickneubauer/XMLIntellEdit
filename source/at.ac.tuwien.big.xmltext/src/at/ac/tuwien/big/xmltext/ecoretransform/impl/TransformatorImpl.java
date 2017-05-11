@@ -115,10 +115,14 @@ public class TransformatorImpl implements Transformator {
 			}
 		}
 		List<EObject> transformed = new ArrayList<>();
+		boolean okSuperType = true;
 		for (EObject eobj: eobjs) {
 			transformed.add(eobject2xml(eobj));
+			if (rootFeature == null || !rootFeature.getEReferenceType().isSuperTypeOf(eobj.eClass())) {
+				okSuperType = false;
+			}
 		}
-		if (rootFeature != null) {	
+		if (rootFeature != null && okSuperType) {	
 			MyEcoreUtil.setAsCollectionBasic(root, rootFeature, transformed);
 		} else {
 			xml.getContents().clear();

@@ -5,13 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import mypackage.Settings;
 import mypackage.XsdToXtextGenerator;
 
 public class MainGenerator {
+	{
+	}
 
 	
 	private static void testLibrary3Example() {
@@ -47,7 +51,7 @@ public class MainGenerator {
 		generator.generateModelCode();
 	}
 	
-	private static void testEClassBasicExample90() {
+	/*private static void testEClassBasicExample90() {
 		XsdToEcoreTransformer transformer = new XsdToEcoreTransformer();
 		transformer.setXsd("examples/eclassXML/dictionary.xsd");
 		Resource xsdResource = transformer.getResult();
@@ -147,12 +151,12 @@ public class MainGenerator {
 		EcoreResourceGenerator generator = new EcoreResourceGenerator(XsdToXtextGenerator.ECORE_FILE_NAME,
 				XsdToXtextGenerator.GENMODEL_FILE_NAME, Settings.LANGUAGE_PROJECT_NAME,current.getParentFile().getAbsolutePath());
 		generator.generateModelCode();
-	}
+	}*/
 	
 	public static void main(String[] args) {
 		testLibrary3Example();
-		testEClassBasicExample90();
+	/*	testEClassBasicExample90();
 		testEClassBasicExample27();
-		testNamespace();
+		testNamespace();*/
 	}
 }

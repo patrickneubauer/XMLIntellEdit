@@ -15,7 +15,10 @@ Export-Package: at.ac.tuwien.big.xmltext,
  library3Simplified.util,
  simpleanySimplified,
  simpleanySimplified.impl,
- simpleanySimplified.util
+ simpleanySimplified.util,
+ org_sl_planet_bgfSimplified,
+ org_sl_planet_bgfSimplified.impl,
+ org_sl_planet_bgfSimplified.util
 Require-Bundle: org.eclipse.xsd,
  org.eclipse.emf.codegen.ecore,
  org.eclipse.core.runtime,

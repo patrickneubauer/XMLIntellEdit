@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.xsd.ecore.XSDEcoreBuilder;
+import org.eclipse.xsd.util.XSDResourceFactoryImpl;
 
 import at.ac.tuwien.big.xmltext.ecoretransform.impl.TransformatorImpl;
 import at.ac.tuwien.big.xmltext.ecoretransform.impl.TransformatorStructure;
@@ -33,20 +34,28 @@ public class EcoreToGenericEcoreTransformer {
 	private EClass rootClass;
 	private TransformatorStructure struct;
 	
+	private static URI createFileURI(String path) {
+		return new ResourceSetImpl().getURIConverter().normalize(URI.createFileURI(path));
+	}
 	
 	public void setXsdEcore(String xsdPath) {
-		setXsdEcore(URI.createFileURI(xsdPath));
+		setXsdEcore(createFileURI(xsdPath));
 	}
 	
 	public void setXsdEcore(URI xsdPath) {
 		ResourceSet resourceSet = new ResourceSetImpl();
+		//resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xsd", new XSDResourceFactoryImpl());
 		XSDEcoreBuilder xsdEcoreBuilder = new XSDEcoreBuilder();
 		Collection<Resource> generatedResources = xsdEcoreBuilder.generateResources(xsdPath);
 		List<EPackage> genPkgs = new ArrayList<>();
 		// register the packages loaded from XSD
+		Resource ret = null;
 		for (Resource res: generatedResources) {
 			for (Object generatedEObject : (Iterable<EObject>)()->res.getAllContents()) {
 			    if (generatedEObject instanceof EPackage) {
+			    	if (ret == null) {
+			    		ret = res;
+			    	}
 			    	EPackage generatedPackage = (EPackage) generatedEObject;
 			    	System.out.println("Associating package "+generatedPackage.getNsURI()+" with "+generatedPackage);
 			    	//TODO: Hier setze ich Sachen in die Global Registry, aber warum reicht das normale nicht aus?!
@@ -63,7 +72,12 @@ public class EcoreToGenericEcoreTransformer {
 			    }
 			}
 		}
-		setXsdEcore(resourceSet.getResource(xsdPath, true));
+		try {
+			ret = resourceSet.getResource(xsdPath, true);
+		} catch (Exception e) {
+			System.err.println("Could not get correct resource");
+		}
+		setXsdEcore(ret);
 	}
 	
 	public void setXsdEcore(Resource ecoreResource) {
@@ -112,7 +126,15 @@ public class EcoreToGenericEcoreTransformer {
 		getTransformator(xml).ecoreToXml(ecore, xml);
 	}
 	
-	
+	public void setResult(Resource ecoreResult) {
+		struct = TransformatorStructure.withKnownResult(new TypeTransformatorStore(), 
+				ecoreResource.getResourceSet(),
+				ecoreResource, ecoreResult);
+		struct.getIdAttribute();
+		rootClass = struct.getEcoreRoot();
+		this.result = ecoreResult;
+	}
+	 
 	
 	private void calcResult() {
 		// XSD --> Ecore
@@ -122,11 +144,14 @@ public class EcoreToGenericEcoreTransformer {
 		struct.getIdAttribute();
 		rootClass = struct.getEcoreRoot();
 		this.result = struct.getEcoreResources().iterator().next();
+		if (result.getResourceSet() == null) {
+			ecoreResource.getResourceSet().getResources().add(result);
+		}
 	}
 	
 	public void saveResult() {
 		try {
-			result.save(new FileOutputStream(targetName), null);
+			getResult().save(new FileOutputStream(targetName), null);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -158,6 +183,10 @@ public class EcoreToGenericEcoreTransformer {
 		TransformatorImpl ret = new TransformatorImpl(struct);
 		ret.xmlToEcore(xmlInstance, emptyEcoreInstance);
 		return ret;
+	}
+	
+	public TransformatorImpl newInstanceTransformer() {
+		return new TransformatorImpl(struct);
 	}
 	
 	public Resource getEcoreInstance(Resource xmlInstance) {

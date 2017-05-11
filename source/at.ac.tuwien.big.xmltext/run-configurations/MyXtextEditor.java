@@ -497,7 +497,7 @@ public class MyXtextEditor extends XtextEditor {
 		InstanceCreator creator = new InstanceCreator() {
 			
 			@Override
-			public EObject createInstance(EClass cl) {
+			public EObject createInstance(EObject container, EClass cl) {
 				return MyEcoreUtil.createInstanceStatic(cl);
 			}
 		};
