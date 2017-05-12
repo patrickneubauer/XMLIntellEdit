@@ -1,0 +1,73 @@
+WS:
+        (" " | "\u0009" | "\u000d" | "\u000a")+
+ML_COMMENT:
+        "/*" !"*/"
+SL_COMMENT:
+        "//" !("\u000a" | "\u000d") ("\u000d"? "\u000a")?
+EMPTY_PAREN:
+        OPEN ")"
+AntlrGrammar:
+        "grammar" STR ";" Options? Rule*
+Options:
+        "options" "{" OptionValue+ "}"
+OptionValue:
+        STR "=" IdOrInt ";"
+IdOrInt:
+        STR
+        INT
+Rule:
+        "fragment"? STR ("[" Parameter ("," Parameter)* "]")? ":" Alternatives ";"
+Parameter:
+        STR STR
+Alternatives:
+        Group (("|" Group)+)?
+Group:
+        Guarded
+        Atom (Atom+)?
+Atom:
+        OtherElement (("+" | "*" | "?"))?
+        RuleOptions
+OtherElement:
+        "~" (Parenthesized | Literal)
+        Predicated
+        Parenthesized
+        Literal (".." Literal)?
+Guarded:
+        "{" OrExpression "}" "?" "=&gt;" Parenthesized
+OrExpression:
+        AndExpression ("||" AndExpression)*
+AndExpression:
+        NotExpression ("&amp;&amp;" NotExpression)*
+NotExpression:
+        PrimaryExpression
+        "!" NotExpression
+PrimaryExpression:
+        ParenthesizedExpression
+        ReferenceOrLiteral
+ParenthesizedExpression:
+        OPEN OrExpression ")"
+ReferenceOrLiteral:
+        QName
+Parenthesized:
+        OPEN Alternatives ")"
+Predicated:
+        OPEN OPEN Alternatives ")" "=&gt;" OtherElement ")"
+RuleOptions:
+        Options ":" Atom
+        "{" "skip();" "}"
+Literal:
+        RuleCall
+        Keyword
+        Wildcard
+RuleCall:
+        STR ("[" OrExpression ("," OrExpression)* "]")?
+QName:
+        STR ("." STR)?
+Keyword:
+        STR
+Wildcard:
+        "."
+EMPTY_PAREN:
+        OPEN ")"
+OPEN:
+        "(" WS*

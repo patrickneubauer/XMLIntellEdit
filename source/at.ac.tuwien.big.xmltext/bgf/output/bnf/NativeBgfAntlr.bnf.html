@@ -1,0 +1,292 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #997700; font-weight: bold">OptionsSpec</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;options&quot;</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;{&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">Option</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;;&quot;</span><span style="color: #333333">)*</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;}&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">SetElement</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Range</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">SetElement</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">STRING_LITERAL</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ElementOptions</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">SetElement</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ElementOptions</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerCommand</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;mode&quot;</span><span style="color: #333333">)</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;(&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">INT</span><span style="color: #333333">)</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;)&quot;</span><span style="color: #333333">)?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerCommands</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;-&amp;amp;gt;&quot;</span><span style="color: #bbbbbb"> </span>{LexerCommand &quot;,&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">EbnfSuffix</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;+&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;*&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;?&quot;</span><span style="color: #333333">)</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;?&quot;</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerAlt</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">LexerElement</span><span style="color: #333333">+</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">LexerCommands</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerAtom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Range</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerAtom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">LEXER_CHAR_SET</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerAtom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;.&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ElementOptions</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerAtom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;~&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">SetElement</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">BlockSet</span><span style="color: #333333">)</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerAtom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">STRING_LITERAL</span><span style="color: #333333">)</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ElementOptions</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Range</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">STRING_LITERAL</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;..&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">STRING_LITERAL</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Element</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">LabeledElement</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">EbnfSuffix</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Element</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">ACTION</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;?&quot;</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Element</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Atom</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">EbnfSuffix</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Element</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Ebnf</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">OptionValue</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;.&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #333333">)*</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">OptionValue</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">INT</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">OptionValue</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">ACTION</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">OptionValue</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">STRING_LITERAL</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ModeSpec</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;mode&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;;&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">LexerRule</span><span style="color: #333333">*</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RuleBlock</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>{LabeledAlt &quot;|&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Atom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;.&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ElementOptions</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Atom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ARG_ACTION</span><span style="color: #333333">?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ElementOptions</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Atom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Range</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Atom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;~&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">SetElement</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">BlockSet</span><span style="color: #333333">)</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Atom</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">STRING_LITERAL</span><span style="color: #333333">)</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ElementOptions</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">DelegateGrammars</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;import&quot;</span><span style="color: #bbbbbb"> </span>{DelegateGrammar &quot;,&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;;&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ElementOption</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;=&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">STRING_LITERAL</span><span style="color: #333333">))?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ExceptionGroup</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;catch&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ARG_ACTION</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ACTION</span><span style="color: #333333">)*</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;finally&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ACTION</span><span style="color: #333333">)?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerElement</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">LabeledLexerElement</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">EbnfSuffix</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerElement</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">LexerBlock</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">EbnfSuffix</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerElement</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">LexerAtom</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">EbnfSuffix</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerElement</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">ACTION</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;?&quot;</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RuleModifier</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;private&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RuleModifier</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;fragment&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RuleModifier</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;public&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RuleModifier</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;protected&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RuleAction</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;@&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ACTION</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RulePrequel</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">RuleAction</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RulePrequel</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">OptionsSpec</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Ebnf</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Block</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">EbnfSuffix</span><span style="color: #333333">?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">BlockSet</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;(&quot;</span><span style="color: #bbbbbb"> </span>{SetElement &quot;|&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;)&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Option</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;=&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">OptionValue</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">TokensSpec</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;tokens&quot;</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;{&quot;</span><span style="color: #bbbbbb"> </span>{Id &quot;,&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;}&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RuleSpec</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">LexerRule</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RuleSpec</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">ParserRuleSpec</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Action</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;@&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">ActionScopeName</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;::&quot;</span><span style="color: #333333">)?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ACTION</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ParserRuleSpec</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">RuleModifier</span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ARG_ACTION</span><span style="color: #333333">?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">RuleReturns</span><span style="color: #333333">?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ThrowsSpec</span><span style="color: #333333">?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">LocalsSpec</span><span style="color: #333333">?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">RulePrequel</span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;:&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">RuleBlock</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;;&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ExceptionGroup</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LabeledAlt</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Alternative</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;#&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #333333">)?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ActionScopeName</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;parser&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ActionScopeName</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;lexer&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ActionScopeName</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LabeledElement</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;=&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;+=&quot;</span><span style="color: #333333">)</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">Atom</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Block</span><span style="color: #333333">)</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">PrequelConstruct</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">OptionsSpec</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">PrequelConstruct</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Action</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">PrequelConstruct</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">DelegateGrammars</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">PrequelConstruct</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">TokensSpec</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ThrowsSpec</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;throws&quot;</span><span style="color: #bbbbbb"> </span>{Id &quot;,&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerRule</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;fragment&quot;</span><span style="color: #333333">?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;:&quot;</span><span style="color: #bbbbbb"> </span>{LexerAlt &quot;|&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;;&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Alternative</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">ElementOptions</span><span style="color: #333333">?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Element</span><span style="color: #333333">*</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">Block</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;(&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">OptionsSpec</span><span style="color: #333333">?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">RuleAction</span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;:&quot;</span><span style="color: #333333">)?</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">AltList</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;)&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">GrammarType</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;lexer&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;parser&quot;</span><span style="color: #333333">)?</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;grammar&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LexerBlock</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;(&quot;</span><span style="color: #bbbbbb"> </span>{LexerAlt &quot;|&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;)&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ANTLR4Grammar</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">GrammarType</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;;&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">PrequelConstruct</span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">RuleSpec</span><span style="color: #333333">*</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ModeSpec</span><span style="color: #333333">*</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LocalsSpec</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;locals&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ARG_ACTION</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">LabeledLexerElement</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;=&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;+=&quot;</span><span style="color: #333333">)</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="color: #003366; font-weight: bold">LexerAtom</span><span style="color: #bbbbbb"> </span><span style="color: #333333">|</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Block</span><span style="color: #333333">)</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">DelegateGrammar</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #bbbbbb"> </span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;=&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">Id</span><span style="color: #333333">)?</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">ElementOptions</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;&amp;amp;lt;&quot;</span><span style="color: #bbbbbb"> </span>{ElementOption &quot;,&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"> </span><span style="background-color: #fff0f0">&quot;&amp;amp;gt;&quot;</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">RuleReturns</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span><span style="background-color: #fff0f0">&quot;returns&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #003366; font-weight: bold">ARG_ACTION</span><span style="color: #bbbbbb"></span>
+<span style="color: #003366; font-weight: bold">AltList</span>:<span style="color: #bbbbbb"></span>
+<span style="color: #bbbbbb">        </span>{Alternative &quot;|&quot;}<span style="color: #333333">+</span><span style="color: #bbbbbb"></span>
+</pre></td></tr></table></div>
