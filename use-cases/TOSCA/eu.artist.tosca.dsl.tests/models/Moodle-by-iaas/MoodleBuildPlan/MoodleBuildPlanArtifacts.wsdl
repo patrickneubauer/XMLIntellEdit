@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions  
+	xmlns:impl="http://siserver.org/schema" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:tns="http:///www.opentosca.org/examples/Moodle/BuildPlan" 
+	xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" 
+	xmlns:wsdl="http://ec2vm.aws.ia.opentosca.org" 
+	xmlns:wsdl1="http://ec2linux.aws.ia.opentosca.org" 
+	xmlns:wsdl2="http://siserver.org/wsdl" 
+	xmlns:xsd="http://siserver.org/schema" 
+	xmlns:xsd1="http://www.w3.org/2001/XMLSchema" 
+	name="MoodleBuildPlan" 
+	targetNamespace="http:///www.opentosca.org/examples/Moodle/BuildPlan">
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	WSDL IMPORTS
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->   	
+	<import location="siservice/invoker.wsdl" namespace="http://siserver.org/wsdl"/>
+	
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	PARTNERLINKTYPE DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->   	
+    <plnk:partnerLinkType name="SIInvokerPLT">
+		<plnk:role name="Requestee" portType="wsdl2:InvokePortType"/>
+		<plnk:role name="Requester" portType="wsdl2:CallbackPortType"/>		
+	</plnk:partnerLinkType>
+	
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	CORRELATION PROPERTIES DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->   	 
+    <vprop:property name="MessageID" type="xsd1:string"/>
+  
+	<vprop:propertyAlias messageType="wsdl2:invokeOperationAsyncMessage" part="invokeOperationAsync" propertyName="tns:MessageID">
+		<vprop:query><![CDATA[/xsd:MessageID]]></vprop:query>
+	</vprop:propertyAlias>
+    
+    <vprop:propertyAlias messageType="wsdl2:invokeResponse" part="invokeResponse" propertyName="tns:MessageID">
+		<vprop:query><![CDATA[/xsd:MessageID]]></vprop:query>
+	</vprop:propertyAlias>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     TYPE DEFINITION - List of services participating in this BPEL process 
+     The default output of the BPEL designer uses strings as input and 
+     output to the BPEL Process. But you can define or import any XML 
+     Schema type and us them as part of the message types.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    		
+    <types>  
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http:///www.opentosca.org/examples/Moodle/BuildPlan">
+                
+            <element name="MoodleBuildPlanRequest">
+                <complexType>
+                    <sequence>
+                    	<element name="region" type="string"/>
+                    	<element name="securityGroup" type="string"/>
+                    	<element name="keyPairName" type="string"/>
+                    	<element name="sshKey" type="string"/>
+                    	<element name="ami" type="string"/>
+                    	<element name="instanceType" type="string"/>
+                    	<element name="accessKey" type="string"/>
+                    	<element name="secretKey" type="string"/>
+                    	<element name="csarName" type="string"/>
+						<element name="containerApi" type="string"/>
+                    	<element name="callbackUrl" type="string"/>
+						<element name="CorrelationID" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+                  
+            <element name="MoodleBuildPlanResponse">
+                <complexType>
+                    <sequence>
+                    	<element name="result" type="string"/>
+                    	<element name="selfserviceApplicationUrl" type="string"/>
+						<element name="CorrelationID" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            
+        </schema>
+    </types>
+  
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     MESSAGE TYPE DEFINITION - Definition of the message types used as 
+     part of the port type defintions
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <message name="MoodleBuildPlanRequestMessage">
+        <part element="tns:MoodleBuildPlanRequest" name="payload"/>
+    </message>
+    
+    <message name="MoodleBuildPlanResponseMessage">
+        <part element="tns:MoodleBuildPlanResponse" name="payload"/>
+    </message>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PORT TYPE DEFINITION - A port type groups a set of operations into
+     a logical service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- portType implemented by the MoodleBuildPlan BPEL process -->
+    <portType name="MoodleBuildPlan">
+        <operation name="initiate">
+            <input message="tns:MoodleBuildPlanRequestMessage"/>
+        </operation>
+    </portType>
+
+    <!-- portType implemented by the requester of MoodleBuildPlan BPEL process 
+         for asynchronous callback purposes
+         -->
+    <portType name="MoodleBuildPlanCallback">
+        <operation name="onResult">
+            <input message="tns:MoodleBuildPlanResponseMessage"/>
+        </operation>
+    </portType>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PARTNER LINK TYPE DEFINITION
+         the MoodleBuildPlan partnerLinkType binds the provider and
+         requester portType into an asynchronous conversation.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="MoodleBuildPlan">
+        <plnk:role name="MoodleBuildPlanProvider" portType="tns:MoodleBuildPlan"/>
+        <plnk:role name="MoodleBuildPlanRequester" portType="tns:MoodleBuildPlanCallback"/>
+    </plnk:partnerLinkType>   
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     BINDING DEFINITION - Defines the message format and protocol details
+     for a web service.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <binding name="MoodleBuildPlanBinding" type="tns:MoodleBuildPlan">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="initiate">
+            <soap:operation soapAction="http:///www.opentosca.org/examples/Moodle/BuildPlan/initiate"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+    </binding>
+
+    <binding name="MoodleBuildPlanCallbackBinding" type="tns:MoodleBuildPlanCallback">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="onResult">
+            <soap:operation soapAction="http:///www.opentosca.org/examples/Moodle/BuildPlan/onResult"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+    </binding>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     SERVICE DEFINITION - A service groups a set of ports into
+     a service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <service name="MoodleBuildPlanService">
+        <port binding="tns:MoodleBuildPlanBinding" name="MoodleBuildPlanPort">
+    		<soap:address location="http://localhost:8080/MoodleBuildPlan"/>
+        </port>        
+    </service>
+
+    <service name="MoodleBuildPlanSICallbackService">
+        <port name="MoodleBuildPlanSICallbackPort" binding="wsdl2:CallbackBinding">
+      		<soap:address location="http://localhost:9763/services/MoodleBuildPlanSICallbackService/"/>
+    	</port>
+    </service>
+
+    <service name="MoodleBuildPlanServiceCallback">
+        <port binding="tns:MoodleBuildPlanCallbackBinding" name="MoodleBuildPlanPortCallbackPort">
+    		<soap:address location="http://localhost:8080/MoodleBuildPlanCallback"/>
+        </port>
+    </service>
+</definitions>

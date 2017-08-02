@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/eu.artist.tosca/src" modelPluginID="eu.artist.tosca"
+    modelName="TOSCA-v1" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>TOSCA-v1.0.ecore</foreignModel>
+  <genPackages prefix="_12" resource="XML" disposableProviderFactory="true" ecorePackage="TOSCA-v1.0.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TOSCA-v1.0.ecore#//MaxInstancesTypeMember1">
+      <genEnumLiterals ecoreEnumLiteral="TOSCA-v1.0.ecore#//MaxInstancesTypeMember1/unbounded"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TOSCA-v1.0.ecore#//TBoolean">
+      <genEnumLiterals ecoreEnumLiteral="TOSCA-v1.0.ecore#//TBoolean/yes"/>
+      <genEnumLiterals ecoreEnumLiteral="TOSCA-v1.0.ecore#//TBoolean/no"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TOSCA-v1.0.ecore#//UpperBoundTypeMember1">
+      <genEnumLiterals ecoreEnumLiteral="TOSCA-v1.0.ecore#//UpperBoundTypeMember1/unbounded"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="TOSCA-v1.0.ecore#//UpperBoundTypeMember11">
+      <genEnumLiterals ecoreEnumLiteral="TOSCA-v1.0.ecore#//UpperBoundTypeMember11/unbounded"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//ImportedURI"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//MaxInstancesType"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//MaxInstancesTypeMember0"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//MaxInstancesTypeMember1Object"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//TBooleanObject"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//UpperBoundType"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//UpperBoundType1"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//UpperBoundTypeMember0"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//UpperBoundTypeMember01"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//UpperBoundTypeMember1Object"/>
+    <genDataTypes ecoreDataType="TOSCA-v1.0.ecore#//UpperBoundTypeMember1Object1"/>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//ArtifactReferencesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//ArtifactReferencesType/artifactReference"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//CapabilitiesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//CapabilitiesType/capability"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//CapabilitiesType1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//CapabilitiesType1/capability"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//CapabilityDefinitionsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//CapabilityDefinitionsType/capabilityDefinition"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//ConstraintsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//ConstraintsType/constraint"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//ConstraintsType1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//ConstraintsType1/constraint"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//DefinitionsType"/>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//DerivedFromType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//DerivedFromType/relationshipTypeImplementationRef"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//DerivedFromType1">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//DerivedFromType1/nodeTypeImplementationRef"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//DerivedFromType2">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//DerivedFromType2/typeRef"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//DocumentRoot/definitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//DocumentRoot/documentation"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//ExcludeType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//ExcludeType/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//ExtensionsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//ExtensionsType/extension"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//ImplementationArtifactType"/>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//IncludeType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//IncludeType/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//InputParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//InputParametersType/inputParameter"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//InputParametersType1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//InputParametersType1/inputParameter"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//InstanceStateType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//InstanceStateType/state"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//InterfacesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//InterfacesType/interface"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//InterfacesType1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//InterfacesType1/interface"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//NodeOperationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//NodeOperationType/interfaceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//NodeOperationType/nodeRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//NodeOperationType/operationName"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//NodeTypeReferenceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//NodeTypeReferenceType/typeRef"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//OutputParametersType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//OutputParametersType/outputParameter"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//OutputParametersType1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//OutputParametersType1/outputParameter"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PlanModelReferenceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//PlanModelReferenceType/reference"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PlanModelType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//PlanModelType/any"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PlanType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//PlanType/planRef"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PoliciesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//PoliciesType/policy"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PoliciesType1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//PoliciesType1/policy"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PropertiesDefinitionType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//PropertiesDefinitionType/element"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//PropertiesDefinitionType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PropertiesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//PropertiesType/any"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PropertiesType1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//PropertiesType1/any"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//PropertiesType1/propertyMappings"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PropertyConstraintsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//PropertyConstraintsType/propertyConstraint"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PropertyConstraintsType1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//PropertyConstraintsType1/propertyConstraint"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//PropertyMappingsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//PropertyMappingsType/propertyMapping"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//RelationshipConstraintsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//RelationshipConstraintsType/relationshipConstraint"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//RelationshipConstraintType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//RelationshipConstraintType/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//RelationshipConstraintType/constraintType"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//RelationshipOperationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//RelationshipOperationType/interfaceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//RelationshipOperationType/operationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//RelationshipOperationType/relationshipRef"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//RequirementDefinitionsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//RequirementDefinitionsType/requirementDefinition"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//RequirementsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//RequirementsType/requirement"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//RequirementsType1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//RequirementsType1/requirement"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//SourceElementType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//SourceElementType/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//SourceInterfacesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//SourceInterfacesType/interface"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TAppliesTo">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TAppliesTo/nodeTypeReference"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TargetElementType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TargetElementType/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TargetInterfacesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TargetInterfacesType/interface"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TArtifactReference">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TArtifactReference/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TArtifactReference/include"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TArtifactReference/exclude"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TArtifactReference/reference"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TArtifactTemplate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TArtifactTemplate/artifactReferences"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TArtifactTemplate/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TArtifactType"/>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TBoundaryDefinitions">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TBoundaryDefinitions/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TBoundaryDefinitions/propertyConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TBoundaryDefinitions/requirements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TBoundaryDefinitions/capabilities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TBoundaryDefinitions/policies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TBoundaryDefinitions/interfaces"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TCapability">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TCapability/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TCapabilityDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TCapabilityDefinition/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TCapabilityDefinition/capabilityType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TCapabilityDefinition/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TCapabilityDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TCapabilityDefinition/upperBound"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TCapabilityRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TCapabilityRef/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TCapabilityRef/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TCapabilityType"/>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TCondition/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TCondition/expressionLanguage"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TConstraint/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TConstraint/constraintType"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TDefinitions">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/extensions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/import"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/types"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDefinitions/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/serviceTemplate"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/nodeType"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/nodeTypeImplementation"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/relationshipType"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/relationshipTypeImplementation"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/requirementType"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/capabilityType"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/artifactType"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/artifactTemplate"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/policyType"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDefinitions/policyTemplate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDefinitions/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDefinitions/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDefinitions/targetNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TDeploymentArtifact">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDeploymentArtifact/artifactRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDeploymentArtifact/artifactType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDeploymentArtifact/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TDeploymentArtifacts">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TDeploymentArtifacts/deploymentArtifact"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TDocumentation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDocumentation/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDocumentation/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDocumentation/lang"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TDocumentation/source"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TOSCA-v1.0.ecore#//TEntityTemplate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TEntityTemplate/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TEntityTemplate/propertyConstraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TEntityTemplate/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TEntityTemplate/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TOSCA-v1.0.ecore#//TEntityType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TEntityType/tags"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TEntityType/derivedFrom"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TEntityType/propertiesDefinition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TEntityType/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TEntityType/final"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TEntityType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TEntityType/targetNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TExportedInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TExportedInterface/operation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TExportedInterface/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TExportedOperation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TExportedOperation/nodeOperation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TExportedOperation/relationshipOperation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TExportedOperation/plan"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TExportedOperation/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TExtensibleElements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TExtensibleElements/documentation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TExtensibleElements/any"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TExtensibleElements/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TExtension">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TExtension/mustUnderstand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TExtension/namespace"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TExtensions">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TExtensions/extension"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TImplementationArtifact">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TImplementationArtifact/artifactRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TImplementationArtifact/artifactType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TImplementationArtifact/interfaceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TImplementationArtifact/operationName"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TImplementationArtifacts">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TImplementationArtifacts/implementationArtifact"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TImport">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TImport/importType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TImport/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TImport/namespace"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TInterface/operation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TInterface/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TNodeTemplate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeTemplate/requirements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeTemplate/capabilities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeTemplate/policies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeTemplate/deploymentArtifacts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TNodeTemplate/maxInstances"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TNodeTemplate/minInstances"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TNodeTemplate/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TNodeType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeType/requirementDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeType/capabilityDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeType/instanceStates"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeType/interfaces"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TNodeTypeImplementation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeTypeImplementation/tags"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeTypeImplementation/derivedFrom"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeTypeImplementation/requiredContainerFeatures"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeTypeImplementation/implementationArtifacts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TNodeTypeImplementation/deploymentArtifacts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TNodeTypeImplementation/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TNodeTypeImplementation/final"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TNodeTypeImplementation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TNodeTypeImplementation/nodeType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TNodeTypeImplementation/targetNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TOperation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TOperation/inputParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TOperation/outputParameters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TOperation/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TParameter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TParameter/required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TParameter/type"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TPlan">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TPlan/precondition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TPlan/inputParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TPlan/outputParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TPlan/planModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TPlan/planModelReference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPlan/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPlan/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPlan/planLanguage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPlan/planType"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TPlans">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TPlans/plan"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPlans/targetNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TPolicy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPolicy/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPolicy/policyRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPolicy/policyType"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TPolicyTemplate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPolicyTemplate/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TPolicyType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TPolicyType/appliesTo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPolicyType/policyLanguage"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TPropertyConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPropertyConstraint/property"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TPropertyMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPropertyMapping/serviceTemplatePropertyRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPropertyMapping/targetObjectRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TPropertyMapping/targetPropertyRef"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TRelationshipTemplate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipTemplate/sourceElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipTemplate/targetElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipTemplate/relationshipConstraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRelationshipTemplate/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TRelationshipType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipType/instanceStates"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipType/sourceInterfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipType/targetInterfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipType/validSource"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipType/validTarget"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TRelationshipTypeImplementation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipTypeImplementation/tags"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipTypeImplementation/derivedFrom"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipTypeImplementation/requiredContainerFeatures"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRelationshipTypeImplementation/implementationArtifacts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRelationshipTypeImplementation/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRelationshipTypeImplementation/final"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRelationshipTypeImplementation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRelationshipTypeImplementation/relationshipType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRelationshipTypeImplementation/targetNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TRequiredContainerFeature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRequiredContainerFeature/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TRequiredContainerFeatures">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRequiredContainerFeatures/requiredContainerFeature"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRequirement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TRequirementDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TRequirementDefinition/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRequirementDefinition/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRequirementDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRequirementDefinition/requirementType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRequirementDefinition/upperBound"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TRequirementRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRequirementRef/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRequirementRef/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TRequirementType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TRequirementType/requiredCapabilityType"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TServiceTemplate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TServiceTemplate/tags"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TServiceTemplate/boundaryDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TServiceTemplate/topologyTemplate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TServiceTemplate/plans"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TServiceTemplate/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TServiceTemplate/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TServiceTemplate/substitutableNodeType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TServiceTemplate/targetNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TTag">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TTag/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TTag/value"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TTags">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TTags/tag"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TTopologyElementInstanceStates">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TTopologyElementInstanceStates/instanceState"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TTopologyTemplate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TTopologyTemplate/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TTopologyTemplate/nodeTemplate"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TOSCA-v1.0.ecore#//TTopologyTemplate/relationshipTemplate"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//TypesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//TypesType/any"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//ValidSourceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//ValidSourceType/typeRef"/>
+    </genClasses>
+    <genClasses ecoreClass="TOSCA-v1.0.ecore#//ValidTargetType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TOSCA-v1.0.ecore#//ValidTargetType/typeRef"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

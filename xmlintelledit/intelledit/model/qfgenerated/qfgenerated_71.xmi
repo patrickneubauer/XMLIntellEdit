@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ASCII"?>
+<serviceexample:Container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:serviceexample="http://www.example.org/serviceexample" xsi:schemaLocation="http://www.example.org/serviceexample ../serviceexample.ecore">
+  <service name="2" providedBy="m" designSpeed="3"/>
+  <service name="O" providedBy="p" designSpeed="2"/>
+  <service name="s" providedBy="Rhh" designSpeed="4"/>
+  <service name="W0JGB" providedBy="X5uhm" designSpeed="2"/>
+  <service name="5TY" providedBy="X5uhm" designSpeed="12"/>
+  <service name="_" providedBy="p" designSpeed="4"/>
+  <cluster name="X5uhm" services="2 _ s O W0JGB" backup="p" designSpeed="1">
+    <server name="miZ" speed="1"/>
+    <server name="rW" speed="6"/>
+    <server name="m" speed="1"/>
+    <server name="d" speed="3"/>
+    <server name="g" speed="0"/>
+  </cluster>
+  <cluster name="Rhh" services="s O _ 5TY 2 W0JGB" backup="Rhh" designSpeed="0">
+    <server name="GNwHqFhVS" speed="0"/>
+    <server name="9r" speed="3"/>
+    <server name="m" speed="0"/>
+    <server name="Y" speed="9"/>
+  </cluster>
+  <cluster name="p" services="s 2 5TY W0JGB _ O" backup="m" designSpeed="8">
+    <server name="kJmdjJN" speed="1"/>
+  </cluster>
+  <cluster name="m" services="O _ 5TY W0JGB" backup="X5uhm" designSpeed="0"/>
+</serviceexample:Container>

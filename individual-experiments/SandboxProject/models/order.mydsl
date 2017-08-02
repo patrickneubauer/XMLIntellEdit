@@ -1,0 +1,14 @@
+OrdersType {
+	order {
+		OrderDetail id0 {
+			customerAddress String
+			customerContact String
+			customerName String
+		}
+	}
+	orderReference {
+		OrderRef {
+			orderDetail id0
+		}
+	}
+}

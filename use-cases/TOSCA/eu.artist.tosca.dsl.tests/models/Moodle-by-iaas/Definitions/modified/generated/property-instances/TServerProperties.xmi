@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="ASCII"?>
+<tbt:TServerProperties xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tbt="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xsi:schemaLocation="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes ../../../../../../../eu.artist.tosca/generated-modified/types/TOSCA-v1.0-BaseTypes.ecore" memory="1024"/>

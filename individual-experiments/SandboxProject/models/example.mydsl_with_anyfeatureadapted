@@ -1,0 +1,37 @@
+RootElementType { 
+	element1 Element1 {
+		city "Vienna"
+		street "Favoritenstr. 9-11"		
+	}
+	properties Properties {
+		any {
+			AnyGenericElement {
+				value "delivery information"
+				attrList {
+					AnyGenericAttribute {
+						attrName "orderType"
+						attrValue "express"
+					},
+					AnyGenericAttribute {
+						attrName "deliveryCountry"
+						attrValue "Austria"
+					}					
+				}
+				childElement AnyGenericElement {
+					value "deliveringTo"
+					attrList {
+						AnyGenericAttribute {
+							attrName "firstName"
+							attrValue "Manuel"
+						},
+						AnyGenericAttribute {
+							attrName "lastName"
+							attrValue "Wimmer"
+						}
+					}
+				}
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:Orders
+ xmlns:p="http://example.com/example-restrictions" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://example.com/example-restrictions Example_with_restrictions.xsd ">
+  <p:Order customerPassword="as">
+    <customerAddress>
+      <street>street1</street>
+      <street>street2</street>
+            <street>street3</street>
+            <street>street4</street>
+      
+      <city>city</city>
+    </customerAddress>    
+  </p:Order>
+</p:Orders>

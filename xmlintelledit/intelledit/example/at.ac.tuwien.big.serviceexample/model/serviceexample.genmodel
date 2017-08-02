@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/at.ac.tuwien.big.serviceexample/src" modelPluginID="at.ac.tuwien.big.serviceexample"
+    modelName="Serviceexample" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>serviceexample.ecore</foreignModel>
+  <genPackages prefix="Serviceexample" disposableProviderFactory="true" ecorePackage="serviceexample.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="serviceexample.ecore#//ServiceType">
+      <genEnumLiterals ecoreEnumLiteral="serviceexample.ecore#//ServiceType/IMPORTANT"/>
+      <genEnumLiterals ecoreEnumLiteral="serviceexample.ecore#//ServiceType/FAILSAFE"/>
+      <genEnumLiterals ecoreEnumLiteral="serviceexample.ecore#//ServiceType/BESTEFFORT"/>
+      <genEnumLiterals ecoreEnumLiteral="serviceexample.ecore#//ServiceType/WEAKCONTRACT"/>
+    </genEnums>
+    <genClasses ecoreClass="serviceexample.ecore#//Cluster">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference serviceexample.ecore#//Cluster/services"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference serviceexample.ecore#//Cluster/backup"/>
+    </genClasses>
+    <genClasses ecoreClass="serviceexample.ecore#//Service">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference serviceexample.ecore#//Service/component"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference serviceexample.ecore#//Service/providedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="serviceexample.ecore#//Server">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute serviceexample.ecore#//Server/speed"/>
+    </genClasses>
+    <genClasses ecoreClass="serviceexample.ecore#//Component"/>
+    <genClasses ecoreClass="serviceexample.ecore#//SlowServer"/>
+    <genClasses ecoreClass="serviceexample.ecore#//FastServer"/>
+    <genClasses ecoreClass="serviceexample.ecore#//Container">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference serviceexample.ecore#//Container/service"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference serviceexample.ecore#//Container/cluster"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference serviceexample.ecore#//Container/server"/>
+    </genClasses>
+    <genClasses ecoreClass="serviceexample.ecore#//NamedThing">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute serviceexample.ecore#//NamedThing/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

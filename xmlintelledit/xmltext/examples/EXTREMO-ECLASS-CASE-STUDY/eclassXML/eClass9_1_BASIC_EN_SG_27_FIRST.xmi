@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ASCII"?>
+<_0s:ECLASSDICTIONARY xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:_0s="urn:eclass:xml-schema:dictionary:2.0simplified" xmlns:ontomls="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontomlsimplified">
+  <header schemaVersion="eCl@ss XML 2 0" generatorVersion="1.1.0-eCl@ss XML 2.0 export" generationDate="2015-11-26T12:17:44.135Z" contentDate="2015-11-13T20:24:05.315Z" originatingSystem="eCl@ss ContentDevelopmentPlatform">
+    <creator organisation="eCl@ss e.V.">
+      <contact email="info@eclass.eu" url="http://www.eclass-cdp.com"/>
+    </creator>
+    <authorisation name="Christian Eck">
+      <contact email="eck@eclass-office.com"/>
+    </authorisation>
+    <contentIdentification irdi="0173-1#11-ECLASS91#001"/>
+    <contentDescriptions value="eCl@ss9.1 BASIC" languageCode="ENG"/>
+    <contentLanguage languageRef="0112-1#LG-EN#001"/>
+  </header>
+  <ontoml>
+    <header description="eCl@ss9.1 BASIC" version="eCl@ss XML 2 0" name="eClass9_1_BASIC_EN_SG_27.xml" dateTimeStamp="2015-11-26T12:17:44.141Z" preProcessorVersion="1.1.0-eCl@ss XML 2.0 export" originatingSystem="eCl@ss ContentDevelopmentPlatform" authorisation="Christian Eck" id="0173-1#11-ECLASS91#001">
+      <authors>eCl@ss e.V. info@eclass.eu</authors>
+      <organisations>ECLASS</organisations>
+      <globalLanguage languageCode="en"/>
+      <ontomlInformation revision="9.1">
+        <preferredName>
+          <labels value="eCl@ss9.1"/>
+        </preferredName>
+      </ontomlInformation>
+      <ontomlStructure sourceDocumentIdentifier="869" status="IS" name="ONTOML"/>
+    </header>
+    <dictionary>
+      <containedClasses>
+        <class xsi:type="ontomls:CATEGORIZATIONCLASS" dateOfOriginalDefinition="2006-12-19Z" dateOfCurrentVersion="2006-12-19Z" dateOfCurrentRevision="2006-12-19Z" revision="1" status="66" hierarchicalPosition="" id="0173-1#01-AAA002#001">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="eCl@ss" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="eCl@ss" countryCode="US" languageCode="en"/>
+          </definition>
+        </class>
+        <class xsi:type="ontomls:CATEGORIZATIONCLASS" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" hierarchicalPosition="27000000" id="0173-1#01-AAB572#004">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Electric engineering, automation, process control engineering" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="-no definition"/>
+          </definition>
+          <itsSuperclass classRef="0173-1#01-AAA002#001"/>
+          <keywords>
+            <labels value="Process control-engineering" countryCode="US" languageCode="en"/>
+            <labels value="Electrical-engineering" countryCode="US" languageCode="en"/>
+          </keywords>
+        </class>
+        <class xsi:type="ontomls:CATEGORIZATIONCLASS" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" hierarchicalPosition="27020000" id="0173-1#01-AAB583#006">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Electrical drive" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="electrical drive is a drive with an electrical engine which is operated by an automatic control. Electrical energy is converted into mechanical kinetic energy, thereof the reverse principle of the electrical generator applies. The resulting kinetic energy exists as linear or rotary movement. The efficiency factor, the relation from submitted to supplied power, continues to grow up to 99% with the increase of the power. Main group 27020000 is structured by the classification of the electric drives according to their function principle and the specification of the operating input energy and its transformation into other appropriate forms. Furthermore there is a differentiation between control electronics and regulation electronics in particular and the assembly, service, inspection and maintenance of the electric drives in general" countryCode="US" languageCode="en"/>
+          </definition>
+          <itsSuperclass classRef="0173-1#01-AAB572#004"/>
+        </class>
+        <class xsi:type="ontomls:CATEGORIZATIONCLASS" dateOfOriginalDefinition="2004-09-27Z" dateOfCurrentVersion="2013-11-28Z" dateOfCurrentRevision="2013-11-28Z" revision="1" status="66" hierarchicalPosition="27022500" id="0173-1#01-AKE161#006">
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="DC engine" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="-no definition"/>
+          </definition>
+          <itsSuperclass classRef="0173-1#01-AAB583#006"/>
+        </class>
+      </containedClasses>
+      <containedSuppliers>
+        <suppliers revision="1" id="0173-1">
+          <org id="0173-1" name="eCl@ss"/>
+        </suppliers>
+      </containedSuppliers>
+      <containedProperties>
+        <propertys xsi:type="ontomls:NONDEPENDENTPDET" dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-02-11Z" dateOfCurrentRevision="2011-02-11Z" revision="1" status="66" detClassification="A62" id="0173-1#02-AAQ326#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="additional link address" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <definition>
+            <texts value="site address where you can view information about the product or to communicate" countryCode="US" languageCode="en"/>
+          </definition>
+          <domain xsi:type="ontomls:STRINGTYPE"/>
+        </propertys>
+      </containedProperties>
+      <containedDatatypes>
+        <datatypes dateOfOriginalDefinition="2011-02-11Z" dateOfCurrentVersion="2011-02-11Z" dateOfCurrentRevision="2011-02-11Z" revision="1" status="66" id="0173-1#09-AAD683#001">
+          <nameScope classRef="0173-1#01-RAA001#001"/>
+          <sourceLanguage countryCode="US" languageCode="en"/>
+          <preferredName>
+            <labels value="Category" countryCode="US" languageCode="en"/>
+          </preferredName>
+          <typeDefinition xsi:type="ontomls:STRINGTYPE">
+            <constraints>
+              <constraints xsi:type="ontomls:ENUMERATIONCONSTRAINT">
+                <subset/>
+                <valueMeaning>
+                  <itsValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAS943#001">
+                      <preferredName>
+                        <labels value="Device batteries, primarily" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="not rechargeable device batteries serve for the electricity supply of small, much more portable devices, for example, in flashlights or mobile phones" countryCode="US" languageCode="en"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAS944#001">
+                      <preferredName>
+                        <labels value="Device batteries,secondarily" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="rechargeable Device batteries serve for the electricity supply of small, much more portable devices, for example, in flashlights or mobile phones" countryCode="US" languageCode="en"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAS945#001">
+                      <preferredName>
+                        <labels value="Industriebatterien und -akkumulatoren" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="-"/>
+                      </definition>
+                    </dicValues>
+                    <dicValues xsi:type="ontomls:INTDICVALUE" valueMeaningId="0173-1#07-AAS946#001">
+                      <preferredName>
+                        <labels value="Vehicle batteries and vehicle accumulators" countryCode="US" languageCode="en"/>
+                      </preferredName>
+                      <definition>
+                        <texts value="serve for the application in vehicles" countryCode="US" languageCode="en"/>
+                      </definition>
+                    </dicValues>
+                  </itsValues>
+                </valueMeaning>
+              </constraints>
+            </constraints>
+          </typeDefinition>
+        </datatypes>
+      </containedDatatypes>
+    </dictionary>
+  </ontoml>
+  <extensions/>
+</_0s:ECLASSDICTIONARY>

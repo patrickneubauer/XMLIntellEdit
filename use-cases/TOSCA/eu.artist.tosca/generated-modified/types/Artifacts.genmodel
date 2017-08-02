@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/eu.artist.tosca/src" modelPluginID="eu.artist.tosca"
+    modelName="Artifacts" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Artifacts.ecore</foreignModel>
+  <genPackages prefix="Toscaartifacts" resource="XML" disposableProviderFactory="true"
+      ecorePackage="Artifacts.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Artifacts.ecore#//ModeType">
+      <genEnumLiterals ecoreEnumLiteral="Artifacts.ecore#//ModeType/input"/>
+      <genEnumLiterals ecoreEnumLiteral="Artifacts.ecore#//ModeType/output"/>
+      <genEnumLiterals ecoreEnumLiteral="Artifacts.ecore#//ModeType/inputOutput"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Artifacts.ecore#//PackageTypeType">
+      <genEnumLiterals ecoreEnumLiteral="Artifacts.ecore#//PackageTypeType/rpm"/>
+      <genEnumLiterals ecoreEnumLiteral="Artifacts.ecore#//PackageTypeType/deb"/>
+      <genEnumLiterals ecoreEnumLiteral="Artifacts.ecore#//PackageTypeType/cab"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="Artifacts.ecore#//ModeTypeObject"/>
+    <genDataTypes ecoreDataType="Artifacts.ecore#//PackageTypeTypeObject"/>
+    <genDataTypes ecoreDataType="Artifacts.ecore#//PermissionsType"/>
+    <genClasses ecoreClass="Artifacts.ecore#//ArchiveArtifactContextPropertiesType"/>
+    <genClasses ecoreClass="Artifacts.ecore#//ArchiveArtifactPropertiesType"/>
+    <genClasses ecoreClass="Artifacts.ecore#//ChefArtifactPropertiesType"/>
+    <genClasses ecoreClass="Artifacts.ecore#//CookbooksType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//CookbooksType/cookbook"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//CookbookType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//CookbookType/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//CookbookType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/archiveArtifactContextProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/archiveArtifactProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/chefArtifactProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/documentation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/fileArtifactContextProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/fileArtifactProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/osPackageArtifactProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/rPMGroupArtifactProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/scriptArtifactProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//DocumentRoot/userContentArtifactProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//ExcludeType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//ExcludeType/runListEntry"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//FileArtifactContextPropertiesType"/>
+    <genClasses ecoreClass="Artifacts.ecore#//FileArtifactPropertiesType"/>
+    <genClasses ecoreClass="Artifacts.ecore#//GroupInformationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//GroupInformationType/groupName"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//IncludeType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//IncludeType/runListEntry"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//MappingsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//MappingsType/propertyMapping"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//MappingsType/sourcePropertyMapping"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//MappingsType/targetPropertyMapping"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//MappingsType/inputParameterMapping"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//MappingsType/outputParameterMapping"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//OsPackageArtifactPropertiesType"/>
+    <genClasses ecoreClass="Artifacts.ecore#//PackageInformationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//PackageInformationType/packageName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//PackageInformationType/packageReference"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//RolesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//RolesType/role"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//RoleType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//RoleType/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//RoleType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//RPMGroupArtifactPropertiesType"/>
+    <genClasses ecoreClass="Artifacts.ecore#//RunListType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//RunListType/include"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//RunListType/exclude"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//ScriptArtifactPropertiesType"/>
+    <genClasses ecoreClass="Artifacts.ecore#//TArchiveArtifactContextProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TArchiveArtifactContextProperties/archiveDeploymentInformation"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TArchiveArtifactProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TArchiveArtifactProperties/archiveInformation"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TArchiveDeploymentInformation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TArchiveDeploymentInformation/userMap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TArchiveDeploymentInformation/groupMap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TArchiveDeploymentInformation/contentDeploymentLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TArchiveDeploymentInformation/archiveReference"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TArchiveInformation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TArchiveInformation/userMap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TArchiveInformation/groupMap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TArchiveInformation/contentSourceLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TArchiveInformation/archiveReference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TArchiveInformation/archiveType"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TBaseArtifactContextProperties"/>
+    <genClasses image="false" ecoreClass="Artifacts.ecore#//TBaseArtifactProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TBaseArtifactProperties/identityProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TChefArtifactProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TChefArtifactProperties/cookbooks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TChefArtifactProperties/roles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TChefArtifactProperties/mappings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TChefArtifactProperties/runList"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TContentLocation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TContentLocation/segment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TContentLocation/path"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TDocumentation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TDocumentation/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TDocumentation/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TDocumentation/lang"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TDocumentation/source"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TExtensibleElements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TExtensibleElements/documentation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TExtensibleElements/any"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TExtensibleElements/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TFileArtifactContextProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TFileArtifactContextProperties/fileDeploymentInformation"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TFileArtifactProperties"/>
+    <genClasses ecoreClass="Artifacts.ecore#//TFileDeploymentInformation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TFileDeploymentInformation/userMap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TFileDeploymentInformation/groupMap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TFileDeploymentInformation/deploymentLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TFileDeploymentInformation/fileReference"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TGroup/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TGroup/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TGroups">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TGroups/group"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TOsPackageArtifactProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TOsPackageArtifactProperties/packageInformation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TOsPackageArtifactProperties/packageType"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TParameterMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TParameterMapping/cookbookAttribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TParameterMapping/parameterName"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TPathSegment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TPathSegment/groupID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TPathSegment/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TPathSegment/permissions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TPathSegment/userID"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TProperties/property"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TProperty/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TProperty/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TPropertyMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TPropertyMapping/cookbookAttribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TPropertyMapping/mode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TPropertyMapping/propertyPath"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TRPMGroupArtifactProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TRPMGroupArtifactProperties/groupInformation"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TRunListEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TRunListEntry/cookbookName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TRunListEntry/recipeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TRunListEntry/roleName"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TScriptArtifactProperties">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TScriptArtifactProperties/scriptLanguage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TScriptArtifactProperties/primaryScript"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TUser">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TUser/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TUser/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TUserContentArtifactProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TUserContentArtifactProperties/userSpec"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TUsers">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Artifacts.ecore#//TUsers/user"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//TUserSpec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TUserSpec/comment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TUserSpec/groupId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TUserSpec/groupName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TUserSpec/homeDir"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TUserSpec/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TUserSpec/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Artifacts.ecore#//TUserSpec/shell"/>
+    </genClasses>
+    <genClasses ecoreClass="Artifacts.ecore#//UserContentArtifactPropertiesType"/>
+  </genPackages>
+</genmodel:GenModel>

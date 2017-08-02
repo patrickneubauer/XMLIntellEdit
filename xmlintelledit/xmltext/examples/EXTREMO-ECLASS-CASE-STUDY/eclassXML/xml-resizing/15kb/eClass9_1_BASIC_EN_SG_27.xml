@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dic:eclass_dictionary xmlns:dic="urn:eclass:xml-schema:dictionary:2.0" xmlns:basic="urn:iso:std:iso:ts:29002:-4:ed-1:tech:xml-schema:basic" xmlns:cat="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:catalogue" xmlns:cmn="urn:eclass:xml-schema:common:2.0" xmlns:dt="urn:eclass:template:xml-schema:data-type:2.0" xmlns:ext="urn:x-ontoml-extensions:schema:core" xmlns:hea="urn:eclass:xml-schema:header:2.0" xmlns:idt="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" xmlns:ontoml="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" xmlns:val="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:value" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:eclass:xml-schema:dictionary:2.0 
+dictionary.xsd">
+    <hea:header>
+        <schema_version>eCl@ss XML 2 0</schema_version>
+        <generator_version>1.1.0-eCl@ss XML 2.0 export</generator_version>
+        <generation_date>2015-11-26T12:17:44.135Z</generation_date>
+        <creator>
+            <cmn:organisation>eCl@ss e.V.</cmn:organisation>
+            <cmn:contact>
+                <cmn:email>info@eclass.eu</cmn:email>
+                <cmn:url>http://www.eclass-cdp.com</cmn:url>
+            </cmn:contact>
+        </creator>
+        <authorisation>
+            <cmn:name>Christian Eck</cmn:name>
+            <cmn:contact>
+                <cmn:email>eck@eclass-office.com</cmn:email>
+            </cmn:contact>
+        </authorisation>
+        <content_date>2015-11-13T20:24:05.315Z</content_date>
+        <content_identification>
+            <cmn:irdi>0173-1#11-ECLASS91#001</cmn:irdi>
+        </content_identification>
+        <content_description language_code="ENG">eCl@ss9.1 BASIC</content_description>
+        <content_language language_ref="0112-1#LG-EN#001" />
+        <originating_system>eCl@ss ContentDevelopmentPlatform</originating_system>
+    </hea:header>
+    <ontoml:ontoml>
+        <header id="0173-1#11-ECLASS91#001">
+            <global_language language_code="en" />
+            <description>eCl@ss9.1 BASIC</description>
+            <version>eCl@ss XML 2 0</version>
+            <name>eClass9_1_BASIC_EN_SG_27.xml</name>
+            <date_time_stamp>2015-11-26T12:17:44.141Z</date_time_stamp>
+            <author>eCl@ss e.V. info@eclass.eu</author>
+            <organisation>ECLASS</organisation>
+            <pre_processor_version>1.1.0-eCl@ss XML 2.0 export</pre_processor_version>
+            <originating_system>eCl@ss ContentDevelopmentPlatform</originating_system>
+            <authorisation>Christian Eck</authorisation>
+            <ontoml_information>
+                <revision>9.1</revision>
+                <preferred_name>
+                    <label>eCl@ss9.1</label>
+                </preferred_name>
+            </ontoml_information>
+            <ontoml_structure>
+                <source_document_identifier>869</source_document_identifier>
+                <status>IS</status>
+                <name>ONTOML</name>
+                <date>2010</date>
+            </ontoml_structure>
+        </header>
+        <dictionary>
+            <contained_classes>
+                            <ontoml:class xsi:type="ontoml:CATEGORIZATION_CLASS_Type" id="0173-1#01-AAA002#001">
+                    <date_of_original_definition>2006-12-19Z</date_of_original_definition>
+                    <date_of_current_version>2006-12-19Z</date_of_current_version>
+                    <date_of_current_revision>2006-12-19Z</date_of_current_revision>
+                    <revision>1</revision>
+                    <status>66</status>
+                    <source_language country_code="US" language_code="en" />
+                    <preferred_name>
+                        <label country_code="US" language_code="en">eCl@ss</label>
+                    </preferred_name>
+                    <definition>
+                        <text country_code="US" language_code="en">eCl@ss</text>
+                    </definition>
+                    <hierarchical_position />
+                </ontoml:class>
+
+                <ontoml:class xsi:type="ontoml:CATEGORIZATION_CLASS_Type" id="0173-1#01-AAB572#004">
+                    <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+                    <date_of_current_version>2013-11-28Z</date_of_current_version>
+                    <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+                    <revision>1</revision>
+                    <status>66</status>
+                    <source_language country_code="US" language_code="en" />
+                    <preferred_name>
+                        <label country_code="US" language_code="en">Electric engineering, automation, process control engineering</label>
+                    </preferred_name>
+                    <definition>
+                        <text>-no definition</text>
+                    </definition>
+                    <its_superclass class_ref="0173-1#01-AAA002#001" />
+                    <hierarchical_position>27000000</hierarchical_position>
+                    <keywords>
+                        <label country_code="US" language_code="en">Process control-engineering</label>
+                        <label country_code="US" language_code="en">Electrical-engineering</label>
+                    </keywords>
+                </ontoml:class>
+
+                <ontoml:class xsi:type="ontoml:CATEGORIZATION_CLASS_Type" id="0173-1#01-AAB583#006">
+                    <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+                    <date_of_current_version>2013-11-28Z</date_of_current_version>
+                    <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+                    <revision>1</revision>
+                    <status>66</status>
+                    <source_language country_code="US" language_code="en" />
+                    <preferred_name>
+                        <label country_code="US" language_code="en">Electrical drive</label>
+                    </preferred_name>
+                    <definition>
+                        <text country_code="US" language_code="en">electrical drive is a drive with an electrical engine which is operated by an automatic control. Electrical energy is converted into mechanical kinetic energy, thereof the reverse principle of the electrical generator applies. The resulting kinetic energy exists as linear or rotary movement. The efficiency factor, the relation from submitted to supplied power, continues to grow up to 99% with the increase of the power. Main group 27020000 is structured by the classification of the electric drives according to their function principle and the specification of the operating input energy and its transformation into other appropriate forms. Furthermore there is a differentiation between control electronics and regulation electronics in particular and the assembly, service, inspection and maintenance of the electric drives in general</text>
+                    </definition>
+                    <its_superclass class_ref="0173-1#01-AAB572#004" />
+                    <hierarchical_position>27020000</hierarchical_position>
+                </ontoml:class>
+
+                <ontoml:class xsi:type="ontoml:CATEGORIZATION_CLASS_Type" id="0173-1#01-AKE161#006">
+                    <date_of_original_definition>2004-09-27Z</date_of_original_definition>
+                    <date_of_current_version>2013-11-28Z</date_of_current_version>
+                    <date_of_current_revision>2013-11-28Z</date_of_current_revision>
+                    <revision>1</revision>
+                    <status>66</status>
+                    <source_language country_code="US" language_code="en" />
+                    <preferred_name>
+                        <label country_code="US" language_code="en">DC engine</label>
+                    </preferred_name>
+                    <definition>
+                        <text>-no definition</text>
+                    </definition>
+                    <its_superclass class_ref="0173-1#01-AAB583#006" />
+                    <hierarchical_position>27022500</hierarchical_position>
+                </ontoml:class>
+            </contained_classes>
+            <contained_suppliers>
+                <ontoml:supplier id="0173-1">
+                    <revision>1</revision>
+                    <org>
+                        <id>0173-1</id>
+                        <name>eCl@ss</name>
+                    </org>
+                </ontoml:supplier>
+            </contained_suppliers>
+            <contained_properties>
+                <ontoml:property xsi:type="ontoml:NON_DEPENDENT_P_DET_Type" id="0173-1#02-AAQ326#001">
+                    <name_scope class_ref="0173-1#01-RAA001#001" />
+                    <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+                    <date_of_current_version>2011-02-11Z</date_of_current_version>
+                    <date_of_current_revision>2011-02-11Z</date_of_current_revision>
+                    <revision>1</revision>
+                    <status>66</status>
+                    <source_language country_code="US" language_code="en" />
+                    <preferred_name>
+                        <label country_code="US" language_code="en">additional link address</label>
+                    </preferred_name>
+                    <definition>
+                        <text country_code="US" language_code="en">site address where you can view information about the product or to communicate</text>
+                    </definition>
+                    <det_classification>A62</det_classification>
+                    <domain xsi:type="ontoml:STRING_TYPE_Type" />
+                </ontoml:property>
+                </contained_properties>
+                <contained_datatypes>
+                <ontoml:datatype id="0173-1#09-AAD683#001">
+                    <name_scope class_ref="0173-1#01-RAA001#001" />
+                    <date_of_original_definition>2011-02-11Z</date_of_original_definition>
+                    <date_of_current_version>2011-02-11Z</date_of_current_version>
+                    <date_of_current_revision>2011-02-11Z</date_of_current_revision>
+                    <revision>1</revision>
+                    <status>66</status>
+                    <source_language country_code="US" language_code="en" />
+                    <preferred_name>
+                        <label country_code="US" language_code="en">Category</label>
+                    </preferred_name>
+                    <type_definition xsi:type="ontoml:STRING_TYPE_Type">
+                        <constraints>
+                            <constraint xsi:type="ontoml:ENUMERATION_CONSTRAINT_Type">
+                                <subset>
+                                    <val:string_value>Device batteries, primarily</val:string_value>
+                                    <val:string_value>Device batteries,secondarily</val:string_value>
+                                    <val:string_value>Industriebatterien und -akkumulatoren</val:string_value>
+                                    <val:string_value>Vehicle batteries and vehicle accumulators</val:string_value>
+                                </subset>
+                                <value_meaning>
+                                    <its_values>
+                                        <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAS943#001">
+                                            <preferred_name>
+                                                <label country_code="US" language_code="en">Device batteries, primarily</label>
+                                            </preferred_name>
+                                            <definition>
+                                                <text country_code="US" language_code="en">not rechargeable device batteries serve for the electricity supply of small, much more portable devices, for example, in flashlights or mobile phones</text>
+                                            </definition>
+                                            <value_code>1</value_code>
+                                        </dic_value>
+                                        <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAS944#001">
+                                            <preferred_name>
+                                                <label country_code="US" language_code="en">Device batteries,secondarily</label>
+                                            </preferred_name>
+                                            <definition>
+                                                <text country_code="US" language_code="en">rechargeable Device batteries serve for the electricity supply of small, much more portable devices, for example, in flashlights or mobile phones</text>
+                                            </definition>
+                                            <value_code>2</value_code>
+                                        </dic_value>
+                                        <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAS945#001">
+                                            <preferred_name>
+                                                <label country_code="US" language_code="en">Industriebatterien und -akkumulatoren</label>
+                                            </preferred_name>
+                                            <definition>
+                                                <text>-</text>
+                                            </definition>
+                                            <value_code>3</value_code>
+                                        </dic_value>
+                                        <dic_value xsi:type="ontoml:INT_DIC_VALUE_Type" value_meaning_id="0173-1#07-AAS946#001">
+                                            <preferred_name>
+                                                <label country_code="US" language_code="en">Vehicle batteries and vehicle accumulators</label>
+                                            </preferred_name>
+                                            <definition>
+                                                <text country_code="US" language_code="en">serve for the application in vehicles</text>
+                                            </definition>
+                                            <value_code>4</value_code>
+                                        </dic_value>
+                                    </its_values>
+                                </value_meaning>
+                            </constraint>
+                        </constraints>
+                    </type_definition>
+                </ontoml:datatype>
+                
+            </contained_datatypes>
+        </dictionary>
+    </ontoml:ontoml>
+    <ext:extensions />
+</dic:eclass_dictionary>

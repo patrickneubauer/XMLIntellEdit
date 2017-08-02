@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:rootElement xmlns:p="http://example.com/example-with-any" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://example.com/example-with-any ../metamodels/Example_with_any.xsd ">
+  <element1 city="" street="" blahAttr="asd"/>
+  <element2 street=""/>
+  <element3 street=""/>
+  <element3 street=""/>
+</p:rootElement>

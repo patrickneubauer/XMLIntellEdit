@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:Passengers xmlns:p="http://example.com/example-with-key" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://example.com/example-with-key ../metamodels/Example_with_key.xsd ">
+  
+	  <Passenger AssociatedInfantID="3" ID="1" SequenceNo="1">
+            <FullName>Mark Sean</FullName>
+      </Passenger>
+      
+      <Passenger ID="2" SequenceNo="2">
+            <FullName>John Smith</FullName>
+      </Passenger>
+      
+      <Infant ID="3" AssociatedPassengerID="1" SequenceNo="3">
+            <FullName>Daniel Kemp</FullName>
+      </Infant>
+  
+  
+</p:Passengers>

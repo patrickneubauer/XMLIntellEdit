@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ASCII"?>
+<tosca:DocumentRoot xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12">
+  <definitions id="MoodleTypes" name="MoodleTypes" targetNamespace="http://www.example.com/tosca/Types/Moodle">
+    <import importType="http://docs.oasis-open.org/tosca/ns/2011/12" location="TOSCA-v1.0-SpecificTypes-Definitions.xml" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"/>
+    <import importType="http://www.w3.org/2001/XMLSchema" location="../types/MoodleTypes.xsd" namespace="http://www.example.com/tosca/Types/Moodle"/>
+    <import importType="http://www.w3.org/2001/XMLSchema" location="../IAs/WSProperties.xsd" namespace="http://www.uni-stuttgart.de/opentosca"/>
+    <nodeType name="MoodleApplication">
+      <documentation/>
+      <derivedFrom derivedFrom="ApacheWebApplication"/>
+      <propertiesDefinition element="MoodleApplicationProperties"/>
+      <requirementDefinitions>
+        <requirementDefinition lowerBound="1" name="phpRuntime" requirementType="PHPRuntimeRequirement" upperBound="1"/>
+        <requirementDefinition lowerBound="1" name="database" requirementType="MoodleDatabaseEndpointRequirement" upperBound="1"/>
+      </requirementDefinitions>
+      <interfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+          <operation name="install"/>
+          <operation name="configure"/>
+        </interface>
+      </interfaces>
+    </nodeType>
+    <nodeType name="MoodleDatabase">
+      <documentation/>
+      <derivedFrom derivedFrom="MySQLDatabase"/>
+      <propertiesDefinition element="MoodleDatabaseProperties"/>
+      <interfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+          <operation name="configure"/>
+        </interface>
+      </interfaces>
+    </nodeType>
+    <nodeTypeImplementation name="MoodleApplicationImplementation" nodeType="MoodleApplication">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at-MoodleApplication-install" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="install"/>
+        <implementationArtifact artifactRef="at-MoodleApplication-configure" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="configure"/>
+      </implementationArtifacts>
+      <deploymentArtifacts>
+        <deploymentArtifact artifactRef="at-MoodleApplication-MoodleApplication-archive" artifactType="ArchiveArtifact" name="MoodleApplication-archive"/>
+        <deploymentArtifact artifactRef="at-MoodleApplication-MoodleApplication-ConfigFiles" artifactType="FileArtifact" name="MoodleApplication-ConfigFiles"/>
+        <deploymentArtifact artifactRef="at-MoodleApplication-php-ext-packages" artifactType="OsPackageArtifact" name="php-ext-packages"/>
+      </deploymentArtifacts>
+    </nodeTypeImplementation>
+    <nodeTypeImplementation name="MoodleDatabaseImplementation" nodeType="MoodleDatabase">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at-MoodleDatabase-configure" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="configure"/>
+      </implementationArtifacts>
+      <deploymentArtifacts>
+        <deploymentArtifact artifactRef="at-MoodleDatabase-MoodleDbContent-File" artifactType="FileArtifact" name="MoodleDbContent-File"/>
+      </deploymentArtifacts>
+    </nodeTypeImplementation>
+    <nodeTypeImplementation name="AmazonEC2VMNodeTypeImplementation" nodeType="Server">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="AmazonEC2VMNodeTypeImplementation_IA_ArtifactTemplate" artifactType="WAR" interfaceName="InterfaceAmazonEC2VM"/>
+      </implementationArtifacts>
+    </nodeTypeImplementation>
+    <nodeTypeImplementation name="UbuntuNodeTypeImplementation" nodeType="OperatingSystem">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="UbuntuNodeTypeImplementation_IA_ArtifactTemplate" artifactType="WAR" interfaceName="InterfaceUbuntu"/>
+      </implementationArtifacts>
+    </nodeTypeImplementation>
+    <relationshipType name="MoodleDatabaseConnection">
+      <documentation/>
+      <derivedFrom derivedFrom="MySQLDatabaseConnection"/>
+      <sourceInterfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source">
+          <operation name="preConfigureEndpoint"/>
+        </interface>
+      </sourceInterfaces>
+      <validSource typeRef="MoodleDatabaseEndpointRequirement"/>
+      <validTarget typeRef="MySQLDatabaseEndpointCapability"/>
+    </relationshipType>
+    <relationshipTypeImplementation name="MoodleDatabaseConnectionImplementation" relationshipType="MoodleDatabaseConnection">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at-MoodleDatabaseConnection-Source-preConfigureEndpoint" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source" operationName="preConfigureEndpoint"/>
+      </implementationArtifacts>
+    </relationshipTypeImplementation>
+    <requirementType name="MoodleDatabaseEndpointRequirement" requiredCapabilityType="MySQLDatabaseEndpointCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="MySQLDatabaseEndpointRequirement"/>
+    </requirementType>
+    <artifactType name="WAR" targetNamespace="http://www.example.com/ToscaTypes">
+      <propertiesDefinition type="WSProperties"/>
+    </artifactType>
+    <artifactTemplate id="at-MoodleDatabaseConnection-Source-preConfigureEndpoint" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/MoodleDatabaseConnection">
+          <include pattern="configureDatabaseEndpoint.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MoodleApplication-install" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/MoodleApplication">
+          <include pattern="install.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MoodleApplication-configure" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/MoodleApplication">
+          <include pattern="configure.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MoodleApplication-MoodleApplication-archive" type="ArchiveArtifact" name="MoodleApplication-archive">
+      <artifactReferences>
+        <artifactReference reference="files/moodle-2.6.1.tgz"/>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MoodleApplication-MoodleApplication-ConfigFiles" type="FileArtifact" name="MoodleApplication-ConfigFiles">
+      <artifactReferences>
+        <artifactReference reference="files/config.php"/>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MoodleApplication-php-ext-packages" type="OsPackageArtifact" name="php-ext-packages"/>
+    <artifactTemplate id="at-MoodleDatabase-configure" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/MoodleDatabase">
+          <include pattern="configure.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MoodleDatabase-MoodleDbContent-File" type="FileArtifact" name="MoodleDbContent-File">
+      <artifactReferences>
+        <artifactReference reference="files/moodledb.sql"/>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="AmazonEC2VMNodeTypeImplementation_IA_ArtifactTemplate" type="WAR">
+      <artifactReferences>
+        <artifactReference reference="IAs/AmazonEC2VMNodeType/org_opentosca_types_AmazonEC2VM__InterfaceAmazonEC2VM.war"/>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="UbuntuNodeTypeImplementation_IA_ArtifactTemplate" type="WAR">
+      <artifactReferences>
+        <artifactReference reference="IAs/UbuntuNodeType/org_opentosca_types_Ubuntu__InterfaceUbuntu.war"/>
+      </artifactReferences>
+    </artifactTemplate>
+  </definitions>
+</tosca:DocumentRoot>

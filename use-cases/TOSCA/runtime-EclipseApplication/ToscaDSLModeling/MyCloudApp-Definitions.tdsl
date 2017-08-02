@@ -1,0 +1,69 @@
+Definitions MyCloudAppDefinition {
+	name: "MyCloudApp Definitions"
+	targetNamespace: "http://mytargetnamespace.com"
+
+	
+	ServiceTemplate MyCloudAppService {
+		name: "My Cloud App Service"
+		
+		TopologyTemplate {
+							
+			NodeTemplate ApacheWebServer {
+		        name: "Apache Web Server"
+		        type: ApacheWebServerType
+		        		        
+//				properties ApacheWebServerProperties {
+//					httpdport: "80"				
+//				}	
+		
+		        Requirement ApacheWebServer_container {
+		          name: "container"
+		          type: SoftwareContainerRequirementType 
+		        }
+		        
+		        Capability ApacheWebServer_webapps {
+		          name: "webapps" 
+		          type: ApacheWebApplicationContainerCapabilityType
+		        }
+		        Capability ApacheWebServer_modules {
+		          name: "modules"
+		          type: ApacheModuleContainerCapabilityType
+		        }
+		        Capability ApacheWebServer_clients {
+		          name: "clients"
+		          type: HTTPEndpointCapabilityType
+		        }       
+		                 
+		      }// ApacheWebServer
+
+			NodeTemplate MyCloudApp {
+				name: "My Cloud App"	
+				type: CloudApplicationType 
+//				properties MyCloudAppProperties {
+//					SiteName: "MyCloudApp.com"
+//					SitePath: "http://www.myCloudApp.com"	
+//				}
+				
+				Requirement MyCloudApp_container {
+	  			  name: "container"
+				  type: ApacheWebApplicationContainerRequirement	
+				}					
+				
+			}// MyCloudApp
+			
+		    RelationshipTemplate MyCloudApp_HostedOn_Apache {
+		    	name: "hosted on"
+		        type: HostedOnType
+		        sourceElement ref MyCloudApp_container
+		        targetElement ref ApacheWebServer_webapps
+		    }// MyCloudApp_HostedOn_Apache			
+			
+		}// TopologyTemplate
+	}// ServiceTemplate
+	
+		
+//	NodeType MyCustomNodeType {
+//		name: "My Custom Node Type"
+//	}
+	
+}// Definitions

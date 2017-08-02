@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ISO TC 184/SC 4/WG 2 N869 - ISO 13584-32 OntoML - XML schema
+-->
+<!--
+
+The following permission notice and disclaimer shall be included in all copies of this DTD/XML Schema ("the Schema"), 
+and derivations of the Schema:
+
+
+Permission is hereby granted, free of charge in perpetuity, to any person obtaining a copy of the Schema, to use, 
+copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, 
+installing and using software based on the Schema, and to permit persons to whom the Schema is furnished to do so, 
+subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE SCHEMA DEFINED IN ISO 13584-32, AND SHOULD NOT BE INTERPRETED AS COMPLYING 
+WITH THAT STANDARD
+
+-->
+<xs:schema xmlns="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="identifier.xsd"/>
+	<xs:include schemaLocation="basic.xsd"/>
+	<xs:include schemaLocation="translation.xsd"/>
+	<xs:include schemaLocation="external_file.xsd"/>
+	<xs:include schemaLocation="type_system.xsd"/>
+	<!-- Global element -->
+	<xs:element name="property" type="PROPERTY_Type"/>
+	<!-- Simple type definitions -->
+	<xs:simpleType name="DET_CLASSIFICATION_TYPE_Type">
+		<xs:restriction base="xs:string">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Complex type definitions -->
+	<xs:complexType name="CONDITION_DET_Type">
+		<xs:complexContent>
+			<xs:extension base="PROPERTY_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DEPENDENT_P_DET_Type">
+		<xs:complexContent>
+			<xs:extension base="PROPERTY_Type">
+				<xs:sequence>
+					<xs:element name="depends_on" type="PROPERTIES_REFERENCE_Type" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NON_DEPENDENT_P_DET_Type">
+		<xs:complexContent>
+			<xs:extension base="PROPERTY_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PROPERTY_Type" abstract="true">
+		<xs:sequence>
+			<xs:element name="name_scope" type="CLASS_REFERENCE_Type"/>
+			<xs:element name="date_of_original_definition" type="DATE_TYPE_Type" minOccurs="0"/>
+			<xs:element name="date_of_current_version" type="DATE_TYPE_Type" minOccurs="0"/>
+			<xs:element name="date_of_current_revision" type="DATE_TYPE_Type" minOccurs="0"/>
+			<xs:element name="revision" type="REVISION_TYPE_Type"/>
+			<xs:element name="status" type="STATUS_Type" minOccurs="0"/>
+			<xs:element name="translation" type="TRANSLATION_Type" minOccurs="0"/>
+			<xs:element name="source_language" type="LANGUAGE_Type" minOccurs="0"/>
+			<xs:element name="is_deprecated" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="is_deprecated_interpretation" type="TEXT_Type" minOccurs="0"/>
+			<xs:element name="preferred_name" type="PREFERRED_NAME_Type"/>
+			<xs:element name="synonymous_names" type="SYNONYMOUS_NAME_Type" minOccurs="0"/>
+			<xs:element name="short_name" type="SHORT_NAME_Type" minOccurs="0"/>
+			<xs:element name="icon" type="GRAPHICS_Type" minOccurs="0"/>
+			<xs:element name="definition" type="TEXT_Type"/>
+			<xs:element name="source_doc_of_definition" type="SOURCE_DOCUMENT_Type" minOccurs="0"/>
+			<xs:element name="note" type="TEXT_Type" minOccurs="0"/>
+			<xs:element name="remark" type="TEXT_Type" minOccurs="0"/>
+			<xs:element name="preferred_symbol" type="MATHEMATICAL_STRING_Type" minOccurs="0"/>
+			<xs:element name="synonymous_symbols" type="SYNONYMOUS_SYMBOLS_Type" minOccurs="0"/>
+			<xs:element name="figure" type="GRAPHICS_Type" minOccurs="0"/>
+			<xs:element name="det_classification" type="DET_CLASSIFICATION_TYPE_Type" minOccurs="0"/>
+			<xs:element name="domain" type="ANY_TYPE_Type"/>
+			<xs:element name="formula" type="MATHEMATICAL_STRING_Type" minOccurs="0"/>
+			<xs:element name="suggested_value_list" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="PropertyId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="REPRESENTATION_P_DET_Type">
+		<xs:complexContent>
+			<xs:extension base="PROPERTY_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SYNONYMOUS_SYMBOLS_Type">
+		<xs:sequence>
+			<xs:element name="mathematical_string" type="MATHEMATICAL_STRING_Type" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

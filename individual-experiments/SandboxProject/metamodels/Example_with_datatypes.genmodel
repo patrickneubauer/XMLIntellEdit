@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/SandboxProject/src" modelPluginID="SandboxProject"
+    modelName="Example_with_datatypes" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Example_with_datatypes.xsd</foreignModel>
+  <genPackages prefix="Datetypes" basePackage="com.example.example.with" resource="XML"
+      disposableProviderFactory="true" ecorePackage="datetypes.ecore#/">
+    <genClasses ecoreClass="datetypes.ecore#//DataTypeTest">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aAnySimpleType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aAnyURI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aBase64Binary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aBoolean"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aByte"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aDateTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aDecimal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aDouble"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aDuration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aEntities"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aEntity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aFloat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aGDay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aGMonth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aGMonthDay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aGYear"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aGYearMonth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aHexBinary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aIDREF"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aIDREFS"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aInt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aInteger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aLanguage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aLong"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aNCName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aNMTOKEN"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aNMTOKENS"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aNonNegativeInteger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aNonPositiveInteger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aPositiveInteger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aQName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aShort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aToken"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aUnsignedByte"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aUnsignedInt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aUnsignedLong"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datetypes.ecore#//DataTypeTest/aUnsignedShort"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-restrictions"
+	xmlns="http://example.com/example-restrictions">
+
+	<xsd:element name="Orders">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Order" type="OrderDetail" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="OrderDetail">
+		<xsd:sequence>
+			<xsd:element name="customerAddress" type="RestrictedAddress" />
+		</xsd:sequence>
+		<!-- you can also add something like the following to the Ecore metamodel 
+			using the OCLinEcore editor: -->
+		<!-- invariant CustomerContactMinLength: customerContact.size() > 9; -->
+		<xsd:attribute name="customerFirstName" type="CustomerFirstName" />
+		<xsd:attribute name="customerLastName" type="CustomerLastName" />
+		<xsd:attribute name="customerUSState" type="USState" />
+		<xsd:attribute name="customerContact1" type="CustomerContactNumber1" />
+		<xsd:attribute name="customerAge" type="CustomerAge" />
+		<xsd:attribute name="customerNumber" type="CustomerNumber" />
+		<xsd:attribute name="customerPassword" type="CustomerPassword" />
+		<xsd:attribute name="orderID" type="xsd:ID" />
+	</xsd:complexType>
+
+	<!-- simpleType String ENUMERATION restriction -->
+	<xsd:simpleType name="USState">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="A-K" ecore:name="A_K"></xsd:enumeration>
+			<xsd:enumeration value="L-T" ecore:name="L_T"></xsd:enumeration>
+			<xsd:enumeration value="U-Z" ecore:name="U_Z"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- simpleType Integer PATTERN restriction -->
+	<xsd:simpleType name="CustomerContactNumber1">
+		<xsd:restriction base="xsd:integer">
+			<xsd:pattern value="[0-9][0-9][0-9][0-9][0-9]"></xsd:pattern>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- simpleType Integer MIN/MAX INCLUSIVE restriction -->
+	<xsd:simpleType name="CustomerAge">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="18"></xsd:minInclusive>
+			<xsd:maxInclusive value="65"></xsd:maxInclusive>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- simpleType String MINLENGTH restriction -->
+	<xsd:simpleType name="CustomerFirstName">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="8"></xsd:minLength>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- simpleType String LENGTH restriction -->
+	<xsd:simpleType name="CustomerLastName">
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="10"></xsd:length>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="CustomerPassword">
+    	<xsd:restriction base="xsd:string">
+      		<xsd:pattern value="[a-zA-Z0-9]{8}"/>
+    	</xsd:restriction>
+  	</xsd:simpleType>
+
+	<xsd:complexType name="Address">
+		<xsd:sequence>
+			<xsd:element name="street" type="xsd:string" maxOccurs="3" />
+			<xsd:element name="city" type="xsd:string" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- simpleType String WHITESPACE collapse -->
+	<xsd:simpleType name="CustomerNumber">
+		<xsd:restriction base="xsd:string">
+			<xsd:whiteSpace value="collapse" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- It follows a complexType restriction (removing previously imposed restrictions) -->
+	<!-- HOW DOES THIS WORK ?? It is still valid even if more than 1 "street" 
+		strings are added -->
+	<xsd:complexType name="RestrictedAddress">
+		<xsd:complexContent>
+			<xsd:restriction base="Address">
+				<xsd:sequence>
+					<xsd:element name="street" type="xsd:string" maxOccurs="1" />
+					<xsd:element name="city" type="xsd:string" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+</xsd:schema>

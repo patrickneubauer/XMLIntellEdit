@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ASCII"?>
+<tosca:DocumentRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12">
+  <definitions id="MoodleTypes" name="MoodleTypes" targetNamespace="http://www.example.com/tosca/Types/Moodle">
+    <import importType="http://docs.oasis-open.org/tosca/ns/2011/12" location="TOSCA-v1.0-SpecificTypes-Definitions.xml" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"/>
+    <import importType="http://www.w3.org/2001/XMLSchema" location="../types/MoodleTypes.xsd" namespace="http://www.example.com/tosca/Types/Moodle"/>
+    <import importType="http://www.w3.org/2001/XMLSchema" location="../IAs/WSProperties.xsd" namespace="http://www.uni-stuttgart.de/opentosca"/>
+    <nodeType>
+      <documentation/>
+      <derivedFrom derivedFrom="ApacheWebApplication"/>
+      <propertiesDefinition element="MoodleApplicationProperties"/>
+      <requirementDefinitions>
+        <requirementDefinition lowerBound="1" name="phpRuntime" requirementType="PHPRuntimeRequirement">
+          <upperBound xsi:nil="true"/>
+        </requirementDefinition>
+        <requirementDefinition lowerBound="1" name="database" requirementType="MoodleDatabaseEndpointRequirement">
+          <upperBound xsi:nil="true"/>
+        </requirementDefinition>
+      </requirementDefinitions>
+      <interfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+          <operation/>
+          <operation/>
+        </interface>
+      </interfaces>
+    </nodeType>
+    <nodeType>
+      <documentation/>
+      <derivedFrom derivedFrom="MySQLDatabase"/>
+      <propertiesDefinition element="MoodleDatabaseProperties"/>
+      <interfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+          <operation/>
+        </interface>
+      </interfaces>
+    </nodeType>
+    <nodeTypeImplementation nodeType="MoodleApplication">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at"/>
+      </implementationArtifacts>
+    </nodeTypeImplementation>
+    <relationshipType>
+      <documentation/>
+      <derivedFrom derivedFrom="MySQLDatabaseConnection"/>
+      <sourceInterfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source">
+          <operation/>
+        </interface>
+      </sourceInterfaces>
+      <validSource typeRef="MoodleDatabaseEndpointRequirement"/>
+      <validTarget typeRef="MySQLDatabaseEndpointCapability"/>
+    </relationshipType>
+    <requirementType requiredCapabilityType="MySQLDatabaseEndpointCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="MySQLDatabaseEndpointRequirement"/>
+    </requirementType>
+    <artifactType targetNamespace="http://www.example.com/ToscaTypes">
+      <propertiesDefinition type="WSProperties"/>
+    </artifactType>
+  </definitions>
+</tosca:DocumentRoot>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-include"
+	xmlns="http://example.com/example-with-include">
+
+	<xsd:include schemaLocation="Example_to_be_included.xsd" />
+	
+	<xsd:element name="customer" type="Customer" />
+		
+</xsd:schema>

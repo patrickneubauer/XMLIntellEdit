@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<serviceexample:Container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:serviceexample="http://www.example.org/serviceexample" xsi:schemaLocation="http://www.example.org/serviceexample ../serviceexample.ecore">
+  <service name="chhtsZC92s" providedBy="N" designSpeed="2"/>
+  <service name="Z" providedBy="j" designSpeed="1"/>
+  <cluster name="b" services="chhtsZC92s Z" backup="j" designSpeed="0"/>
+  <cluster name=" UtpQt15_" services="Z chhtsZC92s" backup="j" designSpeed="0"/>
+  <cluster name="I" services="Z chhtsZC92s" backup="iD9" designSpeed="0">
+    <server name="8" speed="2"/>
+  </cluster>
+  <cluster name="N" services="Z chhtsZC92s" designSpeed="1">
+    <server name="h" speed="3"/>
+    <server name="M" speed="3"/>
+    <server name="aL" speed="1"/>
+  </cluster>
+  <cluster name="iD9" services="chhtsZC92s Z" backup="N" designSpeed="0"/>
+  <cluster name="j" services="Z chhtsZC92s" backup="I" designSpeed="0"/>
+</serviceexample:Container>

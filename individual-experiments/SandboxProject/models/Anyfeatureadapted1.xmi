@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<anyfeatureadapted:DocumentRoot
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:anyfeatureadapted="http://example.com/example-with-anyfeatureadapted"
+    xsi:schemaLocation="http://example.com/example-with-anyfeatureadapted ../metamodels/anyfeatureadapted.ecore">
+  <rootElement>
+    <element1
+        city="Vienna"
+        street="Favoritenstr. 9-11"/>
+    <properties>
+      <anyGenericElem elemName="deliveryInformation" elemValue="delivery information">
+        <anyGenericAttr
+            attrName="orderType"
+            attrValue="express"/>
+        <anyGenericAttr
+            attrName="deliveryCountry"
+            attrValue="Austria"/>
+        <childElem elemName="deliveringTo" elemValue="delivering to">
+          <anyGenericAttr
+              attrName="firstName"
+              attrValue="Manuel"/>
+          <anyGenericAttr
+              attrName="lastName"
+              attrValue="Wimmer"/>
+        </childElem>
+      </anyGenericElem>
+    </properties>
+  </rootElement>
+</anyfeatureadapted:DocumentRoot>

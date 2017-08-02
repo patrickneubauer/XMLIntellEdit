@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated serviceexample -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="serviceexample.presentation.ServiceexampleModelWizardID"
+            name="%_UI_ServiceexampleModelWizard_label"
+            class="serviceexample.presentation.ServiceexampleModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ServiceexampleModelFile.gif">
+         <description>%_UI_ServiceexampleModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated serviceexample -->
+      <editor
+            id="serviceexample.presentation.ServiceexampleEditorID"
+            name="%_UI_ServiceexampleEditor_label"
+            icon="icons/full/obj16/ServiceexampleModelFile.gif"
+            extensions="serviceexample"
+            class="serviceexample.presentation.ServiceexampleEditor"
+            contributorClass="serviceexample.presentation.ServiceexampleActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

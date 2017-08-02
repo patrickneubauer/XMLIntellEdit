@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ASCII"?>
+<serviceexample:Container xmlns:serviceexample="http://www.example.org/serviceexample">
+  <service name="I" providedBy="m" designSpeed="1"/>
+  <service name="L" providedBy="m" designSpeed="6"/>
+  <service name="X" providedBy="x" designSpeed="0"/>
+  <service name="v" providedBy="h" designSpeed="3"/>
+  <cluster name="x" services="v I L" backup="" designSpeed="1">
+    <server name="W" speed="5"/>
+    <server name="5" speed="3"/>
+    <server name="H" speed="6"/>
+    <server name="H" speed="3"/>
+    <server name="Xe" speed="0"/>
+    <server name="c" speed="0"/>
+    <server name="6" speed="2"/>
+    <server name="f" speed="10"/>
+  </cluster>
+  <cluster name="" services="v I L" backup="h" designSpeed="7">
+    <server name="i" speed="1"/>
+  </cluster>
+  <cluster name="m" services="I v X L" backup="m" designSpeed="12">
+    <server name="g" speed="5"/>
+    <server name="VYu" speed="0"/>
+  </cluster>
+  <cluster name="h" services="v I X L" backup="m" designSpeed="1"/>
+</serviceexample:Container>

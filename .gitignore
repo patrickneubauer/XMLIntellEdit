@@ -1,6 +1,45 @@
+# eclipse stuff
+.project
+.metadata
+.settings/
+.classpath
+bin/**
+build/**
+tmp/**
+tmp/**/*
+**/*.rvm
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+
+# maven stuff
+target/
+bin/
+bootstrap/
+
+# config (eventually containing credentials)
+config/
+
+# temp data
+data/
+
+# other
+.DS_Store
+/.apt_generated/
+
+# eclass standard related
 eClass9_1_BASIC_EN_SG_27_cleaned.xml
 eClass9_1_BASIC_EN_SG_27_cleaned2.xml
 eClass9_1_BASIC_EN_SG_27_cleaned_simple.xmi
 eClass9_1_BASIC_EN_SG_90.xml
 eClass9_1_BASIC_EN_SG_90_complex.xmi
 eClass9_1_BASIC_EN_SG_90_simple.xmi
+
+xmlintelledit/xmltext/examples/EXTREMO-ECLASS-CASE-STUDY/eclassXML/eClass9_1_BASIC_EN_SG_27.xmi
+xmlintelledit/xmltext/examples/EXTREMO-ECLASS-CASE-STUDY/eclassXML/eClass9_1_BASIC_EN_SG_27.xml
+xmlintelledit/xmltext/examples/EXTREMO-ECLASS-CASE-STUDY/eclassXML/eClass9_1_BASIC_EN_SG_27_ROUND_TRIP.xml
+xmlintelledit/xmltext/examples/EXTREMO-ECLASS-CASE-STUDY/eclassXML/xml-resizing/adapted-50mb/eClass9_1_BASIC_EN_SG_27.xml
+xmlintelledit/xmltext/examples/EXTREMO-ECLASS-CASE-STUDY/eclassXML/xml-resizing/original-50mb/eClass9_1_BASIC_EN_SG_27.xml

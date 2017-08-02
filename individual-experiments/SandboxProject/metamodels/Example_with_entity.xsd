@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [
+  <!ENTITY myEntity "attributeNameDefinedInEntity">
+]>
+<xsd:schema 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"	
+	targetNamespace="http://example.com/example-with-entity"
+	xmlns="http://example.com/example-with-entity"> 
+	
+     <xsd:complexType name="ComplexTypeWithReferenceToEntity">
+        <xsd:attribute name="&myEntity;" type="xsd:string"/>
+    </xsd:complexType>
+    
+</xsd:schema>

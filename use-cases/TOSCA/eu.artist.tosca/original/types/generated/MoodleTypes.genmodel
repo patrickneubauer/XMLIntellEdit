@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/eu.artist.tosca/src" modelPluginID="eu.artist.tosca"
+    modelName="MoodleTypes" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>MoodleTypes.xsd</foreignModel>
+  <genPackages prefix="Moodle" basePackage="com.example.tosca.types" resource="XML"
+      disposableProviderFactory="true" ecorePackage="MoodleTypes.ecore#/">
+    <genClasses ecoreClass="MoodleTypes.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute MoodleTypes.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference MoodleTypes.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference MoodleTypes.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MoodleTypes.ecore#//DocumentRoot/moodleApplicationProperties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MoodleTypes.ecore#//DocumentRoot/moodleDatabaseProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="MoodleTypes.ecore#//TMoodleApplicationProperties">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MoodleTypes.ecore#//TMoodleApplicationProperties/adminUser"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MoodleTypes.ecore#//TMoodleApplicationProperties/adminPassword"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MoodleTypes.ecore#//TMoodleApplicationProperties/siteName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MoodleTypes.ecore#//TMoodleApplicationProperties/sitePath"/>
+    </genClasses>
+    <genClasses ecoreClass="MoodleTypes.ecore#//TMoodleDatabaseProperties">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MoodleTypes.ecore#//TMoodleDatabaseProperties/dBName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MoodleTypes.ecore#//TMoodleDatabaseProperties/dBUser"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MoodleTypes.ecore#//TMoodleDatabaseProperties/dBPassword"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MoodleTypes.ecore#//TMoodleDatabaseProperties/dBPort"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

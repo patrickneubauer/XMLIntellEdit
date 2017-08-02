@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="isostdisots_29002_10ed_1techxmlschemacatalogueSimplified" nsURI="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:cataloguesimplified" nsPrefix="catalogues">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Catalogue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1" eType="//Item" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Item">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternClassificationRefs patternClassRef patternCreatedView patternDataSpecificationRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternClassificationRefs" value="self.classificationRefs->forAll(x | x.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')) or self.classificationRefs->forAll(x | x.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')) or self.classificationRefs->forAll(x | x.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?'))"/>
+      <details key="patternClassRef" value="self.classRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.classRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.classRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+      <details key="patternCreatedView" value="(self.createdView=null) or self.createdView.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.createdView.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.createdView.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+      <details key="patternDataSpecificationRef" value="(self.dataSpecificationRef=null) or self.dataSpecificationRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.dataSpecificationRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.dataSpecificationRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classificationRefs" unique="false" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classRef" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdView">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSpecificationRef">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="informationSupplierReferenceString">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDependent">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isGlobalId">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isModel">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isProprietary">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="localId" iD="true">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewOf" eType="//Item"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1" eType="//Reference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyValues" upperBound="-1" eType="//PropertyValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyValue">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternPropertyRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternPropertyRef" value="self.propertyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.propertyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.propertyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isProprietary">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyRef" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reference">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternOrganizationRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternOrganizationRef" value="(self.organizationRef=null) or self.organizationRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.organizationRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.organizationRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="organizationCode">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="organizationRef">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceNumber" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

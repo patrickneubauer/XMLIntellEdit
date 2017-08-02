@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ac.at.tuwien.big.routerecore/src" modelPluginID="ac.at.tuwien.big.routerecore"
+    modelName="Router" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>router.ecore</foreignModel>
+  <genPackages prefix="Router" disposableProviderFactory="true" ecorePackage="router.ecore#/">
+    <genClasses ecoreClass="router.ecore#//Provider">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference router.ecore#//Provider/rightserv"/>
+    </genClasses>
+    <genClasses ecoreClass="router.ecore#//Agent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute router.ecore#//Agent/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute router.ecore#//Agent/speed"/>
+    </genClasses>
+    <genClasses ecoreClass="router.ecore#//Consumer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference router.ecore#//Consumer/rightcomp"/>
+    </genClasses>
+    <genClasses ecoreClass="router.ecore#//Device">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference router.ecore#//Device/outgoing"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference router.ecore#//Device/incoming"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute router.ecore#//Device/name"/>
+    </genClasses>
+    <genClasses ecoreClass="router.ecore#//Cable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute router.ecore#//Cable/speed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference router.ecore#//Cable/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference router.ecore#//Cable/target"/>
+    </genClasses>
+    <genClasses ecoreClass="router.ecore#//Server">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference router.ecore#//Server/provider"/>
+    </genClasses>
+    <genClasses ecoreClass="router.ecore#//Computer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference router.ecore#//Computer/consumer"/>
+    </genClasses>
+    <genClasses ecoreClass="router.ecore#//Router">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute router.ecore#//Router/maxSpeed"/>
+    </genClasses>
+    <genClasses ecoreClass="router.ecore#//CopperCable"/>
+    <genClasses ecoreClass="router.ecore#//GlassFiberCable"/>
+    <genClasses ecoreClass="router.ecore#//Container">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference router.ecore#//Container/agents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference router.ecore#//Container/devices"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

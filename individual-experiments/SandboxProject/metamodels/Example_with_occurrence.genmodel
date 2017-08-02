@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/SandboxProject/src" modelPluginID="SandboxProject"
+    modelName="Example_with_occurrence" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Example_with_occurrence.xsd</foreignModel>
+  <genPackages prefix="Occurrence" basePackage="com.example.example.with" resource="XML"
+      disposableProviderFactory="true" ecorePackage="occurrence.ecore#/">
+    <genClasses ecoreClass="occurrence.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute occurrence.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference occurrence.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference occurrence.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference occurrence.ecore#//DocumentRoot/outterElement1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference occurrence.ecore#//DocumentRoot/outterElement2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference occurrence.ecore#//DocumentRoot/outterElement3"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference occurrence.ecore#//DocumentRoot/rootElement"/>
+    </genClasses>
+    <genClasses ecoreClass="occurrence.ecore#//MyType1">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute occurrence.ecore#//MyType1/attr1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute occurrence.ecore#//MyType1/attr2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute occurrence.ecore#//MyType1/attr3"/>
+    </genClasses>
+    <genClasses ecoreClass="occurrence.ecore#//MyType2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference occurrence.ecore#//MyType2/elem3"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference occurrence.ecore#//MyType2/elem2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference occurrence.ecore#//MyType2/elem1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute occurrence.ecore#//MyType2/attr1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute occurrence.ecore#//MyType2/attr2"/>
+    </genClasses>
+    <genClasses ecoreClass="occurrence.ecore#//RootElementType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference occurrence.ecore#//RootElementType/element2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference occurrence.ecore#//RootElementType/element1"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

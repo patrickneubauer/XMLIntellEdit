@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-occurrence"
+	xmlns="http://example.com/example-with-occurrence">
+
+	<xsd:element name="rootElement">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="element2" type="myType2" />
+				<xsd:element name="element1" type="myType1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="myType1">
+		<xsd:attribute name="attr3" type="xsd:string"/>
+		<xsd:attribute name="attr2" type="xsd:string"/>
+		<xsd:attribute name="attr1" type="xsd:string"/>
+	</xsd:complexType>	
+	
+	<xsd:complexType name="myType2">
+		<xsd:all>
+			<xsd:element name="elem3" />
+			<xsd:element name="elem2" />
+			<xsd:element name="elem1" />
+		</xsd:all>
+		<xsd:attribute name="attr2" type="xsd:string"/>
+		<xsd:attribute name="attr1" type="xsd:string"/>
+	</xsd:complexType>
+	
+	<xsd:element name="outterElement3" />
+	<xsd:element name="outterElement2" />
+	<xsd:element name="outterElement1" />
+
+</xsd:schema>

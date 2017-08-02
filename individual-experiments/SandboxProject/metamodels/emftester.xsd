@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:emftester="http://emftester.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="emftester" ecore:package="DataPackage" targetNamespace="http://emftester.com">
+  <xsd:element ecore:ignore="true" name="dataClass" type="emftester:dataClass"/>
+  <xsd:complexType ecore:name="DataClass" name="dataClass">
+    <xsd:sequence>
+      <xsd:any ecore:name="anyElement" maxOccurs="unbounded" minOccurs="0" namespace="##any"/>
+    </xsd:sequence>
+    <xsd:anyAttribute ecore:name="anyAttribute" namespace="##any"/>
+  </xsd:complexType>
+</xsd:schema>

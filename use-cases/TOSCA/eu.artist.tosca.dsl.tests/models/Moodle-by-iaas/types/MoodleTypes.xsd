@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.example.com/tosca/Types/Moodle" xmlns="http://www.example.com/tosca/Types/Moodle">
+  <xs:complexType name="tMoodleApplicationProperties">
+    <xs:sequence>
+      <xs:element default="admin" name="AdminUser" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Administrator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element default="admin" name="AdminPassword" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Administrator Password</xs:documentation>
+          <xs:appinfo>displayType=password</xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element default="Moodle" name="SiteName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Site Name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element default="moodle" name="SitePath" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Site Path</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MoodleApplicationProperties" type="tMoodleApplicationProperties"/>
+  <xs:complexType name="tMoodleDatabaseProperties">
+    <xs:sequence>
+      <xs:element default="moodledb" name="DBName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Database Name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element default="moodle" name="DBUser" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Database User</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element default="moodle" name="DBPassword" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Database User Password</xs:documentation>
+          <xs:appinfo>displayType=password</xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element default="3306" name="DBPort" type="xs:int">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Database Port (default 3306)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MoodleDatabaseProperties" type="tMoodleDatabaseProperties"/>
+</xs:schema>

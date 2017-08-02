@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<tosca:DocumentRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12">
+  <definitions id="mydefid" name="mydefname" targetNamespace="http://www.example.com/tosca/ServiceTemplates/Moodle"/>
+</tosca:DocumentRoot>

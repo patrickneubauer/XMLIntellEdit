@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Diagram xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/Diagram">
+    <Styles>
+        <DiagramNodeStyle xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" id="ApacheWebServerStyle" modelNodeType="ns2:ApacheWebServer">
+            <Image>icons/ApacheWebServer/ApacheWebServer.png</Image>
+            <Thumbnail>icons/ApacheWebServer/ApacheWebServer-thumb.png</Thumbnail>
+        </DiagramNodeStyle>
+        <DiagramNodeStyle xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" id="ApachePHPModuleStyle" modelNodeType="ns2:ApachePHPModule">
+            <Image>icons/ApachePHPModule/ApachePHPModule.png</Image>
+            <Thumbnail>icons/ApachePHPModule/ApachePHPModule-thumb.png</Thumbnail>
+        </DiagramNodeStyle>
+        <DiagramNodeStyle xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" id="ApacheLoadbalancerModuleStyle" modelNodeType="ns2:ApacheLoadbalancerModule">
+            <Image>icons/ApacheLoadbalancerModule/ApacheLoadbalancerModule.png</Image>
+            <Thumbnail>icons/ApacheLoadbalancerModule/ApacheLoadbalancerModule-thumb.png</Thumbnail>
+        </DiagramNodeStyle>
+        <DiagramNodeStyle xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" id="MySQLStyle" modelNodeType="ns2:MySQL">
+            <Image>icons/MySQL/MySQL.png</Image>
+            <Thumbnail>icons/MySQL/MySQL-thumb.png</Thumbnail>
+        </DiagramNodeStyle>
+    </Styles>
+</Diagram>

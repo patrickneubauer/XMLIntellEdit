@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/SandboxProject/src" modelPluginID="SandboxProject"
+    modelName="Example_with_mixed" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Example_with_mixed.xsd</foreignModel>
+  <genPackages prefix="Mixed" basePackage="com.example.example.with" resource="XML"
+      disposableProviderFactory="true" ecorePackage="mixed.ecore#/">
+    <genClasses ecoreClass="mixed.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute mixed.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference mixed.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference mixed.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mixed.ecore#//DocumentRoot/model"/>
+    </genClasses>
+    <genClasses ecoreClass="mixed.ecore#//ModelType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mixed.ecore#//ModelType/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="mixed.ecore#//MyElement"/>
+    <genClasses ecoreClass="mixed.ecore#//Pair">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mixed.ecore#//Pair/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mixed.ecore#//Pair/value"/>
+    </genClasses>
+    <genClasses ecoreClass="mixed.ecore#//Pairs">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mixed.ecore#//Pairs/elements"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

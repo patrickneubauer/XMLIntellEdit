@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-mixed-unchanged"
+	xmlns="http://example.com/example-with-mixed-unchanged">
+
+	<xsd:element name="rootElement">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="element1" type="mixedType" />
+				<xsd:element name="element2" type="customersType" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="mixedType" mixed="true">
+		<xsd:sequence>
+			<xsd:element name="someElement" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="customersType" mixed="true">
+		<xsd:sequence>
+			<xsd:element name="customer" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

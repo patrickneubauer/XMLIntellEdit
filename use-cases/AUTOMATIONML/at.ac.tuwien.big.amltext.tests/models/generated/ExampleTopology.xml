@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ASCII"?>
+<caex:CAEXFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:caex="http://big.tuwien.ac.at/caex" fileName="ExampleTopology.xaml" schemaVersion="2.15">
+  <externalReference alias="BaseRoleClassLib" path="Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.xaml"/>
+  <externalReference alias="BaseInterfaceClassLib" path="Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.xaml"/>
+  <instanceHierarchy name="ManufacturingSystem">
+    <internalElement iD="{788eb291-f103-4fdc-aba0-4893b599f556}" name="firstScrewdriver" refBaseSystemUnitPath="LibOfCommonTools/ElectricScrewdriver">
+      <attribute name="New Attribute"/>
+      <externalInterface xsi:type="caex:ExternalInterface" iD="{5f535d4c-dd46-4c1c-898c-4e58419048b6}" name="EnergySupply" refBaseClassPath="MyInterfaces/Energy"/>
+      <supportedRoleClass refRoleClassPath="ManufacturingRoleClasses/Tool"/>
+      <roleRequirements refBaseRoleClassPath="ManufacturingRoleClasses/Tool"/>
+    </internalElement>
+    <internalElement iD="{19dcf818-4716-4fc1-a85f-28e1938c4c3a}" name="secondScrewdriver" refBaseSystemUnitPath="LibOfCommonTools/ElectricScrewdriver">
+      <attribute name="New Attribute"/>
+      <externalInterface xsi:type="caex:ExternalInterface" iD="50e10905-ac18-413c-afab-ad8ed1569fff" name="EnergySupply" refBaseClassPath="MyInterfaces/Energy"/>
+      <supportedRoleClass refRoleClassPath="ManufacturingRoleClasses/Tool"/>
+      <roleRequirements refBaseRoleClassPath="ManufacturingRoleClasses/Tool"/>
+    </internalElement>
+  </instanceHierarchy>
+  <interfaceClassLib name="MyInterfaces">
+    <version value="1.0"/>
+    <interfaceClass name="Energy" refBaseClassPath="BaseInterfaceClassLib@AutomationMLInterfaceClassLib/AutomationMLBaseInterface"/>
+  </interfaceClassLib>
+  <roleClassLib name="ManufacturingRoleClasses">
+    <version value="1.0"/>
+    <roleClass name="Tool" refBaseClassPath="BaseRoleClassLib@AutomationMLBaseRoleClassLib/AutomationMLBaseRole"/>
+  </roleClassLib>
+  <systemUnitClassLib name="LibOfCommonTools">
+    <version value="1.0"/>
+    <systemUnitClass name="ElectricScrewdriver">
+      <externalInterface xsi:type="caex:ExternalInterface" iD="dd0e0dfe-10f8-4068-845b-9c29699ac79b" name="EnergySupply" refBaseClassPath="MyInterfaces/Energy"/>
+      <supportedRoleClass refRoleClassPath="ManufacturingRoleClasses/Tool"/>
+    </systemUnitClass>
+  </systemUnitClassLib>
+</caex:CAEXFile>

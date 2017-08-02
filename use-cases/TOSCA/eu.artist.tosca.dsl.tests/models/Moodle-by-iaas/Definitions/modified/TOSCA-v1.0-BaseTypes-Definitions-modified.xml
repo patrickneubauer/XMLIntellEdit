@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Modifications:
+- added "tosca:DocumentRoot"
+- changed element initial characters all lowercase (e.g., Definitions -> definitions)
+- element derivedFrom "typeRef" attribute renamed to "derivedFrom" as stated in TOSCA ecore modified because of name conflicts (see also http://goo.gl/k3qR7U)
+ -->
+<tosca:DocumentRoot	
+	xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12">
+	<definitions id="TOSCA-v1.0-BaseTypes" name="TOSCA-v1.0-BaseTypes"
+	  targetNamespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"
+	  xmlns="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:tns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
+	  <import importType="http://www.w3.org/2001/XMLSchema"
+	    location="../types/Artifacts.xsd" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"/>
+	  <import importType="http://www.w3.org/2001/XMLSchema"
+	    location="../types/TOSCA-v1.0-BaseTypes.xsd" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"/>
+	  <requirementType name="RootRequirementType" requiredCapabilityType="tns:RootCapabilityType">
+	    <documentation>Root RequirementType</documentation>
+	  </requirementType>
+	  <capabilityType name="RootCapabilityType">
+	    <documentation>Root CapabilityType</documentation>
+	  </capabilityType>
+	  <requirementType name="ContainerRequirement" requiredCapabilityType="tns:ContainerCapability">
+	    <documentation>Container Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:RootcapabilityType"/>
+	  </requirementType>
+	  <capabilityType name="ContainerCapability">
+	    <documentation>Container Capability</documentation>
+	    <derivedFrom derivedFrom="tns:RootCapabilityType"/>
+	  </capabilityType>
+	  <requirementType name="ServerContainerRequirement" requiredCapabilityType="tns:ServerContainerCapability">
+	    <documentation>Server Container Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerRequirement"/>
+	  </requirementType>
+	  <capabilityType name="ServerContainerCapability">
+	    <documentation>Server Container Capability</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerCapability"/>
+	  </capabilityType>
+	  <requirementType name="OperatingSystemContainerRequirement" requiredCapabilityType="tns:OperatingSystemContainerCapability">
+	    <documentation>Operating System Container Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerRequirement"/>
+	  </requirementType>
+	  <capabilityType name="OperatingSystemContainerCapability">
+	    <documentation>Operating System Container Capability</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerCapability"/>
+	  </capabilityType>
+	  <requirementType name="SoftwareContainerRequirement" requiredCapabilityType="tns:SoftwareContainerCapability">
+	    <documentation>Software Container Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerRequirement"/>
+	  </requirementType>
+	  <capabilityType name="SoftwareContainerCapability">
+	    <documentation>Software Container Capability</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerCapability"/>
+	  </capabilityType>
+	  <requirementType name="WebApplicationContainerRequirement" requiredCapabilityType="tns:WebApplicationContainerCapability">
+	    <documentation>Web Application Container Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerRequirement"/>
+	  </requirementType>
+	  <capabilityType name="WebApplicationContainerCapability">
+	    <documentation>Web Application Container Capability</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerCapability"/>
+	  </capabilityType>
+	  <requirementType name="DatabaseContainerRequirement" requiredCapabilityType="tns:DatabaseContainerCapability">
+	    <documentation>Database Container Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerRequirement"/>
+	  </requirementType>
+	  <capabilityType name="DatabaseContainerCapability">
+	    <documentation>Database Container Capability</documentation>
+	    <derivedFrom derivedFrom="tns:ContainerCapability"/>
+	  </capabilityType>
+	  <requirementType name="EndpointRequirement" requiredCapabilityType="tns:EndpointCapability">
+	    <documentation>Endpoint Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:RootRequirementType"/>
+	  </requirementType>
+	  <capabilityType name="EndpointCapability">
+	    <documentation>Endpoint Capability</documentation>
+	    <derivedFrom derivedFrom="tns:RootCapabilityType"/>
+	  </capabilityType>
+	  <requirementType name="IPEndpointRequirement" requiredCapabilityType="tns:IPEndpointCapability">
+	    <documentation>IP Endpoint Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:EndpointRequirement"/>
+	  </requirementType>
+	  <capabilityType name="IPEndpointCapability">
+	    <documentation>IP Endpoint Capability</documentation>
+	    <derivedFrom derivedFrom="tns:EndpointCapability"/>
+	  </capabilityType>
+	  <requirementType name="HTTPEndpointRequirement" requiredCapabilityType="tns:HTTPEndpointCapability">
+	    <documentation>HTTP Endpoint Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:IPEndpointRequirement"/>
+	  </requirementType>
+	  <capabilityType name="HTTPEndpointCapability">
+	    <documentation>HTTP Endpoint Capability</documentation>
+	    <derivedFrom derivedFrom="tns:IPEndpointCapability"/>
+	  </capabilityType>
+	  <requirementType name="DatabaseEndpointRequirement" requiredCapabilityType="tns:DatabaseEndpointCapability">
+	    <documentation>Database Endpoint Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:IPEndpointRequirement"/>
+	  </requirementType>
+	  <capabilityType name="DatabaseEndpointCapability">
+	    <documentation>Database Endpoint Capability</documentation>
+	    <derivedFrom derivedFrom="tns:IPEndpointCapability"/>
+	  </capabilityType>
+	  <requirementType name="VolumeAttachmentRequirement" requiredCapabilityType="tns:VolumeAttachmentCapability">
+	    <documentation>Volume Attachment Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:EndpointRequirement"/>
+	  </requirementType>
+	  <capabilityType name="VolumeAttachmentCapability">
+	    <documentation>Volume Attachment Capability</documentation>
+	    <derivedFrom derivedFrom="tns:EndpointCapability"/>
+	  </capabilityType>
+	  <requirementType name="NetworkAttachmentRequirement" requiredCapabilityType="tns:NetworkAttachmentCapability">
+	    <documentation>Network Attachment Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:EndpointRequirement"/>
+	  </requirementType>
+	  <capabilityType name="NetworkAttachmentCapability">
+	    <documentation>Network Attachment Capability</documentation>
+	    <derivedFrom derivedFrom="tns:EndpointCapability"/>
+	  </capabilityType>
+	  <requirementType name="FeatureRequirement" requiredCapabilityType="tns:FeatureCapability">
+	    <documentation>Feature Requirement</documentation>
+	    <derivedFrom derivedFrom="tns:RootRequirementType"/>
+	  </requirementType>
+	  <capabilityType name="FeatureCapability">
+	    <documentation>Feature Capability</documentation>
+	    <derivedFrom derivedFrom="tns:RootCapabilityType"/>
+	  </capabilityType>
+	  <nodeType name="RootNodeType">
+	    <documentation>Root NodeType</documentation>
+	  </nodeType>
+	  <nodeType name="Tier">
+	    <documentation>Tier</documentation>
+	    <derivedFrom derivedFrom="tns:RootNodeType"/>
+	    <capabilityDefinitions>
+	      <capabilityDefinition
+	        capabilityType="tns:ServerContainerCapability" lowerBound="0"
+	        name="nodes" upperBound="unbounded"/>
+	    </capabilityDefinitions>
+	  </nodeType>
+	  <nodeType name="SingleNodeTier">
+	    <documentation>Single Node Tier</documentation>
+	    <derivedFrom derivedFrom="tns:Tier"/>
+	  </nodeType>
+	  <nodeType name="ScalableTier">
+	    <documentation>Scalable Tier</documentation>
+	    <derivedFrom derivedFrom="tns:Tier"/>
+	  </nodeType>
+	  <nodeType name="Server">
+	    <documentation>Server</documentation>
+	    <derivedFrom derivedFrom="tns:RootNodeType"/>
+	    <propertiesDefinition element="tns:ServerProperties"/>
+	    <requirementDefinitions>
+	      <requirementDefinition lowerBound="0" name="networks"
+	        requirementType="tns:NetworkAttachmentRequirement" upperBound="unbounded"/>
+	      <requirementDefinition lowerBound="0" name="container"
+	        requirementType="tns:ServerContainerRequirement" upperBound="1"/>
+	      <requirementDefinition lowerBound="0" name="volumes"
+	        requirementType="tns:VolumeAttachmentRequirement" upperBound="unbounded"/>
+	    </requirementDefinitions>
+	    <capabilityDefinitions>
+	      <capabilityDefinition
+	        capabilityType="tns:OperatingSystemContainerCapability"
+	        lowerBound="0" name="os" upperBound="1"/>
+	    </capabilityDefinitions>
+	  </nodeType>
+	  <nodeType name="OperatingSystem">
+	    <documentation>Operating System</documentation>
+	    <derivedFrom derivedFrom="tns:RootNodeType"/>
+	    <requirementDefinitions>
+	      <requirementDefinition lowerBound="1" name="container"
+	        requirementType="tns:OperatingSystemContainerRequirement" upperBound="1"/>
+	    </requirementDefinitions>
+	    <capabilityDefinitions>
+	      <capabilityDefinition
+	        capabilityType="tns:SoftwareContainerCapability" lowerBound="0"
+	        name="software" upperBound="unbounded"/>
+	    </capabilityDefinitions>
+	  </nodeType>
+	  <nodeType name="WebServer">
+	    <documentation>Web Server</documentation>
+	    <derivedFrom derivedFrom="tns:RootNodeType"/>
+	    <requirementDefinitions>
+	      <requirementDefinition lowerBound="1" name="container"
+	        requirementType="tns:SoftwareContainerRequirement" upperBound="1"/>
+	    </requirementDefinitions>
+	    <capabilityDefinitions>
+	      <capabilityDefinition
+	        capabilityType="tns:WebApplicationContainerCapability"
+	        lowerBound="0" name="webapps" upperBound="unbounded"/>
+	    </capabilityDefinitions>
+	  </nodeType>
+	  <nodeType name="WebApplication">
+	    <documentation>Web Application</documentation>
+	    <derivedFrom derivedFrom="tns:RootNodeType"/>
+	    <requirementDefinitions>
+	      <requirementDefinition lowerBound="1" name="container"
+	        requirementType="tns:WebApplicationContainerRequirement" upperBound="1"/>
+	    </requirementDefinitions>
+	  </nodeType>
+	  <nodeType name="DBMS">
+	    <documentation>DBMS</documentation>
+	    <derivedFrom derivedFrom="tns:RootNodeType"/>
+	    <requirementDefinitions>
+	      <requirementDefinition lowerBound="1" name="container"
+	        requirementType="tns:SoftwareContainerRequirement" upperBound="1"/>
+	    </requirementDefinitions>
+	    <capabilityDefinitions>
+	      <capabilityDefinition
+	        capabilityType="tns:DatabaseContainerCapability" lowerBound="0"
+	        name="databases" upperBound="unbounded"/>
+	    </capabilityDefinitions>
+	  </nodeType>
+	  <nodeType name="Database">
+	    <documentation>Database</documentation>
+	    <derivedFrom derivedFrom="tns:RootNodeType"/>
+	    <requirementDefinitions>
+	      <requirementDefinition lowerBound="1" name="container"
+	        requirementType="tns:DatabaseContainerRequirement" upperBound="1"/>
+	    </requirementDefinitions>
+	    <capabilityDefinitions>
+	      <capabilityDefinition
+	        capabilityType="tns:DatabaseEndpointCapability" lowerBound="0"
+	        name="clients" upperBound="unbounded"/>
+	    </capabilityDefinitions>
+	  </nodeType>
+	  <relationshipType name="RootRelationshipType">
+	    <documentation>Root Relationship Type</documentation>
+	  </relationshipType>
+	  <relationshipType name="HostedOn">
+	    <documentation>Hosted on</documentation>
+	    <derivedFrom derivedFrom="tns:RootRelationshipType"/>
+	    <validSource typeRef="tns:ContainerRequirement"/>
+	    <validTarget typeRef="tns:ContainerCapability"/>
+	  </relationshipType>
+	  <relationshipType name="DependsOn">
+	    <documentation>Depends on</documentation>
+	    <derivedFrom derivedFrom="tns:RootRelationshipType"/>
+	    <validSource typeRef="tns:FeatureRequirement"/>
+	    <validTarget typeRef="tns:FeatureCapability"/>
+	  </relationshipType>
+	  <relationshipType name="ConnectsTo">
+	    <documentation>ConnectsTo</documentation>
+	    <derivedFrom derivedFrom="tns:RootRelationshipType"/>
+	    <validSource typeRef="tns:EndpointRequirement"/>
+	    <validTarget typeRef="tns:EndpointCapability"/>
+	  </relationshipType>
+	  <artifactType name="RootArtifactType">
+	    <documentation>Root Artifact Type</documentation>
+	  </artifactType>
+	  <artifactType name="ScriptArtifact">
+	    <documentation>Script Artifact</documentation>
+	    <derivedFrom derivedFrom="tns:RootArtifactType"/>
+	    <propertiesDefinition element="tns:ScriptArtifactProperties"/>
+	  </artifactType>
+	  <artifactType name="FileArtifact">
+	    <documentation>File Artifact</documentation>
+	    <derivedFrom derivedFrom="tns:RootArtifactType"/>
+	  </artifactType>
+	  <artifactType name="ArchiveArtifact">
+	    <documentation>Archive Artifact</documentation>
+	    <derivedFrom derivedFrom="tns:RootArtifactType"/>
+	    <propertiesDefinition element="tns:ArchiveArtifactProperties"/>
+	  </artifactType>
+	  <artifactType name="OsPackageArtifact">
+	    <documentation>OS Package Artifact</documentation>
+	    <derivedFrom derivedFrom="tns:RootArtifactType"/>
+	    <propertiesDefinition element="tns:OsPackageArtifactProperties"/>
+	  </artifactType>
+	  <artifactType name="UserContentArtifact">
+	    <documentation>User Content Artifact</documentation>
+	    <derivedFrom derivedFrom="tns:RootArtifactType"/>
+	    <propertiesDefinition element="tns:UserContentArtifactProperties"/>
+	  </artifactType>
+	  <artifactType name="RPMGroupArtifact">
+	    <documentation>RPM Group Artifact</documentation>
+	    <derivedFrom derivedFrom="tns:RootArtifactType"/>
+	    <propertiesDefinition element="tns:RPMGroupArtifactProperties"/>
+	  </artifactType>
+	</definitions>
+</tosca:DocumentRoot>

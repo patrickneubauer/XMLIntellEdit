@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ASCII"?>
+<serviceexample:Container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:serviceexample="http://www.example.org/serviceexample" xsi:schemaLocation="http://www.example.org/serviceexample ../serviceexample.ecore">
+  <service name="G" providedBy="1BSxG" designSpeed="5"/>
+  <service name="Qk" providedBy="sW" designSpeed="5"/>
+  <service name="lKYiZUGr9" providedBy="g" designSpeed="1"/>
+  <service name="5" providedBy="g" designSpeed="14"/>
+  <service name="0" providedBy="1BSxG" designSpeed="4"/>
+  <cluster name="sW" services="0 5 lKYiZUGr9 Qk G" backup="sW" designSpeed="5">
+    <server name="Tkv" speed="1"/>
+    <server name="Fr" speed="1"/>
+    <server name="O" speed="3"/>
+    <server name="oDsF1" speed="5"/>
+    <server name="yhb1j" speed="1"/>
+    <server name="Qmb" speed="1"/>
+    <server name="l" speed="12"/>
+    <server name="9" speed="2"/>
+    <server name="T" speed="1"/>
+    <server name="r" speed="5"/>
+  </cluster>
+  <cluster name="1BSxG" services="Qk lKYiZUGr9 G 0 5" backup="1BSxG" designSpeed="5">
+    <server name="a" speed="4"/>
+    <server name="PI" speed="1"/>
+  </cluster>
+  <cluster name="g" services="lKYiZUGr9 G Qk 0 5" backup="g" designSpeed="0"/>
+</serviceexample:Container>

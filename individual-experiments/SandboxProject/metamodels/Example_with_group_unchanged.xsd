@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-group-unchanged"
+	xmlns="http://example.com/example-with-group-unchanged">
+
+	<!-- ROOT ELEMENT -->
+	<xsd:element name="rootElement">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="element1" type="Element1" />
+				<xsd:element name="element2" type="Element2" />
+				<xsd:element name="element3" type="Element3" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<!-- GROUP DEFINITION -->
+	<xsd:group name="modelGroup">
+		<xsd:sequence>
+			<xsd:element name="modelGroupElement1" type="xsd:string" maxOccurs="3" />
+			<xsd:element name="modelGroupElement2" type="xsd:string" />
+			<xsd:element name="modelGroupElement3" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:group>
+
+	<!-- CHOICE with maxOccurs unbounded -->
+	<xsd:complexType name="Element1">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="repeatableElement1" type="xsd:string" />
+			<xsd:element name="repeatableElement2" type="xsd:string" />
+			<xsd:element name="repeatableElement3" type="xsd:string" />
+		</xsd:choice>
+	</xsd:complexType>
+
+	<!-- GROUP REFERENCE -->
+	<xsd:complexType name="Element2">
+		<xsd:group ref="modelGroup" />
+	</xsd:complexType>
+	
+	<!-- CHOICE with individual element maxOccurs non-default -->
+	<xsd:complexType name="Element3">
+		<xsd:choice>
+			<xsd:element name="repeatableElement1" type="xsd:string" maxOccurs="3"/>
+			<xsd:element name="repeatableElement2" type="xsd:string" />
+			<xsd:element name="repeatableElement3" type="xsd:string" />
+		</xsd:choice>
+	</xsd:complexType>
+	
+</xsd:schema>

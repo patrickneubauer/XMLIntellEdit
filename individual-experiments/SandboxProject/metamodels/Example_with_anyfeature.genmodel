@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/SandboxProject/src" modelPluginID="SandboxProject"
+    modelName="Example_with_anyfeature" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Example_with_anyfeature.xsd</foreignModel>
+  <genPackages prefix="Anyfeature" basePackage="com.example.example.with" resource="XML"
+      disposableProviderFactory="true" ecorePackage="anyfeature.ecore#/">
+    <genClasses ecoreClass="anyfeature.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute anyfeature.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference anyfeature.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference anyfeature.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference anyfeature.ecore#//DocumentRoot/rootElement"/>
+    </genClasses>
+    <genClasses ecoreClass="anyfeature.ecore#//Element1">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute anyfeature.ecore#//Element1/city"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute anyfeature.ecore#//Element1/street"/>
+    </genClasses>
+    <genClasses ecoreClass="anyfeature.ecore#//Properties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute anyfeature.ecore#//Properties/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute anyfeature.ecore#//Properties/any"/>
+    </genClasses>
+    <genClasses ecoreClass="anyfeature.ecore#//RootElementType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference anyfeature.ecore#//RootElementType/element1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference anyfeature.ecore#//RootElementType/properties"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

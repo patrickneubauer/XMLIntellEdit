@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<router:Container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:router="http://router/1.0"
+    xsi:schemaLocation="http://router/1.0 router.ecore">
+  <agents xsi:type="router:Provider" name="" speed="6" rightserv="//@devices.3"/>
+  <agents name="u" speed="1"/>
+  <agents xsi:type="router:Consumer" name="" speed="2" rightcomp="//@devices.2"/>
+  <agents xsi:type="router:Provider" name="C" speed="1" rightserv="//@devices.0"/>
+  <agents xsi:type="router:Consumer" name="H2" speed="0" rightcomp="//@devices.4"/>
+  <devices xsi:type="router:Server" incoming="//@devices.3/@outgoing.1 //@devices.3/@outgoing.2" name="s" provider="//@agents.3">
+    <outgoing speed="0" target="//@devices.3"/>
+    <outgoing xsi:type="router:GlassFiberCable" speed="8" target="//@devices.4"/>
+    <outgoing xsi:type="router:CopperCable" speed="3" target="//@devices.4"/>
+    <outgoing xsi:type="router:GlassFiberCable" speed="1" target="//@devices.3"/>
+  </devices>
+  <devices xsi:type="router:Router" incoming="//@devices.2/@outgoing.0" name="" maxSpeed="2">
+    <outgoing xsi:type="router:CopperCable" speed="1" target="//@devices.2"/>
+  </devices>
+  <devices xsi:type="router:Computer" incoming="//@devices.2/@outgoing.1 //@devices.1/@outgoing.0" name="" consumer="//@agents.2">
+    <outgoing xsi:type="router:CopperCable" speed="9" target="//@devices.1"/>
+    <outgoing xsi:type="router:GlassFiberCable" speed="0" target="//@devices.2"/>
+  </devices>
+  <devices xsi:type="router:Server" incoming="//@devices.0/@outgoing.3 //@devices.0/@outgoing.0" name="ln" provider="//@agents.0">
+    <outgoing speed="7" target="//@devices.4"/>
+    <outgoing xsi:type="router:CopperCable" speed="7" target="//@devices.0"/>
+    <outgoing speed="1" target="//@devices.0"/>
+  </devices>
+  <devices xsi:type="router:Computer" incoming="//@devices.0/@outgoing.1 //@devices.0/@outgoing.2 //@devices.3/@outgoing.0" name="T" consumer="//@agents.4"/>
+</router:Container>

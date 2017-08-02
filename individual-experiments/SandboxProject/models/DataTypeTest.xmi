@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<datetypes:DataTypeTest
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:datetypes="http://example.com/example-with-datetypes"
+    xsi:schemaLocation="http://example.com/example-with-datetypes ../metamodels/datetypes.ecore"
+    aAnyURI=""
+    aDate="1111111"
+    aHexBinary=""
+    aIDREF="sdfsdf"
+    aNonNegativeInteger="5"
+    aPositiveInteger="3"
+    aUnsignedByte="44"
+    aUnsignedInt="123"/>

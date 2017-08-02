@@ -1,0 +1,32 @@
+OrdersType {
+	
+	// Specification
+	order1 {
+		OrderDetail1 id1 {
+			customerAddress "Favoritenstrasse 9-11"
+			customerContact "123456789"
+			customerName "Manuel Wimmer"
+		}
+	}
+	order2 {
+		OrderDetail2 id2 {
+			customerName "Tanja Mayerhofer"
+		},
+		OrderDetail2 id3 {
+			customerName "Patrick Neubauer"
+		}
+	}
+	
+	// References
+	orderReference1 {
+		OrderRef1 {
+			orderDetail1 id1
+		}
+	}
+	orderReference2 {
+		OrderRef2 {
+			orderDetail2 id2
+		}
+	}
+	
+}

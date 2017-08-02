@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mt:TMoodleApplicationProperties xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mt="http://www.example.com/tosca/Types/Moodle" xsi:schemaLocation="http://www.example.com/tosca/Types/Moodle MoodleTypes.ecore" adminUser="dfghfg" adminPassword="ghjkhjk" siteName="Mofghfghodle" sitePath="fghf"/>

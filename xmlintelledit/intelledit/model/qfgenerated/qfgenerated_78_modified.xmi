@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<serviceexample:Container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:serviceexample="http://www.example.org/serviceexample" xsi:schemaLocation="http://www.example.org/serviceexample ../serviceexample.ecore">
+  <service name="CG04O" providedBy="viy" designSpeed="9"/>
+  <cluster name="K" services="CG04O" designSpeed="5">
+    <server name="z" speed="5"/>
+    <server name="I" speed="1"/>
+  </cluster>
+  <cluster name="viy" services="CG04O" designSpeed="1">
+    <server name="ru" speed="1"/>
+    <server name="c" speed="1"/>
+    <server name="Q" speed="3"/>
+    <server name="Jio" speed="2"/>
+    <server name="E" speed="5"/>
+    <server name="_aX" speed="2"/>
+    <server name="4" speed="1"/>
+    <server name="V" speed="2"/>
+    <server name="2" speed="3"/>
+  </cluster>
+  <cluster name="Nb3K1P" services="CG04O" designSpeed="0"/>
+</serviceexample:Container>

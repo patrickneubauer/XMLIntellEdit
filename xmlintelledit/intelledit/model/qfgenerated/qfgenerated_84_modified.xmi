@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<serviceexample:Container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:serviceexample="http://www.example.org/serviceexample" xsi:schemaLocation="http://www.example.org/serviceexample ../serviceexample.ecore">
+  <service name="l" providedBy="i" designSpeed="17"/>
+  <service name="U" providedBy="UC" designSpeed="4"/>
+  <cluster name="i" services="U" designSpeed="0"/>
+  <cluster name="UC" services="l U" backup="U" designSpeed="0"/>
+  <cluster name="U" services="l U" designSpeed="0"/>
+</serviceexample:Container>

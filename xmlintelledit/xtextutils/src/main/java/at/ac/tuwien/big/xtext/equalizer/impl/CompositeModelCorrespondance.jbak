@@ -1,0 +1,69 @@
+package at.ac.tuwien.big.xtext.equalizer.impl;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+
+import at.ac.tuwien.big.xtext.equalizer.ModelCorrespondance;
+
+
+public class CompositeModelCorrespondance implements ModelCorrespondance {
+
+	private Map<Resource, XtextModelCorrespondance> existingCorrespondances = new HashMap<>();
+	
+	public void addResource(Resource res) {
+		XtextModelCorrespondance newCor = new XtextModelCorrespondance(res);
+		existingCorrespondances.put(res, newCor);
+	}
+	
+	public void removeResource(Resource res) {
+		existingCorrespondances.remove(res);
+	}
+	
+	public void setResources(Set<Resource> res) {
+		existingCorrespondances.keySet().retainAll(res);
+		Set<Resource> toAdd = new HashSet<Resource>(res);
+		toAdd.removeAll(existingCorrespondances.keySet());
+		for (Resource toAddR: res) {
+			addResource(toAddR);
+		}
+	}
+
+	@Override
+	public EObject getModelObject(EObject xtext) {
+		Resource my = xtext.eResource();
+		XtextModelCorrespondance corr = existingCorrespondances.get(my);
+		if (corr != null) {
+			return corr.getModelObject(xtext);
+		}
+		return null;
+	}
+
+	@Override
+	public EObject getXtextObject(EObject modelObject) {
+		for (XtextModelCorrespondance corr: existingCorrespondances.values()) {
+			EObject ret = corr.getXtextObject(modelObject);
+			if (ret != null) {
+				return ret;
+			}
+		}
+		return null;
+	}
+	
+	public void refreshResource(Resource res) {
+		if (!existingCorrespondances.containsKey(res)) {
+			addResource(res);;
+		}
+		XtextModelCorrespondance cur = existingCorrespondances.get(res);
+		cur.refresh();
+	}
+
+	@Override
+	public void clear() {
+		existingCorrespondances.clear();
+	}
+}

@@ -1,0 +1,78 @@
+module at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2ValidatorGenerator
+
+import org.eclipse.emf.mwe.utils.*
+import at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCLEnabledResourceReader
+
+var inputDir = "C:\\Users\\Robert\\Documents\\AME\\intelledit\\ameprojekt\\at.ac.tuwien.big.forms\\model"
+var outputDir = "output"
+
+Workflow {
+
+	bean = StandaloneSetup {
+		registerGeneratedEPackage = "at.ac.tuwien.big.forms.FormsPackage"
+	}
+
+	component = DirectoryCleaner {
+		directory = outputDir
+	}
+
+	// Validator Generator
+
+	component = at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2ValidatorGeneratorSupport {}
+
+	component = OCLEnabledResourceReader {
+		path = inputDir
+		register = at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2ValidatorGeneratorSetup {}
+		loadResource = {
+			slot = "package"
+		}
+	}
+
+	component = org.eclipse.xtext.generator.GeneratorComponent {
+		register = at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2ValidatorGeneratorSetup {}
+		slot = 'package'
+		outlet = {
+			path = outputDir
+		}
+	}
+
+	// Scope Generator
+
+	component = at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2ScopeGeneratorSupport {}
+
+	component = OCLEnabledResourceReader {
+		path = inputDir
+		register = at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2ScopeGeneratorSetup {}
+		loadResource = {
+			slot = "package"
+		}
+	}
+
+	component = org.eclipse.xtext.generator.GeneratorComponent {
+		register = at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2ScopeGeneratorSetup {}
+		slot = 'package'
+		outlet = {
+			path = outputDir
+		}
+	}
+
+	// Quickfix Generator
+
+	component = at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2QuickfixGeneratorSupport {}
+
+	component = OCLEnabledResourceReader {
+		path = inputDir
+		register = at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2QuickfixGeneratorSetup {}
+		loadResource = {
+			slot = "package"
+		}
+	}
+
+	component = org.eclipse.xtext.generator.GeneratorComponent {
+		register = at.ac.tuwien.big.xmlintelledit.intelledit.oclgen.OCL2QuickfixGeneratorSetup {}
+		slot = 'package'
+		outlet = {
+			path = outputDir
+		}
+	}
+}

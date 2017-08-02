@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/SandboxProject/src" modelPluginID="SandboxProject"
+    modelName="Example_with_group_unchanged" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Example_with_group_unchanged.xsd</foreignModel>
+  <genPackages prefix="Unchanged" basePackage="com.example.example.with.group" resource="XML"
+      disposableProviderFactory="true" ecorePackage="group-unchanged.ecore#/">
+    <genClasses ecoreClass="group-unchanged.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference group-unchanged.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference group-unchanged.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference group-unchanged.ecore#//DocumentRoot/rootElement"/>
+    </genClasses>
+    <genClasses ecoreClass="group-unchanged.ecore#//Element1">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element1/group"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element1/repeatableElement1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element1/repeatableElement2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element1/repeatableElement3"/>
+    </genClasses>
+    <genClasses ecoreClass="group-unchanged.ecore#//Element2">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element2/modelGroupElement1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element2/modelGroupElement2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element2/modelGroupElement3"/>
+    </genClasses>
+    <genClasses ecoreClass="group-unchanged.ecore#//Element3">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element3/repeatableElement1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element3/repeatableElement2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute group-unchanged.ecore#//Element3/repeatableElement3"/>
+    </genClasses>
+    <genClasses ecoreClass="group-unchanged.ecore#//RootElementType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference group-unchanged.ecore#//RootElementType/element1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference group-unchanged.ecore#//RootElementType/element2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference group-unchanged.ecore#//RootElementType/element3"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

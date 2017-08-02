@@ -1,0 +1,28 @@
+ModelType {
+	elements {
+		Pairs {
+			elements {
+				Pair {
+					key "key1"
+					value "value1"
+				}
+			}
+		},
+		Pair {
+			key "key2"
+			value "value2"
+		},
+		Pair {
+			key "key3"
+			value "value3"
+		},
+		Pairs {
+			elements {
+				Pair {
+					key "key4"
+					value "value4"
+				}
+			}
+		}
+	}
+}

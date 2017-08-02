@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Diagram xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/Diagram">
+    <DiagramNode xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="node-3a5a0b0d-7100-4146-903a-67000bb7cf16" modelNode="ns2:MoodleApp">
+        <Position x="20" y="100"/>
+    </DiagramNode>
+    <DiagramNode xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="node-1176edbe-e4ee-4b0b-8db0-569750b917eb" modelNode="ns2:PhpModule">
+        <Position x="250" y="200"/>
+    </DiagramNode>
+    <DiagramNode xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="node-fa553727-4e51-4b9a-81b6-8ebcdfa38952" modelNode="ns2:ApacheWebServer">
+        <Position x="20" y="300"/>
+    </DiagramNode>
+    <DiagramNode xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="node-36b838b3-8420-443d-8cb1-e6ffadea1a11" modelNode="ns2:OsApache">
+        <Position x="230" y="480"/>
+    </DiagramNode>
+    <DiagramNode xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="node-13bc314e-728d-4bcd-a81d-a6e0dfeedf5e" modelNode="ns2:VmApache">
+        <Position x="230" y="600"/>
+    </DiagramNode>
+    <DiagramNode xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="node-e67e04d0-af3b-4c65-80da-bc44b68061b5" modelNode="ns2:MoodleDb">
+        <Position x="450" y="100"/>
+    </DiagramNode>
+    <DiagramNode xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="node-9a089c6c-83a1-4378-b7f9-b94e6af56bf0" modelNode="ns2:MySql">
+        <Position x="450" y="300"/>
+    </DiagramNode>
+    <DiagramLink xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="link-a24a8bdf-aa67-48b3-82f1-c45809776704" modelLink="ns2:MoodleApp_DependsOn_PhpModule" sourceNode="node-3a5a0b0d-7100-4146-903a-67000bb7cf16" targetNode="node-1176edbe-e4ee-4b0b-8db0-569750b917eb"/>
+    <DiagramLink xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="link-0484dff0-3c09-44d6-b242-a0ee7647edb2" modelLink="ns2:MoodleApp_HostedOn_Apache" sourceNode="node-3a5a0b0d-7100-4146-903a-67000bb7cf16" targetNode="node-fa553727-4e51-4b9a-81b6-8ebcdfa38952"/>
+    <DiagramLink xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="link-c9e42600-5ad1-4943-8ac7-92c45458e8a6" modelLink="ns2:PhpModule_HostedOn_Apache" sourceNode="node-1176edbe-e4ee-4b0b-8db0-569750b917eb" targetNode="node-fa553727-4e51-4b9a-81b6-8ebcdfa38952"/>
+    <DiagramLink xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="link-7d940fbe-890d-486d-b93a-c59ee4df8fc9" modelLink="ns2:Apache_HostedOn_OsApache" sourceNode="node-fa553727-4e51-4b9a-81b6-8ebcdfa38952" targetNode="node-36b838b3-8420-443d-8cb1-e6ffadea1a11"/>
+    <DiagramLink xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="link-241f2fac-3302-46c9-9b3a-b4f228e88817" modelLink="ns2:OsApache_HostedOn_VmApache" sourceNode="node-36b838b3-8420-443d-8cb1-e6ffadea1a11" targetNode="node-13bc314e-728d-4bcd-a81d-a6e0dfeedf5e"/>
+    <DiagramLink xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="link-237efdac-8f1e-4b81-8b89-011b23ec1461" modelLink="ns2:MoodleDb_HostedOn_MySql" sourceNode="node-e67e04d0-af3b-4c65-80da-bc44b68061b5" targetNode="node-9a089c6c-83a1-4378-b7f9-b94e6af56bf0"/>
+    <DiagramLink xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="link-c967f321-654f-4ea7-97b4-8f52ea29af7e" modelLink="ns2:MySqlHostedOnOsApache" sourceNode="node-9a089c6c-83a1-4378-b7f9-b94e6af56bf0" targetNode="node-36b838b3-8420-443d-8cb1-e6ffadea1a11"/>
+    <DiagramLink xmlns:ns2="http://www.example.com/tosca/ServiceTemplates/Moodle" id="link-5aeb7dcd-115a-4fa6-ab37-98a718e1bf7f" modelLink="ns2:MoodleApp_ConnectsTo_MoodleDb" sourceNode="node-3a5a0b0d-7100-4146-903a-67000bb7cf16" targetNode="node-e67e04d0-af3b-4c65-80da-bc44b68061b5"/>
+</Diagram>

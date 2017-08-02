@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-datetypes"
+	xmlns="http://example.com/example-with-datatypes">
+
+	<!-- See also: http://www.w3.org/TR/xmlschema-2/#built-in-datatypes -->
+
+	<xsd:complexType name="DataTypeTest">
+		
+		<!-- attributes of type anySimpleType and its sub-types -->
+		<xsd:attribute name="aAnySimpleType" type="xsd:anySimpleType"/>
+		<xsd:attribute name="aDuration" type="xsd:duration"/>
+		<xsd:attribute name="aDateTime" type="xsd:dateTime"/>		
+		<xsd:attribute name="aTime" type="xsd:time"/>
+		<xsd:attribute name="aDate" type="xsd:date"/>
+		<xsd:attribute name="aGYearMonth" type="xsd:gYearMonth"/>
+		<xsd:attribute name="aGYear" type="xsd:gYear"/>
+		<xsd:attribute name="aGMonthDay" type="xsd:gMonthDay"/>
+		<xsd:attribute name="aGDay" type="xsd:gDay"/>
+		<xsd:attribute name="aGMonth" type="xsd:gMonth"/>
+		<xsd:attribute name="aBoolean" type="xsd:boolean"/>
+		<xsd:attribute name="aBase64Binary" type="xsd:base64Binary"/>
+		<xsd:attribute name="aHexBinary" type="xsd:hexBinary"/>
+		<xsd:attribute name="aFloat" type="xsd:float"/>			
+		<xsd:attribute name="aDouble" type="xsd:double"/>		
+		<xsd:attribute name="aAnyURI" type="xsd:anyURI"/>				
+		<xsd:attribute name="aQName" type="xsd:QName"/>								
+		<!-- <xsd:attribute name="jpeg" type="xsd:NOTATION"/> -->	
+		
+		<!-- attributes of type STRING and its sub-types -->
+		<xsd:attribute name="aString" type="xsd:string"/>
+		<xsd:attribute name="aToken" type="xsd:token"/>
+		<xsd:attribute name="aLanguage" type="xsd:language"/>
+		<xsd:attribute name="aName" type="xsd:Name"/>
+		<xsd:attribute name="aNCName" type="xsd:NCName"/>
+		<xsd:attribute name="aID" type="xsd:ID"/>
+		<xsd:attribute name="aIDREF" type="xsd:IDREF"/>
+		<xsd:attribute name="aIDREFS" type="xsd:IDREFS"/>
+		<xsd:attribute name="aEntity" type="xsd:ENTITY"/>
+		<xsd:attribute name="aEntities" type="xsd:ENTITIES"/>
+		<xsd:attribute name="aNMTOKEN" type="xsd:NMTOKEN"/>
+		<xsd:attribute name="aNMTOKENS" type="xsd:NMTOKENS"/>
+		
+		<!-- attributes of type DECIMAL and its sub-types -->
+		<xsd:attribute name="aDecimal" type="xsd:decimal"/>
+		<xsd:attribute name="aInteger" type="xsd:integer"/>
+		<xsd:attribute name="aNonPositiveInteger" type="xsd:nonPositiveInteger"/>
+		<xsd:attribute name="aLong" type="xsd:long"/>
+		<xsd:attribute name="aInt" type="xsd:int"/>
+		<xsd:attribute name="aShort" type="xsd:short"/>
+		<xsd:attribute name="aByte" type="xsd:byte"/>
+		<xsd:attribute name="aNonNegativeInteger" type="xsd:nonNegativeInteger"/>
+		<xsd:attribute name="aUnsignedLong" type="xsd:unsignedLong"/>
+		<xsd:attribute name="aUnsignedInt" type="xsd:unsignedInt"/>		
+		<xsd:attribute name="aUnsignedShort" type="xsd:unsignedShort"/>			
+		<xsd:attribute name="aUnsignedByte" type="xsd:unsignedByte"/>			
+		<xsd:attribute name="aPositiveInteger" type="xsd:positiveInteger"/>		
+		
+	</xsd:complexType>
+		
+</xsd:schema>

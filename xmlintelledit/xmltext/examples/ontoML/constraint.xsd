@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ISO TC 184/SC 4/WG 2 N869 - ISO 13584-32 OntoML - XML schema
+-->
+<!--
+
+The following permission notice and disclaimer shall be included in all copies of this DTD/XML Schema ("the Schema"), 
+and derivations of the Schema:
+
+Â© ISO 2010 â All rights reserved
+
+Permission is hereby granted, free of charge in perpetuity, to any person obtaining a copy of the Schema, to use, 
+copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, 
+installing and using software based on the Schema, and to permit persons to whom the Schema is furnished to do so, 
+subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE SCHEMA DEFINED IN ISO 13584-32, AND SHOULD NOT BE INTERPRETED AS COMPLYING 
+WITH THAT STANDARD
+
+-->
+<xs:schema xmlns="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" xmlns:val="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:value" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="basic.xsd"/>
+	<xs:include schemaLocation="type_system.xsd"/>
+	<xs:include schemaLocation="identifier.xsd"/>
+	<xs:import namespace="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:value" schemaLocation="./ISO29002/value.xsd"/>
+	<!-- Global element -->
+	<xs:element name="constraint" type="CONSTRAINT_Type"/>
+	<!-- Complex type definitions -->
+	<xs:complexType name="CARDINALITY_CONSTRAINT_Type">
+		<xs:complexContent>
+			<xs:extension base="DOMAIN_CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="bound_1" type="xs:integer" minOccurs="0"/>
+					<xs:element name="bound_2" type="xs:integer" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CLASS_CONSTRAINT_Type" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="CONSTRAINT_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CONFIGURATION_CONTROL_CONSTRAINT_Type">
+		<xs:complexContent>
+			<xs:extension base="CLASS_CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="precondition" type="PRECONDITION_Type"/>
+					<xs:element name="postcondition" type="POSTCONDITION_Type"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CONSTRAINT_Type" abstract="true">
+		<xs:attribute name="constraint_id" type="ConstraintId" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="CONSTRAINTS_Type">
+		<xs:sequence>
+			<xs:element name="constraint" type="CONSTRAINT_OR_CONSTRAINT_ID_Type" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CONSTRAINT_OR_CONSTRAINT_ID_Type">
+		<xs:choice>
+			<xs:element name="constraint_definition" type="CONSTRAINT_Type" minOccurs="0"/>
+		</xs:choice>
+		<xs:attribute name="constraint_ref" type="ConstraintId" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="CONTEXT_PARAMETER_CONSTRAINTS_Type">
+		<xs:sequence>
+			<xs:element name="integrity_constraint" type="INTEGRITY_CONSTRAINT_Type" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CONTEXT_RESTRICTION_CONSTRAINT_Type">
+		<xs:complexContent>
+			<xs:extension base="PROPERTY_CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="context_parameter_constraints" type="CONTEXT_PARAMETER_CONSTRAINTS_Type"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DOMAIN_CONSTRAINT_Type" abstract="true"/>
+	<xs:complexType name="DOMAIN_CONSTRAINTS_Type">
+		<xs:sequence>
+			<xs:element name="constraint" type="DOMAIN_CONSTRAINT_Type" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FILTER_Type">
+		<xs:sequence>
+			<xs:element name="referenced_property" type="PROPERTY_REFERENCE_Type"/>
+			<xs:element name="domain" type="ENUMERATION_CONSTRAINT_Type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="INTEGRITY_CONSTRAINT_Type">
+		<xs:complexContent>
+			<xs:extension base="PROPERTY_CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="redefined_domain" type="DOMAIN_CONSTRAINT_Type"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="POSTCONDITION_Type">
+		<xs:sequence>
+			<xs:element name="filter" type="FILTER_Type" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PRECONDITION_Type">
+		<xs:sequence>
+			<xs:element name="filter" type="FILTER_Type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PROPERTY_CONSTRAINT_Type" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="constrained_property" type="PROPERTY_REFERENCE_Type"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RANGE_CONSTRAINT_Type">
+		<xs:complexContent>
+			<xs:extension base="DOMAIN_CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="min_value" type="xs:decimal" minOccurs="0"/>
+					<xs:element name="max_value" type="xs:decimal" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="STRING_PATTERN_CONSTRAINT_Type">
+		<xs:complexContent>
+			<xs:extension base="DOMAIN_CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="pattern" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="STRING_SIZE_CONSTRAINT_Type">
+		<xs:complexContent>
+			<xs:extension base="DOMAIN_CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="min_length" type="xs:integer" minOccurs="0"/>
+					<xs:element name="max_length" type="xs:integer" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SUBCLASS_CONSTRAINT_Type">
+		<xs:complexContent>
+			<xs:extension base="DOMAIN_CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="subclasses" type="CLASSES_REFERENCE_Type"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ENUMERATION_CONSTRAINT_Type">
+		<xs:complexContent>
+			<xs:extension base="DOMAIN_CONSTRAINT_Type">
+				<xs:sequence>
+					<xs:element name="subset" type="SUBSET_Type" minOccurs="0"/>
+					<xs:element name="value_meaning" type="NON_QUANTITATIVE_INT_TYPE_Type" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SUBSET_Type">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:group ref="val:value_Group"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

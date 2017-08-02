@@ -1,0 +1,317 @@
+Definitions MoodleTypes {
+	name : "MoodleTypes" targetNamespace :
+	"http://www.example.com/tosca/Types/Moodle" import {
+		Import importType : "http://docs.oasis-open.org/tosca/ns/2011/12" location :
+		"TOSCA-v1.0-SpecificTypes-Definitions.xml" namespace :
+		"http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes",
+		Import importType : "http://www.w3.org/2001/XMLSchema" location :
+		"../types/MoodleTypes.xsd" namespace :
+		"http://www.example.com/tosca/Types/Moodle",
+		Import importType : "http://www.w3.org/2001/XMLSchema" location :
+		"../IAs/WSProperties.xsd" namespace :
+		"http://www.uni-stuttgart.de/opentosca"
+	}
+	NodeType {
+		name : MoodleApplication documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ApacheWebApplication
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element MoodleApplicationProperties
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "phpRuntime" requirementType PHPRuntimeRequirement
+					upperBound 1
+				},
+				TRequirementDefinition {
+					lowerBound 1 name : "database" requirementType
+					MoodleDatabaseEndpointRequirement upperBound 1
+				}
+			}
+		}
+		interfaces InterfacesType_TInterface {
+			interface {
+				TInterface {
+					name : "http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operation {
+						TOperation {
+							name : install
+						},
+						TOperation {
+							name : configure
+						}
+					}
+				}
+			}
+		}
+	}
+	NodeType {
+		name : MoodleDatabase documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom MySQLDatabase
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element MoodleDatabaseProperties
+		}
+		interfaces InterfacesType_TInterface {
+			interface {
+				TInterface {
+					name : "http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operation {
+						TOperation {
+							name : configure
+						}
+					}
+				}
+			}
+		}
+	}
+	TRelationshipType {
+		name : MoodleDatabaseConnection documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom MySQLDatabaseConnection
+		}
+		sourceInterfaces SourceInterfacesType {
+			interface {
+				TInterface {
+					name :
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source"
+					operation {
+						TOperation {
+							name : preConfigureEndpoint
+						}
+					}
+				}
+			}
+		}
+		validSource ValidSourceType {
+			typeRef MoodleDatabaseEndpointRequirement
+		}
+		validTarget ValidTargetType {
+			typeRef MySQLDatabaseEndpointCapability
+		}
+	}
+	TRequirementType {
+		name : MoodleDatabaseEndpointRequirement requiredCapabilityType
+		MySQLDatabaseEndpointCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom MySQLDatabaseEndpointRequirement
+		}
+	}
+	TArtifactType {
+		name : WAR targetNamespace "http://www.example.com/ToscaTypes"
+		propertiesDefinition PropertiesDefinitionType {
+			type WSProperties
+		}
+	}
+	TNodeTypeImplementation {
+		name : MoodleApplicationImplementation nodeType MoodleApplication
+		implementationArtifacts TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef at-MoodleApplication-install artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName install
+				},
+				ImplementationArtifactType {
+					artifactRef at-MoodleApplication-configure artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName configure
+				}
+			}
+		}
+		deploymentArtifacts TDeploymentArtifacts {
+			deploymentArtifact {
+				TDeploymentArtifact {
+					artifactRef at-MoodleApplication-MoodleApplication-archive artifactType
+					ArchiveArtifact name : "MoodleApplication-archive"
+				},
+				TDeploymentArtifact {
+					artifactRef at-MoodleApplication-MoodleApplication-ConfigFiles
+					artifactType FileArtifact name : "MoodleApplication-ConfigFiles"
+				},
+				TDeploymentArtifact {
+					artifactRef at-MoodleApplication-php-ext-packages artifactType
+					OsPackageArtifact name : "php-ext-packages"
+				}
+			}
+		}
+	}
+	TNodeTypeImplementation {
+		name : MoodleDatabaseImplementation nodeType MoodleDatabase
+		implementationArtifacts TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef at-MoodleDatabase-configure artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName configure
+				}
+			}
+		}
+		deploymentArtifacts TDeploymentArtifacts {
+			deploymentArtifact {
+				TDeploymentArtifact {
+					artifactRef at-MoodleDatabase-MoodleDbContent-File artifactType
+					FileArtifact name : "MoodleDbContent-File"
+				}
+			}
+		}
+	}
+	TNodeTypeImplementation {
+		name : AmazonEC2VMNodeTypeImplementation nodeType Server
+		implementationArtifacts TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef AmazonEC2VMNodeTypeImplementation_IA_ArtifactTemplate
+					artifactType WAR interfaceName "InterfaceAmazonEC2VM"
+				}
+			}
+		}
+	}
+	TNodeTypeImplementation {
+		name : UbuntuNodeTypeImplementation nodeType OperatingSystem
+		implementationArtifacts TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef UbuntuNodeTypeImplementation_IA_ArtifactTemplate artifactType
+					WAR interfaceName "InterfaceUbuntu"
+				}
+			}
+		}
+	}
+	TRelationshipTypeImplementation {
+		name : MoodleDatabaseConnectionImplementation relationshipType
+		MoodleDatabaseConnection implementationArtifacts TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef at-MoodleDatabaseConnection-Source-preConfigureEndpoint
+					artifactType ScriptArtifact interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source"
+					operationName preConfigureEndpoint
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MoodleDatabaseConnection-Source-preConfigureEndpoint {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/MoodleDatabaseConnection include {
+						IncludeType {
+							pattern configureDatabaseEndpoint.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MoodleApplication-install {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/MoodleApplication include {
+						IncludeType {
+							pattern install.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MoodleApplication-configure {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/MoodleApplication include {
+						IncludeType {
+							pattern configure.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MoodleApplication-MoodleApplication-archive {
+		type ArchiveArtifact name : "MoodleApplication-archive" artifactReferences
+		ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference files/moodle-2.6.1.tgz
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MoodleApplication-MoodleApplication-ConfigFiles {
+		type FileArtifact name : "MoodleApplication-ConfigFiles" artifactReferences
+		ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference files/config.php
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MoodleApplication-php-ext-packages {
+		type OsPackageArtifact name : "php-ext-packages"
+	}
+	TArtifactTemplate at-MoodleDatabase-configure {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/MoodleDatabase include {
+						IncludeType {
+							pattern configure.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MoodleDatabase-MoodleDbContent-File {
+		type FileArtifact name : "MoodleDbContent-File" artifactReferences
+		ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference files/moodledb.sql
+				}
+			}
+		}
+	}
+	TArtifactTemplate AmazonEC2VMNodeTypeImplementation_IA_ArtifactTemplate {
+		type WAR artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference
+					IAs/AmazonEC2VMNodeType/org_opentosca_types_AmazonEC2VM__InterfaceAmazonEC2VM.war
+				}
+			}
+		}
+	}
+	TArtifactTemplate UbuntuNodeTypeImplementation_IA_ArtifactTemplate {
+		type WAR artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference
+					IAs/UbuntuNodeType/org_opentosca_types_Ubuntu__InterfaceUbuntu.war
+				}
+			}
+		}
+	}
+}

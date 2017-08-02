@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Diagram xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/Diagram">
+    <Styles>
+        <DiagramNodeStyle xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" id="TierStyle" modelNodeType="ns2:Tier">
+            <Image>icons/Tier/Tier.png</Image>
+            <Thumbnail>icons/Tier/Tier-thumb.png</Thumbnail>
+        </DiagramNodeStyle>
+        <DiagramNodeStyle xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" id="ServerStyle" modelNodeType="ns2:Server">
+            <Image>icons/Server/Server.png</Image>
+            <Thumbnail>icons/Server/Server-thumb.png</Thumbnail>
+        </DiagramNodeStyle>
+        <DiagramNodeStyle xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" id="OperatingSystemStyle" modelNodeType="ns2:OperatingSystem">
+            <Image>icons/OperatingSystem/OperatingSystem.png</Image>
+            <Thumbnail>icons/OperatingSystem/OperatingSystem-thumb.png</Thumbnail>
+        </DiagramNodeStyle>
+    </Styles>
+</Diagram>

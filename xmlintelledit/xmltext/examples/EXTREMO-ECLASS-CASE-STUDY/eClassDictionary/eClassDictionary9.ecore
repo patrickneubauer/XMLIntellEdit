@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="isostdisots_29002_10ed_1techxmlschemavalueSimplified" nsURI="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:valuesimplified" nsPrefix="values">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="BagValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stringValues" upperBound="-1" eType="//StringValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bagValues" upperBound="-1" eType="//BagValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanValues" upperBound="-1" eType="//BooleanValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValues" upperBound="-1" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeValues" upperBound="-1" eType="//CompositeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlledValues" upperBound="-1" eType="//ControlledValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencyValues" upperBound="-1" eType="//CurrencyValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateValues" upperBound="-1" eType="//DateValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateTimeValues" upperBound="-1" eType="//DateTimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileValues" upperBound="-1" eType="//FileValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValues" upperBound="-1" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemReferenceValues" upperBound="-1" eType="//ItemReferenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localizedTextValues" upperBound="-1" eType="//LocalizedTextValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureQualifiedNumberValues" upperBound="-1" eType="//MeasureQualifiedNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureRangeValues" upperBound="-1" eType="//MeasureRangeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureSingleNumberValues" upperBound="-1" eType="//MeasureSingleNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nullValues" upperBound="-1" eType="//NullValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValues" upperBound="-1" eType="//RationalValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValues" upperBound="-1" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceValues" upperBound="-1" eType="//SequenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setValues" upperBound="-1" eType="//SetValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeValues" upperBound="-1" eType="//TimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearMonthValues" upperBound="-1" eType="//YearMonthValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearValues" upperBound="-1" eType="//YearValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Combination">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stringValues" upperBound="-1" eType="//StringValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bagValues" upperBound="-1" eType="//BagValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanValues" upperBound="-1" eType="//BooleanValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValues" upperBound="-1" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeValues" upperBound="-1" eType="//CompositeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlledValues" upperBound="-1" eType="//ControlledValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencyValues" upperBound="-1" eType="//CurrencyValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateValues" upperBound="-1" eType="//DateValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateTimeValues" upperBound="-1" eType="//DateTimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileValues" upperBound="-1" eType="//FileValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValues" upperBound="-1" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemReferenceValues" upperBound="-1" eType="//ItemReferenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localizedTextValues" upperBound="-1" eType="//LocalizedTextValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureQualifiedNumberValues" upperBound="-1" eType="//MeasureQualifiedNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureRangeValues" upperBound="-1" eType="//MeasureRangeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureSingleNumberValues" upperBound="-1" eType="//MeasureSingleNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nullValues" upperBound="-1" eType="//NullValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValues" upperBound="-1" eType="//RationalValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValues" upperBound="-1" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceValues" upperBound="-1" eType="//SequenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setValues" upperBound="-1" eType="//SetValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeValues" upperBound="-1" eType="//TimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearMonthValues" upperBound="-1" eType="//YearMonthValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearValues" upperBound="-1" eType="//YearValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1" eType="//Field" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternPropertyRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternPropertyRef" value="self.propertyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.propertyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.propertyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyRef" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stringValue" eType="//StringValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bagValue" eType="//BagValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanValue" eType="//BooleanValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValue" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeValue" eType="//CompositeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlledValue" eType="//ControlledValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencyValue" eType="//CurrencyValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateValue" eType="//DateValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateTimeValue" eType="//DateTimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileValue" eType="//FileValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValue" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemReferenceValue" eType="//ItemReferenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localizedTextValue" eType="//LocalizedTextValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureQualifiedNumberValue" eType="//MeasureQualifiedNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureRangeValue" eType="//MeasureRangeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureSingleNumberValue" eType="//MeasureSingleNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nullValue" eType="//NullValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValue" eType="//RationalValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValue" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceValue" eType="//SequenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setValue" eType="//SetValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeValue" eType="//TimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearMonthValue" eType="//YearMonthValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearValue" eType="//YearValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlledValue">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternValueRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternValueRef" value="(self.valueRef=null) or self.valueRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.valueRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.valueRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueCode">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueRef">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CurrencyValue">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternCurrencyRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternCurrencyRef" value="(self.currencyRef=null) or self.currencyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.currencyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.currencyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currencyCode">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currencyRef">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValue" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValue" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValue" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValue" eType="//RationalValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DateTimeValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DateValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Environment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyValues" lowerBound="1" upperBound="-1" eType="//ConditionElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Field">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternPropertyRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternPropertyRef" value="(self.propertyRef=null) or self.propertyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.propertyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.propertyRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyRef">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stringValue" eType="//StringValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bagValue" eType="//BagValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanValue" eType="//BooleanValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValue" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeValue" eType="//CompositeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlledValue" eType="//ControlledValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencyValue" eType="//CurrencyValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateValue" eType="//DateValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateTimeValue" eType="//DateTimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileValue" eType="//FileValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValue" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemReferenceValue" eType="//ItemReferenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localizedTextValue" eType="//LocalizedTextValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureQualifiedNumberValue" eType="//MeasureQualifiedNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureRangeValue" eType="//MeasureRangeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureSingleNumberValue" eType="//MeasureSingleNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nullValue" eType="//NullValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValue" eType="//RationalValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValue" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceValue" eType="//SequenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setValue" eType="//SetValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeValue" eType="//TimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearMonthValue" eType="//YearMonthValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearValue" eType="//YearValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FileValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uRI" lowerBound="1">
+      <eAnnotations source="http://big.tuwien.ac.at/standardXMLDatatype">
+        <details key="type" value="URI"/>
+      </eAnnotations>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ItemReferenceValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemLocalRef" lowerBound="1">
+      <eType xsi:type="ecore:EClass" href="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:cataloguesimplified#//Item"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LocalizedTextValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" lowerBound="1" containment="true">
+      <eType xsi:type="ecore:EClass" href="urn:iso:std:iso:ts:29002:-4:ed-1:tech:xml-schema:basicsimplified#//InternationalText"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MeasureQualifiedNumberValue" eSuperTypes="//MeasureValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifiedValues" lowerBound="1" upperBound="-1" eType="//QualifiedValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MeasureRangeValue" eSuperTypes="//MeasureValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerValue" lowerBound="1" eType="//NumericValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperValue" lowerBound="1" eType="//NumericValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MeasureSingleNumberValue" eSuperTypes="//MeasureValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValue" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValue" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValue" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValue" eType="//RationalValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MeasureValue">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternUOMRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternUOMRef" value="(self.uOMRef=null) or self.uOMRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.uOMRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.uOMRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uOMCode">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uOMRef">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NullValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValue" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValue" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValue" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValue" eType="//RationalValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OneOf">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="combinations" upperBound="-1" eType="//Combination" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stringValues" upperBound="-1" eType="//StringValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bagValues" upperBound="-1" eType="//BagValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanValues" upperBound="-1" eType="//BooleanValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValues" upperBound="-1" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeValues" upperBound="-1" eType="//CompositeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlledValues" upperBound="-1" eType="//ControlledValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencyValues" upperBound="-1" eType="//CurrencyValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateValues" upperBound="-1" eType="//DateValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateTimeValues" upperBound="-1" eType="//DateTimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileValues" upperBound="-1" eType="//FileValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValues" upperBound="-1" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemReferenceValues" upperBound="-1" eType="//ItemReferenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localizedTextValues" upperBound="-1" eType="//LocalizedTextValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureQualifiedNumberValues" upperBound="-1" eType="//MeasureQualifiedNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureRangeValues" upperBound="-1" eType="//MeasureRangeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureSingleNumberValues" upperBound="-1" eType="//MeasureSingleNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nullValues" upperBound="-1" eType="//NullValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValues" upperBound="-1" eType="//RationalValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValues" upperBound="-1" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceValues" upperBound="-1" eType="//SequenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setValues" upperBound="-1" eType="//SetValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeValues" upperBound="-1" eType="//TimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearMonthValues" upperBound="-1" eType="//YearMonthValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearValues" upperBound="-1" eType="//YearValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedValue">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="patternQualifierRef"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="patternQualifierRef" value="(self.qualifierRef=null) or self.qualifierRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z]{1,1}(-[0-9A-Z:_\\.]{1,70})?)?)?(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.qualifierRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}(-[0-9A-Z:_\\.]{1,35})?--[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?') or self.qualifierRef.matches('[0-9]{4}-[0-9A-Z:_\\.]{1,35}---[0-9A-Z:_\\.]{1,70}(#[0-9A-Z]{2,2}-[0-9A-Z:_\\.]{1,131}#[0-9]{1,10})?')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifierCode">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifierRef">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValue" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValue" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValue" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValue" eType="//RationalValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RationalValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wholePart">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numerator" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="denominator" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RealValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stringValues" upperBound="-1" eType="//StringValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bagValues" upperBound="-1" eType="//BagValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanValues" upperBound="-1" eType="//BooleanValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValues" upperBound="-1" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeValues" upperBound="-1" eType="//CompositeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlledValues" upperBound="-1" eType="//ControlledValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencyValues" upperBound="-1" eType="//CurrencyValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateValues" upperBound="-1" eType="//DateValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateTimeValues" upperBound="-1" eType="//DateTimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileValues" upperBound="-1" eType="//FileValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValues" upperBound="-1" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemReferenceValues" upperBound="-1" eType="//ItemReferenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localizedTextValues" upperBound="-1" eType="//LocalizedTextValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureQualifiedNumberValues" upperBound="-1" eType="//MeasureQualifiedNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureRangeValues" upperBound="-1" eType="//MeasureRangeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureSingleNumberValues" upperBound="-1" eType="//MeasureSingleNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nullValues" upperBound="-1" eType="//NullValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValues" upperBound="-1" eType="//RationalValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValues" upperBound="-1" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceValues" upperBound="-1" eType="//SequenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setValues" upperBound="-1" eType="//SetValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeValues" upperBound="-1" eType="//TimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearMonthValues" upperBound="-1" eType="//YearMonthValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearValues" upperBound="-1" eType="//YearValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stringValues" upperBound="-1" eType="//StringValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bagValues" upperBound="-1" eType="//BagValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanValues" upperBound="-1" eType="//BooleanValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexValues" upperBound="-1" eType="//ComplexValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeValues" upperBound="-1" eType="//CompositeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlledValues" upperBound="-1" eType="//ControlledValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currencyValues" upperBound="-1" eType="//CurrencyValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateValues" upperBound="-1" eType="//DateValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dateTimeValues" upperBound="-1" eType="//DateTimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileValues" upperBound="-1" eType="//FileValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integerValues" upperBound="-1" eType="//IntegerValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itemReferenceValues" upperBound="-1" eType="//ItemReferenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localizedTextValues" upperBound="-1" eType="//LocalizedTextValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureQualifiedNumberValues" upperBound="-1" eType="//MeasureQualifiedNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureRangeValues" upperBound="-1" eType="//MeasureRangeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measureSingleNumberValues" upperBound="-1" eType="//MeasureSingleNumberValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nullValues" upperBound="-1" eType="//NullValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rationalValues" upperBound="-1" eType="//RationalValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realValues" upperBound="-1" eType="//RealValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceValues" upperBound="-1" eType="//SequenceValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setValues" upperBound="-1" eType="//SetValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeValues" upperBound="-1" eType="//TimeValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearMonthValues" upperBound="-1" eType="//YearMonthValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yearValues" upperBound="-1" eType="//YearValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="YearMonthValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="YearValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

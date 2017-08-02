@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:rootElement xmlns:p="http://example.com/example-with-mixed-unchanged" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://example.com/example-with-mixed-unchanged ../metamodels/Example_with_mixed_unchanged.xsd ">
+  <element1>
+    blah<someElement>blah blah blah</someElement>blah blah
+  </element1>
+  <element2>
+    asdasd<customer/>adf
+  </element2>
+</p:rootElement>

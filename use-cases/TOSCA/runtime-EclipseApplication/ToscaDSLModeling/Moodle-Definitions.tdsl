@@ -1,0 +1,264 @@
+Definitions MoodleDefinitions {
+  name: "Moodle Definitions"
+  targetNamespace: "http://www.example.com/tosca/ServiceTemplates/Moodle"
+
+  Import importType: "http://docs.oasis-open.org/tosca/ns/2011/12" location: "TOSCA-v1.0-BaseTypes-Definitions.xml" namespace: "http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"
+  Import importType: "http://www.w3.org/2001/XMLSchema" location: "../types/TOSCA-v1.0-BaseTypes.xsd" namespace: "http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"
+  Import importType: "http://docs.oasis-open.org/tosca/ns/2011/12" location: "TOSCA-v1.0-SpecificTypes-Definitions.xml" namespace: "http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"
+  Import importType: "http://www.w3.org/2001/XMLSchema" location: "../types/TOSCA-v1.0-SpecificTypes.xsd" namespace: "http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" 
+  Import importType: "http://docs.oasis-open.org/tosca/ns/2011/12" location: "MoodleTypes-Definitions.xml" namespace: "http://www.example.com/tosca/Types/Moodle"
+  Import importType: "http://www.w3.org/2001/XMLSchema" location: "../types/MoodleTypes.xsd" namespace: "http://www.example.com/tosca/Types/Moodle"
+
+  ServiceTemplate Moodle {
+    name: 'Moodle Template'
+    
+    TopologyTemplate {
+      
+      NodeTemplate VmApache {
+        name: "VM for Apache"
+        type: ns1.Server
+//        properties ServerProperties {
+//        	NumCpus: "1"
+//        	Memory: "1024"        	
+//        }
+        
+        Requirement VmApache_networks {
+          name: "networks"
+          type: ns1.NetworkAttachmentRequirement
+        }
+        Requirement VmApache_container {
+          name: "container"
+          type: ns1.ServerContainerRequirement
+        }
+        Requirement VmApache_volumes {
+          name: "volumes"
+          type: ns1.VolumeAttachmentRequirement
+        }         
+        Capability VmApache_os {
+          name: "os"
+          type: ns1.OperatingSystemContainerCapability
+        }        
+      }// VmApache
+      
+      NodeTemplate OsApache {
+        name: "OS for Apache"
+        type: ns1.OperatingSystem
+        Requirement OsApache_container {
+          name: "container"
+          type: ns1.OperatingSystemContainerRequirement
+        }
+        Capability OsApache_software {
+          name: "software"
+          type: ns1.SoftwareContainerCapability
+        }
+      }// OsApache
+      
+      NodeTemplate ApacheWebServer {
+        name: "Apache Web Server"
+        type: ns2.ApacheWebServer
+//		properties ApacheWebServerProperties {
+//			httpdport: "80"				
+//		}	
+
+        Requirement ApacheWebServer_container {
+          name: "container"
+          type: ns1.SoftwareContainerRequirement 
+        }
+        Capability ApacheWebServer_webapps {
+          name: "webapps" 
+          type: ns2.ApacheWebApplicationContainerCapability
+        }
+        Capability ApacheWebServer_modules {
+          name: "modules"
+          type: ns2.ApacheModuleContainerCapability
+        }
+        Capability ApacheWebServer_clients {
+          name: "clients"
+          type: ns2.HTTPEndpointCapability
+        }               
+      }// ApacheWebServer
+      
+      NodeTemplate MoodleApp {
+        name: "Moodle App"
+        type: ns3.MoodleApplication
+//		properties MoodleApplicationProperties {
+//			AdminUser: "admin"
+//			AdminPassword: "moodle123"	
+//			SiteName: "My Moodle"
+//			SitePath: "mymoodle"
+//		}
+        Requirement MoodleApp_phpRuntime {
+          name: "phpRuntime"
+          type: ns2.PHPRuntimeRequirement 
+        }
+        Requirement MoodleApp_database {
+          name: "database"
+          type: ns3.MoodleDatabaseEndpointRequirement 
+        }
+        Requirement MoodleApp_container {
+          name: "container"
+          type: ns2.ApacheWebApplicationContainerRequirement 
+        }
+      }// MoodleApp      
+      
+      NodeTemplate PhpModule {
+        name: "PHP Module"
+        type: ns2.ApachePHPModule
+        //TODO properties "XML Fragment"
+        Requirement PhpModule_container {
+          name: "container"
+          type: ns1.ApacheModuleContainerRequirement          
+        }
+        Capability PhpModule_phpApps {
+          name: "phpApps" 
+          type: ns2.PHPRuntimeCapability          
+        }         
+      }// PhpModule
+      
+      NodeTemplate MySql {
+        name: "MySQL"
+        type: ns2.MySQL
+//        properties MySQLProperties {
+//        	RootPassword: "password"	
+//        }
+        Requirement MySql_container {
+          name: "container"
+          type: ns1.SoftwareContainerRequirement 
+        }
+        Capability MySql_databases {
+          name: "databases" 
+          type: ns2.MySQLDatabaseContainerCapability
+        }         
+      }// MySql
+      
+      NodeTemplate MoodleDb {
+        name: "Moodle DB"
+        type: ns2.MoodleDatabase
+//        properties MoodleDatabaseProperties {
+//        	DBName: "moodledb"	
+//        	DBUser: "mdladmin"
+//        	DBPassword: "mdlamin"
+//        	DBPort: "3306"
+//        }
+        Requirement MoodleDb_container {
+          name: "container"
+          type: ns1.MySQLDatabaseContainerRequirement  
+        }
+        Capability MoodleDb_clients {
+          name: "clients" 
+          type: ns2.MySQLDatabaseEndpointCapability
+        }         
+      }// MoodleDb
+      
+      RelationshipTemplate OsApache_HostedOn_VmApache {
+        name: "hosted on"
+        type: ns1.HostedOn
+        sourceElement ref OsApache_container
+        targetElement ref VmApache_os
+      }// OsApache_HostedOn_VmApache
+
+      RelationshipTemplate Apache_HostedOn_OsApache {
+        name: "hosted on"
+        type: ns1.HostedOn
+        sourceElement ref ApacheWebServer_container
+        targetElement ref OsApache_software
+      }// Apache_HostedOn_OsApache
+      
+      RelationshipTemplate MoodleApp_HostedOn_Apache {
+        name: "hosted on"
+        type: ns1.HostedOn
+        sourceElement ref MoodleApp_container
+        targetElement ref ApacheWebServer_webapps
+      }// MoodleApp_HostedOn_Apache
+      
+      RelationshipTemplate PhpModule_HostedOn_Apache {
+        name: "hosted on"
+        type: ns1.HostedOn
+        sourceElement ref PhpModule_container
+        targetElement ref ApacheWebServer_modules
+      }// PhpModule_HostedOn_Apache
+      
+      RelationshipTemplate MoodleApp_DependsOn_PhpModule {
+        name: "depends on"
+        type: ns1.DependsOn
+        sourceElement ref MoodleApp_phpRuntime
+        targetElement ref PhpModule_phpApps
+      }// MoodleApp_DependsOn_PhpModule
+      
+      RelationshipTemplate MySqlHostedOnOsApache {
+        name: "hosted on"
+        type: ns1.HostedOn
+        sourceElement ref MySql_container
+        targetElement ref OsApache_software
+      }// MySqlHostedOnOsApache
+      
+      RelationshipTemplate MoodleDb_HostedOn_MySql {
+        name: "hosted on"
+        type: ns1.HostedOn
+        sourceElement ref MoodleDb_container
+        targetElement ref MySql_databases
+      }// MoodleDb_HostedOn_MySql
+      
+      RelationshipTemplate MoodleApp_ConnectsTo_MoodleDb {
+        name: "connects to"
+        type: ns1.MoodleDatabaseConnection
+        sourceElement ref MoodleApp_database
+        targetElement ref MoodleDb_clients
+      }// MoodleDb_HostedOn_MySql     
+      
+    }// TopologyTemplate
+
+    Plans targetNamespace: "http://www.example.com/tosca/ServiceTemplates/Moodle" {
+      
+      Plan DeployMoodle planType: "http://docs.oasis-open.org/tosca/ns/2011/12/PlanTypes/BuildPlan" planLanguage: "http://docs.oasis-open.org/wsbpel/2.0/process/executable" {
+        
+        InputParameters {
+          InputParameter name: "region" type: "string" required: yes
+          InputParameter name: "securityGroup" type: "string" required: yes
+          InputParameter name: "keyPairName" type: "string" required: yes
+          InputParameter name: "sshKey" type: "string-multiline" required: yes
+          InputParameter name: "ami" type: "string" required: yes
+          InputParameter name: "instanceType" type: "string" required: yes
+          InputParameter name: "accessKey" type: "string-password" required: yes
+          InputParameter name: "secretKey" type: "string-password" required: yes
+          InputParameter name: "csarName" type: "string" required: yes
+          InputParameter name: "containerApi" type: "string" required: yes
+          InputParameter name: "callbackUrl" type: "callbackaddress" required: yes
+          InputParameter name: "CorrelationID" type: "correlation" required: yes          
+        }// InputParameters
+        
+        OutputParameters {
+          OutputParameter name: "result" type: "" required: yes
+          OutputParameter name: "selfserviceApplicationUrl" type: "" required: yes
+          OutputParameter name: "webapp_createFolders_Result" type: "" required: yes
+          OutputParameter name: "webapp_fixRights_Result" type: "" required: yes
+          OutputParameter name: "webapp_ApacheWebServer_InstallDA_Result" type: "" required: yes
+          OutputParameter name: "webapp_ApacheWebServer_Install_Result" type: "" required: yes
+          OutputParameter name: "webapp_ApacheWebServer_Configure_Result" type: "string" required: yes
+          OutputParameter name: "webapp_ApacheWebServer_Start_Result" type: "string" required: yes          
+          OutputParameter name: "webapp_PHPModule_InstallDA_Result" type: "string" required: yes
+          OutputParameter name: "webapp_ApacheModuleHostedOnApache_ConfAp_Result" type: "string" required: yes
+          OutputParameter name: "webapp_ApachePhpModule_Start_Result" type: "string" required: yes
+          OutputParameter name: "webapp_unpackMoodleZip_Result" type: "string" required: yes
+          OutputParameter name: "webapp_MoodleWebApp_Install_Result" type: "string" required: yes
+          OutputParameter name: "webapp_MoodleWebApp_Configure_Result" type: "string" required: yes
+          OutputParameter name: "db_createFolders_Result" type: "string" required: yes
+          OutputParameter name: "db_fixRights_Result" type: "string" required: yes
+          OutputParameter name: "db_MySQL_InstallDA_Result" type: "string" required: yes
+          OutputParameter name: "db_MySQL_Install_Result" type: "string" required: yes
+          OutputParameter name: "db_MySQL_Configure_Result" type: "string" required: yes
+          OutputParameter name: "db_MySQL_Start_Result" type: "string" required: yes
+          OutputParameter name: "db_MySQLDBHostedOnMySQL_ConfigureDB_Result" type: "string" required: yes
+          OutputParameter name: "MoodleDBConnection_connectToDatabase_Result" type: "string" required: yes
+          OutputParameter name: "MoodleWebApp_Start_Result" type: "string" required: yes
+          OutputParameter name: "CorrelationID" type: "correlation" required: yes         
+        }// OutputParameters
+        
+      }// Plan DeployMoodle
+        
+    }// Plans
+    
+  }// ServiceTemplate
+   
+}// Definitions
+

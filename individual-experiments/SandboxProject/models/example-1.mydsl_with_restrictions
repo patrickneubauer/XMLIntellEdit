@@ -1,0 +1,22 @@
+OrdersType {
+	
+	// Specification
+	order {
+		OrderDetail ID {
+			customerContact "1234567890" // valid
+//			customerContact "1234567890" // invalid	(if OCL invariant in Ecore metamodel is present)		
+			customerName "Manuel Wimmer"
+			customerUSState U_Z
+			customerAddress RestrictedAddress {
+				street { 
+					"Favoritenstrasse 9-11",
+					"2. Stock",
+					"asd",
+					"Asdf"
+				}
+				city "Vienna"
+			}
+		}
+	}
+	
+}

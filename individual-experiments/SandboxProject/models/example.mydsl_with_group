@@ -1,0 +1,31 @@
+RootElementType {
+	element1 Element1 {
+		element1Choice {
+			Element1Choice {
+				repeatableElement1 String
+				repeatableElement2 String
+				repeatableElement3 String				 
+			},
+			Element1Choice {
+				repeatableElement1 String
+				repeatableElement2 String
+				repeatableElement3 String			
+			}
+		}
+	}
+	element2 Element2 {
+		modelGroupElement1 { 
+			String, String, String // valid
+//			String, String, String, String // invalid
+		}
+		modelGroupElement2 String
+		modelGroupElement3 String
+	}
+	element3 Element3 {
+		repeatableElement1 {
+			String
+		}
+		repeatableElement2 String
+		repeatableElement3 String
+	}
+}

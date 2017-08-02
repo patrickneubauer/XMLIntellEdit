@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:rootElement 
+xmlns:p="http://example.com/example-with-anyfeature" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://example.com/example-with-anyfeature ../metamodels/Example_with_anyfeature.xsd ">
+  <element1 city="Vienna" street="Favoritenstr. 9-11" />
+  
+  <properties>
+<!--     <ns1:ANY-ELEMENT xmlns:ns1="http://example.com/example-with-any-other">
+    	<SomeElement1>SomeValue1</SomeElement1>
+    	<SomeElement2>SomeValue2</SomeElement2>
+    </ns1:ANY-ELEMENT> -->
+    <ANY-ELEMENT>
+    	<SomeElement1>SomeValue1</SomeElement1>
+    	<SomeElement2>SomeValue2</SomeElement2>
+    </ANY-ELEMENT>
+  </properties>
+  
+</p:rootElement>

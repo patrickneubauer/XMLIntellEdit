@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:customer 
+xmlns:p="http://example.com/example-with-include" 
+xmlns:p1="http://example.com/example-to-be-included" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://example.com/example-with-include ../metamodels/Example_with_include.xsd"
+city="Vienna"
+customerName="Manuel Wimmer"
+street="Favoritenstr. 9-11"/>

@@ -1,0 +1,591 @@
+Definitions TOSCA-v1.0-BaseTypes {
+	name : "TOSCA-v1.0-BaseTypes" targetNamespace :
+	"http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" import {
+		Import importType : "http://www.w3.org/2001/XMLSchema" location :
+		"../types/Artifacts.xsd" namespace :
+		"http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes",
+		Import importType : "http://www.w3.org/2001/XMLSchema" location :
+		"../types/TOSCA-v1.0-BaseTypes.xsd" namespace :
+		"http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"
+	}
+	NodeType {
+		name : RootNodeType documentation {
+			TDocumentation {
+			}
+		}
+	}
+	NodeType {
+		name : Tier documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootNodeType
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType ServerContainerCapability lowerBound 0 name : "nodes"
+					upperBound unbounded
+				}
+			}
+		}
+	}
+	NodeType {
+		name : SingleNodeTier documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom Tier
+		}
+	}
+	NodeType {
+		name : ScalableTier documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom Tier
+		}
+	}
+	NodeType {
+		name : Server documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootNodeType
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element ServerProperties
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 0 name : "networks" requirementType
+					NetworkAttachmentRequirement upperBound unbounded
+				},
+				TRequirementDefinition {
+					lowerBound 0 name : "container" requirementType
+					ServerContainerRequirement upperBound 1
+				},
+				TRequirementDefinition {
+					lowerBound 0 name : "volumes" requirementType VolumeAttachmentRequirement
+					upperBound unbounded
+				}
+			}
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType OperatingSystemContainerCapability lowerBound 0 name :
+					"os" upperBound 1
+				}
+			}
+		}
+	}
+	NodeType {
+		name : OperatingSystem documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootNodeType
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "container" requirementType
+					OperatingSystemContainerRequirement upperBound 1
+				}
+			}
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType SoftwareContainerCapability lowerBound 0 name : "software"
+					upperBound unbounded
+				}
+			}
+		}
+	}
+	NodeType {
+		name : WebServer documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootNodeType
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "container" requirementType
+					SoftwareContainerRequirement upperBound 1
+				}
+			}
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType WebApplicationContainerCapability lowerBound 0 name :
+					"webapps" upperBound unbounded
+				}
+			}
+		}
+	}
+	NodeType {
+		name : WebApplication documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootNodeType
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "container" requirementType
+					WebApplicationContainerRequirement upperBound 1
+				}
+			}
+		}
+	}
+	NodeType {
+		name : DBMS documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootNodeType
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "container" requirementType
+					SoftwareContainerRequirement upperBound 1
+				}
+			}
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType DatabaseContainerCapability lowerBound 0 name :
+					"databases" upperBound unbounded
+				}
+			}
+		}
+	}
+	NodeType {
+		name : Database documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootNodeType
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "container" requirementType
+					DatabaseContainerRequirement upperBound 1
+				}
+			}
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType DatabaseEndpointCapability lowerBound 0 name : "clients"
+					upperBound unbounded
+				}
+			}
+		}
+	}
+	TRelationshipType {
+		name : RootRelationshipType documentation {
+			TDocumentation {
+			}
+		}
+	}
+	TRelationshipType {
+		name : HostedOn documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootRelationshipType
+		}
+		validSource ValidSourceType {
+			typeRef ContainerRequirement
+		}
+		validTarget ValidTargetType {
+			typeRef ContainerCapability
+		}
+	}
+	TRelationshipType {
+		name : DependsOn documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootRelationshipType
+		}
+		validSource ValidSourceType {
+			typeRef FeatureRequirement
+		}
+		validTarget ValidTargetType {
+			typeRef FeatureCapability
+		}
+	}
+	TRelationshipType {
+		name : ConnectsTo documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootRelationshipType
+		}
+		validSource ValidSourceType {
+			typeRef EndpointRequirement
+		}
+		validTarget ValidTargetType {
+			typeRef EndpointCapability
+		}
+	}
+	TRequirementType {
+		name : RootRequirementType requiredCapabilityType RootCapabilityType
+		documentation {
+			TDocumentation {
+			}
+		}
+	}
+	TRequirementType {
+		name : ContainerRequirement requiredCapabilityType ContainerCapability
+		documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootcapabilityType
+		}
+	}
+	TRequirementType {
+		name : ServerContainerRequirement requiredCapabilityType
+		ServerContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerRequirement
+		}
+	}
+	TRequirementType {
+		name : OperatingSystemContainerRequirement requiredCapabilityType
+		OperatingSystemContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerRequirement
+		}
+	}
+	TRequirementType {
+		name : SoftwareContainerRequirement requiredCapabilityType
+		SoftwareContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerRequirement
+		}
+	}
+	TRequirementType {
+		name : WebApplicationContainerRequirement requiredCapabilityType
+		WebApplicationContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerRequirement
+		}
+	}
+	TRequirementType {
+		name : DatabaseContainerRequirement requiredCapabilityType
+		DatabaseContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerRequirement
+		}
+	}
+	TRequirementType {
+		name : EndpointRequirement requiredCapabilityType EndpointCapability
+		documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootRequirementType
+		}
+	}
+	TRequirementType {
+		name : IPEndpointRequirement requiredCapabilityType IPEndpointCapability
+		documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom EndpointRequirement
+		}
+	}
+	TRequirementType {
+		name : HTTPEndpointRequirement requiredCapabilityType HTTPEndpointCapability
+		documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom IPEndpointRequirement
+		}
+	}
+	TRequirementType {
+		name : DatabaseEndpointRequirement requiredCapabilityType
+		DatabaseEndpointCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom IPEndpointRequirement
+		}
+	}
+	TRequirementType {
+		name : VolumeAttachmentRequirement requiredCapabilityType
+		VolumeAttachmentCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom EndpointRequirement
+		}
+	}
+	TRequirementType {
+		name : NetworkAttachmentRequirement requiredCapabilityType
+		NetworkAttachmentCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom EndpointRequirement
+		}
+	}
+	TRequirementType {
+		name : FeatureRequirement requiredCapabilityType FeatureCapability
+		documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootRequirementType
+		}
+	}
+	TCapabilityType {
+		name : RootCapabilityType documentation {
+			TDocumentation {
+			}
+		}
+	}
+	TCapabilityType {
+		name : ContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootCapabilityType
+		}
+	}
+	TCapabilityType {
+		name : ServerContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerCapability
+		}
+	}
+	TCapabilityType {
+		name : OperatingSystemContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerCapability
+		}
+	}
+	TCapabilityType {
+		name : SoftwareContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerCapability
+		}
+	}
+	TCapabilityType {
+		name : WebApplicationContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerCapability
+		}
+	}
+	TCapabilityType {
+		name : DatabaseContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerCapability
+		}
+	}
+	TCapabilityType {
+		name : EndpointCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootCapabilityType
+		}
+	}
+	TCapabilityType {
+		name : IPEndpointCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom EndpointCapability
+		}
+	}
+	TCapabilityType {
+		name : HTTPEndpointCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom IPEndpointCapability
+		}
+	}
+	TCapabilityType {
+		name : DatabaseEndpointCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom IPEndpointCapability
+		}
+	}
+	TCapabilityType {
+		name : VolumeAttachmentCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom EndpointCapability
+		}
+	}
+	TCapabilityType {
+		name : NetworkAttachmentCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom EndpointCapability
+		}
+	}
+	TCapabilityType {
+		name : FeatureCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootCapabilityType
+		}
+	}
+	TArtifactType {
+		name : RootArtifactType documentation {
+			TDocumentation {
+			}
+		}
+	}
+	TArtifactType {
+		name : ScriptArtifact documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootArtifactType
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element ScriptArtifactProperties
+		}
+	}
+	TArtifactType {
+		name : FileArtifact documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootArtifactType
+		}
+	}
+	TArtifactType {
+		name : ArchiveArtifact documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootArtifactType
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element ArchiveArtifactProperties
+		}
+	}
+	TArtifactType {
+		name : OsPackageArtifact documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootArtifactType
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element OsPackageArtifactProperties
+		}
+	}
+	TArtifactType {
+		name : UserContentArtifact documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootArtifactType
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element UserContentArtifactProperties
+		}
+	}
+	TArtifactType {
+		name : RPMGroupArtifact documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootArtifactType
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element RPMGroupArtifactProperties
+		}
+	}
+}

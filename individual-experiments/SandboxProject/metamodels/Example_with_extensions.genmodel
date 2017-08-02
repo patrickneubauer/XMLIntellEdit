@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/SandboxProject/src" modelPluginID="SandboxProject"
+    modelName="Example_with_extensions" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Example_with_extensions.xsd</foreignModel>
+  <genPackages prefix="Extensions" basePackage="com.example.example.with" resource="XML"
+      disposableProviderFactory="true" ecorePackage="extensions.ecore#/">
+    <genClasses ecoreClass="extensions.ecore#//Address">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extensions.ecore#//Address/street"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extensions.ecore#//Address/city"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extensions.ecore#//Address/country"/>
+    </genClasses>
+    <genClasses ecoreClass="extensions.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute extensions.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference extensions.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference extensions.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference extensions.ecore#//DocumentRoot/rootElement"/>
+    </genClasses>
+    <genClasses ecoreClass="extensions.ecore#//ExtendedAddress">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extensions.ecore#//ExtendedAddress/latitude"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extensions.ecore#//ExtendedAddress/longitude"/>
+    </genClasses>
+    <genClasses ecoreClass="extensions.ecore#//Language">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extensions.ecore#//Language/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extensions.ecore#//Language/language"/>
+    </genClasses>
+    <genClasses ecoreClass="extensions.ecore#//RootElementType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference extensions.ecore#//RootElementType/extendedAddress"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference extensions.ecore#//RootElementType/address"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference extensions.ecore#//RootElementType/language"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

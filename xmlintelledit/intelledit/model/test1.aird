@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/description/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:table="http://www.eclipse.org/sirius/table/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/table/description/1.1.0 http://www.eclipse.org/sirius/table/1.1.0#//description http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description" xmi:id="_BSjkcIVREeaTP6aCV8D4OA" selectedViews="_BrS0kIVREeaTP6aCV8D4OA _BrclkIVREeaTP6aCV8D4OA _BrclkYVREeaTP6aCV8D4OA _BrvggIVREeaTP6aCV8D4OA" version="10.0.0.201505222000">
+  <semanticResources>test1.ecore</semanticResources>
+  <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_BrS0kIVREeaTP6aCV8D4OA">
+    <ownedRepresentations xmi:type="table:DTable" xmi:id="_C4VPcIVREeaTP6aCV8D4OA" name=" class table" headerColumnWidth="15">
+      <target xmi:type="ecore:EPackage" href="test1.ecore#/"/>
+      <lines xmi:type="table:DLine" xmi:id="_aSqy8IVREeaTP6aCV8D4OA" label="Student">
+        <target xmi:type="ecore:EClass" href="test1.ecore#//Student"/>
+        <lines xmi:type="table:DLine" xmi:id="_aSqy8YVREeaTP6aCV8D4OA" label="name : EString">
+          <target xmi:type="ecore:EAttribute" href="test1.ecore#//Student/name"/>
+          <semanticElements xmi:type="ecore:EAttribute" href="test1.ecore#//Student/name"/>
+          <originMapping xmi:type="description:LineMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Classes']/@ownedLineMappings[name='Classes%20lines']/@ownedSubLines[name='Feature']"/>
+          <cells xmi:type="table:DCell" xmi:id="_aS-U8IVREeaTP6aCV8D4OA" label="name" column="_C4VPcYVREeaTP6aCV8D4OA">
+            <target xmi:type="ecore:EAttribute" href="test1.ecore#//Student/name"/>
+            <semanticElements xmi:type="ecore:EAttribute" href="test1.ecore#//Student/name"/>
+          </cells>
+        </lines>
+        <semanticElements xmi:type="ecore:EClass" href="test1.ecore#//Student"/>
+        <originMapping xmi:type="description:LineMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Classes']/@ownedLineMappings[name='Classes%20lines']"/>
+        <cells xmi:type="table:DCell" xmi:id="_aS0j8IVREeaTP6aCV8D4OA" label="Student" column="_C4VPcYVREeaTP6aCV8D4OA">
+          <target xmi:type="ecore:EClass" href="test1.ecore#//Student"/>
+          <semanticElements xmi:type="ecore:EClass" href="test1.ecore#//Student"/>
+        </cells>
+      </lines>
+      <columns xmi:type="table:DFeatureColumn" xmi:id="_C4VPcYVREeaTP6aCV8D4OA" label="Name" cells="_aS0j8IVREeaTP6aCV8D4OA _aS-U8IVREeaTP6aCV8D4OA" width="55" featureName="name">
+        <originMapping xmi:type="description:FeatureColumnMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Classes']/@ownedColumnMappings[name='Name']"/>
+      </columns>
+      <description xmi:type="description:EditionTableDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Classes']"/>
+    </ownedRepresentations>
+    <viewpoint xmi:type="description_1:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
+  </ownedViews>
+  <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_BrclkIVREeaTP6aCV8D4OA">
+    <viewpoint xmi:type="description_1:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Review']"/>
+  </ownedViews>
+  <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_BrclkYVREeaTP6aCV8D4OA">
+    <viewpoint xmi:type="description_1:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Archetype']"/>
+  </ownedViews>
+  <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_BrvggIVREeaTP6aCV8D4OA">
+    <viewpoint xmi:type="description_1:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Generation']"/>
+  </ownedViews>
+</viewpoint:DAnalysis>

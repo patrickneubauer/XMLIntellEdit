@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ASCII"?>
+<serviceexample:Container xmlns:serviceexample="http://www.example.org/serviceexample">
+  <cluster name="zw" backup="P" designSpeed="3">
+    <server name="2" speed="0"/>
+    <server name="H" speed="9"/>
+    <server name="l" speed="8"/>
+    <server name="VN" speed="10"/>
+    <server name="b" speed="6"/>
+    <server name="I2aPDs" speed="4"/>
+  </cluster>
+  <cluster name="" backup="zw" designSpeed="0">
+    <server name="f" speed="3"/>
+    <server name="i" speed="3"/>
+  </cluster>
+  <cluster name="H" backup="w" designSpeed="3">
+    <server name="n" speed="14"/>
+    <server name="W" speed="32"/>
+    <server name="zW" speed="1"/>
+    <server name="z" speed="10"/>
+    <server name="Ke" speed="5"/>
+  </cluster>
+  <cluster name="w" backup="" designSpeed="1"/>
+  <cluster name="P" backup="P" designSpeed="1">
+    <server name="N" speed="6"/>
+    <server name="d" speed="2"/>
+  </cluster>
+</serviceexample:Container>

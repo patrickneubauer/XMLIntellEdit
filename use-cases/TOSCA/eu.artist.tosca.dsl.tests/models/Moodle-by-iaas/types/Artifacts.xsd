@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+ <xs:element name="documentation" type="tDocumentation"/>
+ <xs:complexType name="tDocumentation" mixed="true">
+  <xs:sequence>
+   <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="source" type="xs:anyURI"/>
+  <xs:attribute ref="xml:lang"/>
+ </xs:complexType>
+ <xs:complexType name="tExtensibleElements">
+  <xs:sequence>
+   <xs:element ref="documentation" minOccurs="0" maxOccurs="unbounded"/>
+   <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:anyAttribute namespace="##other" processContents="lax"/>
+ </xs:complexType>
+ <xs:complexType name="tBaseArtifactProperties" abstract="true">
+  <xs:complexContent>
+   <xs:extension base="tExtensibleElements">
+    <xs:sequence>
+     <xs:element name="IdentityProperties" type="tProperties" minOccurs="0"/>
+    </xs:sequence>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:complexType name="tProperties">
+  <xs:sequence>
+   <xs:element name="Property" type="tProperty" maxOccurs="unbounded"/>
+  </xs:sequence>
+ </xs:complexType>
+ <xs:complexType name="tProperty">
+  <xs:attribute name="name" type="xs:string" use="required"/>
+  <xs:attribute name="value" type="xs:anySimpleType" use="required"/>
+ </xs:complexType>
+ <xs:complexType name="tBaseArtifactContextProperties">
+  <xs:complexContent>
+   <xs:extension base="tExtensibleElements"/>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:element name="ArchiveArtifactProperties">
+  <xs:complexType>
+   <xs:complexContent>
+    <xs:extension base="tArchiveArtifactProperties"/>
+   </xs:complexContent>
+  </xs:complexType>
+ </xs:element>
+ <xs:element name="UserContentArtifactProperties">
+  <xs:complexType>
+   <xs:complexContent>
+    <xs:extension base="tUserContentArtifactProperties"/>
+   </xs:complexContent>
+  </xs:complexType>
+ </xs:element>
+ <xs:complexType name="tUserContentArtifactProperties">
+  <xs:complexContent>
+   <xs:extension base="tArchiveArtifactProperties">
+    <xs:sequence>
+     <xs:element name="UserSpec" type="tUserSpec"/>
+    </xs:sequence>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:complexType name="tArchiveArtifactProperties">
+  <xs:complexContent>
+   <xs:extension base="tBaseArtifactProperties">
+    <xs:sequence>
+     <xs:element name="ArchiveInformation" type="tArchiveInformation" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:complexType name="tArchiveInformation">
+  <xs:sequence>
+   <xs:element name="UserMap" type="tUsers" minOccurs="0"/>
+   <xs:element name="GroupMap" type="tGroups" minOccurs="0"/>
+   <xs:element name="ContentSourceLocation" type="tContentLocation" minOccurs="0"/>
+  </xs:sequence>
+  <xs:attribute name="archiveReference" type="xs:anyURI" use="required"/>
+  <xs:attribute name="archiveType" type="xs:string" use="required"/>
+ </xs:complexType>
+ <xs:complexType name="tUsers">
+  <xs:sequence>
+   <xs:element name="User" type="tUser" maxOccurs="unbounded"/>
+  </xs:sequence>
+ </xs:complexType>
+ <xs:complexType name="tUser">
+  <xs:attribute name="name" type="xs:string" use="required"/>
+  <xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+ </xs:complexType>
+ <xs:complexType name="tUserSpec">
+  <xs:attribute name="name" type="xs:string" use="required"/>
+  <xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+  <xs:attribute name="groupId" type="xs:unsignedInt" use="required"/>
+  <xs:attribute name="groupName" type="xs:string" use="required"/>
+  <xs:attribute name="homeDir" type="xs:string" use="required"/>
+  <xs:attribute name="shell" type="xs:string" use="required"/>
+  <xs:attribute name="comment" type="xs:string" use="required"/>
+ </xs:complexType>
+ <xs:complexType name="tGroups">
+  <xs:sequence>
+   <xs:element name="Group" type="tGroup" maxOccurs="unbounded"/>
+  </xs:sequence>
+ </xs:complexType>
+ <xs:complexType name="tGroup">
+  <xs:attribute name="name" type="xs:string" use="required"/>
+  <xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+ </xs:complexType>
+ <xs:complexType name="tContentLocation">
+  <xs:sequence>
+   <xs:element name="Segment" type="tPathSegment" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="path" type="xs:string" use="required"/>
+ </xs:complexType>
+ <xs:complexType name="tPathSegment">
+  <xs:attribute name="name" type="xs:string" use="required"/>
+  <xs:attribute name="userID" type="xs:unsignedInt" use="optional"/>
+  <xs:attribute name="groupID" type="xs:unsignedInt" use="optional"/>
+  <xs:attribute name="permissions" use="optional">
+   <xs:simpleType>
+    <xs:restriction base="xs:string">
+     <xs:pattern value="[0-7]{3,3}"/>
+    </xs:restriction>
+   </xs:simpleType>
+  </xs:attribute>
+ </xs:complexType>
+ <xs:element name="ArchiveArtifactContextProperties">
+  <xs:complexType>
+   <xs:complexContent>
+    <xs:extension base="tArchiveArtifactContextProperties"/>
+   </xs:complexContent>
+  </xs:complexType>
+ </xs:element>
+ <xs:complexType name="tArchiveArtifactContextProperties">
+  <xs:complexContent>
+   <xs:extension base="tBaseArtifactContextProperties">
+    <xs:sequence minOccurs="0">
+     <xs:element name="ArchiveDeploymentInformation" type="tArchiveDeploymentInformation" maxOccurs="unbounded"/>
+    </xs:sequence>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:complexType name="tArchiveDeploymentInformation">
+  <xs:sequence>
+   <xs:element name="UserMap" type="tUsers" minOccurs="0"/>
+   <xs:element name="GroupMap" type="tGroups" minOccurs="0"/>
+   <xs:element name="ContentDeploymentLocation" type="tContentLocation" minOccurs="0"/>
+  </xs:sequence>
+  <xs:attribute name="archiveReference" type="xs:anyURI" use="required"/>
+ </xs:complexType>
+ <xs:element name="FileArtifactProperties">
+  <xs:complexType>
+   <xs:complexContent>
+    <xs:extension base="tFileArtifactProperties"/>
+   </xs:complexContent>
+  </xs:complexType>
+ </xs:element>
+ <xs:complexType name="tFileArtifactProperties">
+  <xs:complexContent>
+   <xs:extension base="tBaseArtifactProperties"/>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:element name="FileArtifactContextProperties">
+  <xs:complexType>
+   <xs:complexContent>
+    <xs:extension base="tFileArtifactContextProperties"/>
+   </xs:complexContent>
+  </xs:complexType>
+ </xs:element>
+ <xs:complexType name="tFileArtifactContextProperties">
+  <xs:complexContent>
+   <xs:extension base="tBaseArtifactContextProperties">
+    <xs:sequence minOccurs="0">
+     <xs:element name="FileDeploymentInformation" type="tFileDeploymentInformation" maxOccurs="unbounded"/>
+    </xs:sequence>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:complexType name="tFileDeploymentInformation">
+  <xs:sequence>
+   <xs:element name="UserMap" type="tUsers" minOccurs="0"/>
+   <xs:element name="GroupMap" type="tGroups" minOccurs="0"/>
+   <xs:element name="DeploymentLocation" type="tContentLocation" minOccurs="0"/>
+  </xs:sequence>
+  <xs:attribute name="fileReference" type="xs:anyURI" use="required"/>
+ </xs:complexType>
+ <xs:element name="ScriptArtifactProperties">
+  <xs:complexType>
+   <xs:complexContent>
+    <xs:extension base="tScriptArtifactProperties"/>
+   </xs:complexContent>
+  </xs:complexType>
+ </xs:element>
+ <xs:complexType name="tScriptArtifactProperties">
+  <xs:complexContent>
+   <xs:extension base="tBaseArtifactProperties">
+    <xs:sequence>
+     <xs:element name="ScriptLanguage" type="xs:anyURI"/>
+     <xs:element name="PrimaryScript" type="xs:string"/>
+    </xs:sequence>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:element name="OsPackageArtifactProperties">
+  <xs:complexType>
+   <xs:complexContent>
+    <xs:extension base="tOsPackageArtifactProperties"/>
+   </xs:complexContent>
+  </xs:complexType>
+ </xs:element>
+ <xs:complexType name="tOsPackageArtifactProperties">
+  <xs:complexContent>
+   <xs:extension base="tBaseArtifactProperties">
+    <xs:sequence minOccurs="0">
+     <xs:element name="PackageInformation" maxOccurs="unbounded">
+      <xs:complexType>
+       <xs:attribute name="packageName" type="xs:string" use="required"/>
+       <xs:attribute name="packageReference" type="xs:anyURI" use="optional"/>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+    <xs:attribute name="packageType" use="required">
+     <xs:simpleType>
+      <xs:restriction base="xs:string">
+       <xs:enumeration value="rpm"/>
+       <xs:enumeration value="deb"/>
+       <xs:enumeration value="cab"/>
+      </xs:restriction>
+     </xs:simpleType>
+    </xs:attribute>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:element name="RPMGroupArtifactProperties">
+  <xs:complexType>
+   <xs:complexContent>
+    <xs:extension base="tRPMGroupArtifactProperties"/>
+   </xs:complexContent>
+  </xs:complexType>
+ </xs:element>
+ <xs:complexType name="tRPMGroupArtifactProperties">
+  <xs:complexContent>
+   <xs:extension base="tBaseArtifactProperties">
+    <xs:sequence minOccurs="0">
+     <xs:element name="GroupInformation" maxOccurs="unbounded">
+      <xs:complexType>
+       <xs:attribute name="groupName" type="xs:string" use="required"/>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:element name="ChefArtifactProperties">
+  <xs:complexType>
+   <xs:complexContent>
+    <xs:extension base="tChefArtifactProperties"/>
+   </xs:complexContent>
+  </xs:complexType>
+ </xs:element>
+ <xs:complexType name="tChefArtifactProperties">
+  <xs:complexContent>
+   <xs:extension base="tBaseArtifactProperties">
+    <xs:sequence>
+     <xs:element name="Cookbooks">
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element name="Cookbook" maxOccurs="unbounded">
+         <xs:complexType>
+          <xs:attribute name="name" type="xs:string" use="required"/>
+          <xs:attribute name="location" type="xs:anyURI" use="required"/>
+         </xs:complexType>
+        </xs:element>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element name="Roles" minOccurs="0">
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element name="Role" maxOccurs="unbounded">
+         <xs:complexType>
+          <xs:attribute name="name" type="xs:string" use="required"/>
+          <xs:attribute name="location" type="xs:anyURI" use="required"/>
+         </xs:complexType>
+        </xs:element>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element name="Mappings" minOccurs="0">
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element name="PropertyMapping" type="tPropertyMapping" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="SourcePropertyMapping" type="tPropertyMapping" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="TargetPropertyMapping" type="tPropertyMapping" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="InputParameterMapping" type="tParameterMapping" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="OutputParameterMapping" type="tParameterMapping" minOccurs="0" maxOccurs="unbounded"/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element name="RunList">
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element name="Include" minOccurs="0">
+         <xs:complexType>
+          <xs:sequence>
+           <xs:element name="RunListEntry" type="tRunListEntry" maxOccurs="unbounded"/>
+          </xs:sequence>
+         </xs:complexType>
+        </xs:element>
+        <xs:element name="Exclude" minOccurs="0">
+         <xs:complexType>
+          <xs:sequence>
+           <xs:element name="RunListEntry" type="tRunListEntry" maxOccurs="unbounded"/>
+          </xs:sequence>
+         </xs:complexType>
+        </xs:element>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ <xs:complexType name="tRunListEntry">
+  <xs:attribute name="cookbookName" type="xs:string"/>
+  <xs:attribute name="recipeName" type="xs:string"/>
+  <xs:attribute name="roleName" type="xs:string"/>
+ </xs:complexType>
+ <xs:complexType name="tParameterMapping">
+  <xs:attribute name="parameterName" type="xs:string" use="required"/>
+  <xs:attribute name="cookbookAttribute" type="xs:string" use="required"/>
+ </xs:complexType>
+ <xs:complexType name="tPropertyMapping">
+  <xs:attribute name="propertyPath" type="xs:string" use="required"/>
+  <xs:attribute name="cookbookAttribute" type="xs:string" use="required"/>
+  <xs:attribute name="mode" use="required">
+   <xs:simpleType>
+    <xs:restriction base="xs:string">
+     <xs:enumeration value="input"/>
+     <xs:enumeration value="output"/>
+     <xs:enumeration value="input-output"/>
+    </xs:restriction>
+   </xs:simpleType>
+  </xs:attribute>
+ </xs:complexType>
+</xs:schema>

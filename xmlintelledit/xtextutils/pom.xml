@@ -1,0 +1,197 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>at.ac.tuwien.big.xmlintelledit</groupId>
+		<artifactId>xmlintelledit</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>xtextutils</artifactId>
+	<packaging>jar</packaging>
+
+
+	<name>Xtext Utils Project</name>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.eclipse.platform</groupId>
+				<artifactId>org.eclipse.core.commands</artifactId>
+				<version>3.8.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.platform</groupId>
+				<artifactId>org.eclipse.equinox.common</artifactId>
+				<version>3.8.0</version>
+			</dependency>
+	<dependency>
+	    <groupId>org.hamcrest</groupId>
+	    <artifactId>hamcrest-core</artifactId>
+	    <version>1.3</version>
+	</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+
+	<dependencies>
+			<dependency>
+	    <groupId>com.googlecode.java-diff-utils</groupId>
+	    <artifactId>diffutils</artifactId>
+	    <version>1.2.1</version>
+	</dependency>
+
+<!-- 	<dependency>
+	    <groupId>org.eclipse.platform</groupId>
+	    <artifactId>org.eclipse.ui.workbench</artifactId>
+	    <version>3.108.3</version>
+	</dependency>
+
+
+	<dependency>
+		<groupId>org.eclipse.platform</groupId>
+		<artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
+		<version>3.105.3</version>
+	</dependency> -->
+
+	<dependency>
+	    <groupId>org.eclipse.emf.compare</groupId>
+	    <artifactId>emf.compare</artifactId>
+	    <version>3.3.1</version>
+	    <scope>system</scope>
+	    <systemPath>${project.basedir}/lib/org.eclipse.emf.compare.source_3.3.1.201608311750.jar</systemPath>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.eclipse.emf.compare</groupId>
+	    <artifactId>emf.compare</artifactId>
+	    <version>3.3.1</version>
+	    <scope>system</scope>
+	    <systemPath>${project.basedir}/lib/org.eclipse.emf.compare_3.3.1.201608311750.jar</systemPath>
+	</dependency>
+
+
+
+	<!-- https://mvnrepository.com/artifact/org.eclipse.emf.compare/emf.compare-parent -->
+	<!-- <dependency>
+	    <groupId>org.eclipse.emf.compare</groupId>
+	    <artifactId>emf.compare-parent</artifactId>
+	    <version>3.1.1</version>
+	</dependency> -->
+
+
+
+
+	<!--
+	<dependency>
+	    <groupId>org.eclipse.emf.compare</groupId>
+	    <artifactId>emf.compare-parent</artifactId>
+	    <version>3.1.1</version>
+	</dependency>
+	 -->
+
+			<dependency>
+				<groupId>org.eclipse.platform</groupId>
+				<artifactId>org.eclipse.debug.core</artifactId>
+				<version>3.10.100</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.eclipse.xsd</groupId>
+				<artifactId>org.eclipse.xsd</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.codegen.ecore</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+	 		<dependency>
+				<groupId>org.eclipse.platform</groupId>
+				<artifactId>org.eclipse.core.runtime</artifactId>
+				<version>3.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.ecore</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>org.eclipse.xtext.ui</artifactId>
+				<version>2.10.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>org.eclipse.xtext.ui.shared</artifactId>
+				<version>2.10.0</version>
+			</dependency>
+	<!-- 		<dependency>
+				<groupId>org.apache.directory.studio</groupId>
+				<artifactId>org.apache.commons.io</artifactId>
+				<version>2.4</version>
+			</dependency> -->
+			<dependency>
+				<groupId>dk.brics.automaton</groupId>
+				<artifactId>automaton</artifactId>
+				<version>1.11-8</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.eclipse.jdt</groupId>
+				<artifactId>org.eclipse.jdt.core</artifactId>
+				<version>3.12.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>org.eclipse.xtext</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>org.eclipse.xtext.generator</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.ecf</groupId>
+				<artifactId>org.apache.commons.logging</artifactId>
+				<version>1.1.1.v201101211721</version>
+			</dependency>
+	<!-- 		<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.mwe.utils</artifactId>
+				<version>1.3.20.201605261059</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.mwe2.launch</artifactId>
+				<version>2.9.0.201605261059</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.common</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>org.eclipse.xtext.xtext.wizard</artifactId>
+				<version>2.12.0</version>
+			</dependency> -->
+			<!-- EXAMPLE for jitpack -->
+			<!-- <dependency> <groupId>com.github.User</groupId> <artifactId>Repo</artifactId>
+				<version>Tag</version> </dependency> -->
+		</dependencies>
+</project>

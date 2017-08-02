@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<restrictions:OrdersType
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:restrictions="http://example.com/example-restrictions"
+    xsi:schemaLocation="http://example.com/example-restrictions ../metamodels/restrictions.ecore">
+  <order customerNumber=""
+      customerPassword="'abcdefgh'">
+    <customerAddress
+        city="Vienna">
+      <street>addressDetail1</street>
+      <street>addressDetail2</street>
+      <street>addressDetail3</street>
+    </customerAddress>
+  </order>
+</restrictions:OrdersType>

@@ -1,0 +1,734 @@
+Definitions TOSCA-v1.0-SpecificTypes {
+	name : "TOSCA-v1.0-SpecificTypes" targetNamespace :
+	"http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" import {
+		Import importType : "http://docs.oasis-open.org/tosca/ns/2011/12" location :
+		"TOSCA-v1.0-BaseTypes-Definitions.xml" namespace :
+		"http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes",
+		Import importType : "http://www.w3.org/2001/XMLSchema" location :
+		"../types/TOSCA-v1.0-SpecificTypes.xsd" namespace :
+		"http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"
+	}
+	NodeType {
+		name : ApacheWebServer documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom WebServer
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element ApacheWebServerProperties
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType ApacheWebApplicationContainerCapability lowerBound 0 name
+					: "webapps" upperBound unbounded
+				},
+				TCapabilityDefinition {
+					capabilityType ApacheModuleContainerCapability lowerBound 0 name :
+					"modules" upperBound unbounded
+				},
+				TCapabilityDefinition {
+					capabilityType HTTPEndpointCapability lowerBound 0 name : "clients"
+					upperBound unbounded
+				}
+			}
+		}
+		interfaces InterfacesType_TInterface {
+			interface {
+				TInterface {
+					name : "http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operation {
+						TOperation {
+							name : install
+						},
+						TOperation {
+							name : configure
+						},
+						TOperation {
+							name : start
+						},
+						TOperation {
+							name : stop
+						}
+					}
+				}
+			}
+		}
+	}
+	NodeType {
+		name : ApacheWebApplication documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom WebApplication
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "container" requirementType
+					ApacheWebApplicationContainerRequirement upperBound 1
+				}
+			}
+		}
+	}
+	NodeType {
+		name : ApacheModule documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom RootNodeType
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "container" requirementType
+					ApacheModuleContainerRequirement upperBound 1
+				}
+			}
+		}
+	}
+	NodeType {
+		name : ApachePHPModule documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ApacheModule
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType PHPRuntimeCapability lowerBound 0 name : "phpApps"
+					upperBound unbounded
+				}
+			}
+		}
+		interfaces InterfacesType_TInterface {
+			interface {
+				TInterface {
+					name : "http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operation {
+						TOperation {
+							name : configure
+						},
+						TOperation {
+							name : start
+						}
+					}
+				}
+			}
+		}
+	}
+	NodeType {
+		name : ApacheLoadbalancerModule documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ApacheModule
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element ApacheLoadbalancerModuleProperties
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "members" requirementType HTTPEndpointRequirement
+					upperBound 1
+				}
+			}
+		}
+		interfaces InterfacesType_TInterface {
+			interface {
+				TInterface {
+					name : "http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operation {
+						TOperation {
+							name : configure
+						},
+						TOperation {
+							name : start
+						}
+					}
+				}
+			}
+		}
+	}
+	NodeType {
+		name : MySQL documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom DBMS
+		}
+		propertiesDefinition PropertiesDefinitionType {
+			element MySQLProperties
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType MySQLDatabaseContainerCapability lowerBound 0 name :
+					"databases" upperBound unbounded
+				}
+			}
+		}
+		interfaces InterfacesType_TInterface {
+			interface {
+				TInterface {
+					name : "http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operation {
+						TOperation {
+							name : install
+						},
+						TOperation {
+							name : configure
+						},
+						TOperation {
+							name : start
+						},
+						TOperation {
+							name : stop
+						}
+					}
+				}
+			}
+		}
+	}
+	NodeType {
+		name : MySQLDatabase documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom Database
+		}
+		requirementDefinitions RequirementDefinitionsType {
+			requirementDefinition {
+				TRequirementDefinition {
+					lowerBound 1 name : "container" requirementType
+					MySQLDatabaseContainerRequirement upperBound 1
+				}
+			}
+		}
+		capabilityDefinitions CapabilityDefinitionsType {
+			capabilityDefinition {
+				TCapabilityDefinition {
+					capabilityType MySQLDatabaseEndpointCapability lowerBound 0 name :
+					"clients" upperBound unbounded
+				}
+			}
+		}
+	}
+	TRelationshipType {
+		name : MySQLDatabaseHostedOnMySQL documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom HostedOn
+		}
+		sourceInterfaces SourceInterfacesType {
+			interface {
+				TInterface {
+					name :
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source"
+					operation {
+						TOperation {
+							name : preConfigureEndpoint
+						}
+					}
+				}
+			}
+		}
+		validSource ValidSourceType {
+			typeRef MySQLDatabaseContainerRequirement
+		}
+		validTarget ValidTargetType {
+			typeRef MySQLDatabaseContainerCapability
+		}
+	}
+	TRelationshipType {
+		name : MySQLDatabaseConnection documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ConnectsTo
+		}
+		validSource ValidSourceType {
+			typeRef MySQLDatabaseEndpointRequirement
+		}
+		validTarget ValidTargetType {
+			typeRef MySQLDatabaseEndpointCapability
+		}
+	}
+	TRelationshipType {
+		name : ApacheLoadbalancerConnectedToMember documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ConnectsTo
+		}
+		sourceInterfaces SourceInterfacesType {
+			interface {
+				TInterface {
+					name :
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source"
+					operation {
+						TOperation {
+							name : postConfigureEndpoint
+						}
+					}
+				}
+			}
+		}
+		validSource ValidSourceType {
+			typeRef HTTPEndpointRequirement
+		}
+		validTarget ValidTargetType {
+			typeRef HTTPEndpointCapability
+		}
+	}
+	TRequirementType {
+		name : ApacheWebApplicationContainerRequirement requiredCapabilityType
+		ApacheWebApplicationContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom WebApplicationContainerRequirement
+		}
+	}
+	TRequirementType {
+		name : ApacheModuleContainerRequirement requiredCapabilityType
+		ApacheModuleContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerRequirement
+		}
+	}
+	TRequirementType {
+		name : MySQLDatabaseContainerRequirement requiredCapabilityType
+		MySQLDatabaseContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom DatabaseContainerRequirement
+		}
+	}
+	TRequirementType {
+		name : MySQLDatabaseEndpointRequirement requiredCapabilityType
+		MySQLDatabaseEndpointCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom DatabaseEndpointRequirement
+		}
+	}
+	TRequirementType {
+		name : PHPRuntimeRequirement requiredCapabilityType PHPRuntimeCapability
+		documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom FeatureRequirement
+		}
+	}
+	TCapabilityType {
+		name : ApacheWebApplicationContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom WebApplicationContainerCapability
+		}
+	}
+	TCapabilityType {
+		name : ApacheModuleContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom ContainerCapability
+		}
+	}
+	TCapabilityType {
+		name : MySQLDatabaseContainerCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom DatabaseContainerCapability
+		}
+	}
+	TCapabilityType {
+		name : MySQLDatabaseEndpointCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom DatabaseEndpointCapability
+		}
+	}
+	TCapabilityType {
+		name : PHPRuntimeCapability documentation {
+			TDocumentation {
+			}
+		}
+		derivedFrom DerivedFromType {
+			derivedFrom FeatureCapability
+		}
+	}
+	TNodeTypeImplementation {
+		name : ApacheWebServerImplementation nodeType ApacheWebServer
+		implementationArtifacts TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef at-ApacheWebServer-install artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName install
+				},
+				ImplementationArtifactType {
+					artifactRef at-ApacheWebServer-configure artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName configure
+				},
+				ImplementationArtifactType {
+					artifactRef at-ApacheWebServer-start artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName start
+				},
+				ImplementationArtifactType {
+					artifactRef at-ApacheWebServer-stop artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName stop
+				}
+			}
+		}
+		deploymentArtifacts TDeploymentArtifacts {
+			deploymentArtifact {
+				TDeploymentArtifact {
+					artifactRef at-ApacheWebServer-http-packages artifactType
+					OsPackageArtifact name : "http-packages"
+				}
+			}
+		}
+	}
+	TNodeTypeImplementation {
+		name : ApachePHPModuleImplementation nodeType ApachePHPModule
+		implementationArtifacts TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef at-ApachePHPModule-configure artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName configure
+				},
+				ImplementationArtifactType {
+					artifactRef at-ApachePHPModule-start artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName start
+				}
+			}
+		}
+		deploymentArtifacts TDeploymentArtifacts {
+			deploymentArtifact {
+				TDeploymentArtifact {
+					artifactRef at-ApachePHPModule-php-packages artifactType
+					OsPackageArtifact name : "php-packages"
+				}
+			}
+		}
+	}
+	TNodeTypeImplementation {
+		name : ApacheLoadbalancerModuleImplementation nodeType
+		ApacheLoadbalancerModule implementationArtifacts TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef at-ApacheLoadbalancerModule-configure artifactType
+					ScriptArtifact interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName configure
+				},
+				ImplementationArtifactType {
+					artifactRef at-ApacheLoadbalancerModule-start artifactType ScriptArtifact
+					interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName start
+				}
+			}
+		}
+	}
+	TNodeTypeImplementation {
+		name : MySQLImplementation nodeType MySQL implementationArtifacts
+		TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef at-MySQL-install artifactType ScriptArtifact interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName install
+				},
+				ImplementationArtifactType {
+					artifactRef at-MySQL-configure artifactType ScriptArtifact interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName configure
+				},
+				ImplementationArtifactType {
+					artifactRef at-MySQL-start artifactType ScriptArtifact interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName start
+				},
+				ImplementationArtifactType {
+					artifactRef at-MySQL-stop artifactType ScriptArtifact interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle"
+					operationName stop
+				}
+			}
+		}
+		deploymentArtifacts TDeploymentArtifacts {
+			deploymentArtifact {
+				TDeploymentArtifact {
+					artifactRef at-MySQL-mysql-packages artifactType OsPackageArtifact name :
+					"mysql-packages"
+				}
+			}
+		}
+	}
+	TRelationshipTypeImplementation {
+		name : MySQLDatabaseHostedOnMySQLImplementation relationshipType
+		MySQLDatabaseHostedOnMySQL implementationArtifacts TImplementationArtifacts
+		{
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef at-MySQLDatabaseHostedOnMySQL-Source-preConfigureEndpoint
+					artifactType ScriptArtifact interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source"
+					operationName preConfigureEndpoint
+				}
+			}
+		}
+	}
+	TRelationshipTypeImplementation {
+		name : ApacheLoadbalancerConnectedToMemberImplementation relationshipType
+		ApacheLoadbalancerConnectedToMember implementationArtifacts
+		TImplementationArtifacts {
+			implementationArtifact {
+				ImplementationArtifactType {
+					artifactRef
+					at-ApacheLoadbalancerConnectedToMember-Source-postConfigureEndpoint
+					artifactType ScriptArtifact interfaceName
+					"http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source"
+					operationName postConfigureEndpoint
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-ApacheWebServer-install {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/ApacheWebServer include {
+						IncludeType {
+							pattern install.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-ApacheWebServer-configure {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/ApacheWebServer include {
+						IncludeType {
+							pattern configure.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-ApacheWebServer-start {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/ApacheWebServer include {
+						IncludeType {
+							pattern start.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-ApacheWebServer-stop {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/ApacheWebServer include {
+						IncludeType {
+							pattern stop.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-ApacheWebServer-http-packages {
+		type OsPackageArtifact name : "http-packages"
+	}
+	TArtifactTemplate at-ApachePHPModule-configure {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/ApachePHPModule include {
+						IncludeType {
+							pattern configure.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-ApachePHPModule-start {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/ApachePHPModule include {
+						IncludeType {
+							pattern start.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-ApachePHPModule-php-packages {
+		type OsPackageArtifact name : "php-packages"
+	}
+	TArtifactTemplate at-ApacheLoadbalancerModule-configure {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/ApacheLoadbalancerModule include {
+						IncludeType {
+							pattern configure.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-ApacheLoadbalancerModule-start {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/ApacheLoadbalancerModule include {
+						IncludeType {
+							pattern start.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MySQL-install {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/MySQL include {
+						IncludeType {
+							pattern install.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MySQL-configure {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/MySQL include {
+						IncludeType {
+							pattern configure.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MySQL-start {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/MySQL include {
+						IncludeType {
+							pattern start.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MySQL-stop {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/MySQL include {
+						IncludeType {
+							pattern stop.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate at-MySQL-mysql-packages {
+		type OsPackageArtifact name : "mysql-packages"
+	}
+	TArtifactTemplate at-MySQLDatabaseHostedOnMySQL-Source-preConfigureEndpoint {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/MySQLDatabaseHostedOnMySQL include {
+						IncludeType {
+							pattern provideCredentials.sh
+						}
+					}
+				}
+			}
+		}
+	}
+	TArtifactTemplate
+	at-ApacheLoadbalancerConnectedToMember-Source-postConfigureEndpoint {
+		type ScriptArtifact artifactReferences ArtifactReferencesType {
+			artifactReference {
+				TArtifactReference {
+					reference scripts/ApacheLoadbalancerConnectedToMember include {
+						IncludeType {
+							pattern configureLoadBalancer.sh
+						}
+					}
+				}
+			}
+		}
+	}
+}

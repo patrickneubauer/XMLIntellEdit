@@ -1,0 +1,25 @@
+OrdersType {
+	
+	// Specification
+	order {
+		OrderDetail ID {
+			customerAge 20 // min/max inclusive works
+			customerContact1 12345 // valid
+//			customerContact "123456" // invalid	(if OCL invariant in Ecore metamodel is present)		
+			customerFirstName 'Manuelee'
+			customerLastName '1234567890' // should allow up to 10 characters!
+			customerNumber "asdasd "
+			customerPassword 'abcde0gh'	// should be valid!		
+			customerUSState U_Z
+			customerAddress RestrictedAddress {
+				street { 
+					"Favoritenstrasse 9-11",
+					"2. Stock",
+					"asd"
+				}
+				city "Vienna"
+			}
+		}
+	}
+	
+}

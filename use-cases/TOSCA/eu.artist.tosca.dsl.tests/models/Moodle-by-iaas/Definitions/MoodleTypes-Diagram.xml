@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Diagram xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/Diagram">
+    <Styles>
+        <DiagramNodeStyle xmlns:ns2="http://www.example.com/tosca/Types/Moodle" id="MoodleApplicationStyle" modelNodeType="ns2:MoodleApplication">
+            <Image>icons/MoodleApplication/MoodleApplication.png</Image>
+            <Thumbnail>icons/MoodleApplication/MoodleApplication-thumb.png</Thumbnail>
+        </DiagramNodeStyle>
+        <DiagramNodeStyle xmlns:ns2="http://www.example.com/tosca/Types/Moodle" id="MoodleDatabaseStyle" modelNodeType="ns2:MoodleDatabase">
+            <Image>icons/MoodleDatabase/MoodleDatabase.png</Image>
+            <Thumbnail>icons/MoodleDatabase/MoodleDatabase-thumb.png</Thumbnail>
+        </DiagramNodeStyle>
+    </Styles>
+</Diagram>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated TOSCA-v1.0 -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="tosca.presentation.ToscaModelWizardID"
+            name="%_UI_ToscaModelWizard_label"
+            class="tosca.presentation.ToscaModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ToscaModelFile.gif">
+         <description>%_UI_ToscaModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated TOSCA-v1.0 -->
+      <editor
+            id="tosca.presentation.ToscaEditorID"
+            name="%_UI_ToscaEditor_label"
+            icon="icons/full/obj16/ToscaModelFile.gif"
+            extensions="tosca"
+            class="tosca.presentation.ToscaEditor"
+            contributorClass="tosca.presentation.ToscaActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

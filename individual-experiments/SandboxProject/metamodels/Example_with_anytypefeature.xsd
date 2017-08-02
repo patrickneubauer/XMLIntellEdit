@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-anytypefeature"
+	xmlns="http://example.com/example-with-anytypefeature">
+
+	<!-- ROOT ELEMENT -->
+	<xsd:element name="rootElement">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="element1" type="Element1" />
+				<xsd:element name="properties" type="Properties" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="Element1">
+		<xsd:attribute name="street" type="xsd:string"/>
+		<xsd:attribute name="city" type="xsd:string"/>		
+	</xsd:complexType>
+	
+	<xsd:complexType name="Properties">
+		<xsd:sequence>
+			<xsd:element name="anything" type="xsd:anyType" />
+			<!-- <xsd:any namespace="##other" processContents="lax" /> -->
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tosca" nsURI="http://docs.oasis-open.org/tosca/ns/2011/12" nsPrefix="tosca">
+  <eClassifiers xsi:type="ecore:EClass" name="DefinitionsType" eSuperTypes="#//TDefinitions"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-2"
+        eType="#//DefinitionsType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TDefinitions" eSuperTypes="#//TExtensibleElements">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//ID"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TExtensibleElements"/>
+</ecore:EPackage>

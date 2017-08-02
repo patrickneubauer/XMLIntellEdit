@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<group:DocumentRoot
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:group="http://example.com/example-with-group"
+    xsi:schemaLocation="http://example.com/example-with-group ../metamodels/group.ecore">
+  <rootElement>
+    <element1>
+      <repeatableElement1>a1</repeatableElement1>
+      <repeatableElement1>a2</repeatableElement1>
+      <repeatableElement1>a3</repeatableElement1>
+      <repeatableElement2>b1</repeatableElement2>
+    </element1>
+    <element2
+        modelGroupElement2="b"
+        modelGroupElement3="c">
+      <modelGroupElement1>a1</modelGroupElement1>
+      <modelGroupElement1>a2</modelGroupElement1>
+      <modelGroupElement1>a3</modelGroupElement1>
+    </element2>
+  </rootElement>
+</group:DocumentRoot>

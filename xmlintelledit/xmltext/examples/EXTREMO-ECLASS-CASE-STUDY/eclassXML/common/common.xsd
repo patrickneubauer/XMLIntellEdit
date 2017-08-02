@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+eCl@ssXML 2.0 - XML Schema
+-->
+<!--
+
+eCl@ssXML 2.0
+
+The following permission notice and disclaimer shall be included in all copies of this DTD/XML Schema ("the Schema"), 
+and derivations of the Schema:
+
+Â© eClass e.v. 2012 - All rights reserved
+
+Permission is hereby granted, free of charge in perpetuity, to any person obtaining a copy of the Schema, to use, 
+copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, 
+installing and using software based on the Schema, and to permit persons to whom the Schema is furnished to do so, 
+subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE eClassXML 2.0 DICTIONARY SCHEMA, AND SHOULD NOT BE INTERPRETED AS COMPLYING 
+WITH THAT SCHEMA
+
+
+
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:eclass:xml-schema:common:2.0" xmlns:id="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" xmlns:val="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:value" targetNamespace="urn:eclass:xml-schema:common:2.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xsd:import namespace="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" schemaLocation="../../ontoML/ISO29002/identifier.xsd"/>
+	<xsd:import namespace="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:value" schemaLocation="../../ontoML/ISO29002/value.xsd"/>
+	<xsd:complexType name="PROPERTYELM_Type">
+		<xsd:attribute name="ref" type="id:IRDI_type" use="required"/>
+		<xsd:attribute name="ordinal_number" type="xsd:int"/>
+		<xsd:attribute name="target_class_ref" type="id:IRDI_type"/>
+	</xsd:complexType>
+	<xsd:complexType name="PROPERTYPATH_Type">
+		<xsd:sequence>
+			<xsd:element name="property" type="PROPERTYELM_Type" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="cc" type="id:IRDI_type"/>
+		<xsd:attribute name="ac" type="id:IRDI_type"/>
+		<xsd:attribute name="aspect" type="id:IRDI_type"/>
+	</xsd:complexType>
+	<xsd:complexType name="ADVANCEDPROPERTYPATH_Type">
+		<xsd:sequence>
+			<xsd:element name="property" type="PROPERTYELM_Type" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="ac" type="id:IRDI_type" use="required"/>
+		<xsd:attribute name="aspect" type="id:IRDI_type"/>
+	</xsd:complexType>
+	<xsd:complexType name="BASICPROPERTYPATH_Type">
+		<xsd:attribute name="ac" type="id:IRDI_type" use="required"/>
+		<xsd:attribute name="aspect" type="id:IRDI_type"/>
+		<xsd:attribute name="prop_ref" type="id:IRDI_type" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="VALUEREF_Type">
+		<xsd:group ref="val:value_Group"/>
+	</xsd:complexType>
+	<xsd:complexType name="UNITMAPPING_Type">
+		<xsd:sequence>
+			<xsd:element name="source_unit" type="id:IRDI_type"/>
+			<xsd:element name="target_unit" type="id:IRDI_type"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VALUEMAPPING_Type">
+		<xsd:sequence>
+			<xsd:element name="source_value" type="VALUEREF_Type"/>
+			<xsd:choice>
+				<xsd:element name="target_value" type="VALUEREF_Type"/>
+				<xsd:element name="target_values">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="target_value" type="VALUEREF_Type"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="NUMERICVALUE_Type">
+		<xsd:choice>
+			<xsd:group ref="val:numeric_value"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="LOCALE_Type">
+		<xsd:attribute name="language_ref" type="id:IRDI_type" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>IRDI of language code. Should be given together with country_ref.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="country_ref" type="id:IRDI_type" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>IRDI of country code. Should be given together with language_ref.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="locale_def" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>A tag for language identification according to RFC 5646, e.g. "en-US" for American English.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="IDENTIFICATION_Type">
+		<xsd:annotation>
+			<xsd:documentation>defines forms of identification</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:element name="irdi" type="id:IRDI_type"/>
+			<xsd:element name="identifier" type="xsd:string"/>
+		</xsd:choice>
+		<xsd:attribute name="type" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Set to IRDI when filling irdi. Set to type of identification when using other "identifier".</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="TYPEDSTRING_Type">
+		<xsd:simpleContent>
+			<xsd:extension base="LOCALIZEDSTRING_Type">
+				<xsd:attribute name="type" type="xsd:string" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="LOCALIZEDSTRING_Type">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="language_code" type="LANGUAGECODE_Type" use="required"/>
+				<xsd:attribute name="country_code" type="COUNTRYCODE_Type" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="QUERYAMOUNT_Type">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:float">
+				<xsd:attribute name="base_unit" type="id:IRDI_type" use="required"/>
+				<xsd:attribute name="alternative_unit" type="id:IRDI_type" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="PARTY_Type">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="name" type="xsd:string"/>
+				<xsd:element name="organisation" type="xsd:string"/>
+			</xsd:choice>
+			<xsd:element name="identification" type="IDENTIFICATION_Type" minOccurs="0"/>
+			<xsd:element name="contact" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="address" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="remark" type="LOCALIZEDSTRING_Type" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="city" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="zip" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="country" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="phone" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="fax" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="email" type="xsd:string" minOccurs="0"/>
+						<xsd:element name="url" type="xsd:string" minOccurs="0"/>
+						<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+							<xsd:element name="other" type="TYPEDSTRING_Type"/>
+						</xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="LANGUAGECODE_Type">
+		<xsd:annotation>
+			<xsd:documentation>three letter terminological language code according to ISO639-2/T
+	Examples: deu - Deutsch, eng - English
+	</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="3"/>
+			<xsd:pattern value="[A-z]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="COUNTRYCODE_Type">
+		<xsd:annotation>
+			<xsd:documentation>alpha-3 country code according to ISO3166-1
+	Examples: DEU - Germany, GBR - United Kingdom
+	</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="3"/>
+			<xsd:pattern value="[A-z]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CONTENT_MODEL_Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ADVANCED"/>
+			<xsd:enumeration value="BASIC"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

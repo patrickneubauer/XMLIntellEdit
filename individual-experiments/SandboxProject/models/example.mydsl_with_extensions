@@ -1,0 +1,14 @@
+RootElementType {
+	extendedAddress ExtendedAddress {
+		street "Favoritenstr. 9-11"
+		city "Vienna"
+		country "Austria"
+		latitude 34.003855
+		longitude 81.034808
+	}
+	address Address {
+		street "Favoritenstr. 9-11"
+		city "Vienna"
+		country "Austria"
+	}
+}

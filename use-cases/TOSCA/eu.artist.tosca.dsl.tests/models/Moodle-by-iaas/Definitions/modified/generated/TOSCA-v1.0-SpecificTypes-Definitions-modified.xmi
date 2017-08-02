@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="ASCII"?>
+<tosca:DocumentRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12">
+  <definitions id="TOSCA-v1.0-SpecificTypes" name="TOSCA-v1.0-SpecificTypes" targetNamespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes">
+    <import importType="http://docs.oasis-open.org/tosca/ns/2011/12" location="TOSCA-v1.0-BaseTypes-Definitions.xml" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"/>
+    <import importType="http://www.w3.org/2001/XMLSchema" location="../types/TOSCA-v1.0-SpecificTypes.xsd" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"/>
+    <nodeType name="ApacheWebServer">
+      <documentation/>
+      <derivedFrom derivedFrom="WebServer"/>
+      <propertiesDefinition element="ApacheWebServerProperties"/>
+      <capabilityDefinitions>
+        <capabilityDefinition capabilityType="ApacheWebApplicationContainerCapability" lowerBound="0" name="webapps" upperBound="unbounded"/>
+        <capabilityDefinition capabilityType="ApacheModuleContainerCapability" lowerBound="0" name="modules" upperBound="unbounded"/>
+        <capabilityDefinition capabilityType="HTTPEndpointCapability" lowerBound="0" name="clients" upperBound="unbounded"/>
+      </capabilityDefinitions>
+      <interfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+          <operation name="install"/>
+          <operation name="configure"/>
+          <operation name="start"/>
+          <operation name="stop"/>
+        </interface>
+      </interfaces>
+    </nodeType>
+    <nodeType name="ApacheWebApplication">
+      <documentation/>
+      <derivedFrom derivedFrom="WebApplication"/>
+      <requirementDefinitions>
+        <requirementDefinition lowerBound="1" name="container" requirementType="ApacheWebApplicationContainerRequirement" upperBound="1"/>
+      </requirementDefinitions>
+    </nodeType>
+    <nodeType name="ApacheModule">
+      <documentation/>
+      <derivedFrom derivedFrom="RootNodeType"/>
+      <requirementDefinitions>
+        <requirementDefinition lowerBound="1" name="container" requirementType="ApacheModuleContainerRequirement" upperBound="1"/>
+      </requirementDefinitions>
+    </nodeType>
+    <nodeType name="ApachePHPModule">
+      <documentation/>
+      <derivedFrom derivedFrom="ApacheModule"/>
+      <capabilityDefinitions>
+        <capabilityDefinition capabilityType="PHPRuntimeCapability" lowerBound="0" name="phpApps" upperBound="unbounded"/>
+      </capabilityDefinitions>
+      <interfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+          <operation name="configure"/>
+          <operation name="start"/>
+        </interface>
+      </interfaces>
+    </nodeType>
+    <nodeType name="ApacheLoadbalancerModule">
+      <documentation/>
+      <derivedFrom derivedFrom="ApacheModule"/>
+      <propertiesDefinition element="ApacheLoadbalancerModuleProperties"/>
+      <requirementDefinitions>
+        <requirementDefinition lowerBound="1" name="members" requirementType="HTTPEndpointRequirement" upperBound="1"/>
+      </requirementDefinitions>
+      <interfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+          <operation name="configure"/>
+          <operation name="start"/>
+        </interface>
+      </interfaces>
+    </nodeType>
+    <nodeType name="MySQL">
+      <documentation/>
+      <derivedFrom derivedFrom="DBMS"/>
+      <propertiesDefinition element="MySQLProperties"/>
+      <capabilityDefinitions>
+        <capabilityDefinition capabilityType="MySQLDatabaseContainerCapability" lowerBound="0" name="databases" upperBound="unbounded"/>
+      </capabilityDefinitions>
+      <interfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+          <operation name="install"/>
+          <operation name="configure"/>
+          <operation name="start"/>
+          <operation name="stop"/>
+        </interface>
+      </interfaces>
+    </nodeType>
+    <nodeType name="MySQLDatabase">
+      <documentation/>
+      <derivedFrom derivedFrom="Database"/>
+      <requirementDefinitions>
+        <requirementDefinition lowerBound="1" name="container" requirementType="MySQLDatabaseContainerRequirement" upperBound="1"/>
+      </requirementDefinitions>
+      <capabilityDefinitions>
+        <capabilityDefinition capabilityType="MySQLDatabaseEndpointCapability" lowerBound="0" name="clients" upperBound="unbounded"/>
+      </capabilityDefinitions>
+    </nodeType>
+    <nodeTypeImplementation name="ApacheWebServerImplementation" nodeType="ApacheWebServer">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at-ApacheWebServer-install" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="install"/>
+        <implementationArtifact artifactRef="at-ApacheWebServer-configure" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="configure"/>
+        <implementationArtifact artifactRef="at-ApacheWebServer-start" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="start"/>
+        <implementationArtifact artifactRef="at-ApacheWebServer-stop" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="stop"/>
+      </implementationArtifacts>
+      <deploymentArtifacts>
+        <deploymentArtifact artifactRef="at-ApacheWebServer-http-packages" artifactType="OsPackageArtifact" name="http-packages"/>
+      </deploymentArtifacts>
+    </nodeTypeImplementation>
+    <nodeTypeImplementation name="ApachePHPModuleImplementation" nodeType="ApachePHPModule">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at-ApachePHPModule-configure" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="configure"/>
+        <implementationArtifact artifactRef="at-ApachePHPModule-start" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="start"/>
+      </implementationArtifacts>
+      <deploymentArtifacts>
+        <deploymentArtifact artifactRef="at-ApachePHPModule-php-packages" artifactType="OsPackageArtifact" name="php-packages"/>
+      </deploymentArtifacts>
+    </nodeTypeImplementation>
+    <nodeTypeImplementation name="ApacheLoadbalancerModuleImplementation" nodeType="ApacheLoadbalancerModule">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at-ApacheLoadbalancerModule-configure" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="configure"/>
+        <implementationArtifact artifactRef="at-ApacheLoadbalancerModule-start" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="start"/>
+      </implementationArtifacts>
+    </nodeTypeImplementation>
+    <nodeTypeImplementation name="MySQLImplementation" nodeType="MySQL">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at-MySQL-install" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="install"/>
+        <implementationArtifact artifactRef="at-MySQL-configure" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="configure"/>
+        <implementationArtifact artifactRef="at-MySQL-start" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="start"/>
+        <implementationArtifact artifactRef="at-MySQL-stop" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="stop"/>
+      </implementationArtifacts>
+      <deploymentArtifacts>
+        <deploymentArtifact artifactRef="at-MySQL-mysql-packages" artifactType="OsPackageArtifact" name="mysql-packages"/>
+      </deploymentArtifacts>
+    </nodeTypeImplementation>
+    <relationshipType name="MySQLDatabaseHostedOnMySQL">
+      <documentation/>
+      <derivedFrom derivedFrom="HostedOn"/>
+      <sourceInterfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source">
+          <operation name="preConfigureEndpoint"/>
+        </interface>
+      </sourceInterfaces>
+      <validSource typeRef="MySQLDatabaseContainerRequirement"/>
+      <validTarget typeRef="MySQLDatabaseContainerCapability"/>
+    </relationshipType>
+    <relationshipType name="MySQLDatabaseConnection">
+      <documentation/>
+      <derivedFrom derivedFrom="ConnectsTo"/>
+      <validSource typeRef="MySQLDatabaseEndpointRequirement"/>
+      <validTarget typeRef="MySQLDatabaseEndpointCapability"/>
+    </relationshipType>
+    <relationshipType name="ApacheLoadbalancerConnectedToMember">
+      <documentation/>
+      <derivedFrom derivedFrom="ConnectsTo"/>
+      <sourceInterfaces>
+        <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source">
+          <operation name="postConfigureEndpoint"/>
+        </interface>
+      </sourceInterfaces>
+      <validSource typeRef="HTTPEndpointRequirement"/>
+      <validTarget typeRef="HTTPEndpointCapability"/>
+    </relationshipType>
+    <relationshipTypeImplementation name="MySQLDatabaseHostedOnMySQLImplementation" relationshipType="MySQLDatabaseHostedOnMySQL">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at-MySQLDatabaseHostedOnMySQL-Source-preConfigureEndpoint" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source" operationName="preConfigureEndpoint"/>
+      </implementationArtifacts>
+    </relationshipTypeImplementation>
+    <relationshipTypeImplementation name="ApacheLoadbalancerConnectedToMemberImplementation" relationshipType="ApacheLoadbalancerConnectedToMember">
+      <implementationArtifacts>
+        <implementationArtifact artifactRef="at-ApacheLoadbalancerConnectedToMember-Source-postConfigureEndpoint" artifactType="ScriptArtifact" interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source" operationName="postConfigureEndpoint"/>
+      </implementationArtifacts>
+    </relationshipTypeImplementation>
+    <requirementType name="ApacheWebApplicationContainerRequirement" requiredCapabilityType="ApacheWebApplicationContainerCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="WebApplicationContainerRequirement"/>
+    </requirementType>
+    <requirementType name="ApacheModuleContainerRequirement" requiredCapabilityType="ApacheModuleContainerCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="ContainerRequirement"/>
+    </requirementType>
+    <requirementType name="MySQLDatabaseContainerRequirement" requiredCapabilityType="MySQLDatabaseContainerCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="DatabaseContainerRequirement"/>
+    </requirementType>
+    <requirementType name="MySQLDatabaseEndpointRequirement" requiredCapabilityType="MySQLDatabaseEndpointCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="DatabaseEndpointRequirement"/>
+    </requirementType>
+    <requirementType name="PHPRuntimeRequirement" requiredCapabilityType="PHPRuntimeCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="FeatureRequirement"/>
+    </requirementType>
+    <capabilityType name="ApacheWebApplicationContainerCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="WebApplicationContainerCapability"/>
+    </capabilityType>
+    <capabilityType name="ApacheModuleContainerCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="ContainerCapability"/>
+    </capabilityType>
+    <capabilityType name="MySQLDatabaseContainerCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="DatabaseContainerCapability"/>
+    </capabilityType>
+    <capabilityType name="MySQLDatabaseEndpointCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="DatabaseEndpointCapability"/>
+    </capabilityType>
+    <capabilityType name="PHPRuntimeCapability">
+      <documentation/>
+      <derivedFrom derivedFrom="FeatureCapability"/>
+    </capabilityType>
+    <artifactTemplate id="at-ApacheWebServer-install" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/ApacheWebServer">
+          <include pattern="install.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-ApacheWebServer-configure" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/ApacheWebServer">
+          <include pattern="configure.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-ApacheWebServer-start" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/ApacheWebServer">
+          <include pattern="start.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-ApacheWebServer-stop" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/ApacheWebServer">
+          <include pattern="stop.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-ApacheWebServer-http-packages" type="OsPackageArtifact" name="http-packages"/>
+    <artifactTemplate id="at-ApachePHPModule-configure" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/ApachePHPModule">
+          <include pattern="configure.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-ApachePHPModule-start" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/ApachePHPModule">
+          <include pattern="start.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-ApachePHPModule-php-packages" type="OsPackageArtifact" name="php-packages"/>
+    <artifactTemplate id="at-ApacheLoadbalancerModule-configure" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/ApacheLoadbalancerModule">
+          <include pattern="configure.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-ApacheLoadbalancerModule-start" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/ApacheLoadbalancerModule">
+          <include pattern="start.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MySQL-install" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/MySQL">
+          <include pattern="install.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MySQL-configure" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/MySQL">
+          <include pattern="configure.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MySQL-start" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/MySQL">
+          <include pattern="start.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MySQL-stop" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/MySQL">
+          <include pattern="stop.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-MySQL-mysql-packages" type="OsPackageArtifact" name="mysql-packages"/>
+    <artifactTemplate id="at-MySQLDatabaseHostedOnMySQL-Source-preConfigureEndpoint" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/MySQLDatabaseHostedOnMySQL">
+          <include pattern="provideCredentials.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+    <artifactTemplate id="at-ApacheLoadbalancerConnectedToMember-Source-postConfigureEndpoint" type="ScriptArtifact">
+      <artifactReferences>
+        <artifactReference reference="scripts/ApacheLoadbalancerConnectedToMember">
+          <include pattern="configureLoadBalancer.sh"/>
+        </artifactReference>
+      </artifactReferences>
+    </artifactTemplate>
+  </definitions>
+</tosca:DocumentRoot>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-key"
+	xmlns="http://example.com/example-with-key">
+
+	<xsd:element name="Passengers">
+		<xsd:complexType>
+			<xsd:choice maxOccurs="unbounded">
+				<xsd:element name="Passenger" type="PassengerType" />
+				<xsd:element name="Infant" type="InfantType" />
+			</xsd:choice>
+		</xsd:complexType>
+		
+		<!-- all following constructs of Passengers are not imported to Ecore -->
+ 		<xsd:unique name="PassengerInfantUniqueSequnceNo">
+			<xsd:selector xpath="Passenger|Infant" />
+			<xsd:field xpath="@SequenceNo" />
+		</xsd:unique>
+		<xsd:unique name="PassengerInfantUniqueID">
+			<xsd:selector xpath="Passenger|Infant" />
+			<xsd:field xpath="@ID" />
+		</xsd:unique>
+		
+ 		<xsd:key name="PassengerIdKey">
+			<xsd:selector xpath="Passenger" />
+			<xsd:field xpath="@ID" />
+		</xsd:key>
+		<xsd:key name="InfantIdKey">
+			<xsd:selector xpath="Infant" />
+			<xsd:field xpath="@ID" />
+		</xsd:key>
+		
+		<xsd:keyref name="PassengerAssociationRef" refer="InfantIdKey">
+			<xsd:selector xpath="Passenger" />			
+			<xsd:field xpath="@AssociatedInfantID" />
+		</xsd:keyref>
+		<xsd:keyref name="InfantAssociationRef" refer="PassengerIdKey">
+			<xsd:selector xpath="Infant" />
+			<xsd:field xpath="@AssociatedPassengerID" />
+		</xsd:keyref>
+		
+	</xsd:element>	
+	
+	<xsd:complexType name="PassengerType">
+		<xsd:sequence>
+			<xsd:element name="FullName" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attribute name="SequenceNo" type="xsd:int" use="required" />
+		<xsd:attribute name="ID" type="xsd:int" use="required" />
+		<xsd:attribute name="AssociatedInfantID" type="xsd:int" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="InfantType">
+		<xsd:sequence>
+			<xsd:element name="FullName" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attribute name="SequenceNo" type="xsd:int" use="required" />
+		<xsd:attribute name="ID" type="xsd:int" use="required" />
+		<xsd:attribute name="AssociatedPassengerID" type="xsd:int"
+			use="required" />
+	</xsd:complexType>
+
+</xsd:schema>

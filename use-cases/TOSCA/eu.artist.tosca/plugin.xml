@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated TOSCA-v1.0 -->
+      <package
+            uri="http://docs.oasis-open.org/tosca/ns/2011/12"
+            class="tosca.ToscaPackage"
+            genModel="generated-modified/TOSCA-v1.0.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated TOSCA-v1.0 -->
+      <parser
+            type="tosca"
+            class="tosca.util.ToscaResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated My -->
+      <package
+            uri="http://sample.com"
+            class="sample.SamplePackage"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated TOSCA-v1.0-BaseTypes -->
+      <package
+            uri="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"
+            class="toscabasetypes.ToscabasetypesPackage"
+            genModel="generated-modified/types/TOSCA-v1.0-BaseTypes.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated TOSCA-v1.0-BaseTypes -->
+      <parser
+            type="toscabasetypes"
+            class="toscabasetypes.util.ToscabasetypesResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated TOSCA-v1.0-SpecificTypes -->
+      <package
+            uri="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"
+            class="toscaspecifictypes.ToscaspecifictypesPackage"
+            genModel="generated-modified/types/TOSCA-v1.0-SpecificTypes.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated TOSCA-v1.0-SpecificTypes -->
+      <parser
+            type="toscaspecifictypes"
+            class="toscaspecifictypes.util.ToscaspecifictypesResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated MoodleTypes -->
+      <package
+            uri="http://www.example.com/tosca/Types/Moodle"
+            class="moodletypes.MoodletypesPackage"
+            genModel="generated-modified/types/MoodleTypes.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated MoodleTypes -->
+      <parser
+            type="moodletypes"
+            class="moodletypes.util.MoodletypesResourceFactoryImpl"/>
+   </extension>
+</plugin>

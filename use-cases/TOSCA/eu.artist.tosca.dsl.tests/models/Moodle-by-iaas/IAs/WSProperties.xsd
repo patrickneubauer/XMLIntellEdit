@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.uni-stuttgart.de/opentosca" xmlns="http://www.w3.org/2001/XMLSchema">
+	<element name="WSProperties">
+		<complexType>
+			<sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+				<element name="ServiceEndpoint" type="xsd:string" />
+				<element name="PortType" type="xsd:string" />
+				<element name="InvocationType" type="xsd:string" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>

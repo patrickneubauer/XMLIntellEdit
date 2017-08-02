@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<unchanged:OrdersType
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:unchanged="http://example.com/example-references-unchanged"
+    xsi:schemaLocation="http://example.com/example-references-unchanged ../metamodels/references-unchanged.ecore">
+  <order1 customerAddress="str 12"
+      customerContact="12345"
+      customerName="franz"
+      orderID="id0"/>
+  <orderReference1
+      orderDetail1="id100"/>
+</unchanged:OrdersType>

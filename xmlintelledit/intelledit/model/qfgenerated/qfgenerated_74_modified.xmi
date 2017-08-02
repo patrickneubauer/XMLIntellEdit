@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<serviceexample:Container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:serviceexample="http://www.example.org/serviceexample" xsi:schemaLocation="http://www.example.org/serviceexample ../serviceexample.ecore">
+  <cluster name="P" backup="AD" designSpeed="3">
+    <server name="_g" speed="4"/>
+    <server name="-" speed="1"/>
+    <server name="ksbsr" speed="0"/>
+    <server name="ay" speed="0"/>
+  </cluster>
+  <cluster name="8A" backup="AD" designSpeed="4"/>
+  <cluster name="g7FU" backup="wdi" designSpeed="0">
+    <server name="_1szFjI" speed="5"/>
+    <server name="mGuHeV_" speed="5"/>
+  </cluster>
+  <cluster name="AD" backup="P" designSpeed="0">
+    <server name="F" speed="1"/>
+    <server name="v" speed="6"/>
+  </cluster>
+  <cluster name="wdi" backup="P" designSpeed="0"/>
+</serviceexample:Container>

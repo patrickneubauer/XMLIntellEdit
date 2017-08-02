@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/SandboxProject/src" modelPluginID="SandboxProject"
+    modelName="Example_with_key2" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Example_with_key2.xsd</foreignModel>
+  <genPackages prefix="_2" basePackage="com.example.example.with.key" resource="XML"
+      disposableProviderFactory="true" ecorePackage="key-2.ecore#/">
+    <genClasses ecoreClass="key-2.ecore#//ColorType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute key-2.ecore#//ColorType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="key-2.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute key-2.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference key-2.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference key-2.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference key-2.ecore#//DocumentRoot/rootElement"/>
+    </genClasses>
+    <genClasses ecoreClass="key-2.ecore#//ItemsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute key-2.ecore#//ItemsType/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference key-2.ecore#//ItemsType/shirt"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference key-2.ecore#//ItemsType/hat"/>
+    </genClasses>
+    <genClasses ecoreClass="key-2.ecore#//OrderType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute key-2.ecore#//OrderType/number"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference key-2.ecore#//OrderType/items"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference key-2.ecore#//OrderType/products"/>
+    </genClasses>
+    <genClasses ecoreClass="key-2.ecore#//PriceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute key-2.ecore#//PriceType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute key-2.ecore#//PriceType/currency"/>
+    </genClasses>
+    <genClasses ecoreClass="key-2.ecore#//ProductOrderType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute key-2.ecore#//ProductOrderType/quantity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference key-2.ecore#//ProductOrderType/color"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute key-2.ecore#//ProductOrderType/number"/>
+    </genClasses>
+    <genClasses ecoreClass="key-2.ecore#//ProductsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference key-2.ecore#//ProductsType/product"/>
+    </genClasses>
+    <genClasses ecoreClass="key-2.ecore#//ProductType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute key-2.ecore#//ProductType/number"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute key-2.ecore#//ProductType/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference key-2.ecore#//ProductType/price"/>
+    </genClasses>
+    <genClasses ecoreClass="key-2.ecore#//RootElementType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference key-2.ecore#//RootElementType/order"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

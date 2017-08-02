@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-substitutiongroup"
+	xmlns="http://example.com/example-with-substitutiongroup">
+
+	<xsd:element name="name" type="xsd:string" />
+	<xsd:element name="navn" substitutionGroup="name" />
+
+	<xsd:complexType name="custinfo">
+		<xsd:sequence>
+			<xsd:element ref="name" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="customer" type="custinfo" />
+	<xsd:element name="kunde" substitutionGroup="customer" />
+		
+</xsd:schema>
+
+	<!-- Valid XML document 1 -->
+<!-- 
+	<customer>
+	  <name>John Smith</name>
+	</customer> 
+-->
+	
+	<!-- Valid XML document 2 -->
+<!--
+	<kunde>
+	  <navn>John Smith</navn>
+	</kunde>
+ -->

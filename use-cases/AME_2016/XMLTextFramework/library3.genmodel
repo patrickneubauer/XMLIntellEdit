@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/XMLTextFramework/src" modelPluginID="XMLTextFramework" modelName="Library3-refactored" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>library3.ecore</foreignModel>
+  <genPackages prefix="Library3" resource="XML" disposableProviderFactory="true">
+    <ecorePackage href="library3.ecore#/"/>
+    <genDataTypes>
+      <ecoreDataType href="library3.ecore#//DescType"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="library3.ecore#//IsbnType"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="library3.ecore#//NameType"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="library3.ecore#//PagesType"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="library3.ecore#//PagesTypeObject"/>
+    </genDataTypes>
+    <genDataTypes>
+      <ecoreDataType href="library3.ecore#//SinceType"/>
+    </genDataTypes>
+    <genClasses>
+      <ecoreClass href="library3.ecore#//BookInfoType"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//BookInfoType/any"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="library3.ecore#//BookType"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//BookType/name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//BookType/title"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//BookType/author"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//BookType/pages"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="library3.ecore#//BookType/bookInfo"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//BookType/isbn"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="library3.ecore#//CustomerType"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//CustomerType/firstName"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//CustomerType/lastName"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//CustomerType/borrowedBookId"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="library3.ecore#//DocumentRoot"/>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="library3.ecore#//DocumentRoot/mixed"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="library3.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      </genFeatures>
+      <genFeatures property="None" notify="false" createChild="false">
+        <ecoreFeature xsi:type="ecore:EReference" href="library3.ecore#//DocumentRoot/xSISchemaLocation"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="library3.ecore#//DocumentRoot/library"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="library3.ecore#//LibraryType"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="library3.ecore#//LibraryType/book"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="library3.ecore#//LibraryType/customer"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

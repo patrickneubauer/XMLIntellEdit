@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<anyfeatureadapted:RootElementType 
+xmlns:anyfeatureadapted="http://example.com/example-with-anyfeatureadapted"
+
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://example.com/example-with-anyfeature ../metamodels/Example_with_anyfeature.xsd "
+>
+  <element1 city="Vienna" street="Favoritenstr. 9-11"/>
+  <properties>
+    <any>
+      delivery information      
+      <attrList attrName="orderType" attrValue="express"/>
+      <attrList attrName="deliveryCountry" attrValue="Austria"/>
+      <childElement value="deliveringTo">
+        <attrList attrName="firstName" attrValue="Manuel"/>
+        <attrList attrName="lastName" attrValue="Wimmer"/>
+      </childElement>
+    </any>
+  </properties>
+</anyfeatureadapted:RootElementType>

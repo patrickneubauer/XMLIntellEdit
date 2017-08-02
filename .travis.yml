@@ -1,0 +1,17 @@
+language: java
+jdk:
+- oraclejdk8
+cache:
+  directories:
+  - "$HOME/.m2/repository"
+install: "/bin/true"
+script:
+- mvn clean install
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: tDQGrANeMFd+Beah33OtDb28WaDzbeBCCBmI1P77DO1ClbH//yMGuxjw1fNMjSs4UiNQ5VsalSfCXsizVsuhU7eeYy5kFZMZfJHRa4aL20YyPATD/biaydSwI5nzcwRcvnQFjW8iDA2Th255s1xT6/RXXUNwJV57dIqvNidKmQh/3GnHAm9kG9Y6o/U6rTZCH+SlG/RYusfYpzQdXpXhYBcw+r6KsnTqWD5ChvwMslH5I2dZAJFfjehc8raITlD9BRIaLjsSjYX94+8PBL9Od1d7BCnTVeLifIrU5EBeYUF7lSCUwZ/Z+R095MehYeMg+8LjBU3FVejUoMA/NwGuy+QrMSP/OE6oLnyCOks3AoPwvorUYf4q8SKqThXYYUZxpY5rcmy5yOMixgOBTCAnxHEnww7QwRIPK+cKpcLRtPVbfgMJgDY+cjIybumYpQeOnBX/HysCPK3r3P3qHOvhvw2uDamkQwZP9d7iXzPEDaWv+OiIkH9aoiH8qItsQqpQf/1r9xF8O3YmHYnCRWR6qi0BI16vWYOr6qfYyQYvdnsTvmdUY8R5bsaxUN/fsknpcsa6xUmII6VVSgS/yQmx5eRgkRXSC1q0OInkOfwdZhBDns2xgOX+owfFmBiwg/yYXzRlrA4ZwBr6Aa6SI3r3YW3PzAKulbLCG39AnH1N1qk=
+  file: $TRAVIS_BUILD_DIR/xmlintelledit/xmltext/target/xmltext-0.0.1-SNAPSHOT.jar
+  on:
+    repo: patrickneubauer/XMLText-NEW

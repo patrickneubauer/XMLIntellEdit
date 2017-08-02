@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-any"
+	xmlns="http://example.com/example-with-any">
+
+	<!-- ROOT ELEMENT -->
+	<xsd:element name="rootElement">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="element1" type="Element1" />
+				<xsd:element name="element2" type="Element2" />
+				<xsd:element name="element3" type="Element3" />
+				<xsd:any processContents="skip" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- anyAttribute SKIP -->
+	<xsd:complexType name="Element1">
+		<xsd:attribute name="street" type="xsd:string"/>
+		<xsd:attribute name="city" type="xsd:string"/>		
+		<xsd:anyAttribute processContents="skip"/>
+	</xsd:complexType>
+	
+	<!-- anyAttribute LAX -->
+	<xsd:complexType name="Element2">
+		<xsd:attribute name="street" type="xsd:string"/>
+		<xsd:anyAttribute processContents="lax"/>
+	</xsd:complexType>
+
+	<!-- anyAttribute STRICT -->	
+	<xsd:complexType name="Element3">
+		<xsd:attribute name="street" type="xsd:string"/>
+		<xsd:anyAttribute processContents="strict"/>
+	</xsd:complexType>
+
+</xsd:schema>

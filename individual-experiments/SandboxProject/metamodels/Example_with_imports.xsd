@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-imports"
+	xmlns="http://example.com/example-with-imports">
+
+
+	<xsd:complexType name="bookType">
+		<xsd:sequence>
+			<xsd:element name="title" type="xsd:string" />
+			<xsd:element name="author" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attribute name="isbn" type="xsd:string" />
+	</xsd:complexType>
+	
+	<!-- the complex type "Import" can be added to allow the Xtext default import in the grammar to be added,
+	 otherwise an error occurs: ErrorCode: UnknownMetaModelAlias -->
+	<!-- Alternatively this might also only be added in the Ecore metamodel ! -->
+<!-- 	<xsd:complexType name="Import">
+		<xsd:sequence>
+			<xsd:element name="importURI" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType> -->
+
+	<xsd:element name="rootElement">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element type="bookType" name="book" />
+				<!--  adding an element named exactly as the expected Xtext keyword "importURI" -->
+				<xsd:element type="xsd:string" name="importURI" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+</xsd:schema>

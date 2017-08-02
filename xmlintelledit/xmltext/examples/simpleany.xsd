@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- definition of simple types -->
+  <xs:simpleType name="nameType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="32"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- definition of complex types -->
+  <xs:complexType name="libraryType">
+  	<xs:sequence>
+  		<xs:element maxOccurs="unbounded" minOccurs="0" name="book" type="bookType"/>
+  	</xs:sequence>
+  </xs:complexType>
+  <xs:complexType mixed="true" name="description">
+  	<xs:sequence>
+  		<xs:element maxOccurs="unbounded" minOccurs="0" name="keyword" type="xs:string"/>
+  		<xs:element maxOccurs="unbounded" minOccurs="0" name="description" type="description"/>
+  	</xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bookType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:ID"/>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="author" type="nameType"/>
+      <xs:element minOccurs="0" name="description" type="description"/>
+    </xs:sequence>
+  </xs:complexType>     
+   <!-- root element -->
+  <xs:element name="library" type="libraryType"/>   
+</xs:schema>

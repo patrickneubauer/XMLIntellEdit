@@ -1,0 +1,30 @@
+ Container {
+	service {
+		Service "Main" {  
+			designSpeed 4 	 
+			type IMPORTANT	  
+			providedBy WebCl	   
+		}
+	}     
+	cluster {    
+		Cluster "WebCl" {  
+			designSpeed 5     
+			services (Main)  
+			backup Backup  
+			server { 
+				Server "A" {
+					speed  5 
+		 		}
+			} 
+		},
+		Cluster "Backup" {  
+			designSpeed 3 
+			services (Main) 
+			server {
+				Server "B" {
+					speed 4
+				}
+			} 
+		}
+	}
+}

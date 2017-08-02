@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ISO TC 184/SC 4/WG 12 N5178 - ISO/TS 29002-10 Catalogue - XML schema
+-->
+<!--
+The following permission notice and disclaimer shall be included in all copies of this XML schema ("the Schema"), and derivations of the Schema:
+
+Permission is hereby granted, free of charge in perpetuity, to any person obtaining a copy of the Schema, to use, copy, modify, merge and distribute free of charge, copies of the Schema for the purposes of developing, implementing, installing and using software based on the  Schema, and to permit persons to whom the Schema is furnished to do so, subject to the following conditions:
+
+THE SCHEMA IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SCHEMA OR THE USE OR OTHER DEALINGS IN THE SCHEMA.
+
+In addition, any modified copy of the Schema shall include the following notice:
+
+THIS SCHEMA HAS BEEN MODIFIED FROM THE SCHEMA DEFINED IN ISO/TS 29002-10, AND SHOULD NOT BE INTERPRETED AS COMPLYING WITH THAT STANDARD.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:catalogue" xmlns:val="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:value" xmlns:bas="urn:iso:std:iso:ts:29002:-4:ed-1:tech:xml-schema:basic" xmlns:id="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" targetNamespace="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:catalogue" elementFormDefault="qualified">
+	<xs:import namespace="urn:iso:std:iso:ts:29002:-5:ed-1:tech:xml-schema:identifier" schemaLocation="identifier.xsd"/>
+	<xs:import namespace="urn:iso:std:iso:ts:29002:-4:ed-1:tech:xml-schema:basic" schemaLocation="basic.xsd"/>
+	<xs:import namespace="urn:iso:std:iso:ts:29002:-10:ed-1:tech:xml-schema:value" schemaLocation="value.xsd"/>
+	<!-- Global Elements -->
+	<xs:element name="catalogue" type="cat:catalogue_Type"/>
+	<xs:element name="item" type="cat:item_Type"/>
+	<xs:element name="property_value" type="cat:property_value_Type"/>
+	<xs:element name="reference" type="cat:reference_Type"/>
+	<!-- Global Types -->
+	<!-- Catalogue -->
+	<xs:complexType name="catalogue_Type">
+		<xs:sequence>
+			<xs:element ref="cat:item" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Item -->
+	<xs:complexType name="item_Type">
+		<xs:sequence>
+			<xs:element name="classification_ref" type="id:IRDI_type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cat:reference" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="cat:property_value" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="class_ref" type="id:IRDI_type" use="required"/>
+		<xs:attribute name="data_specification_ref" type="id:IRDI_type" use="optional"/>
+		<xs:attribute name="local_id" type="xs:ID" use="optional"/>
+		<xs:attribute name="information_supplier_reference_string" type="xs:string" use="optional"/>
+		<xs:attribute name="is_proprietary" type="xs:boolean" use="optional"/>
+		<xs:attribute name="is_dependent" type="xs:boolean" use="optional"/>
+		<xs:attribute name="is_global_id" type="xs:boolean" use="optional"/>
+		<xs:attribute name="is_model" type="xs:boolean" use="optional"/>
+		<xs:attribute name="created_view" type="id:IRDI_type" use="optional"/>
+		<xs:attribute name="view_of" type="xs:IDREF" use="optional"/>
+	</xs:complexType>
+	<!-- Property Value -->
+	<xs:complexType name="property_value_Type">
+		<xs:sequence>
+			<xs:group ref="val:extended_value_Group"/>
+			<xs:element ref="val:environment" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="property_ref" type="id:IRDI_type" use="required"/>
+		<xs:attribute name="subitem_path_property_ref" type="id:IRDI_list_type" use="optional"/>
+		<xs:attribute name="is_proprietary" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<!-- Reference -->
+	<xs:complexType name="reference_Type">
+		<xs:sequence>
+			<xs:element name="designation" type="bas:international_text_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="organization_ref" type="id:IRDI_type" use="optional"/>
+		<xs:attribute name="organization_code" type="xs:string" use="optional"/>
+		<!-- Constraint: organization_ref or organization_code (or both) must be specified. -->
+		<!-- Constraint: If both organization_ref and organization_code are specified, they must denote the same organization. -->
+		<xs:attribute name="reference_number" type="xs:string" use="required"/>
+	</xs:complexType>
+</xs:schema>

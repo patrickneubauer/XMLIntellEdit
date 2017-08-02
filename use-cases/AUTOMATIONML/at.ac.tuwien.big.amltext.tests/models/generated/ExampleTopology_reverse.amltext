@@ -1,0 +1,76 @@
+CAEXFile {
+	fileName "ExampleTopology.xaml" schemaVersion "2.15" ExternalReference {
+		alias "BaseRoleClassLib" path
+		"Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.xaml"
+	},
+	ExternalReference {
+		alias "BaseInterfaceClassLib" path
+		"Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.xaml"
+	}
+	InstanceHierarchy {
+		name "ManufacturingSystem" InternalElement {
+			iD "{788eb291-f103-4fdc-aba0-4893b599f556}" name "firstScrewdriver"
+			refBaseSystemUnitPath "LibOfCommonTools/ElectricScrewdriver" Attribute {
+				name "New Attribute"
+			}
+			ExternalInterface {
+				iD "{5f535d4c-dd46-4c1c-898c-4e58419048b6}" name "EnergySupply"
+				refBaseClassPath "MyInterfaces/Energy"
+			}
+			SupportedRoleClass {
+				refRoleClassPath "ManufacturingRoleClasses/Tool"
+			}
+			roleRequirements RoleRequirements {
+				refBaseRoleClassPath "ManufacturingRoleClasses/Tool"
+			}
+		},
+		InternalElement {
+			iD "{19dcf818-4716-4fc1-a85f-28e1938c4c3a}" name "secondScrewdriver"
+			refBaseSystemUnitPath "LibOfCommonTools/ElectricScrewdriver" Attribute {
+				name "New Attribute"
+			}
+			ExternalInterface {
+				iD "50e10905-ac18-413c-afab-ad8ed1569fff" name "EnergySupply"
+				refBaseClassPath "MyInterfaces/Energy"
+			}
+			SupportedRoleClass {
+				refRoleClassPath "ManufacturingRoleClasses/Tool"
+			}
+			roleRequirements RoleRequirements {
+				refBaseRoleClassPath "ManufacturingRoleClasses/Tool"
+			}
+		}
+	}
+	InterfaceClassLib {
+		name "MyInterfaces" version Version {
+			value "1.0"
+		}
+		InterfaceFamily {
+			name "Energy" refBaseClassPath
+			"BaseInterfaceClassLib@AutomationMLInterfaceClassLib/AutomationMLBaseInterface"
+		}
+	}
+	RoleClassLib {
+		name "ManufacturingRoleClasses" version Version {
+			value "1.0"
+		}
+		RoleFamily {
+			name "Tool" refBaseClassPath
+			"BaseRoleClassLib@AutomationMLBaseRoleClassLib/AutomationMLBaseRole"
+		}
+	}
+	SystemUnitClassLib {
+		name "LibOfCommonTools" version Version {
+			value "1.0"
+		}
+		SystemUnitFamily {
+			name "ElectricScrewdriver" ExternalInterface {
+				iD "dd0e0dfe-10f8-4068-845b-9c29699ac79b" name "EnergySupply"
+				refBaseClassPath "MyInterfaces/Energy"
+			}
+			SupportedRoleClass {
+				refRoleClassPath "ManufacturingRoleClasses/Tool"
+			}
+		}
+	}
+}

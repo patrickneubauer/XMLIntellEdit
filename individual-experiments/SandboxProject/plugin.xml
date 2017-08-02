@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example -->
+      <package
+            uri="http://example.com/blah"
+            class="com.example.blah.BlahPackage"
+            genModel="Example.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example -->
+      <parser
+            type="blah"
+            class="com.example.blah.util.BlahResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_references -->
+      <package
+            uri="http://example.com/example-references"
+            class="com.example.example.references.ReferencesPackage"
+            genModel="metamodels/Example_with_references.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_references -->
+      <parser
+            type="references"
+            class="com.example.example.references.util.ReferencesResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_restrictions -->
+      <package
+            uri="http://example.com/example-restrictions"
+            class="com.example.example.restrictions.RestrictionsPackage"
+            genModel="metamodels/Example_with_restrictions.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_restrictions -->
+      <parser
+            type="restrictions"
+            class="com.example.example.restrictions.util.RestrictionsResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_group -->
+      <package
+            uri="http://example.com/example-with-group"
+            class="com.example.example.with.group.GroupPackage"
+            genModel="metamodels/Example_with_group.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_group -->
+      <parser
+            type="group"
+            class="com.example.example.with.group.util.GroupResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_mixed -->
+      <package
+            uri="http://example.com/example-with-mixed"
+            class="com.example.example.with.mixed.MixedPackage"
+            genModel="metamodels/Example_with_mixed.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_mixed -->
+      <parser
+            type="mixed"
+            class="com.example.example.with.mixed.util.MixedResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_extension -->
+      <package
+            uri="http://example.com/example-with-extension"
+            class="com.example.example.with.extension.ExtensionPackage"
+            genModel="metamodels/Example_with_extension.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_extension -->
+      <parser
+            type="extension"
+            class="com.example.example.with.extension.util.ExtensionResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_extensionn -->
+      <package
+            uri="http://example.com/example-with-extensionn"
+            class="com.example.example.with.extensionn.ExtensionnPackage"
+            genModel="metamodels/Example_with_extensionn.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_extensionn -->
+      <parser
+            type="extensionn"
+            class="com.example.example.with.extensionn.util.ExtensionnResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_extensions -->
+      <package
+            uri="http://example.com/example-with-extensions"
+            class="com.example.example.with.extensions.ExtensionsPackage"
+            genModel="metamodels/Example_with_extensions.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_extensions -->
+      <parser
+            type="extensions"
+            class="com.example.example.with.extensions.util.ExtensionsResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_any -->
+      <package
+            uri="http://example.com/example-with-any"
+            class="com.example.example.with.any.AnyPackage"
+            genModel="metamodels/Example_with_any.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_any -->
+      <parser
+            type="any"
+            class="com.example.example.with.any.util.AnyResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_substitutiongroup -->
+      <package
+            uri="http://example.com/example-with-substitutiongroup"
+            class="com.example.example.with.substitutiongroup.SubstitutiongroupPackage"
+            genModel="metamodels/Example_with_substitutiongroup.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_substitutiongroup -->
+      <parser
+            type="substitutiongroup"
+            class="com.example.example.with.substitutiongroup.util.SubstitutiongroupResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_key -->
+      <package
+            uri="http://example.com/example-with-key"
+            class="com.example.example.with.key.KeyPackage"
+            genModel="metamodels/Example_with_key.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_key -->
+      <parser
+            type="key"
+            class="com.example.example.with.key.util.KeyResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_include -->
+      <package
+            uri="http://example.com/example-with-include"
+            class="com.example.example.with.include.IncludePackage"
+            genModel="metamodels/Example_with_include.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_include -->
+      <parser
+            type="include"
+            class="com.example.example.with.include.util.IncludeResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_datatypes -->
+      <package
+            uri="http://example.com/example-with-datetypes"
+            class="com.example.example.with.datetypes.DatetypesPackage"
+            genModel="metamodels/Example_with_datatypes.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_datatypes -->
+      <parser
+            type="datetypes"
+            class="com.example.example.with.datetypes.util.DatetypesResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_references_unchanged -->
+      <package
+            uri="http://example.com/example-references-unchanged"
+            class="com.example.example.references.unchanged.UnchangedPackage"
+            genModel="metamodels/Example_with_references_unchanged.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_references_unchanged -->
+      <parser
+            type="unchanged"
+            class="com.example.example.references.unchanged.util.UnchangedResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_group_unchanged -->
+      <package
+            uri="http://example.com/example-with-group-unchanged"
+            class="com.example.example.with.group.unchanged.UnchangedPackage"
+            genModel="metamodels/Example_with_group_unchanged.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_group_unchanged -->
+      <parser
+            type="unchanged"
+            class="com.example.example.with.group.unchanged.util.UnchangedResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_mixed_unchanged -->
+      <package
+            uri="http://example.com/example-with-mixed-unchanged"
+            class="com.example.example.with.mixed.unchanged.UnchangedPackage"
+            genModel="metamodels/Example_with_mixed_unchanged.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_mixed_unchanged -->
+      <parser
+            type="unchanged"
+            class="com.example.example.with.mixed.unchanged.util.UnchangedResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_key2 -->
+      <package
+            uri="http://example.com/example-with-key-2"
+            class="com.example.example.with.key._2._2Package"
+            genModel="metamodels/Example_with_key2.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_key2 -->
+      <parser
+            type="_2"
+            class="com.example.example.with.key._2.util._2ResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_imports -->
+      <package
+            uri="http://example.com/example-with-imports"
+            class="com.example.example.with.imports.ImportsPackage"
+            genModel="metamodels/Example_with_imports.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_imports -->
+      <parser
+            type="imports"
+            class="com.example.example.with.imports.util.ImportsResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_references_and_imports -->
+      <package
+            uri="http://example.com/example-importreferences"
+            class="com.example.example.importreferences.ImportreferencesPackage"
+            genModel="metamodels/Example_with_references_and_imports.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_references_and_imports -->
+      <parser
+            type="importreferences"
+            class="com.example.example.importreferences.util.ImportreferencesResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_references_untyped -->
+      <package
+            uri="http://example.com/example-referencesuntyped"
+            class="com.example.example.referencesuntyped.ReferencesuntypedPackage"
+            genModel="metamodels/Example_with_references_untyped.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_references_untyped -->
+      <parser
+            type="referencesuntyped"
+            class="com.example.example.referencesuntyped.util.ReferencesuntypedResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_referencesuntypedimports -->
+      <package
+            uri="http://example.com/example-referencesuntypedimports"
+            class="com.example.example.referencesuntypedimports.ReferencesuntypedimportsPackage"
+            genModel="metamodels/Example_with_referencesuntypedimports.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_referencesuntypedimports -->
+      <parser
+            type="referencesuntypedimports"
+            class="com.example.example.referencesuntypedimports.util.ReferencesuntypedimportsResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_anyattribute -->
+      <package
+            uri="http://example.com/example-with-anyattribute"
+            class="com.example.example.with.anyattribute.AnyattributePackage"
+            genModel="metamodels/Example_with_anyattribute.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_anyattribute -->
+      <parser
+            type="anyattribute"
+            class="com.example.example.with.anyattribute.util.AnyattributeResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_anyfeature -->
+      <package
+            uri="http://example.com/example-with-anyfeature"
+            class="com.example.example.with.anyfeature.AnyfeaturePackage"
+            genModel="metamodels/Example_with_anyfeature.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_anyfeature -->
+      <parser
+            type="anyfeature"
+            class="com.example.example.with.anyfeature.util.AnyfeatureResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated emftester -->
+      <package
+            uri="http://emftester.com"
+            class="DataPackage.DataPackagePackage"
+            genModel="metamodels/emftester.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated emftester -->
+      <parser
+            type="datapackage"
+            class="DataPackage.util.DataPackageResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_anyelementfeature -->
+      <package
+            uri="http://example.com/example-with-anyelementfeature"
+            class="com.example.example.with.anyelementfeature.AnyelementfeaturePackage"
+            genModel="metamodels/Example_with_anyelementfeature.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_anyelementfeature -->
+      <parser
+            type="anyelementfeature"
+            class="com.example.example.with.anyelementfeature.util.AnyelementfeatureResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Example_with_anytypefeature -->
+      <package
+            uri="http://example.com/example-with-anytypefeature"
+            class="com.example.example.with.anytypefeature.AnytypefeaturePackage"
+            genModel="metamodels/Example_with_anytypefeature.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Example_with_anytypefeature -->
+      <parser
+            type="anytypefeature"
+            class="com.example.example.with.anytypefeature.util.AnytypefeatureResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated anyfeatureadapted -->
+      <package
+            uri="http://example.com/example-with-anyfeatureadapted"
+            class="anyfeatureadapted.AnyfeatureadaptedPackage"
+            genModel="metamodels/anyfeatureadapted.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated anyfeatureadapted -->
+      <parser
+            type="anyfeatureadapted"
+            class="anyfeatureadapted.util.AnyfeatureadaptedResourceFactoryImpl"/>
+   </extension>
+</plugin>

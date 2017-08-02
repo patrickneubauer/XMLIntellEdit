@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Modifications:
+- added "tosca:DocumentRoot"
+- changed element initial characters all lowercase (e.g., Definitions -> definitions)
+- element derivedFrom "typeRef" attribute renamed to "derivedFrom" as stated in TOSCA ecore modified because of name conflicts (see also http://goo.gl/k3qR7U)
+- out-commented "properties" for now
+ -->
+<tosca:DocumentRoot	
+	xmlns:tosca="http://docs.oasis-open.org/tosca/ns/2011/12">
+	<definitions id="MoodleTypes" name="MoodleTypes"
+	  targetNamespace="http://www.example.com/tosca/Types/Moodle"
+	  xmlns="http://docs.oasis-open.org/tosca/ns/2011/12"
+	  xmlns:ns1="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"
+	  xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:tns="http://www.example.com/tosca/Types/Moodle">
+	  <import importType="http://docs.oasis-open.org/tosca/ns/2011/12"
+	    location="TOSCA-v1.0-SpecificTypes-Definitions.xml" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"/>
+	  <import importType="http://www.w3.org/2001/XMLSchema"
+	    location="../types/MoodleTypes.xsd" namespace="http://www.example.com/tosca/Types/Moodle"/>
+		
+	  <import namespace="http://www.uni-stuttgart.de/opentosca" location="../IAs/WSProperties.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+	
+	  <requirementType name="MoodleDatabaseEndpointRequirement" requiredCapabilityType="ns1:MySQLDatabaseEndpointCapability">
+	    <documentation>Moodle Database Endpoint Requirement</documentation>
+	    <derivedFrom derivedFrom="ns1:MySQLDatabaseEndpointRequirement"/>
+	  </requirementType>
+	  <relationshipType name="MoodleDatabaseConnection">
+	    <documentation>Connects to</documentation>
+	    <derivedFrom derivedFrom="ns1:MySQLDatabaseConnection"/>
+	    <sourceInterfaces>
+	      <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source">
+	        <operation name="preConfigureEndpoint"/>
+	      </interface>
+	    </sourceInterfaces>
+	    <validSource typeRef="tns:MoodleDatabaseEndpointRequirement"/>
+	    <validTarget typeRef="ns1:MySQLDatabaseEndpointCapability"/>
+	  </relationshipType>
+	  <artifactTemplate
+	    id="at-MoodleDatabaseConnection-Source-preConfigureEndpoint" type="ns2:ScriptArtifact">
+<!-- 	    <properties> -->
+<!-- 	      <ns2:ScriptArtifactProperties -->
+<!-- 	        xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"> -->
+<!-- 	        <ScriptLanguage>sh</ScriptLanguage> -->
+<!-- 	        <PrimaryScript>scripts/MoodleDatabaseConnection/configureDatabaseEndpoint.sh</PrimaryScript> -->
+<!-- 	      </ns2:ScriptArtifactProperties> -->
+<!-- 	    </properties> -->
+	    <artifactReferences>
+	      <artifactReference reference="scripts/MoodleDatabaseConnection">
+	        <include pattern="configureDatabaseEndpoint.sh"/>
+	      </artifactReference>
+	    </artifactReferences>
+	  </artifactTemplate>
+	  <relationshipTypeImplementation
+	    name="MoodleDatabaseConnectionImplementation" relationshipType="tns:MoodleDatabaseConnection">
+	    <implementationArtifacts>
+	      <implementationArtifact
+	        artifactRef="tns:at-MoodleDatabaseConnection-Source-preConfigureEndpoint"
+	        artifactType="ns2:ScriptArtifact"
+	        interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/RelationshipType/Source" operationName="preConfigureEndpoint"/>
+	    </implementationArtifacts>
+	  </relationshipTypeImplementation>
+	  <nodeType name="MoodleApplication">
+	    <documentation>Moodle Application</documentation>
+	    <derivedFrom derivedFrom="ns1:ApacheWebApplication"/>
+	    <propertiesDefinition element="tns:MoodleApplicationProperties"/>
+	    <requirementDefinitions>
+	      <requirementDefinition lowerBound="1" name="phpRuntime"
+	        requirementType="ns1:PHPRuntimeRequirement" upperBound="1"/>
+	      <requirementDefinition lowerBound="1" name="database"
+	        requirementType="tns:MoodleDatabaseEndpointRequirement" upperBound="1"/>
+	    </requirementDefinitions>
+	    <interfaces>
+	      <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+	        <operation name="install"/>
+	        <operation name="configure"/>
+	      </interface>
+	    </interfaces>
+	  </nodeType>
+	  <artifactTemplate id="at-MoodleApplication-install" type="ns2:ScriptArtifact">
+<!-- 	    <properties> -->
+<!-- 	      <ns2:ScriptArtifactProperties -->
+<!-- 	        xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"> -->
+<!-- 	        <ScriptLanguage>sh</ScriptLanguage> -->
+<!-- 	        <PrimaryScript>scripts/MoodleApplication/install.sh</PrimaryScript> -->
+<!-- 	      </ns2:ScriptArtifactProperties> -->
+<!-- 	    </properties> -->
+	    <artifactReferences>
+	      <artifactReference reference="scripts/MoodleApplication">
+	        <include pattern="install.sh"/>
+	      </artifactReference>
+	    </artifactReferences>
+	  </artifactTemplate>
+	  <nodeTypeImplementation name="MoodleApplicationImplementation" nodeType="tns:MoodleApplication">
+	    <implementationArtifacts>
+	      <implementationArtifact
+	        artifactRef="tns:at-MoodleApplication-install"
+	        artifactType="ns2:ScriptArtifact"
+	        interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="install"/>
+	      <implementationArtifact
+	        artifactRef="tns:at-MoodleApplication-configure"
+	        artifactType="ns2:ScriptArtifact"
+	        interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="configure"/>
+	    </implementationArtifacts>
+	    <deploymentArtifacts>
+	      <deploymentArtifact
+	        artifactRef="tns:at-MoodleApplication-MoodleApplication-archive"
+	        artifactType="ns2:ArchiveArtifact" name="MoodleApplication-archive">
+<!-- 	        <ns2:ArchiveArtifactContextProperties -->
+<!-- 	          xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"> -->
+<!-- 	          <ArchiveDeploymentInformation archiveReference="files/moodle-2.6.1.tgz"> -->
+<!-- 	            <ContentDeploymentLocation path="/tmp/tosca/artifacts/MoodleInstall"/> -->
+<!-- 	          </ArchiveDeploymentInformation> -->
+<!-- 	        </ns2:ArchiveArtifactContextProperties> -->
+	      </deploymentArtifact>
+	      <deploymentArtifact
+	        artifactRef="tns:at-MoodleApplication-MoodleApplication-ConfigFiles"
+	        artifactType="ns2:FileArtifact" name="MoodleApplication-ConfigFiles">
+<!-- 	        <ns2:FileArtifactContextProperties -->
+<!-- 	          xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"> -->
+<!-- 	          <FileDeploymentInformation fileReference="files/config.php"> -->
+<!-- 	            <DeploymentLocation path="/tmp/tosca/artifacts/config.php"/> -->
+<!-- 	          </FileDeploymentInformation> -->
+<!-- 	        </ns2:FileArtifactContextProperties> -->
+	      </deploymentArtifact>
+	      <deploymentArtifact
+	        artifactRef="tns:at-MoodleApplication-php-ext-packages"
+	        artifactType="ns2:OsPackageArtifact" name="php-ext-packages"/>
+	    </deploymentArtifacts>
+	  </nodeTypeImplementation>
+	  <artifactTemplate id="at-MoodleApplication-configure" type="ns2:ScriptArtifact">
+<!-- 	    <properties> -->
+<!-- 	      <ns2:ScriptArtifactProperties -->
+<!-- 	        xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"> -->
+<!-- 	        <ScriptLanguage>sh</ScriptLanguage> -->
+<!-- 	        <PrimaryScript>scripts/MoodleApplication/configure.sh</PrimaryScript> -->
+<!-- 	      </ns2:ScriptArtifactProperties> -->
+<!-- 	    </properties> -->
+	    <artifactReferences>
+	      <artifactReference reference="scripts/MoodleApplication">
+	        <include pattern="configure.sh"/>
+	      </artifactReference>
+	    </artifactReferences>
+	  </artifactTemplate>
+	  <artifactTemplate id="at-MoodleApplication-MoodleApplication-archive"
+	    name="MoodleApplication-archive" type="ns2:ArchiveArtifact">
+<!-- 	    <properties> -->
+<!-- 	      <ns2:ArchiveArtifactProperties -->
+<!-- 	        xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"> -->
+<!-- 	        <ArchiveInformation archiveReference="files/moodle-2.6.1.tgz" archiveType="tgz"/> -->
+<!-- 	      </ns2:ArchiveArtifactProperties> -->
+<!-- 	    </properties> -->
+	    <artifactReferences>
+	      <artifactReference reference="files/moodle-2.6.1.tgz"/>
+	    </artifactReferences>
+	  </artifactTemplate>
+	  <artifactTemplate
+	    id="at-MoodleApplication-MoodleApplication-ConfigFiles"
+	    name="MoodleApplication-ConfigFiles" type="ns2:FileArtifact">
+	    <artifactReferences>
+	      <artifactReference reference="files/config.php"/>
+	    </artifactReferences>
+	  </artifactTemplate>
+	  <artifactTemplate id="at-MoodleApplication-php-ext-packages"
+	    name="php-ext-packages" type="ns2:OsPackageArtifact">
+<!-- 	    <properties> -->
+<!-- 	      <ns2:OsPackageArtifactProperties -->
+<!-- 	        xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" -->
+<!-- 	        packageType="rpm" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"> -->
+<!-- 	        <PackageInformation packageName="php-gd"/> -->
+<!-- 	      </ns2:OsPackageArtifactProperties> -->
+<!-- 	    </properties> -->
+	  </artifactTemplate>
+	  <nodeType name="MoodleDatabase">
+	    <documentation>Moodle Database</documentation>
+	    <derivedFrom derivedFrom="ns1:MySQLDatabase"/>
+	    <propertiesDefinition element="tns:MoodleDatabaseProperties"/>
+	    <interfaces>
+	      <interface name="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle">
+	        <operation name="configure"/>
+	      </interface>
+	    </interfaces>
+	  </nodeType>
+	  <artifactTemplate id="at-MoodleDatabase-configure" type="ns2:ScriptArtifact">
+<!-- 	    <properties> -->
+<!-- 	      <ns2:ScriptArtifactProperties -->
+<!-- 	        xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"> -->
+<!-- 	        <ScriptLanguage>sh</ScriptLanguage> -->
+<!-- 	        <PrimaryScript>scripts/MoodleDatabase/configure.sh</PrimaryScript> -->
+<!-- 	      </ns2:ScriptArtifactProperties> -->
+<!-- 	    </properties> -->
+	    <artifactReferences>
+	      <artifactReference reference="scripts/MoodleDatabase">
+	        <include pattern="configure.sh"/>
+	      </artifactReference>
+	    </artifactReferences>
+	  </artifactTemplate>
+	  <nodeTypeImplementation name="MoodleDatabaseImplementation" nodeType="tns:MoodleDatabase">
+	    <implementationArtifacts>
+	      <implementationArtifact
+	        artifactRef="tns:at-MoodleDatabase-configure"
+	        artifactType="ns2:ScriptArtifact"
+	        interfaceName="http://docs.oasis-open.org/tosca/ns/2011/12/interfaces/lifecycle" operationName="configure"/>
+	    </implementationArtifacts>
+	    <deploymentArtifacts>
+	      <deploymentArtifact
+	        artifactRef="tns:at-MoodleDatabase-MoodleDbContent-File"
+	        artifactType="ns2:FileArtifact" name="MoodleDbContent-File">
+<!-- 	        <ns2:FileArtifactContextProperties -->
+<!-- 	          xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"> -->
+<!-- 	          <FileDeploymentInformation fileReference="files/moodledb.sql"> -->
+<!-- 	            <DeploymentLocation path="/tmp/tosca/artifacts/moodledb.sql"/> -->
+<!-- 	          </FileDeploymentInformation> -->
+<!-- 	        </ns2:FileArtifactContextProperties> -->
+	      </deploymentArtifact>
+	    </deploymentArtifacts>
+	  </nodeTypeImplementation>
+	  <artifactTemplate id="at-MoodleDatabase-MoodleDbContent-File"
+	    name="MoodleDbContent-File" type="ns2:FileArtifact">
+	    <artifactReferences>
+	      <artifactReference reference="files/moodledb.sql"/>
+	    </artifactReferences>
+	  </artifactTemplate>
+	  
+	
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->  
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OpenTOSCA Part ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ WAR Artifact Type Definition ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	    <artifactType name="WAR" targetNamespace="http://www.example.com/ToscaTypes">
+	        <propertiesDefinition xmlns:ns6="http://www.uni-stuttgart.de/opentosca" type="ns6:WSProperties"/>
+	    </artifactType>
+	
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Server Node Type Implementation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->	
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		
+		<nodeTypeImplementation name="AmazonEC2VMNodeTypeImplementation" nodeType="ns2:Server">
+			<implementationArtifacts>
+				<implementationArtifact xmlns:toscatypes="http://www.example.com/ToscaTypes"
+					interfaceName="InterfaceAmazonEC2VM" 
+					artifactType="toscatypes:WAR"
+					artifactRef="tns:AmazonEC2VMNodeTypeImplementation_IA_ArtifactTemplate" />
+			</implementationArtifacts>
+		</nodeTypeImplementation>	
+		
+		<artifactTemplate xmlns:toscatypes="http://www.example.com/ToscaTypes" id="AmazonEC2VMNodeTypeImplementation_IA_ArtifactTemplate" type="toscatypes:WAR">
+<!-- 			<properties> -->
+<!-- 				<opentosca:WSProperties xmlns:opentosca="http://www.uni-stuttgart.de/opentosca"> -->
+<!-- 					<opentosca:ServiceEndpoint>/services/org_opentosca_types_AmazonEC2VM__InterfaceAmazonEC2VMPort</opentosca:ServiceEndpoint> -->
+<!-- 					<opentosca:PortType>{http://opentosca.org/types}org_opentosca_types_AmazonEC2VM__InterfaceAmazonEC2VM</opentosca:PortType> -->
+<!-- 					<opentosca:InvocationType>SOAP/HTTP</opentosca:InvocationType> -->
+<!-- 				</opentosca:WSProperties> -->
+<!-- 			</properties> -->
+			<artifactReferences>
+				<artifactReference reference="IAs/AmazonEC2VMNodeType/org_opentosca_types_AmazonEC2VM__InterfaceAmazonEC2VM.war" />
+			</artifactReferences>
+		</artifactTemplate>  
+		
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->		
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OperatingSystem Node Type Implementation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->	
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		
+		<nodeTypeImplementation name="UbuntuNodeTypeImplementation" nodeType="ns2:OperatingSystem">
+			<implementationArtifacts>
+				<implementationArtifact xmlns:toscatypes="http://www.example.com/ToscaTypes"
+					interfaceName="InterfaceUbuntu" 
+					artifactType="toscatypes:WAR"
+					artifactRef="tns:UbuntuNodeTypeImplementation_IA_ArtifactTemplate" />
+			</implementationArtifacts>
+		</nodeTypeImplementation>	
+		
+		<artifactTemplate xmlns:toscatypes="http://www.example.com/ToscaTypes" id="UbuntuNodeTypeImplementation_IA_ArtifactTemplate" type="toscatypes:WAR">
+<!-- 			<properties> -->
+<!-- 				<opentosca:WSProperties xmlns:opentosca="http://www.uni-stuttgart.de/opentosca"> -->
+<!-- 					<opentosca:ServiceEndpoint>/services/org_opentosca_types_Ubuntu__InterfaceUbuntuPort</opentosca:ServiceEndpoint> -->
+<!-- 					<opentosca:PortType>{http://opentosca.org/types}org_opentosca_types_Ubuntu__InterfaceUbuntu</opentosca:PortType> -->
+<!-- 					<opentosca:InvocationType>SOAP/HTTP</opentosca:InvocationType> -->
+<!-- 				</opentosca:WSProperties> -->
+<!-- 			</properties> -->
+			<artifactReferences>
+				<artifactReference reference="IAs/UbuntuNodeType/org_opentosca_types_Ubuntu__InterfaceUbuntu.war" />
+			</artifactReferences>
+		</artifactTemplate>  	
+	  
+	  
+	</definitions>
+</tosca:DocumentRoot>

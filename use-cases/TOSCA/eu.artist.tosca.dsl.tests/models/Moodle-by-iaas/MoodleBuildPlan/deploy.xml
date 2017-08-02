@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:BuildPlan="http:///www.opentosca.org/examples/Moodle/BuildPlan" xmlns:ec2linux.aws.ia.opentosca.org="http://ec2linux.aws.ia.opentosca.org" xmlns:ec2vm.aws.ia.opentosca.org="http://ec2vm.aws.ia.opentosca.org" xmlns:wsdl="http://siserver.org/wsdl">
+  <process name="BuildPlan:MoodleBuildPlan">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="BuildPlan:MoodleBuildPlanService" port="MoodleBuildPlanPort"/>
+    </provide>
+    <provide partnerLink="SIInvokerPL">
+      <service name="BuildPlan:MoodleBuildPlanSICallbackService" port="MoodleBuildPlanSICallbackPort"/>
+    </provide>
+    <invoke partnerLink="client">
+      <service name="BuildPlan:MoodleBuildPlanServiceCallback" port="MoodleBuildPlanPortCallbackPort"/>
+    </invoke>    
+    <invoke partnerLink="SIInvokerPL">
+      <service name="wsdl:InvokerService" port="InvokePort"/>
+    </invoke>
+  </process>
+</deploy>

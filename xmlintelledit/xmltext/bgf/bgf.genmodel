@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/xmltext/src/main/java" modelPluginID="xmltext" modelName="Bgf"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>bgf.ecore</foreignModel>
+  <genPackages prefix="Org_sl_planet_bgfSimplified" disposableProviderFactory="true"
+      ecorePackage="bgf.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="bgf.ecore#//Value">
+      <genEnumLiterals ecoreEnumLiteral="bgf.ecore#//Value/int"/>
+      <genEnumLiterals ecoreEnumLiteral="bgf.ecore#//Value/string"/>
+    </genEnums>
+    <genClasses ecoreClass="bgf.ecore#//Allof">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Allof/expressions"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Any"/>
+    <genClasses ecoreClass="bgf.ecore#//Choice">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Choice/expressions"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Empty"/>
+    <genClasses ecoreClass="bgf.ecore#//Epsilon"/>
+    <genClasses ecoreClass="bgf.ecore#//Expression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bgf.ecore#//Expression/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bgf.ecore#//Expression/terminal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bgf.ecore#//Expression/nonterminal"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/epsilon"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/empty"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/any"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/selectable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/marked"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/sequence"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/choice"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/allof"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/not"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/optional"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/plus"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/star"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/seplistplus"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Expression/sepliststar"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Grammar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bgf.ecore#//Grammar/roots"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Grammar/productions"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Marked">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Marked/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Not">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Not/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Optional">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Optional/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Plus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Plus/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Production">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bgf.ecore#//Production/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bgf.ecore#//Production/nonterminal"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Production/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Selectable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bgf.ecore#//Selectable/selector"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Selectable/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Seplistplus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Seplistplus/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Seplistplus/expression1"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Sepliststar">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Sepliststar/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Sepliststar/expression1"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Sequence">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Sequence/expressions"/>
+    </genClasses>
+    <genClasses ecoreClass="bgf.ecore#//Star">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bgf.ecore#//Star/expression"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

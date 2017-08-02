@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>at.ac.tuwien.big.xmlintelledit</groupId>
+		<artifactId>xmlintelledit-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+
+	<artifactId>xmlintelledit</artifactId>
+	<packaging>pom</packaging>
+	<name>XMLIntellEdit Project</name>
+
+	<modules>
+		<module>xtextutils</module>
+		<module>xmltext</module>
+		<module>intelledit</module>
+	</modules>
+	
+	<properties>
+		<tycho-version>1.0.0</tycho-version>
+		<xtextVersion>2.12.0</xtextVersion>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<swt.version>4.6.1</swt.version>
+	</properties>
+
+	<!-- the following allows importing jars from github, see https://jitpack.io/ -->
+	<repositories>
+		<!-- for eclipse releases -->
+		<repository>
+			<id>eclipse</id>
+			<url>https://repo.eclipse.org/content/groups/releases/</url>
+		</repository>
+ 		<repository>
+			<id>maven-central</id>
+			<url>http://central.maven.org/maven2/</url>
+		</repository> 
+		<!-- for any github project -->
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+		<!-- for rascal -->
+		<repository>
+			<id>usethesource</id>
+			<url>http://nexus.usethesource.io/content/repositories/public/</url>
+		</repository>
+		<!-- from xtext framework -->
+		<repository>
+			<id>codehaus-snapshots</id>
+			<name>disable dead 'Codehaus Snapshots' repository, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=481478</name>
+			<url>http://nexus.codehaus.org/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!--  for eclipse swt -->
+ 		<repository>
+			<id>maven-eclipse-repo</id>
+			<url>http://maven-eclipse.github.io/maven</url>
+		</repository>
+		<!--
+			<repository>
+  <id>545ch4</id>
+  <url>https://raw.githubusercontent.com/545ch4/maven-eclipse.github.io/master/maven</url>
+</repository> -->
+		
+	</repositories>
+
+	<!-- from xtext framework -->	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>codehaus-snapshots</id>
+			<name>disable dead 'Codehaus Snapshots' repository, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=481478</name>
+			<url>http://nexus.codehaus.org/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- shared dependencies among modules -->
+		<dependency>
+				<groupId>org.eclipse.platform</groupId>
+				<artifactId>org.eclipse.debug.core</artifactId>
+				<version>3.10.100</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.eclipse.xsd</groupId>
+				<artifactId>org.eclipse.xsd</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.codegen.ecore</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+	 		<dependency>
+				<groupId>org.eclipse.platform</groupId>
+				<artifactId>org.eclipse.core.runtime</artifactId>
+				<version>3.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.ecore</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>org.eclipse.xtext.ui</artifactId>
+				<version>2.10.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>org.eclipse.xtext.ui.shared</artifactId>
+				<version>2.10.0</version>
+			</dependency>
+
+<dependency>
+				<groupId>org.eclipse.jdt</groupId>
+				<artifactId>org.eclipse.jdt.core</artifactId>
+				<version>3.12.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>org.eclipse.xtext</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>org.eclipse.xtext.generator</artifactId>
+				<version>2.12.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.ecf</groupId>
+				<artifactId>org.apache.commons.logging</artifactId>
+				<version>1.1.1.v201101211721</version>
+			</dependency>
+		
+		
+		<!-- EXAMPLE for jitpack -->
+		<!-- <dependency> <groupId>com.github.User</groupId> <artifactId>Repo</artifactId> 
+			<version>Tag</version> </dependency> -->
+	</dependencies>
+
+
+</project>

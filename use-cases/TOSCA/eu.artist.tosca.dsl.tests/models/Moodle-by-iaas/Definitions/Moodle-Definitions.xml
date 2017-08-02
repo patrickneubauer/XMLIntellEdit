@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Definitions id="MoodleDefinitions" name="Moodle Definitions"
+  targetNamespace="http://www.example.com/tosca/ServiceTemplates/Moodle"
+  xmlns="http://docs.oasis-open.org/tosca/ns/2011/12"
+  xmlns:ns1="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"
+  xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" xmlns:ns3="http://www.example.com/tosca/Types/Moodle">
+  <Import importType="http://docs.oasis-open.org/tosca/ns/2011/12"
+    location="TOSCA-v1.0-BaseTypes-Definitions.xml" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"/>
+  <Import importType="http://www.w3.org/2001/XMLSchema"
+    location="../types/TOSCA-v1.0-BaseTypes.xsd" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"/>
+  <Import importType="http://docs.oasis-open.org/tosca/ns/2011/12"
+    location="TOSCA-v1.0-SpecificTypes-Definitions.xml" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"/>
+  <Import importType="http://www.w3.org/2001/XMLSchema"
+    location="../types/TOSCA-v1.0-SpecificTypes.xsd" namespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes"/>
+  <Import importType="http://docs.oasis-open.org/tosca/ns/2011/12"
+    location="MoodleTypes-Definitions.xml" namespace="http://www.example.com/tosca/Types/Moodle"/>
+  <Import importType="http://www.w3.org/2001/XMLSchema"
+    location="../types/MoodleTypes.xsd" namespace="http://www.example.com/tosca/Types/Moodle"/>
+  <ServiceTemplate id="Moodle" name="Moodle Template">
+    <TopologyTemplate>
+      <NodeTemplate id="VmApache" name="VM for Apache" type="ns1:Server">
+        <Properties>
+          <ns1:ServerProperties
+            xmlns:ns1="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
+            <NumCpus>1</NumCpus>
+            <Memory>1024</Memory>
+          </ns1:ServerProperties>
+        </Properties>
+        <Requirements>
+          <Requirement id="VmApache_networks" name="networks" type="ns1:NetworkAttachmentRequirement"/>
+          <Requirement id="VmApache_container" name="container" type="ns1:ServerContainerRequirement"/>
+          <Requirement id="VmApache_volumes" name="volumes" type="ns1:VolumeAttachmentRequirement"/>
+        </Requirements>
+        <Capabilities>
+          <Capability id="VmApache_os" name="os" type="ns1:OperatingSystemContainerCapability"/>
+        </Capabilities>
+      </NodeTemplate>
+      <NodeTemplate id="OsApache" name="OS for Apache" type="ns1:OperatingSystem">
+        <Requirements>
+          <Requirement id="OsApache_container" name="container" type="ns1:OperatingSystemContainerRequirement"/>
+        </Requirements>
+        <Capabilities>
+          <Capability id="OsApache_software" name="software" type="ns1:SoftwareContainerCapability"/>
+        </Capabilities>
+      </NodeTemplate>
+      <RelationshipTemplate id="OsApache_HostedOn_VmApache"
+        name="hosted on" type="ns1:HostedOn">
+        <SourceElement ref="OsApache_container"/>
+        <TargetElement ref="VmApache_os"/>
+      </RelationshipTemplate>
+      <NodeTemplate id="ApacheWebServer" name="Apache Web Server" type="ns2:ApacheWebServer">
+        <Properties>
+          <ns2:ApacheWebServerProperties
+            xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes">
+            <httpdport>80</httpdport>
+          </ns2:ApacheWebServerProperties>
+        </Properties>
+        <Requirements>
+          <Requirement id="ApacheWebServer_container" name="container" type="ns1:SoftwareContainerRequirement"/>
+        </Requirements>
+        <Capabilities>
+          <Capability id="ApacheWebServer_webapps" name="webapps" type="ns2:ApacheWebApplicationContainerCapability"/>
+          <Capability id="ApacheWebServer_modules" name="modules" type="ns2:ApacheModuleContainerCapability"/>
+          <Capability id="ApacheWebServer_clients" name="clients" type="ns1:HTTPEndpointCapability"/>
+        </Capabilities>
+      </NodeTemplate>
+      <RelationshipTemplate id="Apache_HostedOn_OsApache"
+        name="hosted on" type="ns1:HostedOn">
+        <SourceElement ref="ApacheWebServer_container"/>
+        <TargetElement ref="OsApache_software"/>
+      </RelationshipTemplate>
+      <NodeTemplate id="MoodleApp" name="Moodle App" type="ns3:MoodleApplication">
+        <Properties>
+          <ns3:MoodleApplicationProperties
+            xmlns:ns3="http://www.example.com/tosca/Types/Moodle" xmlns="http://www.example.com/tosca/Types/Moodle">
+            <AdminUser>admin</AdminUser>
+            <AdminPassword>moodle123</AdminPassword>
+            <SiteName>My Moodle</SiteName>
+            <SitePath>mymoodle</SitePath>
+          </ns3:MoodleApplicationProperties>
+        </Properties>
+        <Requirements>
+          <Requirement id="MoodleApp_phpRuntime" name="phpRuntime" type="ns2:PHPRuntimeRequirement"/>
+          <Requirement id="MoodleApp_database" name="database" type="ns3:MoodleDatabaseEndpointRequirement"/>
+          <Requirement id="MoodleApp_container" name="container" type="ns2:ApacheWebApplicationContainerRequirement"/>
+        </Requirements>
+      </NodeTemplate>
+      <RelationshipTemplate id="MoodleApp_HostedOn_Apache"
+        name="hosted on" type="ns1:HostedOn">
+        <SourceElement ref="MoodleApp_container"/>
+        <TargetElement ref="ApacheWebServer_webapps"/>
+      </RelationshipTemplate>
+      <NodeTemplate id="PhpModule" name="PHP Module" type="ns2:ApachePHPModule">
+        <Requirements>
+          <Requirement id="PhpModule_container" name="container" type="ns2:ApacheModuleContainerRequirement"/>
+        </Requirements>
+        <Capabilities>
+          <Capability id="PhpModule_phpApps" name="phpApps" type="ns2:PHPRuntimeCapability"/>
+        </Capabilities>
+      </NodeTemplate>
+      <RelationshipTemplate id="PhpModule_HostedOn_Apache"
+        name="hosted on" type="ns1:HostedOn">
+        <SourceElement ref="PhpModule_container"/>
+        <TargetElement ref="ApacheWebServer_modules"/>
+      </RelationshipTemplate>
+      <RelationshipTemplate id="MoodleApp_DependsOn_PhpModule"
+        name="depends on" type="ns1:DependsOn">
+        <SourceElement ref="MoodleApp_phpRuntime"/>
+        <TargetElement ref="PhpModule_phpApps"/>
+      </RelationshipTemplate>
+      <NodeTemplate id="MySql" name="MySQL" type="ns2:MySQL">
+        <Properties>
+          <ns2:MySQLProperties
+            xmlns:ns2="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes">
+            <RootPassword>password</RootPassword>
+          </ns2:MySQLProperties>
+        </Properties>
+        <Requirements>
+          <Requirement id="MySql_container" name="container" type="ns1:SoftwareContainerRequirement"/>
+        </Requirements>
+        <Capabilities>
+          <Capability id="MySql_databases" name="databases" type="ns2:MySQLDatabaseContainerCapability"/>
+        </Capabilities>
+      </NodeTemplate>
+      <RelationshipTemplate id="MySqlHostedOnOsApache" name="hosted on" type="ns1:HostedOn">
+        <SourceElement ref="MySql_container"/>
+        <TargetElement ref="OsApache_software"/>
+      </RelationshipTemplate>
+      <NodeTemplate id="MoodleDb" name="Moodle DB" type="ns3:MoodleDatabase">
+        <Properties>
+          <ns3:MoodleDatabaseProperties
+            xmlns:ns3="http://www.example.com/tosca/Types/Moodle" xmlns="http://www.example.com/tosca/Types/Moodle">
+            <DBName>moodledb</DBName>
+            <DBUser>mdladmin</DBUser>
+            <DBPassword>mdladmin</DBPassword>
+            <DBPort>3306</DBPort>
+          </ns3:MoodleDatabaseProperties>
+        </Properties>
+        <Requirements>
+          <Requirement id="MoodleDb_container" name="container" type="ns2:MySQLDatabaseContainerRequirement"/>
+        </Requirements>
+        <Capabilities>
+          <Capability id="MoodleDb_clients" name="clients" type="ns2:MySQLDatabaseEndpointCapability"/>
+        </Capabilities>
+      </NodeTemplate>
+      <RelationshipTemplate id="MoodleDb_HostedOn_MySql"
+        name="hosted on" type="ns2:MySQLDatabaseHostedOnMySQL">
+        <SourceElement ref="MoodleDb_container"/>
+        <TargetElement ref="MySql_databases"/>
+      </RelationshipTemplate>
+      <RelationshipTemplate id="MoodleApp_ConnectsTo_MoodleDb"
+        name="connects to" type="ns3:MoodleDatabaseConnection">
+        <SourceElement ref="MoodleApp_database"/>
+        <TargetElement ref="MoodleDb_clients"/>
+      </RelationshipTemplate>
+    </TopologyTemplate>
+	
+	
+	<Plans targetNamespace="http://www.example.com/tosca/ServiceTemplates/Moodle">
+			<Plan id="DeployMoodle" name="Moodle Build Plan"
+				planType="http://docs.oasis-open.org/tosca/ns/2011/12/PlanTypes/BuildPlan"
+				planLanguage="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
+
+				<InputParameters>
+					<InputParameter name="region" type="string"
+						required="yes" />
+					<InputParameter name="securityGroup" type="string"
+						required="yes" />
+					<InputParameter name="keyPairName" type="string"
+						required="yes" />
+					<InputParameter name="sshKey" type="string-multiline"
+						required="yes" />
+					<InputParameter name="ami" type="string" required="yes" />
+					<InputParameter name="instanceType" type="string"
+						required="yes" />
+					<InputParameter name="accessKey" type="string-password"
+						required="yes" />
+					<InputParameter name="secretKey" type="string-password"
+						required="yes" />
+					<InputParameter name="csarName" type="string"
+						required="yes" />
+					<InputParameter name="containerApi" type="string"
+						required="yes" />
+					<InputParameter name="callbackUrl" type="callbackaddress"
+						required="yes" />
+					<InputParameter name="CorrelationID" type="correlation" required="yes" />
+				</InputParameters>
+
+				<OutputParameters>
+					<OutputParameter name="result" type="" required="yes" />
+					<OutputParameter name="selfserviceApplicationUrl"
+						type="" required="yes" />
+					<OutputParameter name="webapp_createFolders_Result"
+						type="" required="yes" />
+					<OutputParameter name="webapp_fixRights_Result"
+						type="" required="yes" />
+					<OutputParameter name="webapp_ApacheWebServer_InstallDA_Result"
+						type="" required="yes" />
+					<OutputParameter name="webapp_ApacheWebServer_Install_Result"
+						type="" required="yes" />
+					<OutputParameter name="webapp_ApacheWebServer_Configure_Result"
+						type="" required="yes" />
+					<OutputParameter name="webapp_ApacheWebServer_Start_Result"
+						type="string" required="yes" />
+					<OutputParameter name="webapp_PHPModule_InstallDA_Result"
+						type="string" required="yes" />
+					<OutputParameter name="webapp_ApacheModuleHostedOnApache_ConfAp_Result"
+						type="string" required="yes" />
+					<OutputParameter name="webapp_ApachePhpModule_Start_Result"
+						type="string" required="yes" />
+					<OutputParameter name="webapp_unpackMoodleZip_Result"
+						type="string" required="yes" />
+					<OutputParameter name="webapp_MoodleWebApp_Install_Result"
+						type="string" required="yes" />
+					<OutputParameter name="webapp_MoodleWebApp_Configure_Result"
+						type="string" required="yes" />
+					<OutputParameter name="db_createFolders_Result"
+						type="string" required="yes" />
+					<OutputParameter name="db_fixRights_Result" type="string" required="yes" />
+					<OutputParameter name="db_MySQL_InstallDA_Result"
+						type="string" required="yes" />
+					<OutputParameter name="db_MySQL_Install_Result"
+						type="string" required="yes" />
+					<OutputParameter name="db_MySQL_Configure_Result"
+						type="string" required="yes" />
+					<OutputParameter name="db_MySQL_Start_Result" type="string" required="yes" />
+					<OutputParameter name="db_MySQLDBHostedOnMySQL_ConfigureDB_Result"
+						type="string" required="yes" />
+					<OutputParameter name="MoodleDBConnection_connectToDatabase_Result"
+						type="string" required="yes" />
+					<OutputParameter name="MoodleWebApp_Start_Result"
+						type="string" required="yes" />
+					<OutputParameter name="CorrelationID" type="correlation" required="yes" />
+				</OutputParameters>
+
+				<PlanModelReference reference="Plans/MoodleBuildPlan.zip" />
+
+			</Plan>
+		</Plans>
+	
+	
+	
+  </ServiceTemplate>
+</Definitions>

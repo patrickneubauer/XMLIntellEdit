@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="serviceexample" nsURI="http://www.example.org/serviceexample"
+    nsPrefix="serviceexample">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Cluster" eSuperTypes="#//NamedThing">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="sameServics goodSpeed onlyOneImportant backupDifferent"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="sameServics" value="backup = null or backup.services->includesAll(services)"/>
+      <details key="goodSpeed" value="designSpeed &lt;= server.speed->sum()"/>
+      <details key="onlyOneImportant" value="services->select(s | s.type = ServiceType::IMPORTANT)->size() &lt;= 1"/>
+      <details key="backupDifferent" value="backup &lt;> self"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="services" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Service"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backup" eType="#//Cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="designSpeed" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="server" upperBound="-1"
+        eType="#//Server" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//NamedThing">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="speedFulfilled"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="speedFulfilled" value="type = ServiceType::BESTEFFORT or ( &#xA;&#x9;&#x9;&#x9;designSpeed &lt;= providedBy.designSpeed and (if type = ServiceType::IMPORTANT then designSpeed &lt;= providedBy.backup.designSpeed&#xA;&#x9;&#x9;&#x9;&#x9;else type = ServiceType::WEAKCONTRACT or providedBy.backup &lt;> null endif))"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="providedBy" lowerBound="1"
+        eType="#//Cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="designSpeed" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ServiceType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Server" eSuperTypes="#//NamedThing">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="speedValid"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="speedValid" value="speed > 0 and speed &lt;= 5"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="speed" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Container">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" upperBound="-1"
+        eType="#//Service" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster" upperBound="-1"
+        eType="#//Cluster" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ServiceType">
+    <eLiterals name="BESTEFFORT"/>
+    <eLiterals name="WEAKCONTRACT" value="1"/>
+    <eLiterals name="FAILSAFE" value="2"/>
+    <eLiterals name="IMPORTANT" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedThing">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+</ecore:EPackage>

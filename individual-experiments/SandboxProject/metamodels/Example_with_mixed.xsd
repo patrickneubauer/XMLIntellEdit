@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" targetNamespace="http://example.com/example-with-mixed"
+	xmlns="http://example.com/example-with-mixed">
+
+ 	<xsd:element name="Model">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="elements" type="MyElement" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="MyElement"/>
+	
+	<xsd:complexType name="Pair">
+		<xsd:complexContent>
+			<xsd:extension base="MyElement">
+				<xsd:attribute type="xsd:string" name="key"/>
+				<xsd:attribute type="xsd:string" name="value"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Pairs">
+		<xsd:complexContent>
+			<xsd:extension base="MyElement">
+				<xsd:sequence>
+					<xsd:element name="elements" type="MyElement" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+
+</xsd:schema>

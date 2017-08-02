@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
+  <xs:complexType name="tServerProperties">
+    <xs:sequence>
+      <xs:element default="1" name="NumCpus">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number of CPUs: Number of CPUs for the virtual machine</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Memory" type="xs:int">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Memory (in MB): Amount of memory for the virtual machine</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServerProperties" type="tServerProperties"/>
+</xs:schema>

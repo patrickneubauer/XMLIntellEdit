@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaSpecificTypes">
+  <xs:complexType name="tApacheWebServerProperties">
+    <xs:sequence>
+      <xs:element default="80" name="httpdport" type="xs:int">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Apache HTTP Port (default 80)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApacheWebServerProperties" type="tApacheWebServerProperties"/>
+  <xs:complexType name="tApacheLoadbalancerModuleProperties">
+    <xs:sequence>
+      <xs:element default="80" name="httpdport" type="xs:int">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Apache WebServer Portnumber (default:80)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApacheLoadbalancerModuleProperties" type="tApacheLoadbalancerModuleProperties"/>
+  <xs:complexType name="tMySQLProperties">
+    <xs:sequence>
+      <xs:element name="RootPassword" type="xs:string">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Root Password</xs:documentation>
+          <xs:appinfo>displayType=password</xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MySQLProperties" type="tMySQLProperties"/>
+</xs:schema>

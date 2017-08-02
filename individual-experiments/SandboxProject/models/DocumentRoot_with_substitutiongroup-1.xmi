@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<substitutiongroup:DocumentRoot
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:substitutiongroup="http://example.com/example-with-substitutiongroup"
+    xsi:schemaLocation="http://example.com/example-with-substitutiongroup ../metamodels/substitutiongroup.ecore">
+  <customer>
+    <name>John Smith</name>
+  </customer>
+</substitutiongroup:DocumentRoot>

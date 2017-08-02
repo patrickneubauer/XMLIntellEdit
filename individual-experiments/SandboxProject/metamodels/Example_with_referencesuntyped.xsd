@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"	
+	targetNamespace="http://example.com/example-referencesuntyped"
+	xmlns="http://example.com/example-referencesuntyped"> 
+	
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    
+    <xsd:element name="Orders">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Order1" type="OrderDetail1" maxOccurs="unbounded"/>
+                <xsd:element name="Order2" type="OrderDetail2" maxOccurs="unbounded"/>
+                <xsd:element name="OrderReference1" type="OrderRef1" maxOccurs="unbounded"/>
+                <xsd:element name="OrderReference2" type="OrderRef2" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:complexType name="OrderDetail1">
+        <xsd:attribute name="customerName" type="xsd:string"/>
+        <xsd:attribute name="customerAddress" type="xsd:string"/>
+        <xsd:attribute name="customerContact" type="xsd:string"/>
+        <!-- choosing "name" as "name" because this is a keyword in Xtext used for automated content assist support -->
+        <xsd:attribute name="name" type="xsd:ID"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="OrderDetail2">
+        <xsd:attribute name="customerName" type="xsd:string"/>
+   	    <!-- choosing "name" as "name" because this is a keyword in Xtext used for automated content assist support -->
+        <xsd:attribute name="name" type="xsd:ID"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="OrderRef1">
+    	<!--  adding ecore:reference="EObject" -->
+        <xsd:attribute name="orderDetail1" type="xsd:IDREF" ecore:reference="EObject"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="OrderRef2">
+       	<!--  adding ecore:reference="EObject" -->
+        <xsd:attribute name="orderDetail2" type="xsd:IDREF" />
+    </xsd:complexType>
+    
+</xsd:schema>
