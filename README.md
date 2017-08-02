@@ -21,9 +21,10 @@ See also [XMLIntellEdit Project Website](http://xmlintelledit.big.tuwien.ac.at).
 
 #### How to run 
 
-After importing all projects in Eclipse, you have to do the following steps:
+After importing the maven project in Eclipse, run the following command:
+mvn clean install
 
-(soon to appear)
+Alternatively, right-click on the "xmlintelledit-parent" project and select "Run as > Maven install".
 
 #### External Resources
 
