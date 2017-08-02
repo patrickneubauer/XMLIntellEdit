@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<Library3s:Library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Library3s="http://file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/source/at.ac.tuwien.big.xmltext/examples/library3.xsdsimplified">
-  <books name="BuchName" title="Unbeschriebenes Blatt" author="Anonym" pages="15" dimension="5 x 2 x 2 cm" isbn="001-23-4567-080-9"/>
-  <customers firstName="Max" lastName="Mustermann" borrowedBookId="BuchName"/>
-</Library3s:Library>

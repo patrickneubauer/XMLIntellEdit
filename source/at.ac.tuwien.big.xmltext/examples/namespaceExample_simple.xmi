@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<examples:AGlobal xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:examples="http://example.com/simplified">
-  <mixed xsi:type="examples:MixedText" value="&#xA;  "/>
-  <mixed xsi:type="examples:MixedFeature" value="aGlobalElements"/>
-  <mixed xsi:type="examples:MixedText" value="&#xA;"/>
-  <aGlobalElements/>
-</examples:AGlobal>
