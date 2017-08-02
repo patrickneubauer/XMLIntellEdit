@@ -11,6 +11,12 @@ Our approach builds on techniques from Model-Driven Engineering and Search-based
 
 Initial results indicate that XML Schema definitions containing restrictions can be applied for the automated generation of advanced editing facilities.
 
+#### Modules
+
+* [XMLText](https://github.com/patrickneubauer/XMLIntellEdit/tree/master/xmlintelledit/xmltext)
+* [IntellEdit](https://github.com/patrickneubauer/XMLIntellEdit/tree/master/xmlintelledit/intelledit)
+* [XtextUtils](https://github.com/patrickneubauer/XMLIntellEdit/tree/master/xmlintelledit/xtextutils)
+
 See also [XMLIntellEdit Project Website](http://xmlintelledit.big.tuwien.ac.at).
 
 #### How to run 
@@ -21,4 +27,4 @@ After importing all projects in Eclipse, you have to do the following steps:
 
 #### External Resources
 
-* Our prototype builds on the [XMLText](http://xmltext.big.tuwien.ac.at), [IntellEdit](http://intelledit.big.tuwien.ac.at), the [Eclipse Modeling Framework](https://eclipse.org/modeling/emf/), and the [Xtext framework](https://eclipse.org/Xtext/) 
+* Our prototype builds on the [Eclipse Modeling Framework](https://eclipse.org/modeling/emf/) and the [Xtext framework](https://eclipse.org/Xtext/) 
