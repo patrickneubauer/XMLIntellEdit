@@ -115,7 +115,7 @@ public class FixerGenerator {
 				}*/
 			}
 
-		}
+		}/*
 		GlobalSearch gs = new GlobalSearch(valid, new SimpleStream<Change<?>>() {
 
 			@Override
@@ -123,7 +123,7 @@ public class FixerGenerator {
 					double curCosts) {
 				System.out.println("Received solution!");
 			}
-		});
+		});*//*//TODO: if needed, fix compile errors
 		valid.checkFile(xmiRes);
 				NondominatedPopulation pop = exec.run();
 		valid.abort();
@@ -146,7 +146,7 @@ public class FixerGenerator {
 			}
 		}
 		xmiRes.save(new HashMap<>());
-		
+		*/
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {

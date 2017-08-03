@@ -1,5 +1,8 @@
 package at.ac.tuwien.big.xmlintelledit.intelledit.simpleregexp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dk.brics.automaton.Transition;
 
 public class RegExpStateSource {
@@ -45,8 +48,16 @@ public class RegExpStateSource {
 		return ((type==ACTION_TYPE.INIT)?"":(source.getSources().get(0).toString()+" "))+type.name();
 	}
 
+	private static Iterable<Character> getChars(Transition trans) {
+		List<Character> ret = new ArrayList<Character>();
+		for (char c = trans.getMin(); c <= trans.getMax(); ++c) {
+			ret.add(c);
+		}
+		return ret;
+	}
+	
 	public Iterable<Character> getChars() {
-		return transition.getChars();
+		return getChars(transition);
 	}
 	
 }

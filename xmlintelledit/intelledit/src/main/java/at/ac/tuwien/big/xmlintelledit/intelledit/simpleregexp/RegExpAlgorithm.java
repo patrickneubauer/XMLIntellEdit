@@ -1,6 +1,7 @@
 package at.ac.tuwien.big.xmlintelledit.intelledit.simpleregexp;
 
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,8 +22,33 @@ public class RegExpAlgorithm {
 	
 	private RegExpState[][] allStates;
 	
+	private static int FAKE_STATE_ID = -1;
+	
+	private static State FAKE_STATE = new State() {
+		private static final long serialVersionUID = 4025498099553197675L;
+
+		{
+			try {
+				Field f = State.class.getDeclaredField("id");
+				f.setAccessible(true);
+				FAKE_STATE_ID = (Integer)f.get(this);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	};
+	
+	private static int getId(State s) {
+		//compareTo(State s): s.id - id
+		return FAKE_STATE.compareTo(s)+FAKE_STATE_ID;
+	}
+	
 	public RegExpState getState(State state, int curIndex) {
-		return allStates[curIndex][state.getId()];
+		return allStates[curIndex][getId(state)];
+	}
+	
+	private boolean contains(Transition trans, char c) {
+		return c >= trans.getMin() && c <= trans.getMax();
 	}
 	
 	public void traverseStates(RegExpStateSource source, State curState, int curIndex, String forString, int curCosts) {
@@ -46,12 +72,12 @@ public class RegExpAlgorithm {
 				for (Transition trans: curState.getTransitions()) {
 					int costs = curCosts;
 					ACTION_TYPE type;
-					if (trans.contains(c)) {
+					if (contains(trans,c)) {
 						//Continue with no change
 						type = ACTION_TYPE.CONTINUE;
 					} else {
 						type = ACTION_TYPE.REPLACE;
-						if (trans.contains(Character.toUpperCase(c)) || trans.contains(Character.toLowerCase(c))) {
+						if (contains(trans,Character.toUpperCase(c)) || contains(trans,Character.toLowerCase(c))) {
 							costs++;
 						} else {
 							costs+=3;
@@ -159,8 +185,8 @@ public class RegExpAlgorithm {
 		int stateCount = forRegexp.getNumberOfStates();
 		int maxId = 0;
 		for (State st: forRegexp.getStates()) {
-			if (st.getId() > maxId) {
-				maxId = st.getId();
+			if (getId(st) > maxId) {
+				maxId = getId(st);
 			}
 		}
 		int allocStateCount = Math.max(stateCount,maxId+1);
@@ -174,14 +200,14 @@ public class RegExpAlgorithm {
 		
 		
 		State initial = forRegexp.getInitialState();
-		RegExpStateSource init = new RegExpStateSource(null, allStates[0][initial.getId()], null, 0, ACTION_TYPE.INIT);
+		RegExpStateSource init = new RegExpStateSource(null, allStates[0][getId(initial)], null, 0, ACTION_TYPE.INIT);
 		traverseStates(init, initial, 0, forString, 0);
 		
 		int minCosts = Integer.MAX_VALUE;
 		bestStates = new ArrayList<RegExpState>();
 		
 		for (State finalStates: forRegexp.getAcceptStates()) {
-			RegExpState accept = allStates[forString.length()][finalStates.getId()];
+			RegExpState accept = allStates[forString.length()][getId(finalStates)];
 			if (accept.getCurCosts() < minCosts) {
 				bestStates.clear();
 				minCosts = accept.getCurCosts();
