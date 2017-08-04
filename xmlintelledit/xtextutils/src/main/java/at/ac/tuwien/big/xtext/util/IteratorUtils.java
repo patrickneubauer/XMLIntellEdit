@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.function.Function;
+
 
 @SuppressWarnings({ "unchecked", "unused" })
 public class IteratorUtils {
@@ -416,6 +418,19 @@ public class IteratorUtils {
 			}
 			return ret;
 		}
+	}
+
+	public static<T> String buildString(Collection<T> values, Function<T, String> object, String first, String last,
+			String middle) {
+		StringBuilder ret = new StringBuilder();
+		ret.append(first);
+		boolean isFirst = true;
+		for (T val: values) {
+			if (isFirst) {isFirst = false;} else {ret.append(middle);}
+			ret.append(object.apply(val));
+		}
+		ret.append(last);
+		return ret.toString();
 	}
 
 }
