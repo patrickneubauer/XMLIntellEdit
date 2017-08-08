@@ -1,6 +1,8 @@
 # Modernizing Domain-Specific Languages with XMLText and IntellEdit
 ![Logo](http://xmlintelledit.big.tuwien.ac.at/img/XMLIntellEditLogo.svg)
 
+![MasterBuild](https://travis-ci.org/patrickneubauer/XMLIntellEdit.svg?branch=master)
+
 The necessity of software evolution caused by novel requirements is often triggered alongside the advancement of underlying languages and tools.
 
 Although modern language workbenches decrease the opportunity cost of creating new language implementations, they do not offer automated and complete integration of existing languages. Moreover, they still require complex language engineering skills and extensive manual implementation effort to suit the expectations of domain experts, e.g., in terms of editor capabilities.
