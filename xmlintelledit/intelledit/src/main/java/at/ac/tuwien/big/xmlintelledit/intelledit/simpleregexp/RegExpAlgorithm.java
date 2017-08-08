@@ -224,7 +224,7 @@ public class RegExpAlgorithm {
 		for (RegExpState state: bestStates) {
 			allSources.addAll(state.getSources());
 		}
-		return IteratorUtils.<RegExpStateSource,List<RegExpStateSource>>flatten(allSources.iterator(), (x)->new MyTreeIterator(x).getNextList());
+		return IteratorUtils.flatten(allSources.iterator(), (x)->new MyTreeIterator(x).getNextList());
 	}
 	
 	public String generateString(List<RegExpStateSource> srcs) {

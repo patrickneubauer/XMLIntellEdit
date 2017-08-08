@@ -1,6 +1,8 @@
 package at.ac.tuwien.big.xtext.equalizer.impl;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -80,6 +82,26 @@ public class SimpleModelCorrespondance implements ModelCorrespondance {
 			state.setURI(null);
 		}
 		return ret;
+	}
+
+	public void removeResourceLess() {
+		Set<EObject> remove = new HashSet<EObject>();
+		for (Map<EObject,EObject> map: Arrays.asList(leftToRight,rightToLeft)) {
+			for (Entry<EObject,EObject> entr: map.entrySet()) {
+				EObject left = entr.getKey();
+				if (left != null && left.eResource() == null) {
+					remove.add(entr.getKey());
+					remove.add(entr.getValue());
+				}
+				EObject right = entr.getValue();
+				if (right != null && right.eResource() == null) {
+					remove.add(entr.getKey());
+					remove.add(entr.getValue());	
+				}
+			}
+		}
+		leftToRight.keySet().removeAll(remove);
+		rightToLeft.keySet().removeAll(remove);
 	}
 
 

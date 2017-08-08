@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: xtextutils
 Bundle-SymbolicName: xtextutils
 Bundle-Version: 1.0.0.qualifier
-Export-Package: at.ac.tuwien.big.xtext.equalizer,
+Export-Package: at.ac.tuwien.big.generalutil,
+ at.ac.tuwien.big.xtext.equalizer,
  at.ac.tuwien.big.xtext.equalizer.impl,
  at.ac.tuwien.big.xtext.util,
  at.ac.tuwien.big.xtext.util.ui

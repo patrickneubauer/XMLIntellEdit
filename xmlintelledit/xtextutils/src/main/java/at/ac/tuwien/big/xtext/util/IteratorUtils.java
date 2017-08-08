@@ -3,6 +3,7 @@ package at.ac.tuwien.big.xtext.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -420,7 +421,7 @@ public class IteratorUtils {
 		}
 	}
 
-	public static<T> String buildString(Collection<T> values, Function<T, String> object, String first, String last,
+	public static<T> String buildString(Iterable<T> values, Function<T, String> object, String first, String last,
 			String middle) {
 		StringBuilder ret = new StringBuilder();
 		ret.append(first);
@@ -431,6 +432,14 @@ public class IteratorUtils {
 		}
 		ret.append(last);
 		return ret.toString();
+	}
+	
+	public static<T,U> Map<U,T> reverseHashMap(Map<? extends T,? extends U> map) {
+		Map<U,T> ret = new HashMap<U, T>(map.size());
+		for (Entry<? extends T,? extends U> entr: map.entrySet()) {
+			ret.put(entr.getValue(), entr.getKey());
+		}
+		return ret;
 	}
 
 }

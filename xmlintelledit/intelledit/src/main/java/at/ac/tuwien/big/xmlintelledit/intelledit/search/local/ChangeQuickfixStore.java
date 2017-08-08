@@ -10,6 +10,15 @@ public interface ChangeQuickfixStore<U extends Comparable<U>> {
 		return getAllQuickfixes().tailSet(new ChangeQuickfix() {
 			public void setQuality(Comparable quality) {}
 			public Change<?> getChange() {return null;}
+			
+			@Override
+			public int compareTo(Object other) {
+				//Why ??
+				if (other instanceof ChangeQuickfix) {
+					return ((Comparable)getQuality()).compareTo(((ChangeQuickfix)other).getQuality());
+				}
+				return 0;
+			}
 
 			@Override
 			public U getQuality() {

@@ -67,7 +67,7 @@ public class MultiplicityEvaluationState implements EvaluationState<Multiplicity
 				FixAttempt fix = new SetAddAnyImpl(feat.getLowerBound());
 				result.addPossibleFix(fix);
 				FixAttemptFeatureReferenceImpl fref = new FixAttemptFeatureReferenceImpl(eobj,feat);
-				result.getFixAttemptReferenceInfo().addFixAttemptReference(fref, new EvaluableReferenceImpl<>(evaluable) ,fix); 
+				result.getFixAttemptReferenceInfo().addFixAttemptReference(fref, new EvaluableReferenceImpl(evaluable) ,fix); 
 				ParameterType valueGeneratingParameter = res.defaultGenerator(feat);
 				result.addPossibleFixingActions(Arrays.asList(
 						new FixedAddConstantChangeType<>(res.getResource(), eobj, feat,
@@ -81,7 +81,7 @@ public class MultiplicityEvaluationState implements EvaluationState<Multiplicity
 				FixAttempt fix = new SetRemoveAnyImpl(feat.getUpperBound());
 				result.addPossibleFix(fix);
 				FixAttemptFeatureReferenceImpl fref = new FixAttemptFeatureReferenceImpl(eobj,feat);
-				result.getFixAttemptReferenceInfo().addFixAttemptReference(fref, new EvaluableReferenceImpl<>(evaluable) ,fix);
+				result.getFixAttemptReferenceInfo().addFixAttemptReference(fref, new EvaluableReferenceImpl(evaluable) ,fix);
 				result.addPossibleFixingActions(Arrays.asList(
 						new FixedDeleteConstantChangeType(res.getResource(), eobj, feat)),
 						FixingActionGenerator.DIRECT_FIX_PRIORITY);

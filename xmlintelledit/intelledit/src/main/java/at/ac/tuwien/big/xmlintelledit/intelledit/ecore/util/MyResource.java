@@ -623,7 +623,7 @@ public class MyResource {
 				for (OCLExpression[] expr: info.ownOclExpressions.values()) {
 					subInfo.totalOclExpressions.add(expr[0]);
 				}
-				subInfo.totalEvaluators.addAll((Collection<? extends Evaluable<?,?>>) info.ownEvaluators.values());
+				subInfo.totalEvaluators.addAll((Collection) info.ownEvaluators.values());//subInfo.totalEvaluators.addAll((Collection<? extends Evaluable<?,?>>) info.ownEvaluators.values());
 				subInfo.totalClassContainers.addAll(info.classContainers);
 			}
 		}
