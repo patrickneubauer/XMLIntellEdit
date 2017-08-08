@@ -16,4 +16,4 @@ deploy:
     $TRAVIS_BUILD_DIR/REPOS/XMLIntellEdit/xmlintelledit/xmltext/target/xmltext-0.0.1-SNAPSHOT.jar
     $TRAVIS_BUILD_DIR/REPOS/XMLIntellEdit/xmlintelledit/intelledit/target/intelledit-0.0.1-SNAPSHOT.jar
   on:
-    repo: patrickneubauer/XMLIntellEdit
+    tags: true
