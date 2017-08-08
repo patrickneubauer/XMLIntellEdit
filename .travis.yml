@@ -9,10 +9,11 @@ script:
 - mvn clean install
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: LUPXZksB7ByS/zSU24OUBYmw2iMQfJDBV4O6oYDERbQI+GMrkix67PBTCUJ1dAEILNocQ89B6xWkBXGTw9z6mPX10YtHm4Z863XZCyhrNRFzfa5qRRqnbZHvYnJRgVTyZGctV+qoHGm9Dbzw1a6gcIf9CT4NDeI3CbYuTMfFgb/BXB1R/EpOskeyZ4/m01u0X8z6chKG/wDtYqic/Gge/9Feyth5q5QXrNOXarSNt7kPPlhM5jhwlQDpdk3kWAQO6ZZkx73Ey4TF+g0ynPWCTWCf7D/7KSNpQhCu5vTWXl7wosuLDlsDPr/4U0ZVUb5k+7bydE2d7RlzLef09Yy7AfmckHSEwh5/rgHK3Mq6+Nr6SLcFyt2s8Zp6vVu8pKaOuVNpa3dFJyFLJc0J5xweXexsFhulJuqpFL2cWQ5191ltXYvFDKi5rIMt1wtylMJdequg5/m2DLTOildy7eXICDkgZ7AYza+j78zL9Vk8eqZA0mkR/ujO3/erpLHGIFrGYlkK0rtCxc9073LQc8e8N39Ar332JJhxxoA4Zl/U/M35jc8+wo4ktNlHNGDqRr5szRVK2fzlMffb0rC+eOdQuIFIMVNlHkSsdehCflCTOCuZGx4B6bCvV608uzYphNSTLiz/Qs1x6FYIE/sgWLewvMMxVG1GoohJsrNL3KyxP30=
   file: $TRAVIS_BUILD_DIR/REPOS/XMLIntellEdit/xmlintelledit/xtextutils/target/xtextutils-0.0.1-SNAPSHOT.jar
     $TRAVIS_BUILD_DIR/REPOS/XMLIntellEdit/xmlintelledit/xmltext/target/xmltext-0.0.1-SNAPSHOT.jar
     $TRAVIS_BUILD_DIR/REPOS/XMLIntellEdit/xmlintelledit/intelledit/target/intelledit-0.0.1-SNAPSHOT.jar
   on:
-    repo: patrickneubauer/XMLIntellEdit
+    tags: true
