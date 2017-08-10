@@ -1,5 +1,6 @@
 package at.ac.tuwien.big.xtext.equalizer.impl;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -55,21 +56,18 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 	
 	/**return new targetEl having class of srcel*/
 	public EObject fakeCast(EObject targetEl, EObject srcEl) {
-		if ("VEObject".equals(srcEl.getClass().getName())) {
+		String targetEClass = targetEl.getClass().getName();
+		if (targetEClass.contains("VMEObject")) {
 			//TODO: Much reflection ...
 			try {
-			Object vmv = srcEl.getClass().getMethod("getModel").invoke(srcEl);
-			String uuid = (String)srcEl.getClass().getMethod("getUUID").invoke(srcEl);
-			Object ecore = vmv.getClass().getMethod("getEcore").invoke(vmv);
-			String name = (String)ecore.getClass().getMethod("getName",EClass.class).invoke(ecore, srcEl.eClass());
-			Object instances = vmv.getClass().getMethod("getInstances").invoke(vmv);
-			instances.getClass().getMethod("setClass", String.class,String.class).invoke(instances, uuid,name);
+				Method m = targetEl.getClass().getMethod("setEClass", EClass.class);
+				m.invoke(targetEl, srcEl.eClass());
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.err.println(e.getMessage());
 			}
 			//vmv.getInstances().setClass(uuid, name);
-			return srcEl;
+			return targetEl;
 		} else {
 			EObject ret = creator.createInstance(targetEl.eContainer(),srcEl.eClass());
 			//Copy same features
@@ -231,6 +229,14 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 				Collection col = null;
 			
 				EStructuralFeature containingFeat = null;
+				EStructuralFeature nameFeature = src.eClass().getEIDAttribute();
+				if (nameFeature == null) {
+					nameFeature = src.eClass().getEStructuralFeature("name");
+					if (nameFeature == null) {
+						nameFeature = src.eClass().getEStructuralFeature("id");	
+					}
+				}
+				
 				if (container != null)  {
 					parentCorr = getCorrespondant(container);
 					if (parentCorr != null) {
@@ -248,11 +254,32 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 					//Check resource
 					col = target;
 				}
+				if (nameFeature != null && col != null) {
+					Object nameFeatureVal = src.eGet(nameFeature);						
+					if (containingFeat instanceof EReference) {
+						for (Object o: col) {
+							if (o instanceof EObject) {
+								EObject eo = (EObject)o;
+								if (eo.eClass() != null && nameFeature.getEContainingClass().isSuperTypeOf(eo.eClass())) {
+									Object compare = eo.eGet(nameFeature);
+									if (Objects.equals(nameFeatureVal, compare)) {
+										//Das ist guter correspondant - schaue, ob unassociated!
+										if (subCor.getLeftObject(eo) == null) {
+											System.out.println("Name-Associating "+src+" to "+eo+"!");
+											targetObject = eo;
+											break;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 				if (targetObject == null && col != null) {
 					for (Object o: col) {
 						if (o instanceof EObject) {
 							EObject eo = (EObject)o;
-							if (eo.eClass() != null) {
+							if (eo.eClass() == src.eClass()) {
 								//Das ist schlechter correspondant - aber gibt halt nichts besseres
 								if (subCor.getLeftObject(eo) == null) {
 									System.out.println("Desparate-Associating "+src+" to "+eo+"!");
@@ -268,6 +295,7 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 			
 			if (targetObject != null) {
 				if (targetObject.eClass() != src.eClass()) {
+					//TODO: Often casting does more harm ...
 					targetObject = fakeCast(targetObject,src);
 				}
 			}
