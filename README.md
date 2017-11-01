@@ -1,4 +1,4 @@
-[Continuous integration](https://travis-ci.org/patrickneubauer/XMLIntellEdit): ![MasterBuild](https://travis-ci.org/patrickneubauer/XMLIntellEdit.svg?branch=master)
+[![Build Status](https://travis-ci.org/patrickneubauer/XMLIntellEdit.svg?branch=master)](https://travis-ci.org/patrickneubauer/XMLIntellEdit)
 # Modernizing Domain-Specific Languages with XMLText and IntellEdit
 ![Logo](http://xmlintelledit.big.tuwien.ac.at/img/XMLIntellEditLogo.svg)
 
