@@ -358,11 +358,15 @@ public class IteratorUtils {
 		return (Iterator<U>) filterType(allContents,(x)->(x != null && class1.isAssignableFrom(x.getClass())));
 	}
 	
-	public interface Filter<T> {
+	public interface Filter<T> { 
 		boolean matches(T obj);
 	}
 	
-	public static<T> Iterator<T> filterType(Iterator<? extends T> allContents, Filter<T> filter) {
+	public static<T> Iterable<T> filterType(Iterable<? extends T> allContents, Function<T,Boolean> filter) {
+		return ()->filterType(allContents.iterator(), filter);
+	}
+	
+	public static<T> Iterator<T> filterType(Iterator<? extends T> allContents, Function<T,Boolean> filter) {
 		return new Iterator<T>() {
 			T nextFiltered = null;
 			boolean hasNext = false;
@@ -372,7 +376,7 @@ public class IteratorUtils {
 				if (!hasNext) {
 					while (allContents.hasNext()) {
 						T next = allContents.next();
-						if (filter.matches(next)) {
+						if (filter.apply(next)) {
 							hasNext = true;
 							nextFiltered = next;
 							break;
