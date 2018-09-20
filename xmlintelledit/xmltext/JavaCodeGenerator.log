@@ -1,0 +1,727 @@
+>>  Generating code
+>>  Generating packages
+>>  Generating model plugin.properties
+>>  Generating file /classes/plugin.properties
+>>  Examining old /classes/plugin.properties
+>>  Preparing new /classes/plugin.properties
+>>  Generating model build.properties
+>>  Generating model plugin.properties
+>>  Generating file /classes/build.properties
+>>  Generating model META-INF/MANIFEST.MF
+>>  Generating file /classes/META-INF/MANIFEST.MF
+>>  Examining old /classes/META-INF/MANIFEST.MF
+>>  Generating model plugin.xml
+>>  Generating file /classes/plugin.xml
+>>  Examining old /classes/plugin.xml
+>>  Generating package org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackage
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackage
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackage.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackage.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackage.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackageImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackageImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackageImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackageImpl.java
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedFactory
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedFactory.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedFactory.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedFactory.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedFactoryImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedFactoryImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedFactoryImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedFactoryImpl.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.util.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedValidator
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/util/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedValidator.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/util/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedValidator.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/util/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedValidator.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.util.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedSwitch
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/util/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedSwitch.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/util/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedSwitch.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/util/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedSwitch.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.util.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedAdapterFactory
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/util/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedAdapterFactory.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/util/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedAdapterFactory.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/util/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedAdapterFactory.java
+>>  Generating Bridge Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.BridgeType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/BridgeType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/BridgeType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.BridgeTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/BridgeTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/BridgeTypeImpl.java
+>>  Generating Bridge Type Ref
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.BridgeTypeRef
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/BridgeTypeRef.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/BridgeTypeRef.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/BridgeTypeRef.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.BridgeTypeRefImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/BridgeTypeRefImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/BridgeTypeRefImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/BridgeTypeRefImpl.java
+>>  Generating Channel
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.Channel
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Channel.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Channel.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Channel.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ChannelImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelImpl.java
+>>  Generating Channel Group
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ChannelGroup
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelGroup.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelGroup.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelGroup.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ChannelGroupImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelGroupImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelGroupImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelGroupImpl.java
+>>  Generating Channel Groups
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ChannelGroups
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelGroups.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelGroups.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelGroups.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ChannelGroupsImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelGroupsImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelGroupsImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelGroupsImpl.java
+>>  Generating Channel Group Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ChannelGroupType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelGroupType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelGroupType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ChannelGroupTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelGroupTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelGroupTypeImpl.java
+>>  Generating Channels
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.Channels
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Channels.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Channels.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Channels.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ChannelsImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelsImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelsImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelsImpl.java
+>>  Generating Channel Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ChannelType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ChannelType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ChannelTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ChannelTypeImpl.java
+>>  Generating Config Description
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ConfigDescription
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ConfigDescription.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ConfigDescription.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ConfigDescription.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ConfigDescriptionImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ConfigDescriptionImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ConfigDescriptionImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ConfigDescriptionImpl.java
+>>  Generating Config Description Ref
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ConfigDescriptionRef
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ConfigDescriptionRef.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ConfigDescriptionRef.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ConfigDescriptionRef.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ConfigDescriptionRefImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ConfigDescriptionRefImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ConfigDescriptionRefImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ConfigDescriptionRefImpl.java
+>>  Generating Config Descriptions Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ConfigDescriptionsType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ConfigDescriptionsType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ConfigDescriptionsType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ConfigDescriptionsTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ConfigDescriptionsTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ConfigDescriptionsTypeImpl.java
+>>  Generating Criteria Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.CriteriaType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/CriteriaType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/CriteriaType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.CriteriaTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/CriteriaTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/CriteriaTypeImpl.java
+>>  Generating Event
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.Event
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Event.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Event.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Event.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.EventImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/EventImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/EventImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/EventImpl.java
+>>  Generating Filter Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.FilterType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/FilterType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/FilterType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.FilterTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/FilterTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/FilterTypeImpl.java
+>>  Generating Option
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.Option
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Option.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Option.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Option.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.OptionImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionImpl.java
+>>  Generating Options
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.Options
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Options.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Options.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Options.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.OptionsImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionsImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionsImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionsImpl.java
+>>  Generating Options Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.OptionsType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/OptionsType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/OptionsType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.OptionsTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionsTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionsTypeImpl.java
+>>  Generating Option Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.OptionType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/OptionType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/OptionType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.OptionTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/OptionTypeImpl.java
+>>  Generating Parameter
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.Parameter
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Parameter.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Parameter.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Parameter.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ParameterImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ParameterImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ParameterImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ParameterImpl.java
+>>  Generating Parameter Group
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ParameterGroup
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ParameterGroup.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ParameterGroup.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ParameterGroup.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ParameterGroupImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ParameterGroupImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ParameterGroupImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ParameterGroupImpl.java
+>>  Generating Properties
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.Properties
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Properties.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Properties.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Properties.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.PropertiesImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/PropertiesImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/PropertiesImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/PropertiesImpl.java
+>>  Generating Property
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.Property
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Property.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Property.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Property.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.PropertyImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/PropertyImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/PropertyImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/PropertyImpl.java
+>>  Generating State
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.State
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/State.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/State.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/State.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.StateImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/StateImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/StateImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/StateImpl.java
+>>  Generating Supported Bridge Type Refs
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.SupportedBridgeTypeRefs
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/SupportedBridgeTypeRefs.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/SupportedBridgeTypeRefs.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/SupportedBridgeTypeRefs.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.SupportedBridgeTypeRefsImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/SupportedBridgeTypeRefsImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/SupportedBridgeTypeRefsImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/SupportedBridgeTypeRefsImpl.java
+>>  Generating Tags
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.Tags
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Tags.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Tags.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/Tags.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.TagsImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/TagsImpl.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/TagsImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/TagsImpl.java
+>>  Generating Thing Descriptions Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ThingDescriptionsType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ThingDescriptionsType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ThingDescriptionsType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ThingDescriptionsTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ThingDescriptionsTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ThingDescriptionsTypeImpl.java
+>>  Generating Thing Type
+>>  Generating Java interface org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ThingType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ThingType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ThingType.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.impl.ThingTypeImpl
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ThingTypeImpl.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/impl/ThingTypeImpl.java
+>>  Generating Parameter Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.ParameterType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ParameterType.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ParameterType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/ParameterType.java
+>>  Generating Unit Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.UnitType
+>>  Generating /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/UnitType.java
+>>  Examining old /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/UnitType.java
+>>  Preparing new /classes/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/UnitType.java
+>>  Generating code
+>>  Generating edit packages
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditPlugin
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditPlugin.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditPlugin.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditPlugin.java
+>>  Generating edit plugin.properties
+>>  Generating file /classes.edit/plugin.properties
+>>  Examining old /classes.edit/plugin.properties
+>>  Preparing new /classes.edit/plugin.properties
+>>  Generating edit build.properties
+>>  Generating file /classes.edit/build.properties
+>>  Generating edit META-INF/MANIFEST.MF
+>>  Generating file /classes.edit/META-INF/MANIFEST.MF
+>>  Examining old /classes.edit/META-INF/MANIFEST.MF
+>>  Generating edit plugin.xml
+>>  Generating file /classes.edit/plugin.xml
+>>  Examining old /classes.edit/plugin.xml
+>>  Generating item providers for package org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackage
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedItemProviderAdapterFactory
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedItemProviderAdapterFactory.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedItemProviderAdapterFactory.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedItemProviderAdapterFactory.java
+>>  Generating provider Bridge Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.BridgeTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/BridgeTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/BridgeTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/BridgeType.gif
+>>  Generating image /classes.edit/icons/full/obj16/BridgeType.gif
+>>  Generating provider Bridge Type Ref
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.BridgeTypeRefItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/BridgeTypeRefItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/BridgeTypeRefItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/BridgeTypeRefItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/BridgeTypeRef.gif
+>>  Generating image /classes.edit/icons/full/obj16/BridgeTypeRef.gif
+>>  Generating provider Channel
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ChannelItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/Channel.gif
+>>  Generating image /classes.edit/icons/full/obj16/Channel.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateChannel_properties_Properties.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateChannel_properties_Properties.gif
+>>  Generating provider Channel Group
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ChannelGroupItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelGroupItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelGroupItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelGroupItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ChannelGroup.gif
+>>  Generating image /classes.edit/icons/full/obj16/ChannelGroup.gif
+>>  Generating provider Channel Groups
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ChannelGroupsItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelGroupsItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelGroupsItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelGroupsItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ChannelGroups.gif
+>>  Generating image /classes.edit/icons/full/obj16/ChannelGroups.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateChannelGroups_channelGroups_ChannelGroup.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateChannelGroups_channelGroups_ChannelGroup.gif
+>>  Generating provider Channel Group Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ChannelGroupTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelGroupTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelGroupTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ChannelGroupType.gif
+>>  Generating image /classes.edit/icons/full/obj16/ChannelGroupType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateChannelGroupType_channels_Channels.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateChannelGroupType_channels_Channels.gif
+>>  Generating provider Channels
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ChannelsItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelsItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelsItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelsItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/Channels.gif
+>>  Generating image /classes.edit/icons/full/obj16/Channels.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateChannels_channels_Channel.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateChannels_channels_Channel.gif
+>>  Generating provider Channel Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ChannelTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ChannelTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ChannelType.gif
+>>  Generating image /classes.edit/icons/full/obj16/ChannelType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateChannelType_tags_Tags.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateChannelType_tags_Tags.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateChannelType_state_State.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateChannelType_state_State.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateChannelType_event_Event.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateChannelType_event_Event.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateChannelType_configDescription_ConfigDescription.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateChannelType_configDescription_ConfigDescription.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateChannelType_configDescriptionRef_ConfigDescriptionRef.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateChannelType_configDescriptionRef_ConfigDescriptionRef.gif
+>>  Generating provider Config Description
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ConfigDescriptionItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ConfigDescriptionItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ConfigDescriptionItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ConfigDescriptionItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ConfigDescription.gif
+>>  Generating image /classes.edit/icons/full/obj16/ConfigDescription.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateConfigDescription_parameterGroups_ParameterGroup.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateConfigDescription_parameterGroups_ParameterGroup.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateConfigDescription_parameters_Parameter.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateConfigDescription_parameters_Parameter.gif
+>>  Generating provider Config Description Ref
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ConfigDescriptionRefItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ConfigDescriptionRefItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ConfigDescriptionRefItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ConfigDescriptionRefItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ConfigDescriptionRef.gif
+>>  Generating image /classes.edit/icons/full/obj16/ConfigDescriptionRef.gif
+>>  Generating provider Config Descriptions Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ConfigDescriptionsTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ConfigDescriptionsTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ConfigDescriptionsTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ConfigDescriptionsType.gif
+>>  Generating image /classes.edit/icons/full/obj16/ConfigDescriptionsType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateConfigDescriptionsType_configDescriptions_ConfigDescription.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateConfigDescriptionsType_configDescriptions_ConfigDescription.gif
+>>  Generating provider Criteria Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.CriteriaTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/CriteriaTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/CriteriaTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/CriteriaType.gif
+>>  Generating image /classes.edit/icons/full/obj16/CriteriaType.gif
+>>  Generating provider Event
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.EventItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/EventItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/EventItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/EventItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/Event.gif
+>>  Generating image /classes.edit/icons/full/obj16/Event.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateEvent_options_Options.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateEvent_options_Options.gif
+>>  Generating provider Filter Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.FilterTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/FilterTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/FilterTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/FilterType.gif
+>>  Generating image /classes.edit/icons/full/obj16/FilterType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateFilterType_criterias_CriteriaType.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateFilterType_criterias_CriteriaType.gif
+>>  Generating provider Option
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.OptionItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/Option.gif
+>>  Generating image /classes.edit/icons/full/obj16/Option.gif
+>>  Generating provider Options
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.OptionsItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionsItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionsItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionsItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/Options.gif
+>>  Generating image /classes.edit/icons/full/obj16/Options.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateOptions_options_Option.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateOptions_options_Option.gif
+>>  Generating provider Options Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.OptionsTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionsTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionsTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/OptionsType.gif
+>>  Generating image /classes.edit/icons/full/obj16/OptionsType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateOptionsType_options_OptionType.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateOptionsType_options_OptionType.gif
+>>  Generating provider Option Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.OptionTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/OptionTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/OptionType.gif
+>>  Generating image /classes.edit/icons/full/obj16/OptionType.gif
+>>  Generating provider Parameter
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ParameterItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ParameterItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ParameterItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ParameterItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/Parameter.gif
+>>  Generating image /classes.edit/icons/full/obj16/Parameter.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateParameter_options_OptionsType.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateParameter_options_OptionsType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateParameter_filter_FilterType.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateParameter_filter_FilterType.gif
+>>  Generating provider Parameter Group
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ParameterGroupItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ParameterGroupItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ParameterGroupItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ParameterGroupItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ParameterGroup.gif
+>>  Generating image /classes.edit/icons/full/obj16/ParameterGroup.gif
+>>  Generating provider Properties
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.PropertiesItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/PropertiesItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/PropertiesItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/PropertiesItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/Properties.gif
+>>  Generating image /classes.edit/icons/full/obj16/Properties.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateProperties_propertys_Property.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateProperties_propertys_Property.gif
+>>  Generating provider Property
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.PropertyItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/PropertyItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/PropertyItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/PropertyItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/Property.gif
+>>  Generating image /classes.edit/icons/full/obj16/Property.gif
+>>  Generating provider State
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.StateItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/StateItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/StateItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/StateItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/State.gif
+>>  Generating image /classes.edit/icons/full/obj16/State.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateState_options_Options.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateState_options_Options.gif
+>>  Generating provider Supported Bridge Type Refs
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.SupportedBridgeTypeRefsItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/SupportedBridgeTypeRefsItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/SupportedBridgeTypeRefsItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/SupportedBridgeTypeRefsItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/SupportedBridgeTypeRefs.gif
+>>  Generating image /classes.edit/icons/full/obj16/SupportedBridgeTypeRefs.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateSupportedBridgeTypeRefs_bridgeTypeRefs_BridgeTypeRef.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateSupportedBridgeTypeRefs_bridgeTypeRefs_BridgeTypeRef.gif
+>>  Generating provider Tags
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.TagsItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/TagsItemProvider.java
+>>  Examining old /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/TagsItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/TagsItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/Tags.gif
+>>  Generating image /classes.edit/icons/full/obj16/Tags.gif
+>>  Generating provider Thing Descriptions Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ThingDescriptionsTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ThingDescriptionsTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ThingDescriptionsTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ThingDescriptionsType.gif
+>>  Generating image /classes.edit/icons/full/obj16/ThingDescriptionsType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_thingTypes_ThingType.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_thingTypes_ThingType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_thingTypes_BridgeType.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_thingTypes_BridgeType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_bridgeTypes_BridgeType.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_bridgeTypes_BridgeType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_channelTypes_ChannelType.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_channelTypes_ChannelType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_channelGroupTypes_ChannelGroupType.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingDescriptionsType_channelGroupTypes_ChannelGroupType.gif
+>>  Generating provider Thing Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.provider.ThingTypeItemProvider
+>>  Generating /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ThingTypeItemProvider.java
+>>  Preparing new /classes.edit/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/provider/ThingTypeItemProvider.java
+>>  Generating item icon /classes.edit/icons/full/obj16/ThingType.gif
+>>  Generating image /classes.edit/icons/full/obj16/ThingType.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingType_supportedBridgeTypeRefs_SupportedBridgeTypeRefs.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingType_supportedBridgeTypeRefs_SupportedBridgeTypeRefs.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingType_channels_Channels.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingType_channels_Channels.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingType_channelGroups_ChannelGroups.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingType_channelGroups_ChannelGroups.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingType_properties_Properties.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingType_properties_Properties.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingType_configDescription_ConfigDescription.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingType_configDescription_ConfigDescription.gif
+>>  Generating create child icon /classes.edit/icons/full/ctool16/CreateThingType_configDescriptionRef_ConfigDescriptionRef.gif
+>>  Generating image /classes.edit/icons/full/ctool16/CreateThingType_configDescriptionRef_ConfigDescriptionRef.gif
+>>  Generating code
+>>  Generating editor packages
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.presentation.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditorPlugin
+>>  Generating /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditorPlugin.java
+>>  Examining old /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditorPlugin.java
+>>  Preparing new /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditorPlugin.java
+>>  Generating editor plugin.properties
+>>  Generating file /classes.editor/plugin.properties
+>>  Examining old /classes.editor/plugin.properties
+>>  Preparing new /classes.editor/plugin.properties
+>>  Generating editor build.properties
+>>  Generating file /classes.editor/build.properties
+>>  Generating editor META-INF/MANIFEST.MF
+>>  Generating file /classes.editor/META-INF/MANIFEST.MF
+>>  Examining old /classes.editor/META-INF/MANIFEST.MF
+>>  Generating editor plugin.xml
+>>  Generating file /classes.editor/plugin.xml
+>>  Examining old /classes.editor/plugin.xml
+>>  Generating editor for package org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackage
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.presentation.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditor
+>>  Generating /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditor.java
+>>  Examining old /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditor.java
+>>  Preparing new /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditor.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.presentation.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelWizard
+>>  Generating /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelWizard.java
+>>  Examining old /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelWizard.java
+>>  Preparing new /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelWizard.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.presentation.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedActionBarContributor
+>>  Generating /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedActionBarContributor.java
+>>  Examining old /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedActionBarContributor.java
+>>  Preparing new /classes.editor/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/presentation/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedActionBarContributor.java
+>>  Generating model icon /classes.editor/icons/full/obj16/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelFile.gif
+>>  Generating image /classes.editor/icons/full/obj16/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelFile.gif
+>>  Generating model wizard icon /classes.editor/icons/full/wizban/Neworg_eclipse_smarthome_schemas_thing_description_v1__0Simplified.gif
+>>  Generating image /classes.editor/icons/full/wizban/Neworg_eclipse_smarthome_schemas_thing_description_v1__0Simplified.gif
+>>  Generating code
+>>  Generating test packages
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedAllTests
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedAllTests.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedAllTests.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedAllTests.java
+>>  Generating tests plugin.properties
+>>  Generating file /classes.tests/plugin.properties
+>>  Examining old /classes.tests/plugin.properties
+>>  Preparing new /classes.tests/plugin.properties
+>>  Generating tests build.properties
+>>  Generating file /classes.tests/build.properties
+>>  Generating tests META-INF/MANIFEST.MF
+>>  Generating file /classes.tests/META-INF/MANIFEST.MF
+>>  Examining old /classes.tests/META-INF/MANIFEST.MF
+>>  Generating tests for package org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedPackage
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedTests
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedTests.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedTests.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedTests.java
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedExample
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedExample.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedExample.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedExample.java
+>>  Generating test case for Bridge Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.BridgeTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/BridgeTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/BridgeTypeTest.java
+>>  Generating test case for Bridge Type Ref
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.BridgeTypeRefTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/BridgeTypeRefTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/BridgeTypeRefTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/BridgeTypeRefTest.java
+>>  Generating test case for Channel
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ChannelTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelTest.java
+>>  Generating test case for Channel Group
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ChannelGroupTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelGroupTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelGroupTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelGroupTest.java
+>>  Generating test case for Channel Groups
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ChannelGroupsTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelGroupsTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelGroupsTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelGroupsTest.java
+>>  Generating test case for Channel Group Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ChannelGroupTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelGroupTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelGroupTypeTest.java
+>>  Generating test case for Channels
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ChannelsTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelsTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelsTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelsTest.java
+>>  Generating test case for Channel Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ChannelTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ChannelTypeTest.java
+>>  Generating test case for Config Description
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ConfigDescriptionTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ConfigDescriptionTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ConfigDescriptionTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ConfigDescriptionTest.java
+>>  Generating test case for Config Description Ref
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ConfigDescriptionRefTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ConfigDescriptionRefTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ConfigDescriptionRefTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ConfigDescriptionRefTest.java
+>>  Generating test case for Config Descriptions Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ConfigDescriptionsTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ConfigDescriptionsTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ConfigDescriptionsTypeTest.java
+>>  Generating test case for Criteria Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.CriteriaTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/CriteriaTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/CriteriaTypeTest.java
+>>  Generating test case for Event
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.EventTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/EventTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/EventTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/EventTest.java
+>>  Generating test case for Filter Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.FilterTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/FilterTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/FilterTypeTest.java
+>>  Generating test case for Option
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.OptionTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionTest.java
+>>  Generating test case for Options
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.OptionsTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionsTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionsTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionsTest.java
+>>  Generating test case for Options Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.OptionsTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionsTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionsTypeTest.java
+>>  Generating test case for Option Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.OptionTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/OptionTypeTest.java
+>>  Generating test case for Parameter
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ParameterTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ParameterTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ParameterTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ParameterTest.java
+>>  Generating test case for Parameter Group
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ParameterGroupTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ParameterGroupTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ParameterGroupTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ParameterGroupTest.java
+>>  Generating test case for Properties
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.PropertiesTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/PropertiesTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/PropertiesTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/PropertiesTest.java
+>>  Generating test case for Property
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.PropertyTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/PropertyTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/PropertyTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/PropertyTest.java
+>>  Generating test case for State
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.StateTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/StateTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/StateTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/StateTest.java
+>>  Generating test case for Supported Bridge Type Refs
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.SupportedBridgeTypeRefsTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/SupportedBridgeTypeRefsTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/SupportedBridgeTypeRefsTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/SupportedBridgeTypeRefsTest.java
+>>  Generating test case for Tags
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.TagsTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/TagsTest.java
+>>  Examining old /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/TagsTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/TagsTest.java
+>>  Generating test case for Thing Descriptions Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ThingDescriptionsTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ThingDescriptionsTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ThingDescriptionsTypeTest.java
+>>  Generating test case for Thing Type
+>>  Generating Java class org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.tests.ThingTypeTest
+>>  Generating /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ThingTypeTest.java
+>>  Preparing new /classes.tests/src/org_eclipse_smarthome_schemas_thing_description_v1__0Simplified/tests/ThingTypeTest.java

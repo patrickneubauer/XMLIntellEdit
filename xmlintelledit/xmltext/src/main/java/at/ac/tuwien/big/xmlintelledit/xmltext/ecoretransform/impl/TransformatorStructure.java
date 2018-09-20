@@ -1543,7 +1543,7 @@ public class TransformatorStructure {
 	public String getEcoreClassName(EClass xmlClass) {
 		String targetName = xmlClass.getName(); 
 		if (targetName.endsWith("Type")) {
-			targetName = targetName.substring(0,targetName.length()-"Type".length());
+			//targetName = targetName.substring(0,targetName.length()-"Type".length());
 		}
 		return targetName;
 	}

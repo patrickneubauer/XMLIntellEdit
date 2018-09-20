@@ -1,5 +1,7 @@
 package at.ac.tuwien.big.generalutil;
 
+import java.util.Objects;
+
 public class Pair<A,B> {
 
 	public A a;
@@ -37,5 +39,20 @@ public class Pair<A,B> {
 	public void setB(B b) {
 		this.b = b;
 	}
+	
+	public String toString() {
+		return "(" + a + ", "+ b + ")";
+	}
 	 
+	public int hashCode() {
+		return Objects.hash(a,b);
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Pair) {
+			Pair op = (Pair)o;
+			return Objects.equals(a, op.a) && Objects.equals(b, op.b);
+		}
+		return false;
+	}
  }

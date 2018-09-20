@@ -3,6 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: intelledit
 Bundle-SymbolicName: intelledit
 Bundle-Version: 1.0.0.qualifier
+<<<<<<< HEAD
+=======
+Require-Bundle: 
+ com.google.inject
+>>>>>>> 5f4890475157f5f5aa4dd8ca4b0678b45b321da9
 Export-Package: at.ac.tuwien.big.xmlintelledit.intelledit,
  at.ac.tuwien.big.xmlintelledit.intelledit.change,
  at.ac.tuwien.big.xmlintelledit.intelledit.change.basic,

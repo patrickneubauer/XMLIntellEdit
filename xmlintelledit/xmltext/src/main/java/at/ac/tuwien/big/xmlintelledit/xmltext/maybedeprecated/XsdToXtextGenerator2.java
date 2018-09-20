@@ -62,6 +62,7 @@ import org.eclipse.ui.wizards.IWizardCategory;
 import org.eclipse.ui.wizards.IWizardDescriptor;
 import org.eclipse.ui.wizards.IWizardRegistry;
 import org.eclipse.xsd.ecore.XSDEcoreBuilder;
+import org.eclipse.xtext.XtextStandaloneSetup;
 import org.eclipse.xtext.ui.wizard.IProjectCreator;
 import org.eclipse.xtext.ui.wizard.XtextNewProjectWizard;
 import org.eclipse.xtext.util.JavaVersion;
@@ -74,11 +75,17 @@ import org.eclipse.xtext.xtext.wizard.Ecore2XtextConfiguration;
 import org.eclipse.xtext.xtext.wizard.LanguageDescriptor;
 import org.eclipse.xtext.xtext.wizard.LanguageDescriptor.FileExtensions;
 import org.eclipse.xtext.xtext.wizard.ecore2xtext.Ecore2XtextGrammarCreator;
+import org.junit.Test;
 
 import com.google.common.collect.Lists;
 import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.MembersInjector;
 
+import at.ac.tuwien.big.xmlintelledit.xmltext.EcoreResourceGenerator;
 import at.ac.tuwien.big.xmlintelledit.xmltext.ecoretransform.impl.AbstractGrammarAdapter;
+import at.ac.tuwien.big.xmlintelledit.xmltext.ecoretransform.impl.TransformatorStructure;
+import at.ac.tuwien.big.xmlintelledit.xmltext.ecoretransform.impl.TypeTransformatorStore;
 import at.ac.tuwien.big.xmlintelledit.xmltext.utils.ObjectSerializer;
 
 
@@ -96,12 +103,18 @@ import at.ac.tuwien.big.xmlintelledit.xmltext.utils.ObjectSerializer;
 @SuppressWarnings({"static-access", "unused"})
 public class XsdToXtextGenerator2 {
 
-	public static final String GENMODEL_FILE_NAME = "simpleany.genmodel";
-	public static final String ECORE_FILE_NAME = "simpleany.ecore";
-	public static final String ECORE_INIT_FILE_NAME = "simpleanybase.ecore";
-	public  static final String XSD_FILE_NAME = "simpleany.xsd";
-	public  static final String XTEXT_GRAMMAR_FILE_NAME = "SimpleLib.xtext";
+//	public static final String GENMODEL_FILE_NAME = "simpleany.genmodel";
+//	public static final String ECORE_FILE_NAME = "simpleany.ecore";
+//	public static final String ECORE_INIT_FILE_NAME = "simpleanybase.ecore";
+//	public  static final String XSD_FILE_NAME = "simpleany.xsd";
+//	public  static final String XTEXT_GRAMMAR_FILE_NAME = "SimpleLib.xtext";
 
+	public static final String GENMODEL_FILE_NAME = "thing.genmodel";
+	public static final String ECORE_FILE_NAME = "thing.ecore";
+	public static final String ECORE_INIT_FILE_NAME = "thingbase.ecore";
+	public  static final String XSD_FILE_NAME = "examples/thingdesc/thing-description-1.0.0.xsd";
+	public  static final String XTEXT_GRAMMAR_FILE_NAME = "thing.xtext";
+	
 	/**
 	 * ECLIPSE_WORKSPACE_LOCATION has to exactly match the workspace folder in
 	 * which this projects resides
@@ -138,13 +151,13 @@ public class XsdToXtextGenerator2 {
 	    PROJECT_NAME = PROJECT_DIRECTORY.substring(
 	    		PROJECT_DIRECTORY.lastIndexOf("/")+1,
 	    		PROJECT_DIRECTORY.length());
-		IWorkspace space = ResourcesPlugin.getWorkspace();
-		IPath rootPath = space.getRoot().getLocation();
-		File file = rootPath.toFile();
 		WORKSPACE_LOCATION = PROJECT_DIRECTORY.substring(0, PROJECT_DIRECTORY.lastIndexOf("/")+1);
 		try {
+			IWorkspace space = ResourcesPlugin.getWorkspace();
+			IPath rootPath = space.getRoot().getLocation();
+			File file = rootPath.toFile();
 			TARGET_WORKSPACE_LOCATION = file.getCanonicalPath();
-		} catch (IOException e) {
+		} catch (IOException | IllegalStateException e) {
 			TARGET_WORKSPACE_LOCATION = WORKSPACE_LOCATION;
 			e.printStackTrace();
 		}
@@ -234,112 +247,117 @@ public class XsdToXtextGenerator2 {
 		*/
 	}
 
-//	public Resource simplifyEcore(Resource ecoreResource, String targetName, EClass[] rootClass) {
-//		TransformatorStructure struct = TransformatorStructure.fromXmlEcore(new TypeTransformatorStore(), ecoreResource.getResourceSet(),
-//				ecoreResource, targetName);
-//		rootClass[0] = struct.getEcoreRoot();
-//		rootClass[0] = struct.getEcoreRoot();
-//		packageUri = struct.getEcoreRoot().getEPackage().getNsURI();
-//		packageName = struct.getEcoreRoot().getEPackage().getName();
-//
-//		Resource ecoreRResource = struct.getEcoreResource();
-//		try {
-//			ecoreRResource.save(new FileOutputStream(new File(ECORE_FILE_NAME)), null);
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//
-//		return ecoreRResource;
-//	}
+	public Resource simplifyEcore(Resource ecoreResource, String targetName, EClass[] rootClass) {
+		TransformatorStructure struct = TransformatorStructure.fromXmlEcore(new TypeTransformatorStore(), ecoreResource.getResourceSet(),
+				ecoreResource, targetName);
+		rootClass[0] = struct.getEcoreRoot();
+		rootClass[0] = struct.getEcoreRoot();
+		packageUri = struct.getEcoreRoot().getEPackage().getNsURI();
+		packageName = struct.getEcoreRoot().getEPackage().getName();
 
-//	/**
-//	 * RUN AS JUNIT TEST
-//	 *
-//	 * INPUT: XSD
-//	 * OUTPUT: Ecore, GenModel, Java Model Code, Java Edit Code, Java Editor Code, and Java Test Code, Xtext Grammar (adapted), MWE2 Workflow
-//	 */
-//	@Test
-//	public void runGeneratorPart1() {
-//		XsdToXtextGenerator2 xsdToXtextGenerator = new XsdToXtextGenerator2();
-//		Resource ecoreResource = createEcoreFromXSD(XSD_FILE_NAME, ECORE_INIT_FILE_NAME);
-//		EClass[] rootClass = new EClass[1];
-//		ecoreResource = simplifyEcore(ecoreResource,ECORE_FILE_NAME,rootClass);
-//		EcoreResourceGenerator generator = new EcoreResourceGenerator(ECORE_FILE_NAME, GENMODEL_FILE_NAME, PROJECT_NAME, WORKSPACE_LOCATION);
-//
-//		GenModel genModel = generator.getGenmodel();
-//
-//				//createGenModelFromEcore(ECORE_FILE_NAME, GENMODEL_FILE_NAME);
-//
-//
-//		URI genmodelFileURI = URI.createFileURI(GENMODEL_FILE_NAME);
-//		String sub1 = null;
-//		try {
-//			sub1 = new File(GENMODEL_FILE_NAME).getCanonicalFile().getParentFile().getName();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		File testTarget = new File(TARGET_WORKSPACE_LOCATION+File.separator+sub1+File.separator+GENMODEL_FILE_NAME);
-//		copyFile(new File(GENMODEL_FILE_NAME).getAbsolutePath(), testTarget.getAbsolutePath());
-//
-//
-//		File testTarget2 = new File(TARGET_WORKSPACE_LOCATION+File.separator+sub1+File.separator+ECORE_FILE_NAME);
-//		copyFile(new File(ECORE_FILE_NAME).getAbsolutePath(), testTarget2.getAbsolutePath());
-//
-//
-//		File testTarget3 = new File(TARGET_WORKSPACE_LOCATION+File.separator+sub1+File.separator+ECORE_INIT_FILE_NAME);
-//		copyFile(new File(ECORE_INIT_FILE_NAME).getAbsolutePath(), testTarget3.getAbsolutePath());
-//
-//		generateJavaCode(GENMODEL_FILE_NAME, ECORE_FILE_NAME);
-//
-//		XtextProjectInfo Ecore2XtextConfiguration = generateXtextGrammarAndWorkflow(GENMODEL_FILE_NAME, ecoreResource, rootClass[0]);
-//
-//
-//
-//
-//		String mweFileLocation = new File(XTEXT_DSL_PROJECT_LOCATION+File.separator+Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/Generate" + Settings2.LANGUAGE_NAME + ".mwe2").getAbsolutePath();
-//		System.out.println("I assume the mwe file location is in "+mweFileLocation);
-//		//copyFile("../" + Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/" + XTEXT_GRAMMAR_FILE_NAME,XTEXT_GRAMMAR_FILE_NAME);
-//		if (!new File(mweFileLocation).exists()) {
-//			System.err.println("But it is not there ...");
-//			File temp = new File(TARGET_WORKSPACE_LOCATION+File.separator+Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/Generate" + Settings2.LANGUAGE_NAME + ".mwe2");
-//			if (temp.exists()) {
-//				System.err.println("Bug: Could not create the xtext projects in "+XTEXT_DSL_PROJECT_LOCATION);
-//				mweFileLocation = temp.getAbsolutePath();
-//			}
-//		}
-//
-//		ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
-//		try {
-//			for (ILaunchConfiguration config: manager.getLaunchConfigurations()) {
-//				System.out.println(config);
-//
-//				if (config.getName().equals("Generate"+Settings2.LANGUAGE_NAME+".mwe2")) {
-//					System.out.println("Launching "+config.getName());
-//					config.launch("RUN_MODE", new NullProgressMonitor());
-//
-//				}
-//			}
-//		} catch (CoreException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		if (new File(mweFileLocation).exists()) {
-//			Injector injector = new Mwe2StandaloneSetup().createInjectorAndDoEMFRegistration();
-//			Map<String,String> properties = new HashMap<>();
-//			Mwe2Runner runner = injector.getInstance(Mwe2Runner.class);
-//			runner.run(URI.createFileURI(mweFileLocation), properties);
-//			Mwe2Launcher.main(new String[] {
-//				URI.createFileURI(mweFileLocation).toString(), "-p",
-//				"fileEncoding=".concat(Settings2.MWE2_WORKFLOW_ENCODING)});
-//		}
-//		//executeMwe2Workflow("file:///" + WORKSPACE_LOCATION + Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/Generate" + Settings2.LANGUAGE_NAME + ".mwe2");
-//		//adaptXtextGrammar("../" + Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/" + XTEXT_GRAMMAR_FILE_NAME);
-//
-//	}
+		List<Resource> ecoreRResources = struct.getEcoreResources();
+		if (ecoreRResources.size()>1) {
+			System.err.println("Currently I can't handle more than one ecore resource!");
+		}
+		for (Resource ecoreRResource: ecoreRResources) {
+			try {
+				ecoreRResource.save(new FileOutputStream(new File(ECORE_FILE_NAME)), null);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+		return ecoreRResources.get(0);
+	}
+
+	/**
+	 * RUN AS JUNIT TEST
+	 *
+	 * INPUT: XSD
+	 * OUTPUT: Ecore, GenModel, Java Model Code, Java Edit Code, Java Editor Code, and Java Test Code, Xtext Grammar (adapted), MWE2 Workflow
+	 */
+	@Test
+	public void runGeneratorPart1() {
+		XsdToXtextGenerator2 xsdToXtextGenerator = new XsdToXtextGenerator2();
+		Resource ecoreResource = createEcoreFromXSD(XSD_FILE_NAME, ECORE_INIT_FILE_NAME);
+		EClass[] rootClass = new EClass[1];
+		ecoreResource = simplifyEcore(ecoreResource,ECORE_FILE_NAME,rootClass);
+		EcoreResourceGenerator generator = new EcoreResourceGenerator(ECORE_FILE_NAME, GENMODEL_FILE_NAME, PROJECT_NAME, WORKSPACE_LOCATION);
+
+		GenModel genModel = generator.getGenmodel();
+
+				//createGenModelFromEcore(ECORE_FILE_NAME, GENMODEL_FILE_NAME);
+
+
+		URI genmodelFileURI = URI.createFileURI(GENMODEL_FILE_NAME);
+		String sub1 = null;
+		try {
+			sub1 = new File(GENMODEL_FILE_NAME).getCanonicalFile().getParentFile().getName();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		File testTarget = new File(TARGET_WORKSPACE_LOCATION+File.separator+sub1+File.separator+GENMODEL_FILE_NAME);
+		copyFile(new File(GENMODEL_FILE_NAME).getAbsolutePath(), testTarget.getAbsolutePath());
+
+
+		File testTarget2 = new File(TARGET_WORKSPACE_LOCATION+File.separator+sub1+File.separator+ECORE_FILE_NAME);
+		copyFile(new File(ECORE_FILE_NAME).getAbsolutePath(), testTarget2.getAbsolutePath());
+
+
+		File testTarget3 = new File(TARGET_WORKSPACE_LOCATION+File.separator+sub1+File.separator+ECORE_INIT_FILE_NAME);
+		copyFile(new File(ECORE_INIT_FILE_NAME).getAbsolutePath(), testTarget3.getAbsolutePath());
+
+		generateJavaCode(GENMODEL_FILE_NAME, ECORE_FILE_NAME);
+
+		XtextProjectInfo Ecore2XtextConfiguration = generateXtextGrammarAndWorkflow(GENMODEL_FILE_NAME, ecoreResource, rootClass[0]);
+
+
+
+
+		String mweFileLocation = new File(XTEXT_DSL_PROJECT_LOCATION+File.separator+Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/Generate" + Settings2.LANGUAGE_NAME + ".mwe2").getAbsolutePath();
+		System.out.println("I assume the mwe file location is in "+mweFileLocation);
+		//copyFile("../" + Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/" + XTEXT_GRAMMAR_FILE_NAME,XTEXT_GRAMMAR_FILE_NAME);
+		if (!new File(mweFileLocation).exists()) {
+			System.err.println("But it is not there ...");
+			File temp = new File(TARGET_WORKSPACE_LOCATION+File.separator+Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/Generate" + Settings2.LANGUAGE_NAME + ".mwe2");
+			if (temp.exists()) {
+				System.err.println("Bug: Could not create the xtext projects in "+XTEXT_DSL_PROJECT_LOCATION);
+				mweFileLocation = temp.getAbsolutePath();
+			}
+		}
+
+		ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
+		try {
+			for (ILaunchConfiguration config: manager.getLaunchConfigurations()) {
+				System.out.println(config);
+
+				if (config.getName().equals("Generate"+Settings2.LANGUAGE_NAME+".mwe2")) {
+					System.out.println("Launching "+config.getName());
+					config.launch("RUN_MODE", new NullProgressMonitor());
+
+				}
+			}
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (new File(mweFileLocation).exists()) {
+			Injector injector = new Mwe2StandaloneSetup().createInjectorAndDoEMFRegistration();
+			Map<String,String> properties = new HashMap<>();
+			Mwe2Runner runner = injector.getInstance(Mwe2Runner.class);
+			runner.run(URI.createFileURI(mweFileLocation), properties);
+			Mwe2Launcher.main(new String[] {
+				URI.createFileURI(mweFileLocation).toString(), "-p",
+				"fileEncoding=".concat(Settings2.MWE2_WORKFLOW_ENCODING)});
+		}
+		//executeMwe2Workflow("file:///" + WORKSPACE_LOCATION + Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/Generate" + Settings2.LANGUAGE_NAME + ".mwe2");
+		//adaptXtextGrammar("../" + Settings2.LANGUAGE_PROJECT_NAME + "/src/" + Settings2.LANGUAGE_PROJECT_NAME.replace('.', '/') + "/" + XTEXT_GRAMMAR_FILE_NAME);
+
+	}
 
 	/**
 	 * RUN AS JUNIT PLUGIN TEST
@@ -347,7 +365,7 @@ public class XsdToXtextGenerator2 {
 	 * INPUT: Ecore and GenModel
 	 * OUTPUT: Xtext DSL project, Xtext SDK project, Xtext Tests project, Xtext UI project
 	 */
-//	@Test // TODO remove or move to test class
+	@Test // TODO remove or move to test class
 	public void runGeneratorPart2() {
 		/*XtextProjectInfo Ecore2XtextConfiguration = generateXtextGrammarAndWorkflow(GENMODEL_FILE_NAME, ECORE_FILE_NAME); // doing this again .. TODO: avoid this
 		//generateXtextProjects(Ecore2XtextConfiguration);
@@ -945,35 +963,35 @@ public class XsdToXtextGenerator2 {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		new XsdToXtextGenerator2().runGeneratorPart1();
-//		if (true) return;
-//		{
-//			Mwe2StandaloneSetup setup = new Mwe2StandaloneSetup();
-//			Injector injector = setup.createInjectorAndDoEMFRegistration();
-//			Mwe2Runner runner = injector.getInstance(Mwe2Runner.class);
-//
-//			String mweFileLocation = new File("C:\\Users\\Robert\\Documents\\eclipseMars\\eclipseEcore2ASP\\junit-workspace\\org.xtext.example.testdsl\\src\\org\\xtext\\example\\testdsl\\GenerateTestDSL.mwe2").getAbsolutePath();
-//			Map<String,String> pars = new HashMap<String, String>();
-//			pars.put("fileEncoding", "UTF-8");
-//			runner.run(URI.createFileURI(mweFileLocation),pars);
-//		}
-//
-//
-//
-//		XtextStandaloneSetup setup = new XtextStandaloneSetup();
-//
-//		Injector injector = setup.createInjectorAndDoEMFRegistration();
-//		MembersInjector<XtextProjectCreator> membersInjector = injector.getInstance(new Key<MembersInjector<XtextProjectCreator>>() {
-//		});
-//
-//		XtextProjectCreator creator = injector.getInstance(XtextProjectCreator.class);
-//		creator.setProjectInfo(new XtextProjectInfo());
-//		try {
-//			creator.run(new NullProgressMonitor());
-//		} catch (InvocationTargetException | InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+	public static void main(String[] args) {
+		new XsdToXtextGenerator2().runGeneratorPart1();
+		if (true) return;
+		{
+			Mwe2StandaloneSetup setup = new Mwe2StandaloneSetup();
+			Injector injector = setup.createInjectorAndDoEMFRegistration();
+			Mwe2Runner runner = injector.getInstance(Mwe2Runner.class);
+
+			String mweFileLocation = new File("C:\\Users\\Robert\\Documents\\eclipseMars\\eclipseEcore2ASP\\junit-workspace\\org.xtext.example.testdsl\\src\\org\\xtext\\example\\testdsl\\GenerateTestDSL.mwe2").getAbsolutePath();
+			Map<String,String> pars = new HashMap<String, String>();
+			pars.put("fileEncoding", "UTF-8");
+			runner.run(URI.createFileURI(mweFileLocation),pars);
+		}
+
+
+
+		XtextStandaloneSetup setup = new XtextStandaloneSetup();
+
+		Injector injector = setup.createInjectorAndDoEMFRegistration();
+		MembersInjector<XtextProjectCreator> membersInjector = injector.getInstance(new Key<MembersInjector<XtextProjectCreator>>() {
+		});
+
+		XtextProjectCreator creator = injector.getInstance(XtextProjectCreator.class);
+		creator.setProjectInfo(new XtextProjectInfo());
+		try {
+			creator.run(new NullProgressMonitor());
+		} catch (InvocationTargetException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

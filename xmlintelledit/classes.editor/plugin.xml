@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated thing -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.presentation.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelWizardID"
+            name="%_UI_org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelWizard_label"
+            class="org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.presentation.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelFile.gif">
+         <description>%_UI_org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated thing -->
+      <editor
+            id="org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.presentation.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditorID"
+            name="%_UI_org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditor_label"
+            icon="icons/full/obj16/org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedModelFile.gif"
+            extensions="org_eclipse_smarthome_schemas_thing_description_v1__0simplified"
+            class="org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.presentation.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedEditor"
+            contributorClass="org_eclipse_smarthome_schemas_thing_description_v1__0Simplified.presentation.org_eclipse_smarthome_schemas_thing_description_v1__0SimplifiedActionBarContributor">
+      </editor>
+   </extension>
+</plugin>

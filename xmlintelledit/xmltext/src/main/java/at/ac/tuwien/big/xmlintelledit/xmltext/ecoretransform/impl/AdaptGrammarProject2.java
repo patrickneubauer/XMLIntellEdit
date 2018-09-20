@@ -311,6 +311,7 @@ public class AdaptGrammarProject2 {
 	public static void main(String[] args) {
 		File ecoreFile = new File(XsdToXtextGenerator2.ECORE_FILE_NAME);
 		File rootFolder = new File("C:/Users/Robert/Documents/eclipseMars/eclipseEcore2ASP/junit-workspace");
+		rootFolder = new File("C:/Users/Robert/Documents/eclipse-modeling-neon-2-win32-x86_64/eclipse/workspacePatrickMaven/");
 		String str;
 		String packageUri = "";
 		try (BufferedReader reader = new BufferedReader(new FileReader(ecoreFile))){

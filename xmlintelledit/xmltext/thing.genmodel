@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/classes/src" modelPluginID="classes" modelName="org_eclipse_smarthome_schemas_thing_description_v1__0Simplified" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>thing.ecore</foreignModel>
+  <genPackages prefix="org_eclipse_smarthome_schemas_thing_description_v1__0Simplified" disposableProviderFactory="true">
+    <ecorePackage href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#/"/>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterType"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterType/text"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterType/integer"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterType/decimal"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterType/boolean"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/A"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/cd"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/K"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/kg"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/m"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/mol"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/s"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/Bq"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/C"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/F"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/Gy"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/H"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/Hz"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/J"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/kat"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/lm"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/lx"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/N"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/Pa"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/rad"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/S1"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/sr"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/Sv"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/T"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/V"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/W"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/Wb"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/Cel"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/g"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/mS2"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/m2v"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/m3"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/kph"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/l"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/ms"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/min"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/h1"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/d"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/week"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//UnitType/y"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//BridgeType"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//BridgeTypeRef"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//BridgeTypeRef/id"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Channel"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Channel/label"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Channel/description"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Channel/id"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Channel/typeId"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Channel/properties"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroup"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroup/label"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroup/description"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroup/id"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroup/typeId"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroups"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroups/channelGroups"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroupType"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroupType/label"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroupType/description"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroupType/category"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroupType/advanced"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroupType/id"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelGroupType/channels"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Channels"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Channels/channels"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/itemType"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/kind"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/label"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/description"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/category"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/advanced"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/id"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/system"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/tags"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/state"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/event"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/configDescription"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ChannelType/configDescriptionRef"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ConfigDescription"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ConfigDescription/uri"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ConfigDescription/parameterGroups"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ConfigDescription/parameters"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ConfigDescriptionRef"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ConfigDescriptionRef/uri"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ConfigDescriptionsType"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ConfigDescriptionsType/configDescriptions"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//CriteriaType"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//CriteriaType/value"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//CriteriaType/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Event"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Event/options"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//FilterType"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//FilterType/criterias"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Option"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Option/value"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Option/value1"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Options"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Options/options"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//OptionsType"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//OptionsType/options"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//OptionType"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//OptionType/value"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//OptionType/value1"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/context"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/required"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/default"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/label"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/description"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/limitToOptions"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/advanced"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/verify"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/unitLabel"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/groupName"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/multiple"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/pattern"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/readOnly"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/required1"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/type"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/unit"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/options"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Parameter/filter"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterGroup"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterGroup/label"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterGroup/description"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterGroup/context"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterGroup/advanced"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ParameterGroup/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Properties"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Properties/propertys"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Property"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Property/value"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Property/name"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//State"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//State/pattern"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//State/readOnly"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//State/options"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//SupportedBridgeTypeRefs"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//SupportedBridgeTypeRefs/bridgeTypeRefs"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Tags"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//Tags/tags"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingDescriptionsType"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingDescriptionsType/bindingId"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingDescriptionsType/thingTypes"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingDescriptionsType/bridgeTypes"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingDescriptionsType/channelTypes"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingDescriptionsType/channelGroupTypes"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/label"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/description"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/category"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/representationProperty"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/extensible"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/id"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/listed"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/supportedBridgeTypeRefs"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/channels"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/channelGroups"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/properties"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/configDescription"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="file:/C:/Users/Robert/Documents/AME/xmltext/XMLIntellEdit/xmlintelledit/xmltext/thing.ecore#//ThingType/configDescriptionRef"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
