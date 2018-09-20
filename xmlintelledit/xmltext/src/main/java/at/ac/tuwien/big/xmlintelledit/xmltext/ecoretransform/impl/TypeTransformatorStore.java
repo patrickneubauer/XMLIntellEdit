@@ -55,7 +55,7 @@ public class TypeTransformatorStore {
 				});
 	}
 	
-	private Map<Class<?>,EDataType> defaultDatatypes = new HashMap<Class<?>, EDataType>();
+	private Map<Class<?>,EDataType> defaultDatatypes = new HashMap<>();
 	{
 		addDatatype(EcorePackage.Literals.EBIG_DECIMAL);
 		addDatatype(EcorePackage.Literals.EBIG_INTEGER);
@@ -75,12 +75,8 @@ public class TypeTransformatorStore {
 		addDatatype(EcorePackage.Literals.ECHARACTER_OBJECT);
 	}
 	
-	public EDataType getStandardDatatypeOrNull(Class<?> cl) {
-		return defaultDatatypes.get(cl);
-	}
-	
 	public void addDatatype(EDataType type) {
-		defaultDatatypes.put(type.getInstanceClass(), type);
+		this.defaultDatatypes.put(type.getInstanceClass(), type);
 	}
 	
 	public void addIdentity(Class... cls) {
@@ -88,13 +84,9 @@ public class TypeTransformatorStore {
 			addTransformator(cl, cl, IdentityValueTransformator.getInstance());
 		}
 	}
-	
+		
 	public<T,U> void addTransformator(Class<T> xml, Class<U> ecore, ValueTransformator<T, U> transformator) {
-		attributeTransformators.put(xml, new SingleValueTransformationImpl<T, U>(xml, ecore, transformator));
-	}
-	
-	public<T> SingleValueTransformation<T, ?> getTransformatorOrNull(Class<T> xmlClass) {
-		return (SingleValueTransformation)attributeTransformators.get(xmlClass);
+		this.attributeTransformators.put(xml, new SingleValueTransformationImpl<>(xml, ecore, transformator));
 	}
 	
 	public CollectionValueTransformation<?,?> getIdentityValueTransformation(EAttribute src, EAttribute target) {
@@ -102,6 +94,14 @@ public class TypeTransformatorStore {
 		Class<?> instanceClass = cf.getInstanceClass();
 		SingleValueTransformation<?,?> svg = new SingleValueTransformationImpl(instanceClass, instanceClass, IdentityValueTransformator.getInstance());
 		return svg.asCollectionTransformation();
+	}
+	
+	public EDataType getStandardDatatypeOrNull(Class<?> cl) {
+		return this.defaultDatatypes.get(cl);
+	}
+	
+	public<T> SingleValueTransformation<T, ?> getTransformatorOrNull(Class<T> xmlClass) {
+		return (SingleValueTransformation)this.attributeTransformators.get(xmlClass);
 	}
 	
 	//If this returns null, simply do not provide a possibility to edit it ...

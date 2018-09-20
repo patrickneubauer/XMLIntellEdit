@@ -4,7 +4,7 @@ public class Settings2 {
 	public static final String JAVA_CODE_GENERATOR_LOG_FILE_LOCATION = "JavaCodeGenerator.log";
 	public static final String XTEXT_PROJECT_GENERATOR_LOG_FILE_LOCATION = "XtextProjectGenerator.log";
 	public static final String LANGUAGE_NAME = "MixedDSL";
-	public static final String LANGUAGE_PROJECT_NAME = "org.xtext.example.mixedtest";
+	public static final String LANGUAGE_PROJECT_NAME = "org.eclipse.smarthome.thing2";
 	public static final String LANGUAGE_FILE_EXTENSION = "mixtest";
 	public static final String LANGUAGE_ENCODING = "Cp1252";
 	

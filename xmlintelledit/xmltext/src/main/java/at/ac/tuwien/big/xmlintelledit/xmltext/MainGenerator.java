@@ -200,10 +200,56 @@ public class MainGenerator {
 		generator.generateModelCode();
 	}
 	
+	//@Test // TODO remove or move to test class
+	public static void testThingDescription() {
+		/*XsdToEcoreTransformer transformer = new XsdToEcoreTransformer();
+		transformer.setXsd("examples/eclassXML/dictionary.xsd");
+		Rsource xsdResource = transformer.getResult();*/
+		
+		
+		MultiEcoreToGenericEcoreTransformer simplifiedTransformer = new MultiEcoreToGenericEcoreTransformer();
+		simplifiedTransformer.setTargetFilename("ecssexamples/thingdesc");
+		simplifiedTransformer.addXsdEcore("ecssexamples/thingdesc/thing-description-1.0.0.xsd");
+		simplifiedTransformer.getResult();
+//		simplifiedTransformer.printResourceStats();
+		EClass ecoreRoot = simplifiedTransformer.getRootClass();
+		simplifiedTransformer.saveResult();
+		
+		Resource simplifiedXmi = simplifiedTransformer.loadXml("examples/EXTREMO-ECLASS-CASE-STUDY/eclassXML/eClass9_1_BASIC_EN_SG_27.xml");
+		// compute number of validated constraints
+		PropertyCount propertyCount = ConstraintEvalUtil.countResource(simplifiedXmi);
+		System.out.println("XMI has " + ConstraintEvalUtil.getNumberOfConstraintInstances(simplifiedXmi) + " instances of OCL validations.");
+		System.out.println("XMI has " + ConstraintEvalUtil.countResource(simplifiedXmi) + "  instances of EObject.");
+		System.out.println("XMI has " + propertyCount.dataPropertyNum + "  instances of data properties.");
+		System.out.println("XMI has " + propertyCount.objectPropertyNum + "  instances of object properties.");
+		
+		CustomSerializer serializer = new CustomSerializer();
+		//urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml
+		//urn:iso:std:iso:is:13584:-32:ed-1:tech:xml-schema:ontoml
+		try {
+			serializer.writeOutput(simplifiedXmi, "examples/EXTREMO-ECLASS-CASE-STUDY/eclassXML/eClass9_1_BASIC_EN_SG_27.xmi");
+			// complete round-trip
+			serializer.writeOutput(simplifiedXmi, "examples/EXTREMO-ECLASS-CASE-STUDY/eclassXML/eClass9_1_BASIC_EN_SG_27_ROUND_TRIP.xml");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// TODO: is the following deprecated?
+//		if (true) {return;}
+//		File current = new File("").getAbsoluteFile();
+//		System.out.println("Current: "+current);
+//		EcoreResourceGenerator generator = new EcoreResourceGenerator("examples/EXTREMO-ECLASS-CASE-STUDY/dictonarySimple.ecore",
+//				"examples/EXTREMO-ECLASS-CASE-STUDY/dictonarySimple.genmodel", "org.xtext.example.dictionarysimpletest",current.getParentFile().getAbsolutePath());
+//		generator.generateModelCode();
+	}
+	
 	public static void main(String[] args) {
 		//testBGFExample();
 	/*	testEClassBasicExample90();*/
-		testEClassBasicExample27();
+		testThingDescription();
 		/*testNamespace();*/
 	}
 }
