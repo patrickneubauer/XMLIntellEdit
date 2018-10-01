@@ -1,18 +1,25 @@
 package at.ac.tuwien.big.xmlintelledit.intelledit.oclvisit;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.EvaluationVisitorDecorator;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
+import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.ocl.expressions.CollectionRange;
 import org.eclipse.ocl.expressions.EnumLiteralExp;
@@ -37,7 +44,11 @@ import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
+
+import at.ac.tuwien.big.xmlintelledit.intelledit.ecore.util.MyResource;
 
 public class ObjectCollectorVisitor <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
@@ -74,13 +85,115 @@ public class ObjectCollectorVisitor <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, 
 		}
 	}
 	
+	private boolean isUndefined(Object value) {
+		return (value == null) || 
+			(value == getEnvironment().getOCLStandardLibrary().getInvalid());
+	}
+	
+	   private  Object privNavigate(P property, OCLExpression<C> derivation, Object target) {
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> myEnv =
+				getEnvironment();
+
+			EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> factory =
+				myEnv.getFactory();
+
+	    	// create a nested evaluation environment for this property call
+	    	EvaluationEnvironment<C, O, P, CLS, E> nested =
+	    		factory.createEvaluationEnvironment(getEvaluationEnvironment());
+	    	
+	    	// bind "self"
+	    	nested.add(Environment.SELF_VARIABLE_NAME, target);
+	    	
+	    	return factory.createEvaluationVisitor(
+	    			myEnv, nested, getExtentMap()).visitExpression(derivation);
+	    }
+	
+		private  Object getInvalid() {
+			return getEnvironment().getOCLStandardLibrary().getInvalid();
+		}
+	
+	private Object privVisitPropertyCallExp(PropertyCallExp<C, P> pc) {
+		P property = pc.getReferredProperty();
+		OCLExpression<C> source = pc.getSource();
+
+		// evaluate source
+		Object context = source.accept(this);
+
+		// if source is undefined, result is OclInvalid
+		if (isUndefined(context)) {
+            return getInvalid();
+        }
+
+		EClass cl = null;
+		if (property instanceof EStructuralFeature) {
+			cl = ((EStructuralFeature) property).getEContainingClass();
+			if (context instanceof EObject) {
+				cl = ((EObject)context).eClass();
+			}
+			OCLExpression<C> derivation = MyResource.getDerivation(cl,(EStructuralFeature)property);
+			if (derivation != null) {
+				// this is an additional property
+				//Wie geht das?
+				return privNavigate(property, derivation, context);
+			}
+		}
+		
+		
+		
+		List<Object> qualifiers;
+		
+		if (pc.getQualifier().isEmpty()) {
+			qualifiers = Collections.emptyList();
+		} else {
+			// handle qualified association navigation
+			qualifiers = new java.util.ArrayList<Object>();
+			
+			for (OCLExpression<C> q : pc.getQualifier()) {
+				//TODO: this VS getVisitor?!
+				qualifiers.add(q.accept(this));
+			}
+		}
+		
+		Object result = getEvaluationEnvironment().navigateProperty(property, qualifiers, context);
+		
+		if ((pc.getType() instanceof CollectionType<?, ?>) && !(result instanceof Collection<?>)) {
+			// this was an XSD "unspecified multiplicity".  Now that we know what
+			//    the multiplicity is, we can coerce it to a collection value
+			@SuppressWarnings("unchecked")
+			CollectionKind kind = ((CollectionType<C, O>) pc.getType()).getKind();
+			
+			Collection<Object> collection = CollectionUtil.createNewCollection(kind);
+			
+			collection.add(result);
+			result = collection;
+		}
+		
+		return result;
+	}
+	
 	@Override
 	public Object visitPropertyCallExp(PropertyCallExp<C, P> exp) {
 		boolean wantResult = (exp == lookFor);
+		//Wenn derived, ist es eigentlich ganz was anderes
+		P prop = exp.getReferredProperty();
+		
+		
+		
+		
 		OCLExpression<C> oldLookFor = lookFor;
 		Object oldResult = lookForResult;
 		lookFor = exp.getSource();
-		Object ret = super.visitPropertyCallExp(exp);
+		
+		//Unfortunately I need to copy some parts ...
+		
+		//Object ret = super.visitPropertyCallExp(exp);
+		
+		Object ret = privVisitPropertyCallExp(exp);
+		
+		
+		
+		
+		
 		Object result = lookForResult;
 		System.out.println("PropertyCall-Result: " + result);
 		Set<EObject> eobjs = new HashSet<EObject>();
@@ -91,7 +204,7 @@ public class ObjectCollectorVisitor <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, 
 		if (wantResult) {
 			lookForResult = ret;
 		}
-		P prop = exp.getReferredProperty();
+		
 		if (prop instanceof EStructuralFeature) {
 			EStructuralFeature esf = (EStructuralFeature)prop;
 			Set<EObject> obj = accessedObjects.get(esf);

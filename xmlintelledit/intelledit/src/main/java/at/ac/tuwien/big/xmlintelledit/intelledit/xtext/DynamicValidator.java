@@ -33,6 +33,7 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.common.base.Objects;
 
+import at.ac.tuwien.big.vfunc.nbasic.constraint.OclDerivationEvaluable;
 import at.ac.tuwien.big.xmlintelledit.intelledit.change.BasicChange;
 import at.ac.tuwien.big.xmlintelledit.intelledit.change.Change;
 import at.ac.tuwien.big.xmlintelledit.intelledit.change.ChangeType;
@@ -537,7 +538,8 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 			throw new RuntimeException("Validating object without resource!");
 		}
 		MyResource myresu = MyResource.get(curResource);
-		if (mainResource != xmiRes || theRealObj.eContainer() == null) {
+		if (mainResource != xmiRes /*|| theRealObj.eContainer() == null*/) {
+			//TODO: Bei anderen Objekten ist das jetzt auch so ... eContainer() == null ist wohl ein schlechter Ratgeber
 			mainResource = xmiRes;
 			curResource = MyResource.get(xmiRes).clone();
 			myresu = MyResource.get(curResource);
@@ -598,6 +600,12 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 					if (message != null) {
 						issueDescrBase = message+"\n";
 					} 
+				} else if (evaluable instanceof OclDerivationEvaluable) {
+					OclDerivationEvaluable oe = (OclDerivationEvaluable)evaluable;
+					String message = oe.evaluateMessage(theObj);
+					if (message != null) {
+						issueDescrBase = message+"\n";
+					}
 				}
 				String otherIssueDesc = "";
 				Map<FixAttemptReference,String> refToId = new HashMap<FixAttemptReference, String>();

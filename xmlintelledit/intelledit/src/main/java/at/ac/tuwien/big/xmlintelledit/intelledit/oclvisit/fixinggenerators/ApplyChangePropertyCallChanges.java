@@ -92,10 +92,12 @@ public class ApplyChangePropertyCallChanges  extends AbstractSelectiveEvaluator<
 			return false;
 		}
 		
-		if (res.getSubResults().size() != 1) {
+		if (res.getSubResults().size() != 1 && res.getSubBooleanStateIfExists().size() != 2) {
 			System.err.println("Wrong result size for PropertyExp: " + res.getSubResults().size());
 			return false;
 		}
+		
+		if (res.getSubResults().size() == 1) {
 		
 		Object src = res.getSubResultValue(0);
 		Collection srcObjs = wrapCollection(src);
@@ -221,6 +223,10 @@ public class ApplyChangePropertyCallChanges  extends AbstractSelectiveEvaluator<
 		
 		// TODO Auto-generated method stub
 		return true;
+		} else {
+			EvalResult evalResult = res.getSubResults().get(1);
+			return addFixingPossibilities(resource, singleAttemptForThis, evalResult, priority, potentialFixChanges);
+		}
 	}
 
 	@Override

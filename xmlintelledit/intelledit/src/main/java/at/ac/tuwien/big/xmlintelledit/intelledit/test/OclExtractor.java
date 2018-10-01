@@ -116,6 +116,22 @@ public class OclExtractor {
 		return expr;
 	}
 	
+	public static OCL ocl = OCL.newInstance();
+	public static Helper oclHelper = ocl.createOCLHelper();
+	
+	
+	public static OCLExpression getExpression(EClass context, String expression) {
+		oclHelper.setContext(context);
+		try {
+			OCLExpression oclexpr = oclHelper.createQuery(expression);
+			return oclexpr;
+		} catch (ParserException ex) {
+			String str = Arrays.toString(ex.getStackTrace()).replace(",", "\n");
+			System.out.println(str);
+			throw new RuntimeException(ex);
+		}
+	}
+	
 
 	public static Map<EClass, Map<String, OCLExpression>> getAllOCLExpressions(Map<EClass, Map<String,String>> map) {
 		Map<EClass, Map<String,OCLExpression>> ret = new HashMap<EClass, Map<String,OCLExpression>>();

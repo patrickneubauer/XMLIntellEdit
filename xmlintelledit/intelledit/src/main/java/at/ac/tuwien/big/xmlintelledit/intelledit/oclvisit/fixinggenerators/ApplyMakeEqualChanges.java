@@ -83,81 +83,90 @@ public class ApplyMakeEqualChanges  extends AbstractSelectiveEvaluator<PropertyC
 			return false;
 		}
 		
-		if (res.getSubResults().size() != 1) {
+		if (res.getSubResults().size() != 1 && res.getSubResults().size() != 2) {
 			System.err.println("Wrong result size for PropertyExp: " + res.getSubResults().size());
 			return false;
 		}
 		
-		Object src = res.getSubResultValue(0);
-		Collection srcObjs = wrapCollection(src);
-		EStructuralFeature targetFeat = (EStructuralFeature)expr.getReferredProperty();
-		EClassifier targetType = targetFeat.getEType();
-		Class<?> targetClass = targetType.getInstanceClass();
-		if (targetClass == null && targetType instanceof EClass) {
-			targetClass = EObject.class;
-		}
-		if (targetClass == null && targetType instanceof EEnum) {
-			targetClass = EEnumLiteral.class;
-		}
-		if (targetClass == null && targetType instanceof EDataType) {
-			//TODO: Das ist nicht schön
-			targetClass = Object.class;
-		}
-		//Convert ...
-		if (targetClass != null && Number.class.isAssignableFrom(targetClass) && target instanceof Number) {
-			target = MyEcoreUtil.getNumber((Class<? extends Number>)targetClass,(Number)target);
-		}
-		//Check types
-		Collection allTargetObj = wrapCollection(target);
-		for (Object singleTargetObj: allTargetObj) {
-			if (targetClass != null && target != null && !targetClass.isAssignableFrom(target.getClass())) {
-				System.err.println("Cannot apply fix of setting to target " + target + " in property "+ targetFeat+"! ("+targetClass+ " VS "+target.getClass()+")");
-				return false;
+		if (res.getSubResults().size() == 1) {
+			//Normal property
+
+			Object src = res.getSubResultValue(0);
+			Collection srcObjs = wrapCollection(src);
+			EStructuralFeature targetFeat = (EStructuralFeature)expr.getReferredProperty();
+			EClassifier targetType = targetFeat.getEType();
+			Class<?> targetClass = targetType.getInstanceClass();
+			if (targetClass == null && targetType instanceof EClass) {
+				targetClass = EObject.class;
 			}
-		}
-		
-		
-		
-		//TODO: Es gibt auch andere Fix-Möglichkeiten, z.B. die Source-Collection entsprechend zu ändern, 
-		//so dass das passende rauskommt
-		//So sicher nicht, das ist dann vielleicht der konkrete Fix ...
-		for (Object srcObj: srcObjs) {
-			EObject obj = (EObject)srcObj;
-			
-			if (FeatureMapUtil.isMany(obj, targetFeat)) {
-				Collection curCol = (Collection)obj.eGet(targetFeat);
-				potentialFixChanges.addFixingAction(priority, new FixedSetConstantChangeType<>(resource.getResource(),obj,targetFeat,
-						ParameterType.equalProbability(Object.class, 
-								new ArrayList<>((Collection)allTargetObj)))
-						);
-			} else {
-				if (allTargetObj.isEmpty()) {
-					potentialFixChanges.addFixingAction(priority, new FixedClearChangeType(resource.getResource(),obj, targetFeat));
-				} else if (allTargetObj.size() == 1) {
-					potentialFixChanges.addFixingAction(priority, 
-							new FixedSetConstantChangeType<>(resource.getResource(),obj,targetFeat,
-							ParameterType.equalProbability(Object.class, 
-									Collections.singletonList(allTargetObj.iterator().next()))
-							));
-				} else {
-					System.err.println("Wanting to set a single-valued property to more ...");
-					potentialFixChanges.addFixingAction(priority, new FixedSetConstantChangeType<>(resource.getResource(),obj,targetFeat,
-							ParameterType.equalProbability(Object.class, 
-									Collections.singletonList(allTargetObj.iterator().next()))
-							));
+			if (targetClass == null && targetType instanceof EEnum) {
+				targetClass = EEnumLiteral.class;
+			}
+			if (targetClass == null && targetType instanceof EDataType) {
+				//TODO: Das ist nicht schön
+				targetClass = Object.class;
+			}
+			//Convert ...
+			if (targetClass != null && Number.class.isAssignableFrom(targetClass) && target instanceof Number) {
+				target = MyEcoreUtil.getNumber((Class<? extends Number>)targetClass,(Number)target);
+			}
+			//Check types
+			Collection allTargetObj = wrapCollection(target);
+			for (Object singleTargetObj: allTargetObj) {
+				if (targetClass != null && target != null && !targetClass.isAssignableFrom(target.getClass())) {
+					System.err.println("Cannot apply fix of setting to target " + target + " in property "+ targetFeat+"! ("+targetClass+ " VS "+target.getClass()+")");
+					return false;
 				}
 			}
+			
+			
+			
+			//TODO: Es gibt auch andere Fix-Möglichkeiten, z.B. die Source-Collection entsprechend zu ändern, 
+			//so dass das passende rauskommt
+			//So sicher nicht, das ist dann vielleicht der konkrete Fix ...
+			for (Object srcObj: srcObjs) {
+				EObject obj = (EObject)srcObj;
+				
+				if (FeatureMapUtil.isMany(obj, targetFeat)) {
+					Collection curCol = (Collection)obj.eGet(targetFeat);
+					potentialFixChanges.addFixingAction(priority, new FixedSetConstantChangeType<>(resource.getResource(),obj,targetFeat,
+							ParameterType.equalProbability(Object.class, 
+									new ArrayList<>((Collection)allTargetObj)))
+							);
+				} else {
+					if (allTargetObj.isEmpty()) {
+						potentialFixChanges.addFixingAction(priority, new FixedClearChangeType(resource.getResource(),obj, targetFeat));
+					} else if (allTargetObj.size() == 1) {
+						potentialFixChanges.addFixingAction(priority, 
+								new FixedSetConstantChangeType<>(resource.getResource(),obj,targetFeat,
+								ParameterType.equalProbability(Object.class, 
+										Collections.singletonList(allTargetObj.iterator().next()))
+								));
+					} else {
+						System.err.println("Wanting to set a single-valued property to more ...");
+						potentialFixChanges.addFixingAction(priority, new FixedSetConstantChangeType<>(resource.getResource(),obj,targetFeat,
+								ParameterType.equalProbability(Object.class, 
+										Collections.singletonList(allTargetObj.iterator().next()))
+								));
+					}
+				}
+			}
+			
+			
+			EEnumLiteral lit;
+			Object javaObj;
+			EObject obj;
+			
+			//TODO: I think this is not yet fully implemented
+			
+			// TODO Auto-generated method stub
+			return true;
+		} else {
+			//In fact you need to just consider the second thing
+			EvalResult evalResult = res.getSubResults().get(1);
+			return addFixingPossibilities(resource, singleAttemptForThis, evalResult, priority, potentialFixChanges);
 		}
 		
-		
-		EEnumLiteral lit;
-		Object javaObj;
-		EObject obj;
-		
-		//TODO: I think this is not yet fully implemented
-		
-		// TODO Auto-generated method stub
-		return true;
 	}
 
 	@Override

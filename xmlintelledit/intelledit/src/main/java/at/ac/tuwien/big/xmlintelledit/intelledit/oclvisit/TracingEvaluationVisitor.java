@@ -17,17 +17,27 @@
 
 package at.ac.tuwien.big.xmlintelledit.intelledit.oclvisit;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.EvaluationVisitorDecorator;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
+import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.ocl.expressions.CollectionRange;
 import org.eclipse.ocl.expressions.EnumLiteralExp;
@@ -52,7 +62,13 @@ import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.Visitor;
+
+import at.ac.tuwien.big.xmlintelledit.intelledit.ecore.util.MyResource;
+import at.ac.tuwien.big.xmlintelledit.util.VisitorDecorable;
 
 
 /**
@@ -62,7 +78,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  * @author Christian W. Damus (cdamus)
  */
 public class TracingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-    extends EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+    extends EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> implements VisitorDecorable<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
     /**
      * Initializes me with the visitor whose evaluation I trace to the console.
@@ -72,8 +88,24 @@ public class TracingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
     public TracingEvaluationVisitor(
             EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> decorated) {
         super(decorated);
+        if (decorated instanceof VisitorDecorable) {
+        	((VisitorDecorable)decorated).setVisitor(this);
+        }
     }
 
+    private VisitorDecorable visitor = this;
+    
+    public VisitorDecorable getVisitor() {
+    	return visitor;
+    }
+    
+    public void setVisitor(VisitorDecorable  visitor) {
+    	this.visitor = visitor;
+    	if (getDelegate() instanceof VisitorDecorable ) {
+    		((VisitorDecorable)getDelegate()).setVisitor(visitor);
+    	}
+    }
+    
     private boolean isInvalid(Object value) {
         return value == getEnvironment().getOCLStandardLibrary().getInvalid();
     }
@@ -107,6 +139,7 @@ public class TracingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
     private Object lastPretrace;
     
     private void preTrace(Object expression) {
+    	
     	EvalResult result;
     	//Sometimes expressions are double?!
     	EvalResult parent = (evalResults.isEmpty())?null:evalResults.peek();
@@ -282,11 +315,128 @@ public class TracingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
     	preTrace(callExp);
         return trace(callExp, getDelegate().visitOperationCallExp(callExp));
     }
+    
 
-    @Override
+	
+	private boolean isUndefined(Object value) {
+		return (value == null) || 
+			(value == getEnvironment().getOCLStandardLibrary().getInvalid());
+	}
+	
+	   private  Object privNavigate(P property, OCLExpression<C> derivation, Object target) {
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> myEnv =
+				getEnvironment();
+
+			EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> factory =
+				myEnv.getFactory();
+
+	    	// create a nested evaluation environment for this property call
+	    	EvaluationEnvironment<C, O, P, CLS, E> nested =
+	    		factory.createEvaluationEnvironment(getEvaluationEnvironment());
+	    	
+	    	// bind "self"
+	    	nested.add(Environment.SELF_VARIABLE_NAME, target);
+	    	EvaluationVisitor nestedV = factory.createEvaluationVisitor(
+	    			myEnv, nested, getExtentMap());
+	    	VisitorDecorable sub = getVisitor().spawnNew(nestedV);
+	    	//Here I need to rebuild the hierarchy
+	    	EvaluationVisitor test = sub;
+	    	TracingEvaluationVisitor tev = null;
+	    	while (test instanceof EvaluationVisitorDecorator) {
+	    		if (test instanceof TracingEvaluationVisitor) {
+	    			tev = (TracingEvaluationVisitor)test;
+	    	    	tev.evalResults = evalResults;
+	    	    	tev.evaluatedObjects = evaluatedObjects;
+	    	    	tev.evaluationIndex = evaluationIndex;
+	    	    	break;
+	    		}
+	    		try {
+		    		Method m = EvaluationVisitorDecorator.class.getDeclaredMethod("getDelegate");
+		    		m.setAccessible(true);
+		    		test = (EvaluationVisitor)m.invoke(test);
+	    		} catch (Exception e) {
+	    			e.printStackTrace();
+	    			break;
+	    		}
+	    	}
+	    	evaluationIndex = tev.evaluationIndex;
+	    	Object ret = sub.visitExpression(derivation);
+	    	return ret;	
+	    }
+	
+		private void mergeWith(TracingEvaluationVisitor sub) {
+			
+	}
+
+		private  Object getInvalid() {
+			return getEnvironment().getOCLStandardLibrary().getInvalid();
+		}
+	
+	private Object privVisitPropertyCallExp(PropertyCallExp<C, P> pc) {
+		P property = pc.getReferredProperty();
+		OCLExpression<C> source = pc.getSource();
+
+		// evaluate source
+		Object context = source.accept(getVisitor());
+
+		// if source is undefined, result is OclInvalid
+		if (isUndefined(context)) {
+            return getInvalid();
+        }
+
+		EClass cl = null;
+		if (property instanceof EStructuralFeature) {
+			cl = ((EStructuralFeature) property).getEContainingClass();
+			if (context instanceof EObject) {
+				cl = ((EObject)context).eClass();
+			}
+			OCLExpression<C> derivation = MyResource.getDerivation(cl,(EStructuralFeature)property);
+			if (derivation != null) {
+				// this is an additional property
+				//Wie geht das?
+				return privNavigate(property, derivation, context);
+			}
+		}
+		
+		
+		
+		List<Object> qualifiers;
+		
+		if (pc.getQualifier().isEmpty()) {
+			qualifiers = Collections.emptyList();
+		} else {
+			// handle qualified association navigation
+			qualifiers = new java.util.ArrayList<Object>();
+			
+			for (OCLExpression<C> q : pc.getQualifier()) {
+				//TODO: this VS getVisitor?!
+				qualifiers.add(q.accept(getVisitor()));
+			}
+		}
+		
+		Object result = getEvaluationEnvironment().navigateProperty(property, qualifiers, context);
+		
+		if ((pc.getType() instanceof CollectionType<?, ?>) && !(result instanceof Collection<?>)) {
+			// this was an XSD "unspecified multiplicity".  Now that we know what
+			//    the multiplicity is, we can coerce it to a collection value
+			@SuppressWarnings("unchecked")
+			CollectionKind kind = ((CollectionType<C, O>) pc.getType()).getKind();
+			
+			Collection<Object> collection = CollectionUtil.createNewCollection(kind);
+			
+			collection.add(result);
+			result = collection;
+		}
+		
+		return result;
+	}
+
+	@Override
     public Object visitPropertyCallExp(PropertyCallExp<C, P> callExp) {
+    	
     	preTrace(callExp);
-        return trace(callExp, getDelegate().visitPropertyCallExp(callExp));
+    	Object result = privVisitPropertyCallExp(callExp);
+        return trace(callExp, result);
     }
 
     @Override
@@ -349,4 +499,9 @@ public class TracingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
     	preTrace(variableExp);
         return trace(variableExp, getDelegate().visitVariableExp(variableExp));
     }
+
+	@Override
+	public VisitorDecorable spawnNew(EvaluationVisitor sub) {
+		return new TracingEvaluationVisitor(sub);
+	}
 }
