@@ -37,10 +37,6 @@ import at.ac.tuwien.big.xmlintelledit.intelledit.oclvisit.FixingActionGenerator;
 
 public class ApplyChangePropertyCallChanges  extends AbstractSelectiveEvaluator<PropertyCallExp, Object> implements FixingActionGenerator<PropertyCallExp, Object> {
 
-	public ApplyChangePropertyCallChanges() {
-		super(PropertyCallExp.class, Object.class, true, null);
-	}
-	
 	public static ApplyChangePropertyCallChanges INSTANCE = new ApplyChangePropertyCallChanges();
 	
 	public static Collection wrapCollection(Object objOrCollection) {
@@ -51,6 +47,10 @@ public class ApplyChangePropertyCallChanges  extends AbstractSelectiveEvaluator<
 			return (Collection)objOrCollection;
 		}
 		return Collections.singleton(objOrCollection);
+	}
+	
+	public ApplyChangePropertyCallChanges() {
+		super(PropertyCallExp.class, Object.class, true, null);
 	}
 	
 
@@ -224,8 +224,12 @@ public class ApplyChangePropertyCallChanges  extends AbstractSelectiveEvaluator<
 		// TODO Auto-generated method stub
 		return true;
 		} else {
+			//Only if it is a property result itself!
 			EvalResult evalResult = res.getSubResults().get(1);
-			return addFixingPossibilities(resource, singleAttemptForThis, evalResult, priority, potentialFixChanges);
+			if (evalResult.getExpression() instanceof PropertyCallExp) {
+				return addFixingPossibilities(resource, singleAttemptForThis, evalResult, priority, potentialFixChanges);
+			}
+			return false;
 		}
 	}
 

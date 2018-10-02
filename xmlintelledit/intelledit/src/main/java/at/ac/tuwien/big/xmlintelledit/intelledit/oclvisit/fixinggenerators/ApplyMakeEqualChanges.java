@@ -33,10 +33,6 @@ import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 
 public class ApplyMakeEqualChanges  extends AbstractSelectiveEvaluator<PropertyCallExp, Object> implements FixingActionGenerator<PropertyCallExp, Object> {
 
-	public ApplyMakeEqualChanges() {
-		super(PropertyCallExp.class, Object.class, true, null);
-	}
-	
 	public static ApplyMakeEqualChanges INSTANCE = new ApplyMakeEqualChanges();
 	
 	public static Collection wrapCollection(Object objOrCollection) {
@@ -47,6 +43,10 @@ public class ApplyMakeEqualChanges  extends AbstractSelectiveEvaluator<PropertyC
 			return (Collection)objOrCollection;
 		}
 		return Collections.singleton(objOrCollection);
+	}
+	
+	public ApplyMakeEqualChanges() {
+		super(PropertyCallExp.class, Object.class, true, null);
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class ApplyMakeEqualChanges  extends AbstractSelectiveEvaluator<PropertyC
 					Collection curCol = (Collection)obj.eGet(targetFeat);
 					potentialFixChanges.addFixingAction(priority, new FixedSetConstantChangeType<>(resource.getResource(),obj,targetFeat,
 							ParameterType.equalProbability(Object.class, 
-									new ArrayList<>((Collection)allTargetObj)))
+									new ArrayList<>(allTargetObj)))
 							);
 				} else {
 					if (allTargetObj.isEmpty()) {
@@ -164,7 +164,10 @@ public class ApplyMakeEqualChanges  extends AbstractSelectiveEvaluator<PropertyC
 		} else {
 			//In fact you need to just consider the second thing
 			EvalResult evalResult = res.getSubResults().get(1);
-			return addFixingPossibilities(resource, singleAttemptForThis, evalResult, priority, potentialFixChanges);
+			if (evalResult.getExpression() instanceof PropertyCallExp) {
+				return addFixingPossibilities(resource, singleAttemptForThis, evalResult, priority, potentialFixChanges);
+			}
+			return false;
 		}
 		
 	}

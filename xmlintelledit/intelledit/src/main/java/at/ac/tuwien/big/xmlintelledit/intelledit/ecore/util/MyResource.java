@@ -79,230 +79,11 @@ import dk.brics.automaton.Datatypes;
 
 public class MyResource {
 
-	private SoftReference<Resource> res;
-
-	public MyResource(Resource from) {
-		this.res = new SoftReference<Resource>(from);
-		if (from == null) {
-			System.out.println("Null resource!");
-		}
-	}
-
-	static {
-
-	}
-
-	private static boolean loadedautomaton = false;
-
-	private static void loadAutomaton() {
-		if (!loadedautomaton) {
-			synchronized (MyResource.class) {
-				if (!loadedautomaton) {
-					loadedautomaton = true;
-					try {
-						Method m = Datatypes.class.getDeclaredMethod("buildAll");
-						m.setAccessible(true);
-						m.invoke(null);
-					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
-							| NoSuchMethodException | SecurityException e) {
-						e.printStackTrace();
-					} catch (Exception e) {
-						System.out.println("TODO: Er kann das nicht vollständig machen, weil er keine Dateien hat ... "
-								+ e.getMessage());
-					}
-				}
-			}
-		}
-	}
-
-	private void checkRes(Resource from) {
-
-	}
-
-	private static WeakHashMap<Resource, MyResource> hashMaps = new WeakHashMap<Resource, MyResource>();
-
-	public static synchronized MyResource get(Resource from) {
-		MyResource ret = hashMaps.get(from);
-		if (ret == null) {
-			hashMaps.put(from, ret = new MyResource(from));
-		}
-		return ret;
-	}
-
-	public Resource getResource() {
-		return res.get();
-	}
-
-	private List<EStructuralFeature> feat = null;
-	private List<EClass> clsl = null;
-
-	private void calcFeatures(Resource res) {
-		synchronized (res) {
-			feat = new ArrayList<EStructuralFeature>();
-			clsl = new ArrayList<>();
-			TreeIterator<EObject> iter = res.getAllContents();
-			while (iter.hasNext()) {
-				EObject next = iter.next();
-				if (next instanceof EClass) {
-
-					EClass storedClass = (EClass) next;
-					clsl.add(storedClass);
-					feat.addAll(storedClass.getEStructuralFeatures());
-					if (feat.contains(null)) {
-						System.out.println("Why does an EClass contain null feature?!");
-					}
-				}
-			}
-		}
-	}
-
-	public void knowEcore(Resource ecoreRes) {
-		calcFeatures(ecoreRes);
-	}
-
-	public synchronized List<EStructuralFeature> getAllFeatures() {
-		if (feat == null) {
-			List<EObject> allInst = getAllInstances(null);
-			for (EObject obj : allInst) {
-				if (obj.eClass() != null) {
-					EClass cl = obj.eClass();
-					calcFeatures(cl.eResource());
-					return feat;
-				}
-			}
-			System.err.println("Have no (suitable?) available object ...");
-			return Collections.emptyList();
-
-		}
-		return feat;
-	}
-
-	public synchronized List<EClass> getAllClasses() {
-		if (clsl == null) {
-			synchronized (this) {
-				List<EObject> allInst = getAllInstances(null);
-				for (EObject obj : allInst) {
-					if (obj.eClass() != null) {
-						EClass cl = obj.eClass();
-						calcFeatures(cl.eResource());
-						return clsl;
-					}
-				}
-				System.err.println("Have no (suitable?) available object ...");
-				return Collections.emptyList();
-			}
-
-		}
-		return clsl;
-	}
-
-	public synchronized void objectRemoved(EObject eobj) {
-		if (evalFunc == null) {
-			return;
-		}
-		if (eobj == null) {
-			return;
-		}
-		EClass cl = eobj.eClass();
-		if (cl == null) {
-			return;
-		}
-		for (EClass allCl : IteratorUtils.shallowUnionObject(cl.getEAllSuperTypes(), cl)) {
-			allObjectMap.getOrDefault(allCl, Collections.emptyList()).remove(eobj);
-		}
-		allObjs.remove(eobj);
-	}
-
-	public synchronized void objectAdded(EObject eobj) {
-		if (evalFunc == null) {
-			return;
-		}
-		if (eobj == null) {
-			return;
-		}
-		EClass cl = eobj.eClass();
-		if (cl == null) {
-			return;
-		}
-		for (EClass allCl : IteratorUtils.shallowUnionObject(cl.getEAllSuperTypes(), cl)) {
-			List<EObject> eobjL = allObjectMap.get(allCl);
-			if (eobjL == null) {
-				allObjectMap.put(allCl, eobjL = new ArrayList<EObject>());
-			}
-			eobjL.add(eobj);
-			allObjs.add(eobj);
-		}
-
-	}
-
-	public synchronized List<EObject> getAllInstances(EClass forClass) {
-		return getClassInstanceFunc().eval(forClass);
-	}
-
-	private Map<EClass, List<EObject>> allGenerated = new HashMap<EClass, List<EObject>>();
-
-	public synchronized EObject createInstance(EClass targetType) {
-		return MyEcoreUtil.createInstanceStatic(targetType);
-	}
-
-	public EObject getAndTrackCreated(EClass targetType) {
-		EObject ret = getPrecreatedInstance(targetType);
-		trackCreated(ret);
-		return ret;
-	}
-
-	public EObject getPrecreatedInstance(EClass targetType) {
-		List<EObject> gen = allGenerated.get(targetType);
-		if (gen == null) {
-			allGenerated.put(targetType, gen = new ArrayList<EObject>());
-		}
-		for (EObject newGen : gen) {
-			if (newGen.eResource() == null) {
-				return newGen;
-			}
-		}
-		EObject eobj = createInstance(targetType);
-		gen.add(eobj);
-		return eobj;
-	}
-
-	public List<EObject> getAllInstancesPlusOne(EClass targetType) {
-		List<EObject> ret = new ArrayList<EObject>(getAllInstances(targetType));
-		mainLoop: for (EClass sub : getInstancibleTypes(targetType)) {
-			List<EObject> gen = allGenerated.get(sub);
-			if (gen == null) {
-				allGenerated.put(sub, gen = new ArrayList<EObject>());
-			}
-			for (EObject newGen : gen) {
-				if (newGen.eResource() == null) {
-					ret.add(newGen);
-					continue mainLoop;
-				}
-			}
-			EObject eobj = createInstance(sub);
-			gen.add(eobj);
-			ret.add(eobj);
-		}
-		return ret;
-	}
-
-	private EvalFunc<EClass, List<EStructuralFeature>> featureEvalFunc = (x) -> x.getEAllStructuralFeatures();
-
-	public EvalFunc<EClass, List<EStructuralFeature>> getFeatureEvalFunc() {
-		return featureEvalFunc;
-	}
-
-	private Map<EClass, List<EObject>> allObjectMap = new HashMap<>();
-	private List<EObject> allObjs = new ArrayList<>();
-	private EvalFunc<EClass, List<EObject>> evalFunc;
-
-	private EcoreInfo instancibleTypes = null;
-
 	private static class EClassInfo {
-		private List<EClass> instanciableTypes = new ArrayList<EClass>();
-		private List<EClass> subTypesOrSelf = new ArrayList<EClass>();
+		private List<EClass> instanciableTypes = new ArrayList<>();
+		private List<EClass> subTypesOrSelf = new ArrayList<>();
 		private Map<String, OCLExpression[]> ownOclExpressions = new HashMap<>();
-		private List<OCLExpression> totalOclExpressions = new ArrayList<OCLExpression>();
+		private List<OCLExpression> totalOclExpressions = new ArrayList<>();
 		private Map<String, Evaluable> ownEvaluators = new HashMap<>();
 		private List<Evaluable<?, ?>> totalEvaluators = new ArrayList<>();
 		private List<EStructuralFeature> classContainers = new ArrayList<>();
@@ -310,7 +91,7 @@ public class MyResource {
 	}
 
 	public static class EcoreInfo {
-		Map<EClass, EClassInfo> eclassMap = new HashMap<EClass, MyResource.EClassInfo>();
+		Map<EClass, EClassInfo> eclassMap = new HashMap<>();
 		Map<OCLExpression, String> oclExpressionToId = new HashMap<>();
 		Map<String, OCLExpression> idToOCLExpression = new HashMap<>();
 
@@ -320,55 +101,10 @@ public class MyResource {
 		Map<Evaluable, String> evaluableExpressionToId = new HashMap<>();
 		Map<String, Evaluable> idToEvaluable = new HashMap<>();
 
-		Set<Resource> knownResources = new HashSet<Resource>();
-
-		public List<EClass> getInstanciableTypes(EClass from) {
-			return eclassMap.getOrDefault(from, new EClassInfo()).instanciableTypes;
-		}
-
-		public List<OCLExpression> getApplicableOCLExpressions(EClass from) {
-			return eclassMap.getOrDefault(from, new EClassInfo()).totalOclExpressions;
-		}
-
-		public String getID(OCLExpression expr) {
-			return oclExpressionToId.get(expr);
-		}
-
-		public String getID(Evaluable expr) {
-			return evaluableExpressionToId.get(expr);
-		}
-
-		public Evaluable<?, ?> getEvaluable(String forId) {
-			return idToEvaluable.get(forId);
-		}
-
-		public OCLExpression getExpression(String forId) {
-			return idToOCLExpression.get(forId);
-		}
-
-		public Automaton getAutomaton(String forId) {
-			return idToXmlExpression.get(forId);
-		}
-
-		public Collection<EStructuralFeature> getContainersFor(EClass from) {
-			return eclassMap.getOrDefault(from, new EClassInfo()).totalClassContainers;
-		}
-
-		public List<Evaluable<?, ?>> getApplicableEvaluators(EClass from) {
-			// TODO: ...
-			return eclassMap.computeIfAbsent(from, x -> {
-				EClassInfo ret = new EClassInfo();
-				ret.totalEvaluators.addAll(predefinedEvaluables.getOrDefault(x, Collections.emptyList()));
-				return ret;
-			}).totalEvaluators;
-		}
-
-		public boolean knowsResource(Resource res) {
-			return knownResources.contains(res);
-		}
+		Set<Resource> knownResources = new HashSet<>();
 
 		public void augmentWith(Resource res) {
-			knownResources.add(res);
+			this.knownResources.add(res);
 			EcoreInfo ecoreInfo = this;
 			Map<EClass, EClassInfo> eclassMap = ecoreInfo.eclassMap;
 			OCL ocl = OCL.newInstance();
@@ -481,77 +217,267 @@ public class MyResource {
 			}
 		}
 
+		public List<Evaluable<?, ?>> getApplicableEvaluators(EClass from) {
+			// TODO: ...
+			return this.eclassMap.computeIfAbsent(from, x -> {
+				EClassInfo ret = new EClassInfo();
+				ret.totalEvaluators.addAll(predefinedEvaluables.getOrDefault(x, Collections.emptyList()));
+				return ret;
+			}).totalEvaluators;
+		}
+
+		public List<OCLExpression> getApplicableOCLExpressions(EClass from) {
+			return this.eclassMap.getOrDefault(from, new EClassInfo()).totalOclExpressions;
+		}
+
+		public Automaton getAutomaton(String forId) {
+			return this.idToXmlExpression.get(forId);
+		}
+
+		public Collection<EStructuralFeature> getContainersFor(EClass from) {
+			return this.eclassMap.getOrDefault(from, new EClassInfo()).totalClassContainers;
+		}
+
+		public Evaluable<?, ?> getEvaluable(String forId) {
+			return this.idToEvaluable.get(forId);
+		}
+
+		public OCLExpression getExpression(String forId) {
+			return this.idToOCLExpression.get(forId);
+		}
+
+		public String getID(Evaluable expr) {
+			return this.evaluableExpressionToId.get(expr);
+		}
+
+		public String getID(OCLExpression expr) {
+			return this.oclExpressionToId.get(expr);
+		}
+
+		public List<EClass> getInstanciableTypes(EClass from) {
+			return this.eclassMap.getOrDefault(from, new EClassInfo()).instanciableTypes;
+		}
+
+		public boolean knowsResource(Resource res) {
+			return this.knownResources.contains(res);
+		}
+
 	}
+
+	static {
+
+	}
+
+	private static boolean loadedautomaton = false;
+
+	private static WeakHashMap<Resource, MyResource> hashMaps = new WeakHashMap<>();
 
 	private static Map<Resource, EcoreInfo> instancibleTypesMap = new HashMap<>();
 
 	private static Map<EClass, List<Evaluable<?, ?>>> predefinedEvaluables = new HashMap<>();
 
+	private static Map<Class<?>, ValueScope<?, ?>> defaultGenScopes = new HashMap<>();
+
+	static {
+		defaultGenScopes.put(Long.class, LogLongScope.INSTANCE);
+		defaultGenScopes.put(long.class, LogLongScope.INSTANCE);
+		defaultGenScopes.put(Integer.class, LogIntScope.INSTANCE);
+		defaultGenScopes.put(int.class, LogIntScope.INSTANCE);
+		defaultGenScopes.put(BigInteger.class, LogBigIntegerScope.INSTANCE);
+		defaultGenScopes.put(Boolean.class, BooleanScope.INSTANCE);
+		defaultGenScopes.put(boolean.class, BooleanScope.INSTANCE);
+		defaultGenScopes.put(String.class, StringGenScope.INSTANCE);
+	}
+
+	private static Map<Class<?>, ScopePerValue<?>> defaultChangeScopes = new HashMap<>();
+	static {
+		defaultChangeScopes.put(Long.class, (x) -> (ValueScope) new LogLongChangeScope((Long) x));
+		defaultChangeScopes.put(long.class, (x) -> (ValueScope) new LogLongChangeScope((Long) x));
+		defaultChangeScopes.put(Integer.class, (x) -> (ValueScope) new LogIntChangeScope((Integer) x));
+		defaultChangeScopes.put(int.class, (x) -> (ValueScope) new LogIntChangeScope((Integer) x));
+		defaultChangeScopes.put(BigInteger.class, (x) -> (ValueScope) new LogBigIntegerChangeScope((BigInteger) x));
+		defaultChangeScopes.put(Boolean.class, ScopePerValue.staticScopePerValue(BooleanScope.INSTANCE));
+		defaultChangeScopes.put(boolean.class, ScopePerValue.staticScopePerValue(BooleanScope.INSTANCE));
+		defaultChangeScopes.put(String.class,
+				(x) -> (ValueScope) StringChangeScope.getScope((String) x, true, true, true));
+	}
+
+	private static Map<EClass, Map<EStructuralFeature, org.eclipse.ocl.expressions.OCLExpression>> derivations = new HashMap<>();
+
 	public static void addEvaluable(EClass cl, Evaluable<?, ?> ev) {
 		predefinedEvaluables.computeIfAbsent(cl, x -> new ArrayList<>()).add(ev);
 	}
 
-	public List<EClass> getInstancibleTypes(EClass from) {
+	public static synchronized MyResource get(Resource from) {
+		MyResource ret = hashMaps.get(from);
+		if (ret == null) {
+			hashMaps.put(from, ret = new MyResource(from));
+		}
+		return ret;
+	}
+
+	public static org.eclipse.ocl.expressions.OCLExpression getDerivation(EClass cl, EStructuralFeature eprop) {
+		return derivations.getOrDefault(cl, Collections.emptyMap()).get(eprop);
+	}
+
+	public static String getStandardType(EAttribute cl) {
+		EAnnotation annot = cl.getEAnnotation("http://big.tuwien.ac.at/standardXMLDatatype");
+		if (annot != null) {
+			return annot.getDetails().get("type");
+		}
+		return null;
+	}
+
+	private static void loadAutomaton() {
+		if (!loadedautomaton) {
+			synchronized (MyResource.class) {
+				if (!loadedautomaton) {
+					loadedautomaton = true;
+					try {
+						Method m = Datatypes.class.getDeclaredMethod("buildAll");
+						m.setAccessible(true);
+						m.invoke(null);
+					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+							| NoSuchMethodException | SecurityException e) {
+						e.printStackTrace();
+					} catch (Exception e) {
+						System.out.println("TODO: Er kann das nicht vollständig machen, weil er keine Dateien hat ... "
+								+ e.getMessage());
+					}
+				}
+			}
+		}
+	}
+
+	public static void putDerivation(EClass cl, EStructuralFeature feat,
+			org.eclipse.ocl.expressions.OCLExpression expr) {
+		derivations.computeIfAbsent(cl, x -> new HashMap<>()).put(feat, expr);
+	}
+
+	public static void putDerivation(EClass cl, EStructuralFeature feat, String derivation) {
+		OCLExpression expr = OclExtractor.getExpression(cl, derivation);
+		putDerivation(cl, feat, expr);
+	}
+
+	private SoftReference<Resource> res;
+
+	private List<EStructuralFeature> feat = null;
+
+	private List<EClass> clsl = null;
+
+	private Map<EClass, List<EObject>> allGenerated = new HashMap<>();
+
+	private EvalFunc<EClass, List<EStructuralFeature>> featureEvalFunc = (x) -> x.getEAllStructuralFeatures();
+
+	private Map<EClass, List<EObject>> allObjectMap = new HashMap<>();
+
+	private List<EObject> allObjs = new ArrayList<>();
+	private EvalFunc<EClass, List<EObject>> evalFunc;
+	private EcoreInfo instancibleTypes = null;
+
+	private Set<Resource> knownResources = new HashSet<>();
+
+	private Map<EStructuralFeature, ValueScope<?, ?>> customGenScopes = new HashMap<>();
+
+	private Map<EStructuralFeature, ScopePerValue<?>> customChangeScopes = new HashMap<>();
+
+	private CostProvider prov = CostProvider.DEFAULT_PROVIDER;
+
+	public MyResource(Resource from) {
+		this.res = new SoftReference<>(from);
 		if (from == null) {
-			return Collections.emptyList();
+			System.out.println("Null resource!");
 		}
-		if (instancibleTypes == null) {
-			if (from.eResource() == null) {
-				System.err.println("EClass without resource!");
-				return Collections.emptyList();
-			}
-			instancibleTypes = getOrBuildEcoreInfo(from.eResource());
-		}
-		return instancibleTypes.getInstanciableTypes(from);
 	}
 
-	public Collection<EStructuralFeature> getContainersFor(EClass from) {
-		if (from == null) {
-			return Collections.emptyList();
-		}
-		if (instancibleTypes == null) {
-			if (from.eResource() == null) {
-				System.err.println("EClass without resource!");
-				return Collections.emptyList();
+	private void calcFeatures(Resource res) {
+		synchronized (res) {
+			this.feat = new ArrayList<>();
+			this.clsl = new ArrayList<>();
+			TreeIterator<EObject> iter = res.getAllContents();
+			while (iter.hasNext()) {
+				EObject next = iter.next();
+				if (next instanceof EClass) {
+
+					EClass storedClass = (EClass) next;
+					this.clsl.add(storedClass);
+					this.feat.addAll(storedClass.getEStructuralFeatures());
+					if (this.feat.contains(null)) {
+						System.out.println("Why does an EClass contain null feature?!");
+					}
+				}
 			}
-			instancibleTypes = getOrBuildEcoreInfo(from.eResource());
 		}
-		return instancibleTypes.getContainersFor(from);
 	}
 
-	public synchronized List<OCLExpression> getApplicableOCLExpressions(EClass from) {
-		if (from == null) {
-			return Collections.emptyList();
-		}
-		if (instancibleTypes == null) {
-			if (from.eResource() == null) {
-				System.err.println("EClass without resource!");
-				return Collections.emptyList();
-			}
-			instancibleTypes = getOrBuildEcoreInfo(from.eResource());
-		}
-		return instancibleTypes.getApplicableOCLExpressions(from);
+	private void checkRes(Resource from) {
+
 	}
 
-	public Collection<Evaluable<?, ?>> getApplicableEvaluators(EObject from) {
-		if (from == null || from.eClass() == null) {
-			return Collections.emptyList();
-		}
-		Resource res = from.eClass().eResource();
-		if (instancibleTypes == null) {
-			if (res == null) {
-				System.err.println("EClass without resource!");
-				return Collections.emptyList();
+	public void checkResource() {
+		for (EObject eobj : iterateAllContents()) {
+			if (eobj.eResource() == null) {
+				throw new RuntimeException("Null Resource in my resource!!");
 			}
-			instancibleTypes = getOrBuildEcoreInfo(from.eClass().eResource());
-		} else if (!instancibleTypes.knowsResource(res)) {
-			instancibleTypes.augmentWith(res);
 		}
-		return instancibleTypes.getApplicableEvaluators(from.eClass());
 	}
 
-	private EcoreInfo getExistingEcoreInfo() {
-		return instancibleTypes;
+	@Override
+	public Resource clone() {
+		return clone(new EcoreUtil.Copier());
+	}
+
+	public Resource clone(Copier copier) {
+		if (this.res.get() == null) {
+			return this.getResource();
+		}
+		Resource newResource = new ResourceImpl();
+		/*System.out.println("Creating new Resource: "+newResource);
+		new Exception().printStackTrace();*/
+		newResource.setURI(getResource().getURI());
+		/*
+		 * for (EObject eobj:
+		 * (Iterable<EObject>)()->getResource().getAllContents()) {
+		 * copier.copy(eobj); }
+		 */
+		newResource.getContents().addAll(copier.copyAll(getResource().getContents()));
+		MapCorrespondingGetter mcg = new MapCorrespondingGetter(new HashMap<>(copier));
+		MyResource ret = MyResource.get(newResource);
+		mcg.put(this, ret);
+		Set<Spawnable<?>> allSpawnables = new HashSet<>();
+		for (Entry<EObject, EObject> entry : copier.entrySet()) {
+			if (entry.getKey() instanceof AddCopyable) {
+				// Not very good ...
+				AddCopyable from = (AddCopyable) entry.getKey();
+				allSpawnables.addAll(from.getSpawned());
+			}
+		}
+		for (Spawnable<?> spawnable : allSpawnables) {
+			mcg.put(spawnable, spawnable.spawnNew());
+		}
+		for (Entry<EObject, EObject> entry : copier.entrySet()) {
+			if (entry.getKey() instanceof AddCopyable && entry.getValue() instanceof AddCopyable) {
+				AddCopyable from = (AddCopyable) entry.getKey();
+				AddCopyable to = (AddCopyable) entry.getValue();
+				to.copyFrom(from, mcg);
+				//System.out.println("Target resource: " + entry.getValue().eResource());
+			}
+		}
+		copier.copyReferences();
+
+		ret.setCostProvider(getCostProvider());
+		return ret.getResource();
+	}
+
+	public EcoreTransferFunction cloneFunc(Resource[] resourceRef) {
+		EcoreUtil.Copier copier = new EcoreUtil.Copier();
+		Resource cloned = clone(copier);
+		resourceRef[0] = cloned;
+		return new EcoreMapTransferFunction(getResource(), cloned, copier);
+	}
+
+	public synchronized EObject createInstance(EClass targetType) {
+		return MyEcoreUtil.createInstanceStatic(targetType);
 	}
 
 	public ParameterType defaultGenerator(EStructuralFeature targetFeat) {
@@ -574,7 +500,7 @@ public class MyResource {
 		// Für Assoziationen: Generatoren - Modifikatoren unnötig
 		if (targetType instanceof EEnum) {
 			EEnum base = (EEnum) targetType;
-			List<Object> eliteralValue = new ArrayList<Object>();
+			List<Object> eliteralValue = new ArrayList<>();
 			for (EEnumLiteral lit : base.getELiterals()) {
 				eliteralValue.add(lit.getInstance());
 			}
@@ -617,7 +543,7 @@ public class MyResource {
 		// Für Assoziationen: Generatoren - Modifikatoren unnötig
 		if (targetType instanceof EEnum) {
 			EEnum base = (EEnum) targetType;
-			List<Object> eliteralValue = new ArrayList<Object>();
+			List<Object> eliteralValue = new ArrayList<>();
 			for (EEnumLiteral lit : base.getELiterals()) {
 				eliteralValue.add(lit.getInstance());
 			}
@@ -640,27 +566,49 @@ public class MyResource {
 		return valueGeneratingParameter;
 	}
 
-	public static String getStandardType(EAttribute cl) {
-		EAnnotation annot = cl.getEAnnotation("http://big.tuwien.ac.at/standardXMLDatatype");
-		if (annot != null) {
-			return annot.getDetails().get("type");
+	public boolean equals(MyResource cloned, EcoreTransferFunction etf) {
+		if (getResource().getContents().size() != cloned.getResource().getContents().size()) {
+			return false;
 		}
-		return null;
+		for (EObject eobj : iterateAllContents()) {
+			EObject target = etf.forward(eobj);
+			if (target == null || target.eResource() == null) {
+				return false;
+			}
+			if (!objequals(eobj, target, etf)) {
+				return false;
+			}
+		}
+		EcoreTransferFunction back = etf.inverse();
+		for (EObject rev : cloned.iterateAllContents()) {
+			EObject source = back.forward(rev);
+			if (source == null || source.eResource() == null) {
+				return false;
+			}
+			if (!objequals(rev, source, back)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
-	private Set<Resource> knownResources = new HashSet<Resource>();
-
-	public synchronized EcoreInfo getOrBuildEcoreInfo(Resource res) {
-		synchronized (res) {
-			EcoreInfo ecoreInfo = instancibleTypesMap.get(res);
-			if (ecoreInfo == null) {
-				instancibleTypesMap.put(res, ecoreInfo = new EcoreInfo());
-			} else if (ecoreInfo.knowsResource(res)) {
-				return ecoreInfo;
-			}
-			ecoreInfo.augmentWith(res);
-			return ecoreInfo;
+	public boolean equalsRes(MyResource myResource) {
+		List<EObject> first = new ArrayList<>();
+		List<EObject> second = new ArrayList<>();
+		for (EObject eobj : iterateAllContents()) {
+			first.add(eobj);
 		}
+		for (EObject eobj : myResource.iterateAllContents()) {
+			second.add(eobj);
+		}
+		if (first.size() != second.size()) {
+			return false;
+		}
+		Map<EObject, EObject> eobjMap = new HashMap<>();
+		for (int i = 0; i < first.size(); ++i) {
+			eobjMap.put(first.get(i), second.get(i));
+		}
+		return equals(myResource, new EcoreMapTransferFunction(getResource(), myResource.getResource(), eobjMap));
 	}
 
 	/*
@@ -676,135 +624,122 @@ public class MyResource {
 	 * eclassInfoMap); } return eclassInfoMap; }
 	 */
 
-	public EvalFunc<EClass, List<EObject>> getClassInstanceFunc() {
-		if (evalFunc == null) {
-			evalFunc = new EvalFunc<EClass, List<EObject>>() {
-				{
-					Iterator<EObject> iter = getResource().getAllContents();
-					while (iter.hasNext()) {
-						EObject next = iter.next();
-						EClass cl = next.eClass();
-						if (cl == null) {
-							continue;
-						}
-						for (EClass allCl : IteratorUtils.shallowUnionObject(cl.getEAllSuperTypes(), cl)) {
-							List<EObject> eobjL = allObjectMap.get(allCl);
-							if (eobjL == null) {
-								allObjectMap.put(allCl, eobjL = new ArrayList<EObject>());
-							}
-							eobjL.add(next);
-							allObjs.add(next);
-						}
-					}
-				}
-
-				@Override
-				public List<EObject> eval(EClass t) {
-					if (t == null) {
-						return allObjs;
-					}
-					List<EObject> ret = allObjectMap.get(t);
-					if (ret == null) {
-						allObjectMap.put(t, ret = new ArrayList<EObject>());
-					}
-					return ret;
-				}
-			};
-		}
-		return evalFunc;
-	}
-
-	public void trackCreated(EObject obj) {
-		EvalFunc<EClass, List<EObject>> instances = getClassInstanceFunc();
-		for (EClass cl : obj.eClass().getEAllSuperTypes()) {
-			instances.eval(cl).add(obj);
+	public boolean equalsTarget(EcoreTransferFunction cf) {
+		if (getResource().equals(cf.forwardResource())) {
+			return equals(MyResource.get(cf.backResource()), cf.inverse());
+		} else {
+			return equals(MyResource.get(cf.forwardResource()), cf);
 		}
 	}
 
-	public void trackDeleted(EObject obj) {
-		EvalFunc<EClass, List<EObject>> instances = getClassInstanceFunc();
-		for (EClass cl : obj.eClass().getEAllSuperTypes()) {
-			instances.eval(cl).remove(obj);
-		}
-	}
-
-	private Map<EStructuralFeature, ValueScope<?, ?>> customGenScopes = new HashMap<EStructuralFeature, ValueScope<?, ?>>();
-	private Map<EStructuralFeature, ScopePerValue<?>> customChangeScopes = new HashMap<>();
-
-	private static Map<Class<?>, ValueScope<?, ?>> defaultGenScopes = new HashMap<>();
-	static {
-		defaultGenScopes.put(Long.class, LogLongScope.INSTANCE);
-		defaultGenScopes.put(long.class, LogLongScope.INSTANCE);
-		defaultGenScopes.put(Integer.class, LogIntScope.INSTANCE);
-		defaultGenScopes.put(int.class, LogIntScope.INSTANCE);
-		defaultGenScopes.put(BigInteger.class, LogBigIntegerScope.INSTANCE);
-		defaultGenScopes.put(Boolean.class, BooleanScope.INSTANCE);
-		defaultGenScopes.put(boolean.class, BooleanScope.INSTANCE);
-		defaultGenScopes.put(String.class, StringGenScope.INSTANCE);
-	}
-
-	private static Map<Class<?>, ScopePerValue<?>> defaultChangeScopes = new HashMap<>();
-	static {
-		defaultChangeScopes.put(Long.class, (x) -> (ValueScope) new LogLongChangeScope((long) (Long) x));
-		defaultChangeScopes.put(long.class, (x) -> (ValueScope) new LogLongChangeScope((long) (Long) x));
-		defaultChangeScopes.put(Integer.class, (x) -> (ValueScope) new LogIntChangeScope((int) (Integer) x));
-		defaultChangeScopes.put(int.class, (x) -> (ValueScope) new LogIntChangeScope((int) (Integer) x));
-		defaultChangeScopes.put(BigInteger.class, (x) -> (ValueScope) new LogBigIntegerChangeScope((BigInteger) x));
-		defaultChangeScopes.put(Boolean.class, ScopePerValue.staticScopePerValue(BooleanScope.INSTANCE));
-		defaultChangeScopes.put(boolean.class, ScopePerValue.staticScopePerValue(BooleanScope.INSTANCE));
-		defaultChangeScopes.put(String.class,
-				(x) -> (ValueScope) StringChangeScope.getScope((String) x, true, true, true));
-	}
-
-	public void setCustomChangeScope(EStructuralFeature forFeature, ScopePerValue<?> scope) {
-		customChangeScopes.put(forFeature, scope);
-	}
-
-	public void setCustomGenScope(EStructuralFeature forFeature, ValueScope<?, ?> scope) {
-		customGenScopes.put(forFeature, scope);
-	}
-
-	public <T> ValueScope<T, ?> getDefaultGenScope(EClassifier type, Class<?> cl) {
-		ValueScope<T, ?> ret = (ValueScope<T, ?>) defaultGenScopes.get(cl);
-		if (ret == null) {
-			if (type instanceof EEnum) {
-				List<Object> eliteralValue = new ArrayList<Object>();
-				for (EEnumLiteral lit : ((EEnum) type).getELiterals()) {
-					eliteralValue.add(lit.getInstance());
+	public synchronized List<EClass> getAllClasses() {
+		if (this.clsl == null) {
+			synchronized (this) {
+				List<EObject> allInst = getAllInstances(null);
+				for (EObject obj : allInst) {
+					if (obj.eClass() != null) {
+						EClass cl = obj.eClass();
+						calcFeatures(cl.eResource());
+						return this.clsl;
+					}
 				}
-				ret = (ValueScope) EqualProbabilityScope.fromList(eliteralValue);
-			} else if (type instanceof EClass) {
-				ret = (ValueScope) EqualProbabilityScope.fromList(this.getAllInstancesPlusOne((EClass) type));
+				System.err.println("Have no (suitable?) available object ...");
+				return Collections.emptyList();
 			}
+
+		}
+		return this.clsl;
+	}
+
+	public synchronized List<EStructuralFeature> getAllFeatures() {
+		if (this.feat == null) {
+			List<EObject> allInst = getAllInstances(null);
+			for (EObject obj : allInst) {
+				if (obj.eClass() != null) {
+					EClass cl = obj.eClass();
+					calcFeatures(cl.eResource());
+					return this.feat;
+				}
+			}
+			System.err.println("Have no (suitable?) available object ...");
+			return Collections.emptyList();
+
+		}
+		return this.feat;
+	}
+
+	public synchronized List<EObject> getAllInstances(EClass forClass) {
+		return getClassInstanceFunc().eval(forClass);
+	}
+	public List<EObject> getAllInstancesPlusOne(EClass targetType) {
+		List<EObject> ret = new ArrayList<>(getAllInstances(targetType));
+		mainLoop: for (EClass sub : getInstancibleTypes(targetType)) {
+			List<EObject> gen = this.allGenerated.get(sub);
+			if (gen == null) {
+				this.allGenerated.put(sub, gen = new ArrayList<>());
+			}
+			for (EObject newGen : gen) {
+				if (newGen.eResource() == null) {
+					ret.add(newGen);
+					continue mainLoop;
+				}
+			}
+			EObject eobj = createInstance(sub);
+			gen.add(eobj);
+			ret.add(eobj);
 		}
 		return ret;
 	}
 
-	public <T> ScopePerValue<T> getDefaultChangeScope(EClassifier type, Class<?> cl) {
-		ScopePerValue<T> ret = (ScopePerValue<T>) defaultChangeScopes.get(cl);
-		if (ret == null) {
-			ValueScope<T, ?> genScope = getDefaultGenScope(type, cl);
-			if (genScope != null) {
-				ret = (x) -> genScope;
-			}
-		}
-		return ret;
-	}
-
-	public ParameterType getGenValueGenerator(EStructuralFeature targetFeat, Class<?> targetClass) {
-		ValueScope<?, ?> scope = customGenScopes.get(targetFeat);
-		if (scope == null) {
-			scope = getDefaultGenScope(targetFeat.getEType(), targetClass);
-		}
-		if (scope == null) {
-			System.err.println("No scope for feature " + targetFeat + " in class " + targetClass + " found!");
+	public EClass getAllInstancesType(OperationCallExp opExp) {
+		// TODO Etwas besseres
+		EOperation op = (EOperation) opExp.getReferredOperation();
+		EClassifier ecl = op.getEType();
+		if (!(ecl instanceof EClass)) {
+			System.err.println("Strange operation allInstances type: " + ecl);
 			return null;
 		}
-		return new StaticScopeParameterType(targetClass, scope);
+		EClass cl = (EClass) ecl;
+		return cl;
+	}
+	public EObject getAndTrackCreated(EClass targetType) {
+		EObject ret = getPrecreatedInstance(targetType);
+		trackCreated(ret);
+		return ret;
+	}
+
+	public Collection<Evaluable<?, ?>> getApplicableEvaluators(EObject from) {
+		if (from == null || from.eClass() == null) {
+			return Collections.emptyList();
+		}
+		Resource res = from.eClass().eResource();
+		if (this.instancibleTypes == null) {
+			if (res == null) {
+				System.err.println("EClass without resource!");
+				return Collections.emptyList();
+			}
+			this.instancibleTypes = getOrBuildEcoreInfo(from.eClass().eResource());
+		} else if (!this.instancibleTypes.knowsResource(res)) {
+			this.instancibleTypes.augmentWith(res);
+		}
+		return this.instancibleTypes.getApplicableEvaluators(from.eClass());
+	}
+	public synchronized List<OCLExpression> getApplicableOCLExpressions(EClass from) {
+		if (from == null) {
+			return Collections.emptyList();
+		}
+		if (this.instancibleTypes == null) {
+			if (from.eResource() == null) {
+				System.err.println("EClass without resource!");
+				return Collections.emptyList();
+			}
+			this.instancibleTypes = getOrBuildEcoreInfo(from.eResource());
+		}
+		return this.instancibleTypes.getApplicableOCLExpressions(from);
 	}
 
 	public ParameterType getChangeValueGenerator(EStructuralFeature targetFeat, Class<?> targetClass, Object curValue) {
-		ScopePerValue<?> scopePerValue = customChangeScopes.get(targetFeat);
+		ScopePerValue<?> scopePerValue = this.customChangeScopes.get(targetFeat);
 		if (scopePerValue == null) {
 			scopePerValue = getDefaultChangeScope(targetFeat.getEType(), targetClass);
 		}
@@ -820,9 +755,92 @@ public class MyResource {
 		return new StaticScopeParameterType(targetClass, scope);
 	}
 
+	public EvalFunc<EClass, List<EObject>> getClassInstanceFunc() {
+		if (this.evalFunc == null) {
+			this.evalFunc = new EvalFunc<EClass, List<EObject>>() {
+				{
+					Iterator<EObject> iter = getResource().getAllContents();
+					while (iter.hasNext()) {
+						EObject next = iter.next();
+						EClass cl = next.eClass();
+						if (cl == null) {
+							continue;
+						}
+						for (EClass allCl : IteratorUtils.shallowUnionObject(cl.getEAllSuperTypes(), cl)) {
+							List<EObject> eobjL = MyResource.this.allObjectMap.get(allCl);
+							if (eobjL == null) {
+								MyResource.this.allObjectMap.put(allCl, eobjL = new ArrayList<>());
+							}
+							eobjL.add(next);
+							MyResource.this.allObjs.add(next);
+						}
+					}
+				}
+
+				@Override
+				public List<EObject> eval(EClass t) {
+					if (t == null) {
+						return MyResource.this.allObjs;
+					}
+					List<EObject> ret = MyResource.this.allObjectMap.get(t);
+					if (ret == null) {
+						MyResource.this.allObjectMap.put(t, ret = new ArrayList<>());
+					}
+					return ret;
+				}
+			};
+		}
+		return this.evalFunc;
+	}
+
+	public Collection<EStructuralFeature> getContainersFor(EClass from) {
+		if (from == null) {
+			return Collections.emptyList();
+		}
+		if (this.instancibleTypes == null) {
+			if (from.eResource() == null) {
+				System.err.println("EClass without resource!");
+				return Collections.emptyList();
+			}
+			this.instancibleTypes = getOrBuildEcoreInfo(from.eResource());
+		}
+		return this.instancibleTypes.getContainersFor(from);
+	}
+
+	public CostProvider getCostProvider() {
+		return this.prov;
+	}
+
+	public <T> ScopePerValue<T> getDefaultChangeScope(EClassifier type, Class<?> cl) {
+		ScopePerValue<T> ret = (ScopePerValue<T>) defaultChangeScopes.get(cl);
+		if (ret == null) {
+			ValueScope<T, ?> genScope = getDefaultGenScope(type, cl);
+			if (genScope != null) {
+				ret = (x) -> genScope;
+			}
+		}
+		return ret;
+	}
+
+	public <T> ValueScope<T, ?> getDefaultGenScope(EClassifier type, Class<?> cl) {
+		ValueScope<T, ?> ret = (ValueScope<T, ?>) defaultGenScopes.get(cl);
+		if (ret == null) {
+			if (type instanceof EEnum) {
+				List<Object> eliteralValue = new ArrayList<>();
+				for (EEnumLiteral lit : ((EEnum) type).getELiterals()) {
+					eliteralValue.add(lit.getInstance());
+				}
+				ret = (ValueScope) EqualProbabilityScope.fromList(eliteralValue);
+			} else if (type instanceof EClass) {
+				ret = (ValueScope) EqualProbabilityScope.fromList(this.getAllInstancesPlusOne((EClass) type));
+			}
+		}
+		return ret;
+	}
+
 	public ParameterType getDynamicChangeValueGenerator(EStructuralFeature targetFeat, Class<?> targetClass,
 			EObject curValue) {
-		ScopePerValue<?> scopePerValue = customChangeScopes.get(targetFeat);
+		ScopePerValue<?> scopePerValue = this.customChangeScopes.get(targetFeat);
 		if (scopePerValue == null) {
 			scopePerValue = getDefaultChangeScope(targetFeat.getEType(), targetClass);
 		}
@@ -838,74 +856,74 @@ public class MyResource {
 		return new StaticScopeParameterType(targetClass, scope);
 	}
 
-	public Resource clone() {
-		return clone(new EcoreUtil.Copier());
+	public String getEvaluableId(Evaluable evaluable) {
+		return getExistingEcoreInfo().getID(evaluable);
 	}
 
-	public Resource clone(Copier copier) {
-		if (res.get() == null) {
-			return this.getResource();
-		}
-		Resource newResource = new ResourceImpl();
-		System.out.println("Creating new Resource: "+newResource);
-		new Exception().printStackTrace();
-		newResource.setURI(getResource().getURI());
-		/*
-		 * for (EObject eobj:
-		 * (Iterable<EObject>)()->getResource().getAllContents()) {
-		 * copier.copy(eobj); }
-		 */
-		newResource.getContents().addAll(copier.copyAll(getResource().getContents()));
-		MapCorrespondingGetter mcg = new MapCorrespondingGetter(new HashMap<>(copier));
-		MyResource ret = MyResource.get(newResource);
-		mcg.put(this, ret);
-		Set<Spawnable<?>> allSpawnables = new HashSet<>();
-		for (Entry<EObject, EObject> entry : copier.entrySet()) {
-			if (entry.getKey() instanceof AddCopyable) {
-				// Not very good ...
-				AddCopyable from = (AddCopyable) entry.getKey();
-				allSpawnables.addAll(from.getSpawned());
-			}
-		}
-		for (Spawnable<?> spawnable : allSpawnables) {
-			mcg.put(spawnable, spawnable.spawnNew());
-		}
-		for (Entry<EObject, EObject> entry : copier.entrySet()) {
-			if (entry.getKey() instanceof AddCopyable && entry.getValue() instanceof AddCopyable) {
-				AddCopyable from = (AddCopyable) entry.getKey();
-				AddCopyable to = (AddCopyable) entry.getValue();
-				to.copyFrom(from, mcg);
-				System.out.println("Target resource: " + entry.getValue().eResource());
-			}
-		}
-		copier.copyReferences();
-
-		ret.setCostProvider(getCostProvider());
-		return ret.getResource();
+	private EcoreInfo getExistingEcoreInfo() {
+		return this.instancibleTypes;
 	}
 
 	public String getExpressionId(OCLExpression expr) {
 		return getExistingEcoreInfo().getID(expr);
 	}
 
-	public String getEvaluableId(Evaluable evaluable) {
-		return getExistingEcoreInfo().getID(evaluable);
+	public EvalFunc<EClass, List<EStructuralFeature>> getFeatureEvalFunc() {
+		return this.featureEvalFunc;
 	}
 
-	public EClass getAllInstancesType(OperationCallExp opExp) {
-		// TODO Etwas besseres
-		EOperation op = (EOperation) opExp.getReferredOperation();
-		EClassifier ecl = op.getEType();
-		if (!(ecl instanceof EClass)) {
-			System.err.println("Strange operation allInstances type: " + ecl);
+	public ParameterType getGenValueGenerator(EStructuralFeature targetFeat, Class<?> targetClass) {
+		ValueScope<?, ?> scope = this.customGenScopes.get(targetFeat);
+		if (scope == null) {
+			scope = getDefaultGenScope(targetFeat.getEType(), targetClass);
+		}
+		if (scope == null) {
+			System.err.println("No scope for feature " + targetFeat + " in class " + targetClass + " found!");
 			return null;
 		}
-		EClass cl = (EClass) ecl;
-		return cl;
+		return new StaticScopeParameterType(targetClass, scope);
 	}
 
-	public Iterable<EObject> iterateAllContents() {
-		return () -> getResource().getAllContents();
+	public List<EClass> getInstancibleTypes(EClass from) {
+		if (from == null) {
+			return Collections.emptyList();
+		}
+		if (this.instancibleTypes == null) {
+			if (from.eResource() == null) {
+				System.err.println("EClass without resource!");
+				return Collections.emptyList();
+			}
+			this.instancibleTypes = getOrBuildEcoreInfo(from.eResource());
+		}
+		return this.instancibleTypes.getInstanciableTypes(from);
+	}
+
+	public synchronized EcoreInfo getOrBuildEcoreInfo(Resource res) {
+		synchronized (res) {
+			EcoreInfo ecoreInfo = instancibleTypesMap.get(res);
+			if (ecoreInfo == null) {
+				instancibleTypesMap.put(res, ecoreInfo = new EcoreInfo());
+			} else if (ecoreInfo.knowsResource(res)) {
+				return ecoreInfo;
+			}
+			ecoreInfo.augmentWith(res);
+			return ecoreInfo;
+		}
+	}
+
+	public EObject getPrecreatedInstance(EClass targetType) {
+		List<EObject> gen = this.allGenerated.get(targetType);
+		if (gen == null) {
+			this.allGenerated.put(targetType, gen = new ArrayList<>());
+		}
+		for (EObject newGen : gen) {
+			if (newGen.eResource() == null) {
+				return newGen;
+			}
+		}
+		EObject eobj = createInstance(targetType);
+		gen.add(eobj);
+		return eobj;
 	}
 
 	public ChangeType<?, ?> getRandomChange(EObject eobj, EStructuralFeature toChange, Random random) {
@@ -944,60 +962,55 @@ public class MyResource {
 		}
 	}
 
-	public ChangeType<?, ?> randomChange(Random random) {
-		// randomly select a class or feature
-		for (int i = 0; i < 10; ++i) {
-			List<EStructuralFeature> allFeat = getAllFeatures();
-			List<EClass> allClass = getAllClasses();
-			int randomIndex = random.nextInt(allFeat.size() + allClass.size());
-			if (randomIndex < allFeat.size()) {
-				EStructuralFeature toChange = allFeat.get(randomIndex);
-				List<EObject> instances = getAllInstances(toChange.getEContainingClass());
-				if (instances.isEmpty()) {
-					// Cannot do anything
-					continue;
-				}
-				EObject eobj = instances.get(random.nextInt(instances.size()));
-				return getRandomChange(eobj, toChange, random);
-			}
-			randomIndex -= allFeat.size();
-			EClass randomClass = allClass.get(randomIndex);
-			List<EObject> instance = getAllInstances(randomClass);
-			if (!instance.isEmpty() && random.nextBoolean()) {
-				// Delete
-				ChangeType<?, ?> delete = DeleteObjectChangeType.createObjectFromObjects(getResource(), instance);
-				return delete;
-			}
-			// Create
-			if (!randomClass.isAbstract()) {
-				ChangeType<?, ?> create = CreateObjectChangeType.createObjectFromClasses(getResource(), randomClass);
-				return create;
-			}
-		}
-
-		// randomly select and object and do something
-		for (int i = 0; i < 10; ++i) {
-			List<EObject> allInst = getAllInstances(null);
-			EObject robj = allInst.get(random.nextInt(allInst.size()));
-			List<EStructuralFeature> esf = robj.eClass().getEAllStructuralFeatures();
-			if (esf.isEmpty()) {
-				continue;
-			}
-			EStructuralFeature randomFeat = esf.get(random.nextInt(esf.size()));
-			return getRandomChange(robj, randomFeat, random);
-		}
-
-		return new EmptyChangeType(getResource());
+	public Resource getResource() {
+		return this.res.get();
 	}
 
-	private CostProvider prov = CostProvider.DEFAULT_PROVIDER;
-
-	public void setCostProvider(CostProvider prov) {
-		this.prov = prov;
+	public Iterable<EObject> iterateAllContents() {
+		return () -> getResource().getAllContents();
 	}
 
-	public CostProvider getCostProvider() {
-		return prov;
+	public void knowEcore(Resource ecoreRes) {
+		calcFeatures(ecoreRes);
+	}
+
+	public synchronized void objectAdded(EObject eobj) {
+		if (this.evalFunc == null) {
+			return;
+		}
+		if (eobj == null) {
+			return;
+		}
+		EClass cl = eobj.eClass();
+		if (cl == null) {
+			return;
+		}
+		for (EClass allCl : IteratorUtils.shallowUnionObject(cl.getEAllSuperTypes(), cl)) {
+			List<EObject> eobjL = this.allObjectMap.get(allCl);
+			if (eobjL == null) {
+				this.allObjectMap.put(allCl, eobjL = new ArrayList<>());
+			}
+			eobjL.add(eobj);
+			this.allObjs.add(eobj);
+		}
+
+	}
+
+	public synchronized void objectRemoved(EObject eobj) {
+		if (this.evalFunc == null) {
+			return;
+		}
+		if (eobj == null) {
+			return;
+		}
+		EClass cl = eobj.eClass();
+		if (cl == null) {
+			return;
+		}
+		for (EClass allCl : IteratorUtils.shallowUnionObject(cl.getEAllSuperTypes(), cl)) {
+			this.allObjectMap.getOrDefault(allCl, Collections.emptyList()).remove(eobj);
+		}
+		this.allObjs.remove(eobj);
 	}
 
 	public boolean objequals(EObject from, EObject to, EcoreTransferFunction etf) {
@@ -1052,88 +1065,76 @@ public class MyResource {
 		return true;
 	}
 
-	public boolean equalsRes(MyResource myResource) {
-		List<EObject> first = new ArrayList<EObject>();
-		List<EObject> second = new ArrayList<EObject>();
-		for (EObject eobj : iterateAllContents()) {
-			first.add(eobj);
-		}
-		for (EObject eobj : myResource.iterateAllContents()) {
-			second.add(eobj);
-		}
-		if (first.size() != second.size()) {
-			return false;
-		}
-		Map<EObject, EObject> eobjMap = new HashMap<EObject, EObject>();
-		for (int i = 0; i < first.size(); ++i) {
-			eobjMap.put(first.get(i), second.get(i));
-		}
-		return equals(myResource, new EcoreMapTransferFunction(getResource(), myResource.getResource(), eobjMap));
-	}
-
-	public boolean equals(MyResource cloned, EcoreTransferFunction etf) {
-		if (getResource().getContents().size() != cloned.getResource().getContents().size()) {
-			return false;
-		}
-		for (EObject eobj : iterateAllContents()) {
-			EObject target = etf.forward(eobj);
-			if (target == null || target.eResource() == null) {
-				return false;
+	public ChangeType<?, ?> randomChange(Random random) {
+		// randomly select a class or feature
+		for (int i = 0; i < 10; ++i) {
+			List<EStructuralFeature> allFeat = getAllFeatures();
+			List<EClass> allClass = getAllClasses();
+			int randomIndex = random.nextInt(allFeat.size() + allClass.size());
+			if (randomIndex < allFeat.size()) {
+				EStructuralFeature toChange = allFeat.get(randomIndex);
+				List<EObject> instances = getAllInstances(toChange.getEContainingClass());
+				if (instances.isEmpty()) {
+					// Cannot do anything
+					continue;
+				}
+				EObject eobj = instances.get(random.nextInt(instances.size()));
+				return getRandomChange(eobj, toChange, random);
 			}
-			if (!objequals(eobj, target, etf)) {
-				return false;
+			randomIndex -= allFeat.size();
+			EClass randomClass = allClass.get(randomIndex);
+			List<EObject> instance = getAllInstances(randomClass);
+			if (!instance.isEmpty() && random.nextBoolean()) {
+				// Delete
+				ChangeType<?, ?> delete = DeleteObjectChangeType.createObjectFromObjects(getResource(), instance);
+				return delete;
+			}
+			// Create
+			if (!randomClass.isAbstract()) {
+				ChangeType<?, ?> create = CreateObjectChangeType.createObjectFromClasses(getResource(), randomClass);
+				return create;
 			}
 		}
-		EcoreTransferFunction back = etf.inverse();
-		for (EObject rev : cloned.iterateAllContents()) {
-			EObject source = back.forward(rev);
-			if (source == null || source.eResource() == null) {
-				return false;
+
+		// randomly select and object and do something
+		for (int i = 0; i < 10; ++i) {
+			List<EObject> allInst = getAllInstances(null);
+			EObject robj = allInst.get(random.nextInt(allInst.size()));
+			List<EStructuralFeature> esf = robj.eClass().getEAllStructuralFeatures();
+			if (esf.isEmpty()) {
+				continue;
 			}
-			if (!objequals(rev, source, back)) {
-				return false;
-			}
+			EStructuralFeature randomFeat = esf.get(random.nextInt(esf.size()));
+			return getRandomChange(robj, randomFeat, random);
 		}
-		return true;
+
+		return new EmptyChangeType(getResource());
 	}
 
-	public EcoreTransferFunction cloneFunc(Resource[] resourceRef) {
-		EcoreUtil.Copier copier = new EcoreUtil.Copier();
-		Resource cloned = clone(copier);
-		resourceRef[0] = cloned;
-		return new EcoreMapTransferFunction(getResource(), cloned, copier);
+	public void setCostProvider(CostProvider prov) {
+		this.prov = prov;
 	}
 
-	public boolean equalsTarget(EcoreTransferFunction cf) {
-		if (getResource().equals(cf.forwardResource())) {
-			return equals(MyResource.get(cf.backResource()), cf.inverse());
-		} else {
-			return equals(MyResource.get(cf.forwardResource()), cf);
-		}
+	public void setCustomChangeScope(EStructuralFeature forFeature, ScopePerValue<?> scope) {
+		this.customChangeScopes.put(forFeature, scope);
 	}
 
-	public void checkResource() {
-		for (EObject eobj : iterateAllContents()) {
-			if (eobj.eResource() == null) {
-				throw new RuntimeException("Null Resource in my resource!!");
-			}
+	public void setCustomGenScope(EStructuralFeature forFeature, ValueScope<?, ?> scope) {
+		this.customGenScopes.put(forFeature, scope);
+	}
+
+	public void trackCreated(EObject obj) {
+		EvalFunc<EClass, List<EObject>> instances = getClassInstanceFunc();
+		for (EClass cl : obj.eClass().getEAllSuperTypes()) {
+			instances.eval(cl).add(obj);
 		}
 	}
 
-	private static Map<EClass, Map<EStructuralFeature, org.eclipse.ocl.expressions.OCLExpression>> derivations = new HashMap<>();
-
-	public static void putDerivation(EClass cl, EStructuralFeature feat, String derivation) {
-		OCLExpression expr = OclExtractor.getExpression(cl, derivation);
-		putDerivation(cl, feat, expr);
-	}
-
-	public static void putDerivation(EClass cl, EStructuralFeature feat,
-			org.eclipse.ocl.expressions.OCLExpression expr) {
-		derivations.computeIfAbsent(cl, x -> new HashMap<>()).put(feat, expr);
-	}
-
-	public static org.eclipse.ocl.expressions.OCLExpression getDerivation(EClass cl, EStructuralFeature eprop) {
-		return derivations.getOrDefault(cl, Collections.emptyMap()).get(eprop);
+	public void trackDeleted(EObject obj) {
+		EvalFunc<EClass, List<EObject>> instances = getClassInstanceFunc();
+		for (EClass cl : obj.eClass().getEAllSuperTypes()) {
+			instances.eval(cl).remove(obj);
+		}
 	}
 
 }
