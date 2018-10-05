@@ -1,5 +1,6 @@
 package at.ac.tuwien.big.xtext.util;
 
+ 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
@@ -336,14 +337,17 @@ public class MyEcoreUtil {
 		return rs.getResource(rs.getURIConverter().normalize(URI.createFileURI(fileName)),true);
 	}
 
-
 	public static EObject nearCopy(EObject from, Function<EObject,EObject> retriever, BiConsumer<EObject, EObject> setter) {
+		return nearCopy(from, retriever, setter, (x)->newInstance(x));
+	}
+
+	public static EObject nearCopy(EObject from, Function<EObject,EObject> retriever, BiConsumer<EObject, EObject> setter, Function<EObject,EObject> newInstanceProvider) {
 		EObject ret = retriever.apply(from);
 		if (from == null) {
 			return ret;
 		}
 		if (ret == null) {
-			ret = newInstance(from);
+			ret = newInstanceProvider.apply(from);
 			setter.accept(from,ret);
 			EObject cont = from.eContainer();
 			if (cont != null) {
