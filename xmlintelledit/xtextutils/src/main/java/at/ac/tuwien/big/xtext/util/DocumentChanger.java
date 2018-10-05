@@ -114,15 +114,20 @@ public class DocumentChanger {
 			}
 	  }
 	
+	  public static String getContent(Resource xtextResource) {
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			try {
+				xtextResource.save(bos, new HashMap<>());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			String os = new String(bos.toByteArray());
+			return os;
+	  }
+	  
 	public static void modify(String oldContent, IXtextDocument doc, Runnable ch, Resource xtextResource) {
 		ch.run();		
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		try {
-			xtextResource.save(bos, new HashMap<>());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String os = new String(bos.toByteArray());
+		String os = getContent(xtextResource);
 		modify(oldContent,os,doc);
 	  }
 }
