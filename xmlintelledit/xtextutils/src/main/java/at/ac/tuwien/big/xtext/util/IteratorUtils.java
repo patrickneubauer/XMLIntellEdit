@@ -268,8 +268,47 @@ public class IteratorUtils {
 		return filterType(allContents, (x)->{Boolean ret = filter.apply(x); return ret != null && ret;});
 	}
 	
+	public static<T, U extends T> Iterable<U> filterType(Iterable<? extends T> allContents, Class<U> class1) {
+		return (Iterable<U>) filterType(allContents,(x)->(x != null && class1.isAssignableFrom(x.getClass())));
+	}
+
+	public static<T> Iterable<T> filterType(Iterable<? extends T> allContents, Function<T,Boolean> filter) {
+		return ()->filterType(allContents.iterator(), filter);
+	}
+	
 	public static<T, U extends T> Iterator<U> filterType(Iterator<? extends T> allContents, Class<U> class1) {
 		return (Iterator<U>) filterType(allContents,(x)->(x != null && class1.isAssignableFrom(x.getClass())));
+	}
+	
+	public static<T> Iterator<T> filterType(Iterator<? extends T> allContents, Function<T,Boolean> filter) {
+		return new Iterator<T>() {
+			T nextFiltered = null;
+			boolean hasNext = false;
+
+			@Override
+			public boolean hasNext() {
+				if (!this.hasNext) {
+					while (allContents.hasNext()) {
+						T next = allContents.next();
+						if (filter.apply(next)) {
+							this.hasNext = true;
+							this.nextFiltered = next;
+							break;
+						}
+					}
+				}
+				return this.hasNext;
+			}
+
+			@Override
+			public T next() {
+				if (hasNext()) {
+					this.hasNext = false;
+					return this.nextFiltered;
+				}
+				throw new NoSuchElementException();
+			}
+		};
 	}
 	
 	public static<X,Y> Iterable<Y> flatten(Iterable<? extends X> x, SimpleFunction<? super X, ? extends Iterable<Y>> func) {
@@ -399,7 +438,8 @@ public class IteratorUtils {
 		}
 		return ret;
 	}
-	
+
+
 	public static<T> Set<T> readSet(Iterable<T> iterable) {
 		Set<T> ret = new HashSet<>();
 		for (T obj: iterable) {
@@ -407,7 +447,7 @@ public class IteratorUtils {
 		}
 		return ret;
 	}
-	
+
 	public static<T> Set<T> readSet(Iterator<T> iterator) {
 		Set<T> ret = new HashSet<>();
 		while (iterator.hasNext()) {
@@ -415,8 +455,7 @@ public class IteratorUtils {
 		}
 		return ret;
 	}
-
-
+	
 	public static<T,U> Map<U,T> reverseHashMap(Map<? extends T,? extends U> map) {
 		Map<U,T> ret = new HashMap<>(map.size());
 		for (Entry<? extends T,? extends U> entr: map.entrySet()) {
@@ -425,6 +464,8 @@ public class IteratorUtils {
 		return ret;
 	}
 
+	
+	
 	public static<X> Iterable<X> shallowUnion(Iterable<? extends X>... iterables) {
 		return ()->{
 			Iterator<? extends X>[] iters = new Iterator[iterables.length];
@@ -437,43 +478,6 @@ public class IteratorUtils {
 	
 	public static<X> Iterable<X> shallowUnionCol(Collection<List<X>> values) {
 		return shallowUnion(new ArrayList<>(values).toArray(new List[]{}));
-	}
-
-	
-	
-	public static<T> Iterable<T> filterType(Iterable<? extends T> allContents, Function<T,Boolean> filter) {
-		return ()->filterType(allContents.iterator(), filter);
-	}
-	
-	public static<T> Iterator<T> filterType(Iterator<? extends T> allContents, Function<T,Boolean> filter) {
-		return new Iterator<T>() {
-			T nextFiltered = null;
-			boolean hasNext = false;
-
-			@Override
-			public boolean hasNext() {
-				if (!hasNext) {
-					while (allContents.hasNext()) {
-						T next = allContents.next();
-						if (filter.apply(next)) {
-							hasNext = true;
-							nextFiltered = next;
-							break;
-						}
-					}
-				}
-				return hasNext;
-			}
-
-			@Override
-			public T next() {
-				if (hasNext()) {
-					hasNext = false;
-					return nextFiltered;
-				}
-				throw new NoSuchElementException();
-			}
-		};
 	}
 	
 	public static<X> Iterable<X> shallowUnionCol(Iterable<? extends Iterable<? extends X>> values) {

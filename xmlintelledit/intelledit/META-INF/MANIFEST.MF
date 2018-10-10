@@ -5,7 +5,11 @@ Bundle-SymbolicName: intelledit
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Require-Bundle: 
- com.google.inject
+ com.google.inject,
+ org.eclipse.ocl;bundle-version="3.6.0",
+ org.eclipse.emf;bundle-version="2.6.0",
+ xtextutils;bundle-version="1.0.0",
+ xmltext;bundle-version="1.0.0"
 Export-Package: at.ac.tuwien.big.xmlintelledit.intelledit,
  at.ac.tuwien.big.xmlintelledit.intelledit.change,
  at.ac.tuwien.big.xmlintelledit.intelledit.change.basic,

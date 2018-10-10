@@ -15,8 +15,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
+import java.util.Stack;
 import java.util.WeakHashMap;
 
+import org.bouncycastle.jce.provider.JDKKeyFactory.EC;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -27,6 +29,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -102,16 +105,47 @@ public class MyResource {
 		Map<String, Evaluable> idToEvaluable = new HashMap<>();
 
 		Set<Resource> knownResources = new HashSet<>();
+		Set<EPackage> knownPackages = new HashSet<>();
 
-		public void augmentWith(Resource res) {
-			this.knownResources.add(res);
+		
+		public void augmentWith(EPackage pkg) {
+			Iterable<EClass> classes = IteratorUtils.filterType(pkg.getEClassifiers(),
+					EClass.class);
+			Set<EPackage> epackages = new HashSet<>();
+			Stack<EPackage> packageStack = new Stack<>();
+			packageStack.add(pkg);
+			while (!packageStack.isEmpty()) {
+				EPackage now = packageStack.pop();
+				for (EClass cl: IteratorUtils.filterType(now.getEClassifiers(), EClass.class)) {
+					cl.getEReferences().forEach(x->{
+						if (x.getEType() instanceof EClass) {
+							EClass subCl = (EClass)x.getEType();
+							if (epackages.add(subCl.getEPackage())) {
+								packageStack.add(subCl.getEPackage());
+							}
+						}
+					});
+				}
+			}
+			List<EClass> allClasses = new ArrayList<>();
+			for (EPackage epkg: epackages) {
+				for (EClass cl: IteratorUtils.filterType(epkg.getEClassifiers(), EClass.class)) {
+					allClasses.add(cl);
+				}
+				this.knownPackages.add(epkg);
+			}
+			augmentWith(classes);
+		}
+		
+		
+		
+		public void augmentWith(Iterable<EClass> classes) {
 			EcoreInfo ecoreInfo = this;
 			Map<EClass, EClassInfo> eclassMap = ecoreInfo.eclassMap;
 			OCL ocl = OCL.newInstance();
 			Helper oclHelper = ocl.createOCLHelper();
 
-			for (EClass subClass : (Iterable<EClass>) (() -> IteratorUtils.filterType(res.getAllContents(),
-					EClass.class))) {
+			for (EClass subClass : classes) {
 
 				EClassInfo subMap = eclassMap.get(subClass);
 				;
@@ -217,6 +251,14 @@ public class MyResource {
 			}
 		}
 
+
+		public void augmentWith(Resource res) {
+			this.knownResources.add(res);
+			Iterable<EClass> classes = (Iterable<EClass>) (() -> IteratorUtils.filterType(res.getAllContents(),
+					EClass.class));
+			augmentWith(classes);
+		}
+		
 		public List<Evaluable<?, ?>> getApplicableEvaluators(EClass from) {
 			// TODO: ...
 			return this.eclassMap.computeIfAbsent(from, x -> {
@@ -258,6 +300,16 @@ public class MyResource {
 			return this.eclassMap.getOrDefault(from, new EClassInfo()).instanciableTypes;
 		}
 
+		public Collection<EClass> getKnownClasses() {
+			return this.eclassMap.keySet();
+		}
+		
+		public boolean knowsPackage(EPackage pkg) {
+			return this.knownPackages.contains(pkg);
+		}
+
+
+
 		public boolean knowsResource(Resource res) {
 			return this.knownResources.contains(res);
 		}
@@ -273,6 +325,7 @@ public class MyResource {
 	private static WeakHashMap<Resource, MyResource> hashMaps = new WeakHashMap<>();
 
 	private static Map<Resource, EcoreInfo> instancibleTypesMap = new HashMap<>();
+	private static Map<EPackage, EcoreInfo> instancibleTypesMapPkg = new HashMap<>();
 
 	private static Map<EClass, List<Evaluable<?, ?>>> predefinedEvaluables = new HashMap<>();
 
@@ -318,6 +371,19 @@ public class MyResource {
 
 	public static org.eclipse.ocl.expressions.OCLExpression getDerivation(EClass cl, EStructuralFeature eprop) {
 		return derivations.getOrDefault(cl, Collections.emptyMap()).get(eprop);
+	}
+
+	public static synchronized EcoreInfo getOrBuildEcoreInfo(EPackage pkg) {
+		synchronized (pkg) {
+			EcoreInfo ecoreInfo = instancibleTypesMapPkg.get(pkg);
+			if (ecoreInfo == null) {
+				instancibleTypesMapPkg.put(pkg, ecoreInfo = new EcoreInfo());
+			} else if (ecoreInfo.knowsPackage(pkg)) {
+				return ecoreInfo;
+			}
+			ecoreInfo.augmentWith(pkg);
+			return ecoreInfo;
+		}
 	}
 
 	public static String getStandardType(EAttribute cl) {
@@ -370,9 +436,9 @@ public class MyResource {
 	private EvalFunc<EClass, List<EStructuralFeature>> featureEvalFunc = (x) -> x.getEAllStructuralFeatures();
 
 	private Map<EClass, List<EObject>> allObjectMap = new HashMap<>();
-
 	private List<EObject> allObjs = new ArrayList<>();
 	private EvalFunc<EClass, List<EObject>> evalFunc;
+
 	private EcoreInfo instancibleTypes = null;
 
 	private Set<Resource> knownResources = new HashSet<>();
@@ -592,6 +658,19 @@ public class MyResource {
 		return true;
 	}
 
+	/*
+	 * public Map<EClass, EClassInfo> getEClassInfoMap(Resource my) { EObject
+	 * anyObj = null; Resource myEcoreResource = null; for (EObject obj:
+	 * ((Iterable<EObject>)(()->my.getAllContents()))) { EClass cl =
+	 * obj.eClass(); if (cl != null && cl.eResource() != null) { myEcoreResource
+	 * = cl.eResource(); break; } } Map<EClass, EClassInfo> eclassInfoMap =
+	 * null; if (myEcoreResource != null) { eclassInfoMap =
+	 * instancibleTypesMap.get(myEcoreResource); } if (eclassInfoMap == null) {
+	 * eclassInfoMap = new HashMap<EClass, MyResource.EClassInfo>(); } if
+	 * (myEcoreResource != null) { instancibleTypesMap.put(myEcoreResource,
+	 * eclassInfoMap); } return eclassInfoMap; }
+	 */
+
 	public boolean equalsRes(MyResource myResource) {
 		List<EObject> first = new ArrayList<>();
 		List<EObject> second = new ArrayList<>();
@@ -610,19 +689,6 @@ public class MyResource {
 		}
 		return equals(myResource, new EcoreMapTransferFunction(getResource(), myResource.getResource(), eobjMap));
 	}
-
-	/*
-	 * public Map<EClass, EClassInfo> getEClassInfoMap(Resource my) { EObject
-	 * anyObj = null; Resource myEcoreResource = null; for (EObject obj:
-	 * ((Iterable<EObject>)(()->my.getAllContents()))) { EClass cl =
-	 * obj.eClass(); if (cl != null && cl.eResource() != null) { myEcoreResource
-	 * = cl.eResource(); break; } } Map<EClass, EClassInfo> eclassInfoMap =
-	 * null; if (myEcoreResource != null) { eclassInfoMap =
-	 * instancibleTypesMap.get(myEcoreResource); } if (eclassInfoMap == null) {
-	 * eclassInfoMap = new HashMap<EClass, MyResource.EClassInfo>(); } if
-	 * (myEcoreResource != null) { instancibleTypesMap.put(myEcoreResource,
-	 * eclassInfoMap); } return eclassInfoMap; }
-	 */
 
 	public boolean equalsTarget(EcoreTransferFunction cf) {
 		if (getResource().equals(cf.forwardResource())) {
@@ -667,10 +733,10 @@ public class MyResource {
 		}
 		return this.feat;
 	}
-
 	public synchronized List<EObject> getAllInstances(EClass forClass) {
 		return getClassInstanceFunc().eval(forClass);
 	}
+
 	public List<EObject> getAllInstancesPlusOne(EClass targetType) {
 		List<EObject> ret = new ArrayList<>(getAllInstances(targetType));
 		mainLoop: for (EClass sub : getInstancibleTypes(targetType)) {
@@ -690,7 +756,6 @@ public class MyResource {
 		}
 		return ret;
 	}
-
 	public EClass getAllInstancesType(OperationCallExp opExp) {
 		// TODO Etwas besseres
 		EOperation op = (EOperation) opExp.getReferredOperation();
@@ -702,12 +767,12 @@ public class MyResource {
 		EClass cl = (EClass) ecl;
 		return cl;
 	}
+
 	public EObject getAndTrackCreated(EClass targetType) {
 		EObject ret = getPrecreatedInstance(targetType);
 		trackCreated(ret);
 		return ret;
 	}
-
 	public Collection<Evaluable<?, ?>> getApplicableEvaluators(EObject from) {
 		if (from == null || from.eClass() == null) {
 			return Collections.emptyList();
@@ -718,12 +783,13 @@ public class MyResource {
 				System.err.println("EClass without resource!");
 				return Collections.emptyList();
 			}
-			this.instancibleTypes = getOrBuildEcoreInfo(from.eClass().eResource());
+			this.instancibleTypes = getOrBuildEcoreInfo(from.eClass().getEPackage());
 		} else if (!this.instancibleTypes.knowsResource(res)) {
 			this.instancibleTypes.augmentWith(res);
 		}
 		return this.instancibleTypes.getApplicableEvaluators(from.eClass());
 	}
+
 	public synchronized List<OCLExpression> getApplicableOCLExpressions(EClass from) {
 		if (from == null) {
 			return Collections.emptyList();
@@ -898,6 +964,7 @@ public class MyResource {
 		return this.instancibleTypes.getInstanciableTypes(from);
 	}
 
+
 	public synchronized EcoreInfo getOrBuildEcoreInfo(Resource res) {
 		synchronized (res) {
 			EcoreInfo ecoreInfo = instancibleTypesMap.get(res);
@@ -911,6 +978,7 @@ public class MyResource {
 		}
 	}
 
+	
 	public EObject getPrecreatedInstance(EClass targetType) {
 		List<EObject> gen = this.allGenerated.get(targetType);
 		if (gen == null) {

@@ -39,6 +39,7 @@ public class TypeTransformatorStore {
 					}
 				});
 		//TODO: Besser ...
+		try {
 		addTransformator(javax.xml.datatype.XMLGregorianCalendar.class,
 				String.class, new ValueTransformator<javax.xml.datatype.XMLGregorianCalendar, String>() {
 
@@ -53,6 +54,10 @@ public class TypeTransformatorStore {
 						return new XMLCalendar(eobject, XMLCalendar.DATETIME);
 					}
 				});
+		} catch (Throwable t) {
+			t.printStackTrace();
+			System.err.println("Could not add calendar type: "+t.getMessage());
+		}
 	}
 	
 	private Map<Class<?>,EDataType> defaultDatatypes = new HashMap<>();
