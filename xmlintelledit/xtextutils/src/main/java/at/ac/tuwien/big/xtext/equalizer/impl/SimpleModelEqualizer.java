@@ -23,20 +23,20 @@ import at.ac.tuwien.big.xtext.equalizer.ModelEqualizer;
 import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 
 @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
-public class SimpleModelEqualizer implements ModelEqualizer {
+public class SimpleModelEqualizer<Left extends EObject, Right extends EObject> implements ModelEqualizer {
 	
 	
 	private ModelCorrespondance corr;
 	private SimpleModelCorrespondance subCor; 
 	private InstanceCreator creator;
-	private List<EObject> source;
-	private List<EObject> target;
+	private List<Left> source;
+	private List<Right> target;
 	
-	public SimpleModelEqualizer(List<EObject> source, List<EObject> target, ModelCorrespondance corr, SimpleModelCorrespondance subCor, InstanceCreator creator) {
+	public SimpleModelEqualizer(List<Left> source, List<Right> target, ModelCorrespondance corr, SimpleModelCorrespondance<Left,Right> subCor, InstanceCreator creator) {
 		this.corr = corr;
 		this.creator = creator;
 		this.source = source;
-		this.target = target;
+		this.target = target; 
 		this.subCor = subCor;
 	}
 	
@@ -84,10 +84,10 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 		}
 	}
 
-	public<T extends EObject> void equalizeEObjectList(List<T> source, List<T> target) {
-		List<T> newTargets = new ArrayList<T>();
-		for (T srcEl: source) {
-			T targetEl = (T)getCorrespondant(srcEl);
+	public void equalizeEObjectList(List<Left> source, List<Right> target) {
+		List<Right> newTargets = new ArrayList<>();
+		for (Left srcEl: source) {
+			Right targetEl = (Right)getCorrespondant(srcEl);
 			if (targetEl == null) {
 				System.err.println("No target el for "+ srcEl + " found!"); 
 			} else {
@@ -101,8 +101,8 @@ public class SimpleModelEqualizer implements ModelEqualizer {
 			int secondIndex = 0;
 			//Verschiebe alle Elemente in die richtige Reihenfolge
 			int targetInd = 0;
-			EList<T> trgList = (EList<T>)target;
-			for (T el: newTargets) {
+			EList<Right> trgList = (EList<Right>)target;
+			for (Right el: newTargets) {
 				int curInd = target.indexOf(el);
 				if (curInd != -1) {
 					if (curInd >= targetInd) {

@@ -17,11 +17,11 @@ import difflib.Patch;
 public class PatchUtil {
 
 
-	
-	public static<T> void applyPatch(List<T> source, List<T> target) {
+	/**Makes source equal to target*/
+	public static<T> void applyPatch(List<T> source, List<? extends T> target) {
 		if (source.size() == target.size()) {
 			Iterator<T> firstIter = source.iterator();
-			Iterator<T> secondIter = target.iterator();
+			Iterator<? extends T> secondIter = target.iterator();
 			boolean isEqual = true;
 			while (firstIter.hasNext() && secondIter.hasNext()) {
 				T first = firstIter.next();
@@ -39,7 +39,8 @@ public class PatchUtil {
 		applyPatch(source, target, patch);
 	}
 	
-	public static<T> void applyPatch(List<T> source, List<T> target, Patch patch) {
+	/**Makes source equal to target*/
+	public static<T> void applyPatch(List<T> source, List<? extends T> target, Patch patch) {
 		System.out.println("Patch between " + Arrays.toString(source.toArray())+" and " + Arrays.toString(target.toArray())+": "+patch);
 		for (Delta delta: patch.getDeltas()) {
 			System.out.println("Deltas: "+Arrays.toString(delta.getOriginal().getLines().toArray())+ " ==> "+Arrays.toString(delta.getRevised().getLines().toArray()));

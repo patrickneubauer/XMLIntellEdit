@@ -218,6 +218,7 @@ public class ViolatedConstraintsEvaluator implements ResourceEvaluator<Evaluatio
 		}
 		if (!ch.forMyResource().equalsTarget(clonedFunc)) {
 			System.out.println(ch.forMyResource().getResource() + " VS "+clonedFunc.forwardResource()+" VS "+clonedFunc.backResource()+"!");
+			ch.forMyResource().equalsTarget(clonedFunc);
 			throw new RuntimeException();
 		}
 		Map<Object,Integer> oldviolationCount = new HashMap<Object, Integer>();

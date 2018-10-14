@@ -24,41 +24,50 @@ import org.eclipse.emf.ecore.resource.Resource;
 import at.ac.tuwien.big.xtext.equalizer.ModelCorrespondance;
 import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 
-public class SimpleModelCorrespondance implements ModelCorrespondance {
+public class SimpleModelCorrespondance<Left extends EObject,Right extends EObject> implements ModelCorrespondance {
 
-	private Map<EObject, EObject> rightToLeft = new HashMap<EObject, EObject>();
-	private Map<EObject, EObject> leftToRight = new HashMap<EObject, EObject>();
+	private Map<Right, Left> rightToLeft = new HashMap<>();
+	private Map<Left, Right> leftToRight = new HashMap<>();
 
-	public Set<Entry<EObject, EObject>> getEntriesL2R() {
+	public Set<? extends Entry<? extends Left, ? extends Right>> getEntriesL2R() {
 		return leftToRight.entrySet();
 	}
 
-	public Set<Entry<EObject, EObject>> getEntriesR2L() {
+	public Set<? extends Entry<? extends Right, ? extends Left>> getEntriesR2L() {
 		return rightToLeft.entrySet();
 	}
 
 	@Override
-	public EObject getLeftObject(EObject right) {
+	public Left getLeftObject(EObject right) {
 		return rightToLeft.get(right);
 	}
 
 	@Override
-	public EObject getRightObject(EObject leftObject) {
+	public Right getRightObject(EObject leftObject) {
 		return leftToRight.get(leftObject);
 	}
 
-	public void putCorrespondence(EObject thingWhichChange, EObject thingWhichShouldBeSynchronized) {
+	public void putCorrespondence(Left thingWhichChange, Right thingWhichShouldBeSynchronized) {
 		leftToRight.put(thingWhichChange, thingWhichShouldBeSynchronized);
 		rightToLeft.put(thingWhichShouldBeSynchronized, thingWhichChange);
 	}
 
+	public void replace(Right replaced, Right replacement) {
+		Left curLeft = rightToLeft.get(replaced);
+		if (curLeft != null) {
+			rightToLeft.remove(replaced);
+			rightToLeft.put(replacement, curLeft);
+			leftToRight.put(curLeft, replaced);
+		}
+	}
+	
 	@Override
 	public void clear() {
 		rightToLeft.clear();
 		leftToRight.clear();
 	}
 
-	public static SimpleModelCorrespondance fromEmfCompare(Resource xmiRes, Resource state) {
+	public static SimpleModelCorrespondance<EObject,EObject> fromEmfCompare(Resource xmiRes, Resource state) {
 		SimpleModelCorrespondance ret = new SimpleModelCorrespondance();
 		boolean resetXmiURI = false;
 		if (xmiRes.getURI() == null) {
@@ -290,7 +299,7 @@ public class SimpleModelCorrespondance implements ModelCorrespondance {
 				// Given up, now just create it
 				if (targetObject != null) {
 					// create
-					putCorrespondence(src, targetObject);
+					putCorrespondence((Left)src, (Right)targetObject);
 					changed = true;
 				}
 			}
@@ -299,8 +308,8 @@ public class SimpleModelCorrespondance implements ModelCorrespondance {
 
 	public void removeResourceLess() {
 		Set<EObject> remove = new HashSet<EObject>();
-		for (Map<EObject, EObject> map : Arrays.asList(leftToRight, rightToLeft)) {
-			for (Entry<EObject, EObject> entr : map.entrySet()) {
+		for (Map<? extends EObject, ? extends EObject> map : Arrays.asList(leftToRight, rightToLeft)) {
+			for (Entry<? extends EObject, ? extends EObject> entr : map.entrySet()) {
 				EObject left = entr.getKey();
 				if (left != null && left.eResource() == null) {
 					remove.add(entr.getKey());
@@ -316,5 +325,7 @@ public class SimpleModelCorrespondance implements ModelCorrespondance {
 		leftToRight.keySet().removeAll(remove);
 		rightToLeft.keySet().removeAll(remove);
 	}
+
+	
 
 }

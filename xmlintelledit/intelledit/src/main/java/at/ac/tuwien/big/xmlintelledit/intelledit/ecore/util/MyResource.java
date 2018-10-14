@@ -506,7 +506,17 @@ public class MyResource {
 		 * (Iterable<EObject>)()->getResource().getAllContents()) {
 		 * copier.copy(eobj); }
 		 */
+		Set<EObject> addCopy = new HashSet<EObject>();
+		getResource().getAllContents().forEachRemaining(x->{
+			if (x instanceof AddCopyable) {
+				AddCopyable ac =(AddCopyable)x;
+				ac.addToPseudoContainment(addCopy);
+			}
+		});
+		 
+		Collection<EObject> copyAll = copier.copyAll(addCopy);
 		newResource.getContents().addAll(copier.copyAll(getResource().getContents()));
+		newResource.getContents().addAll(copyAll);
 		MapCorrespondingGetter mcg = new MapCorrespondingGetter(new HashMap<>(copier));
 		MyResource ret = MyResource.get(newResource);
 		mcg.put(this, ret);
@@ -633,9 +643,9 @@ public class MyResource {
 	}
 
 	public boolean equals(MyResource cloned, EcoreTransferFunction etf) {
-		if (getResource().getContents().size() != cloned.getResource().getContents().size()) {
+		/*if (getResource().getContents().size() != cloned.getResource().getContents().size()) {
 			return false;
-		}
+		}*/
 		for (EObject eobj : iterateAllContents()) {
 			EObject target = etf.forward(eobj);
 			if (target == null || target.eResource() == null) {

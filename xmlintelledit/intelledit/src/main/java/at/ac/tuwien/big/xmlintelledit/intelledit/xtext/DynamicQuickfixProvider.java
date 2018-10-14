@@ -2,6 +2,7 @@ package at.ac.tuwien.big.xmlintelledit.intelledit.xtext;
 
 
 import java.lang.reflect.Method;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,9 +11,11 @@ import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.model.edit.IModification;
 //import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.model.edit.IModificationContext;
+import org.eclipse.xtext.ui.editor.model.edit.ISemanticModification;
 import org.eclipse.xtext.ui.editor.quickfix.AbstractDeclarativeQuickfixProvider;
 import org.eclipse.xtext.ui.editor.quickfix.Fix;
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolution;
+
 import org.eclipse.xtext.validation.Issue;
 
 import at.ac.tuwien.big.xmlintelledit.intelledit.change.Change;
@@ -24,7 +27,7 @@ public class DynamicQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfi
 	
 //	private Set<QuickfixReference,Long> providedFixes = 
 	
-	public boolean displayChange(Change<?> ch) {
+	public boolean displayChange(Change<?> ch) {		
 		return true;
 	}
 	
@@ -85,6 +88,7 @@ public class DynamicQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfi
 				continue;
 			}
 			IModificationContext context = getModificationContextFactory().createModificationContext(issue);
+			
 			/*ISemanticModification smod = new ISemanticModification() {
 				
 				@Override
