@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.eclipse.emf.common.util.URI;
@@ -338,10 +339,10 @@ public class MyEcoreUtil {
 	}
 
 	public static EObject nearCopy(EObject from, Function<EObject,EObject> retriever, BiConsumer<EObject, EObject> setter) {
-		return nearCopy(from, retriever, setter, (x)->newInstance(x));
+		return nearCopy(from, retriever, setter, (x)->newInstance(x),x->{});
 	}
 
-	public static EObject nearCopy(EObject from, Function<EObject,EObject> retriever, BiConsumer<EObject, EObject> setter, Function<EObject,EObject> newInstanceProvider) {
+	public static EObject nearCopy(EObject from, Function<EObject,EObject> retriever, BiConsumer<EObject, EObject> setter, Function<EObject,EObject> newInstanceProvider, Consumer<EObject> postprocesser) {
 		EObject ret = retriever.apply(from);
 		if (from == null) {
 			return ret;
@@ -375,18 +376,19 @@ public class MyEcoreUtil {
 			for (EReference ref: from.eClass().getEAllReferences()) {
 				if (from.eIsSet(ref)) {
 					if (FeatureMapUtil.isMany(from, ref)) {
-						List l = (List)from.eGet(ref);
-						for (EObject eo: ((Collection<EObject>)ret.eGet(ref))) {
-							l.add(nearCopy(eo, retriever, setter));
+						List l = (List)ret.eGet(ref);
+						for (EObject eo: ((Collection<EObject>)from.eGet(ref))) {
+							l.add(nearCopy(eo, retriever, setter, newInstanceProvider, postprocesser));
 						};
 					} else {
 						EObject cur = (EObject)from.eGet(ref);
 						if (cur != null) {
-							ret.eSet(ref,nearCopy(cur, retriever, setter));
+							ret.eSet(ref,nearCopy(cur, retriever, setter, newInstanceProvider, postprocesser));
 						}
 					}
 				}
 			}
+			postprocesser.accept(ret);
 		}
 		return ret;
 	}

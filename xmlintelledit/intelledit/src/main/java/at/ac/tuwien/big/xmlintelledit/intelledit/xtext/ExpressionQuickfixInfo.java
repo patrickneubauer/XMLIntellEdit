@@ -22,24 +22,54 @@ public  class ExpressionQuickfixInfo<T extends Comparable<T>> {
 	private Map<String,ProposalList<T,?>> subIdToChangeMap = new WeakHashMap<>();
 	private DynamicValidatorIFace valid;
 
+	private LocalSearchInterface[] searches = new LocalSearchInterfaceImpl[0];
+	 
 	public ExpressionQuickfixInfo(DynamicValidatorIFace valid, String id) {
 		this.exprid = id;
 		this.valid = valid;
 	}
-	 
+	
+	public synchronized void addChange(String id, Proposal<T,?> prop) {
+		System.out.println("Add change: "+this.exprid+"::"+id+": "+prop);
+		ProposalList<T,?> cur = this.subIdToChangeMap.get(id);
+		if (cur == null) {
+			this.subIdToChangeMap.put(id, cur = new ProposalListImpl());
+		}
+		((ProposalList)cur).addProposal(prop);
+	}
+	
+	public synchronized void clear() {
+		this.subIdToChangeMap.clear();
+	}
+	
+	@Override
+	public void finalize() throws Throwable {
+		super.finalize();
+		for (int i = 0; i < this.searches.length; ++i) {
+			if (this.searches[i] != null) {
+				this.searches[i].abortSearch();
+			}
+		}
+	}	
+
 	public synchronized ProposalList<T,?> getChanges(String subId) {
-		return subIdToChangeMap.getOrDefault(subId,new ProposalListImpl());
+		return this.subIdToChangeMap.getOrDefault(subId,new ProposalListImpl());
+	}
+
+	
+	public String getId() {
+		return this.exprid;
 	}
 	
 	public synchronized List<QuickfixReference> getQuickfix(String subId, String contextUri) {
 		ProposalList<T,?> changes = getChanges(subId);
-		List<QuickfixReference> ret = new ArrayList<QuickfixReference>();
+		List<QuickfixReference> ret = new ArrayList<>();
 		
 		for (Proposal<T,?> prop: changes) {
 			Change<?> change = prop.getChange();
 			
-			if (!prop.getChange().forResource().equals(valid.getMainResource())) {
-				URIBasedEcoreTransferFunction tf = new URIBasedEcoreTransferFunction(prop.getChange().forResource(), valid.getMainResource());
+			if (!prop.getChange().forResource().equals(this.valid.getMainResource())) {
+				URIBasedEcoreTransferFunction tf = new URIBasedEcoreTransferFunction(prop.getChange().forResource(), this.valid.getMainResource());
 				change = change.transfered(tf);
 			}
 			
@@ -56,74 +86,46 @@ public  class ExpressionQuickfixInfo<T extends Comparable<T>> {
 		return ret;
 	}
 	
-	public synchronized void addChange(String id, Proposal<T,?> prop) {
-		ProposalList<T,?> cur = subIdToChangeMap.get(id);
-		if (cur == null) {
-			subIdToChangeMap.put(id, cur = new ProposalListImpl());
-		}
-		((ProposalList)cur).addProposal(prop);
-	}
-	
-	public String getId() {
-		return exprid;
-	}	
-
-	public synchronized void clear() {
-		subIdToChangeMap.clear();
-	}
-
-	
-	private LocalSearchInterface[] searches = new LocalSearchInterfaceImpl[0];
-	
 	public LocalSearchInterface[] getSearches() {
-		return searches;
+		return this.searches;
 	}
 	
-	public boolean[] resetOrReeinit(Resource curResource, LocalSearchInterface... newSearches) {
-		if (searches.length < newSearches.length) {
-			searches = Arrays.copyOf(searches, newSearches.length);
-		}
-		boolean[] ret = new boolean[searches.length];
-		for (int i = 0; i < Math.min(searches.length,newSearches.length); ++i) {
-			if (searches[i] == null) {
-				searches[i]  = newSearches[i];
-				ret[i] = true;
-			} else if (searches[i].isObsolete(curResource)) {
-				searches[i].abortSearch();
-				searches[i]  = newSearches[i];
-				newSearches[i].copyFrom(searches[i],false);
-				ret[i] = true;
-			} else {
-				searches[i].abortSearch();
-				searches[i]  = newSearches[i];
-				newSearches[i].copyFrom(searches[i],true);
-				ret[i] = true;
-			}
-		}
-		return ret;
-	}
-	
-	public void finalize() throws Throwable {
-		super.finalize();
-		for (int i = 0; i < searches.length; ++i) {
-			if (searches[i] != null) {
-				searches[i].abortSearch();
-			}
-		}
-	}
-
 	public boolean hasAnyChanges() {
 		boolean ret = false;
-		for (ProposalList list: subIdToChangeMap.values()) {
+		for (ProposalList list: this.subIdToChangeMap.values()) {
 			ret|= list.iterator().hasNext();
 		}
 		return ret;
 	}
 
 	public void removeProposal(Proposal p) {
-		for (ProposalList pl: subIdToChangeMap.values()) {
+		for (ProposalList pl: this.subIdToChangeMap.values()) {
 			pl.removeProposal(p);
 		}
+	}
+
+	public boolean[] resetOrReeinit(Resource curResource, LocalSearchInterface... newSearches) {
+		if (this.searches.length < newSearches.length) {
+			this.searches = Arrays.copyOf(this.searches, newSearches.length);
+		}
+		boolean[] ret = new boolean[this.searches.length];
+		for (int i = 0; i < Math.min(this.searches.length,newSearches.length); ++i) {
+			if (this.searches[i] == null) {
+				this.searches[i]  = newSearches[i];
+				ret[i] = true;
+			} else if (this.searches[i].isObsolete(curResource)) {
+				this.searches[i].abortSearch();
+				this.searches[i]  = newSearches[i];
+				newSearches[i].copyFrom(this.searches[i],false);
+				ret[i] = true;
+			} else {
+				this.searches[i].abortSearch();
+				this.searches[i]  = newSearches[i];
+				newSearches[i].copyFrom(this.searches[i],true);
+				ret[i] = true;
+			}
+		}
+		return ret;
 	}
 
 }

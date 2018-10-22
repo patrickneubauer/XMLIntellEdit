@@ -4,6 +4,7 @@ package at.ac.tuwien.big.xmlintelledit.intelledit.xtext;
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,19 +28,7 @@ public class DynamicQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfi
 	
 //	private Set<QuickfixReference,Long> providedFixes = 
 	
-	public boolean displayChange(Change<?> ch) {		
-		return true;
-	}
-	
-	
-
-	
-	  public static void modify(IXtextDocument doc, Change<?> ch) {
-		  	DocumentChanger.modify(doc.get(),doc,()->ch.execute(),ch.forResource());
-	  }
-	  
-	  
-	  public static class ChangeIModification implements IModification, Comparable<ChangeIModification> {
+	public static class ChangeIModification implements IModification, Comparable<ChangeIModification> {
 		  public QuickfixReference ref;
 		  
 		  public ChangeIModification(QuickfixReference ref) {
@@ -48,7 +37,7 @@ public class DynamicQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfi
 	
 			@Override
 			public void apply(IModificationContext context) throws Exception {
-				Change<?> ch = ref.getChange();
+				Change<?> ch = this.ref.getChange();
 				/*if (element.eResource() != ch.forResource()) {
 					ch = ch.clone();
 					ch.transfer(new URIBasedEcoreTransferFunction(ch.forResource(),element.eResource()));
@@ -59,24 +48,49 @@ public class DynamicQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfi
 
 			@Override
 			public int compareTo(ChangeIModification o) {
-				return ref.compareTo(o.ref);
+				return this.ref.compareTo(o.ref);
 			}
 		   
 	  }
+	
+	
+
+	
+	  public static void modify(IXtextDocument doc, Change<?> ch) {
+		  	DocumentChanger.modify(doc.get(),doc,()->ch.execute(),ch.forResource());
+	  }
 	  
+	  
+	  @Override
+	public Iterable<Method> collectMethods(Class<? extends AbstractDeclarativeQuickfixProvider> cl, String issueCode) {
+		
+		return super.collectMethods(cl, issueCode);
+	}
+	  
+	public boolean displayChange(Change<?> ch) {		
+		return true;
+	}
+	
+	@Fix(value = "")
+	public List<IssueResolution> fixSomething(Issue issue) {
+		return getResolutions(issue);
+	}
+
+
 	@Override
 	public List<IssueResolution> getResolutions(final Issue issue) {
 		if (issue.getData().length != 3) {
-			return Collections.emptyList();
+			return super.getResolutions(issue);
 		}
 		DynamicValidator validator = DynamicValidator.getValidator(issue.getData()[0]);
 		if (validator == null) {
-			return Collections.emptyList();
+			return super.getResolutions(issue);
 		}
 		boolean knowIssue = validator.knowIssue(issue);
 		ExpressionQuickfixInfo<?> qi = validator.getQuickfixes(issue.getData()[1]);;
 		List<QuickfixReference> curQuickfixes = qi.getQuickfix(issue.getData()[2],issue.getUriToProblem().toString());
-		List<IssueResolution> resList = new ArrayList<IssueResolution>(curQuickfixes.size());
+		System.out.println("Retrieved issueData for "+Arrays.asList(issue.getData())+": "+curQuickfixes);
+		List<IssueResolution> resList = new ArrayList<>(curQuickfixes.size());
 		boolean displayed = false;
 		for (QuickfixReference ref: curQuickfixes) {
 			
@@ -119,21 +133,10 @@ public class DynamicQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfi
 		return resList;
 	}
 	
-	public Iterable<Method> collectMethods(Class<? extends AbstractDeclarativeQuickfixProvider> cl, String issueCode) {
-		
-		return super.collectMethods(cl, issueCode);
-	}
-
-
 	@Override
 	public boolean hasResolutionFor(String issueCode) {
 		//TODO: Stimmt natürlich nicht immer, hängt vom Issue ab ...
 		return (issueCode != null && issueCode.startsWith("DYNISSUE_")) || super.hasResolutionFor(issueCode);
-	}
-	
-	@Fix(value = "")
-	public List<IssueResolution> fixSomething(Issue issue) {
-		return getResolutions(issue);
 	}
 
 	

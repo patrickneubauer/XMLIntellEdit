@@ -2,6 +2,7 @@ package at.ac.tuwien.big.xmlintelledit.intelledit.xtext;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
 import org.eclipse.xtext.validation.EValidatorRegistrar;
@@ -76,13 +78,38 @@ import at.ac.tuwien.big.xtext.util.MyEcoreUtil;
 public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDeclarativeValidator implements DynamicValidatorIFace{
 
 	
+	private static class BasicError {
+		private String code;
+		private String[] issueData;
+		private String message;
+		private BasicErrorLocation errorLocation;
+		public BasicError(BasicErrorLocation errorLocation, String message, String code, String... issueData) {
+			this.code = code;
+			this.message = message;
+			this.issueData = issueData;
+			this.errorLocation = errorLocation;
+		}
+	}
+	
+	private static class BasicErrorLocation {
+		private EObject source;
+		private EStructuralFeature feature;
+		private int index;
+		
+		public BasicErrorLocation(EObject source, EStructuralFeature feature, int index) {
+			this.source  = source;
+			this.feature = feature;
+			this.index = index;
+		}
+	}
+	
 	private static final long MIN_MS_BETWEEN_QUICKFIX_CALLS = 1000;
 	
 	public static final boolean PREFILTER_CHANGES = true;
-	
 	public static Map<String,DynamicValidator> validator = new HashMap<>();
 	public static Map<String,ExpressionQuickfixInfo> storedQuickfixes 
 		= new WeakHashMap<>();
+	
 	public static DynamicValidator getValidator(String id) {
 		DynamicValidator ret = validator.get(id);
 		if (ret != null) {
@@ -95,7 +122,7 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 		}
 		return null;
 	}
-	
+
 	public static boolean isBetterOrEqual(double[] thisResult, double[] thanThatResult) {
 		if (-thisResult[0] > -thanThatResult[0]) { //local error remaining larger
 			return false;
@@ -108,8 +135,8 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 		}
 		return true;
 		//return thisResult[0] != thanThatResult[0] || thisResult[1] != thanThatResult[1] || thisResult[2] != thanThatResult[2];
-	}
-
+	} 
+	
 	public static<T> boolean isListWithMissing(Iterable<T> smaller, Iterable<T> larger) {
 		Iterator<T> smallerIter = smaller.iterator();
 		Iterator<T> largerIter = larger.iterator();
@@ -123,25 +150,25 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 			return false;
 		}
 		return true;
-	} 
-	
-	private WeakHashMap<Issue,Boolean> allIssues = new WeakHashMap<>();
+	}
 	
 
 	//public ExecutorService mainExecutor = Executors.newFixedThreadPool(1);
 		
-	private WeakHashMap<QuickfixReference,Boolean> displayedReferences = new WeakHashMap<>();
+	private WeakHashMap<Issue,Boolean> allIssues = new WeakHashMap<>();
 	
 
-	private GlobalSearch search;
+	private WeakHashMap<QuickfixReference,Boolean> displayedReferences = new WeakHashMap<>();
 	
+	private GlobalSearch search;
 	private long lastQuickfixCall = 0;
 	private boolean isFinished;
+	
 	public final PriorityQueue<SearchTask> searchTask = new PriorityQueue<>();
 	
 	private Resource curResource;
-	
 	private Resource mainResource;
+	
 	final Runnable taskRunnable = ()->{
 		for(;;) {
 			if (this.isFinished || Thread.currentThread().isInterrupted()) {
@@ -166,7 +193,7 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 	};
 	
 	Thread[] allThreads = new Thread[Math.max(Runtime.getRuntime().availableProcessors(),1)];
-	
+
 	{
 		for (int i = 0; i < this.allThreads.length; ++i) {
 			this.allThreads[i] = new Thread(this.taskRunnable);
@@ -174,33 +201,33 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 			this.allThreads[i].start();
 		}
 	}
-
+	
 	private ResourceEvaluator evaluator = ResourceEvaluator.DEFAULT;
 	
 	private String validatorId = UUID.randomUUID().toString();
+	
+	
+	//Brauche Tracing FixAttempt//Object --> Change<?>
 	
 	{
 		validator.put(this.validatorId,this);
 	}
 	
-	
-	//Brauche Tracing FixAttempt//Object --> Change<?>
-	
 	private long uniqueId = 0;
 	
 	private WeakHashMap<Resource, Collection<Change<?>>[]> quickfixChanges = new WeakHashMap<>();
-	
 	private boolean fileCheck = false;
+	
 	private long advanceId;
-	
+
+
 	private List<Proposal<?, ?>> paretoFront = new ArrayList<>();
-
-
-	private boolean haveChecked = false;
 	
-	private boolean haveSaved = false;
+	private boolean haveChecked = false;
 
-	private Object resetThreadObj = new Object();
+	private boolean haveSaved = false;
+	
+	private Object resetThreadObj = new Object(); 
 	
 	public Thread resetThread = new Thread(()->{
 		for(;;) {
@@ -312,11 +339,13 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 			}
 			
 		}
-		}); 
+		});
 	
 	{
 		this.resetThread.start();
 	}
+	
+	private Map<EObject, Map<EStructuralFeature, Map<Integer, List<BasicError>>>> errorMap = new WeakHashMap<>();
 	
 	public void abort() {
 		this.isFinished = true;
@@ -335,10 +364,43 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 		}
 	}
 	
+	
+	
+	
 	public synchronized long advanceId() {
 		return ++this.advanceId;
 	}
-	
+
+	/**Map goes from the objects in this validator to the objects in the other validator*/
+	public void applyErrorMap(Map<EObject,? extends EObject> eobjectConversion, AbstractDeclarativeValidator otherValidator) {
+		this.errorMap.forEach((k,v)->{
+			EObject other = eobjectConversion.get(k);
+			if (other != null) {
+				v.values().forEach((map)->map.values().forEach(errors->{
+					errors.forEach(error->{
+						String message = error.message;
+						EObject source = error.errorLocation.source;
+						EStructuralFeature feature = error.errorLocation.feature;
+						int offset = error.errorLocation.index;
+						String code = error.code;
+						if (!other.eClass().getEAllStructuralFeatures().contains(feature)) {
+							feature = null;
+						}
+						String[] issueData = error.issueData;
+						try {
+							otherValidator.acceptError(message,other,feature,offset,code,issueData);
+							System.out.println("Added error "+message+" to "+other+"."+(feature==null?"":feature.getName())+" with code " + code+" and issueData "+Arrays.asList(issueData));
+						} catch (Exception e) {
+							e.printStackTrace();
+							System.err.println("Could not accept error: "+message+": "+e.getMessage());
+							
+						}
+					});
+					
+				}));
+			}
+		});
+	}
 	@Check(CheckType.NORMAL)
 	public synchronized void checkAllExpressions(EObject theRealObj) {
 		
@@ -353,7 +415,7 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 		long myId = myIdU;
 		Resource xmiRes = theRealObj.eResource();
 		if (xmiRes == null) {
-			throw new RuntimeException("Validating object without resource!");
+			System.err.println("Validating object without resource!");
 		}
 		MyResource myresu = MyResource.get(this.curResource);
 		if (this.mainResource != xmiRes /*|| theRealObj.eContainer() == null*/) {
@@ -378,7 +440,8 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 		EObject theObj = utf.forward(theRealObj);
 		
 		try {
-		
+		clearErrors(theObj);
+		clearErrors(theRealObj);
 		evalMan.performTypicalEvaluation(myres, theObj, new EvaluationCallback() {
 
 			@Override
@@ -438,8 +501,17 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 					EObject obj = ref.forObject();
 					URIBasedEcoreTransferFunction utf = new URIBasedEcoreTransferFunction(DynamicValidator.this.curResource, DynamicValidator.this.mainResource);
 					EObject displayForObject = utf.forward(obj);
+					Resource res = displayForObject.eResource();
+					boolean cancelDisplayObject = false;
+					if (res != null && displayForObject.eResource().getContents().indexOf(displayForObject) > 0) {
+						cancelDisplayObject = true;
+					}
+					if (cancelDisplayObject) {
+						displayForObject = theRealObj;
+					}
 					if (!DynamicValidator.this.fileCheck) {
-						if (obj != null && obj.eResource() != theObj.eResource()) {
+						//TODO: ??? Maybe a problem for me in VIntellEdit
+						if (false && obj != null && obj.eResource() != theObj.eResource()) {
 							if (!otherIssueDesc.isEmpty()) {
 								otherIssueDesc = otherIssueDesc+", ";
 							} 
@@ -447,7 +519,7 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 						} else {
 							if (ref instanceof FixAttemptFeatureReference) {
 								FixAttemptFeatureReference fref = (FixAttemptFeatureReference)ref;
-								error(issueDescr.toString(), displayForObject, fref.getFeature(), fref.getValueIndex(), "DYNISSUE_ANY_"+evalIdBase+idStr, DynamicValidator.this.validatorId,
+								myerror(issueDescr.toString(), displayForObject, fref.getFeature(), fref.getValueIndex(), "DYNISSUE_ANY_"+evalIdBase+idStr, DynamicValidator.this.validatorId,
 										evalIdBase,idStr);
 							} else {
 								boolean ok = false;
@@ -465,12 +537,12 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 									Collection col = MyEcoreUtil.getAsCollection(displayForObject, idAttr);
 									if (!col.isEmpty()) {
 										ok = true;
-										error(issueDescr.toString(), displayForObject, idAttr, -1, "DYNISSUE_ANY_"+evalIdBase+idStr, DynamicValidator.this.validatorId,
+										myerror(issueDescr.toString(), displayForObject, idAttr, -1, "DYNISSUE_ANY_"+evalIdBase+idStr, DynamicValidator.this.validatorId,
 												evalIdBase,idStr);
 									}
 								}
 								if (!ok) {
-									error(issueDescr.toString(), displayForObject, null, -1, "DYNISSUE_ANY_"+evalIdBase+idStr, DynamicValidator.this.validatorId,
+									myerror(issueDescr.toString(), displayForObject, null, -1, "DYNISSUE_ANY_"+evalIdBase+idStr, DynamicValidator.this.validatorId,
 										evalIdBase,idStr);
 								}
 							}
@@ -479,7 +551,7 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 				}
 				if (!DynamicValidator.this.fileCheck) {
 					if (!otherIssueDesc.isEmpty()) {
-						error("Other file issues: " + otherIssueDesc, theObj, null, -1, "DYNISSUE_ANY_"+DynamicValidator.this.uniqueId,DynamicValidator.this.validatorId,evalIdBase,"");
+						myerror("Other file issues: " + otherIssueDesc, theObj, null, -1, "DYNISSUE_ANY_"+DynamicValidator.this.uniqueId,DynamicValidator.this.validatorId,evalIdBase,"");
 					}
 				}
 				
@@ -626,9 +698,14 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 		}
 		this.haveSaved = true;
 	}
+	
 	public synchronized void checkFile(Resource res) {
+		checkFile(res, true);
+	}
+	
+	public synchronized void checkFile(Resource res, boolean checkLocalFile) {
 		boolean oldFileCheck = this.fileCheck;
-		this.fileCheck = true;
+		this.fileCheck = checkLocalFile;
 		this.mainResource = res;
 		this.curResource = MyResource.get(res).clone();
 		for (EObject eobj: (Iterable<EObject>)()->res.getAllContents()) {
@@ -636,7 +713,14 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 			checkAllExpressions(eobj);
 		}
 		this.fileCheck = oldFileCheck;
+
+		
 	}
+	
+	public void clearErrors(EObject source) {
+		this.errorMap.remove(source);
+	}
+	
 	public ExpressionQuickfixInfo createQuickfixes(String string) {
 		ExpressionQuickfixInfo ret;
 				
@@ -665,13 +749,16 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 			
 		}
 	}
-	
 	@Override
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<>();
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://router/1.0"));
 	    IMarker marker;
 		return result;
+	}
+	
+	public List<BasicError> getErrorList(EObject source, EStructuralFeature feature, int index) {
+		return this.errorMap.computeIfAbsent(source, x->new HashMap<>()).computeIfAbsent(feature, x->new HashMap<>()).computeIfAbsent(index, x->new ArrayList<>());
 	}
 	
 	@Override
@@ -686,6 +773,7 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 		}
 		return ret;
 	}
+	
 	@Override
 	public MyResource getResource() {
 		return MyResource.get(this.curResource);
@@ -702,12 +790,27 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 		return false;
 	}
 	
+	
+	protected void myerror(String message, EObject source, EStructuralFeature feature, int index,
+			String code, String... issueData) {
+		List<BasicError> bes = getErrorList(source,feature,index);
+		BasicErrorLocation bel = new BasicErrorLocation(source, feature, index);
+		bes.add(new BasicError(bel,message,code, issueData));
+		try {
+			error(message, source, feature, index, code, issueData);
+		} catch (Exception e) {
+			System.err.println("Got error: "+e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
 	public void notifySolutionFound() {
 		System.out.println("Quickfixes should be refreshed!");
 		/*if (mainResource instanceof XtextResource)  {
 			XtextResource xr = (XtextResource)mainResource;
 			xr.getResourceServiceProvider().getResourceValidator().validate(xr, CheckMode.FAST_ONLY, CancelIndicator.NullImpl);
 		}*/
+		
 
 	}
 	
@@ -875,6 +978,21 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 
 	public void setFileCheck(boolean fileCheck) {
 		this.fileCheck = fileCheck	;
+	}
+
+	public void stopSearch() {
+		this.isFinished = true;
+		if (this.search != null) {
+			this.search.abortSearch();
+		}
+		for(;;) {
+			SearchTask task = pollTask();
+			if (task == null) {
+				break;
+			} else {
+				task.interrupt();
+			}
+		}
 	}
 	
 }

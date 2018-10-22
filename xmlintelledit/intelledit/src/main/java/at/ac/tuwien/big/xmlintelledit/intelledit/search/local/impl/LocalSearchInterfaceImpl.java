@@ -42,37 +42,122 @@ import at.ac.tuwien.big.xmlintelledit.intelledit.transfer.EcoreTransferFunction;
 
 public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 	
+	public static enum SearchType {
+		DEFAULT, SIMULATED_ANNEALING
+	}
+	private class SolutionState implements Comparable<SolutionState> {
+		
+		private LocalSearchPartialSolution solution;
+		
+		private Iterator<? extends Change<?>> iter;
+		private int usedSolutions;
+		public SolutionState(LocalSearchPartialSolution solution, Iterator<? extends Change<?>> iter) {
+			this.solution = solution;
+			this.iter = iter;
+		}
+		
+		public void addUsedSolution(int num) {
+			this.usedSolutions+= num;
+		}
+		
+		@Override
+		public int compareTo(SolutionState arg0) {
+			int ret = -Double.compare(getEffectiveQuality(), arg0.getEffectiveQuality());
+			return ret;
+		}
+		
+		public double getEffectiveQuality() {
+			return this.solution.getQuality()-this.usedSolutions*LocalSearchInterfaceImpl.this.objectReduction;
+		}
+
+		public double getOriginalQuality() {
+			return this.solution.getImproveQuality();
+		}
+
+		public LocalSearchPartialSolution getSolution() {
+			return this.solution;
+		}
+
+		public Iterator<? extends Change<?>> iter() {
+			int i = 0;
+			while (this.iter == null || !this.iter.hasNext() && ++i < 10) {
+				this.iter = LocalSearchInterfaceImpl.this.provider.getNeighbours(this.solution).iterator();
+			}
+			return this.iter;
+		}
+
+		public Iterator<? extends Change<?>> sampledIter() {
+			int i = 0;
+			while (this.iter == null || !this.iter.hasNext() && ++i < 10) {
+				this.iter = LocalSearchInterfaceImpl.this.provider.sampleNeighbours(this.solution).iterator();
+			}
+			return this.iter;
+		}
+	}
+	private static final long maxTime = 5*1000L;
+	public static LocalSearchInterfaceImpl create(MyResource res, String name, Evaluable expr, EObject context, SimpleStream<Change<?>> stream,
+			NeighborhoodProvider provider, double originalQuality) {
+		return new LocalSearchInterfaceImpl(res, name, expr, context, stream, provider, originalQuality, -1, -1);
+	}
+	public static LocalSearchInterfaceImpl create(MyResource res, String name, Evaluable expr, EObject context, SimpleStream<Change<?>> stream,
+			NeighborhoodProvider provider, double originalQuality, int maxNeighbors, int maxSolutions) {
+		return new LocalSearchInterfaceImpl(res, name, expr, context, stream, provider, originalQuality, maxNeighbors, maxSolutions);
+	}
 	private Evaluable orieval;
 	private String name;
 	private EObject context;
 	private SimpleStream<Change<?>> stream;
 	private MyResource clonedRes;
-	private WeakReference<MyResource> originalRes;
-	private EcoreUtil.Copier copier;
-	private EcoreTransferFunction transferFunc;
-	private int processedChanges = 0;
-	private CostProvider costProvider = CostProvider.DEFAULT_PROVIDER;
 	
+	private WeakReference<MyResource> originalRes;
+	
+	private EcoreUtil.Copier copier;
+	
+	private EcoreTransferFunction transferFunc;
+	
+	private int processedChanges = 0;
+	
+	private CostProvider costProvider = CostProvider.DEFAULT_PROVIDER;
+	private boolean isInterrpted = false;
 	private ProposalList<Double,? extends Proposal<Double,?>> myProposals =
 			new ProposalListImpl<>();
-	
 	private boolean isFinished;
-	
 	private NeighborhoodProvider provider = NeighborhoodProvider.DEFAULT_DIRECTFIX;
+	
 	private int maxNeighbors = Integer.MAX_VALUE;
+	
 	private int maxSolutions = Integer.MAX_VALUE;
+	
 	private double objectReduction = 0.0002;
-	private double originalQuality = 0.0;
 	
-	@Override
-	public NeighborhoodProvider getNeighborhood() {
-		return provider;
-	}
+	private double originalQuality = 0.0; 
 	
-	@Override
-	public void setNeighborhood(NeighborhoodProvider provider) {
-		this.provider = provider;
-	}
+	private Resource clonedResRes;
+		
+	private long stepTime = maxTime/10;
+	
+	private long totalTime = Long.MAX_VALUE;
+	
+	private PriorityQueue<SolutionState> curSolutions = new PriorityQueue<>();
+	
+	private Set<List<Change<?>>> allSolutions = new HashSet<>();
+
+	private EvaluableManager manager = new EvaluableManagerImpl();
+
+	private boolean abort= false;
+
+	private int calculatedSolutions = 0;
+	
+
+	private SearchType curType = SearchType.SIMULATED_ANNEALING;
+
+	private List<Change<?>> checkSolutions = new ArrayList<>();
+	
+	private List<Change<?>> returnedSolutions = new ArrayList<>();
+	
+	private int curCheckSolutionIndex = 0;
+	
+	
 	
 	private LocalSearchInterfaceImpl(MyResource res, String name, Evaluable expr, EObject context, SimpleStream<Change<?>> stream,
 			NeighborhoodProvider provider, double originalQuality, int maxNeighbors, int maxSolutions) {
@@ -91,82 +176,34 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 		this.originalQuality = originalQuality;
 		this.maxNeighbors = maxNeighbors;
 		this.maxSolutions = maxSolutions;
-		processedChanges = provider == NeighborhoodProvider.DEFAULT_LOCALSEARCH?100:0;
-		this.maxSolutions+= processedChanges;
+		this.processedChanges = provider == NeighborhoodProvider.DEFAULT_LOCALSEARCH?100:0;
+		this.maxSolutions+= this.processedChanges;
 
 		//Theoretisch k�nnte man hier statisch slicen
 		initResourceCopy(res,context);
 		
 	}
-	
-	private Resource clonedResRes; 
-	
-	public void initResourceCopy(MyResource res, EObject context) {
-		copier = new EcoreUtil.Copier();
+	@Override
+	public void abortSearch() {
 		
-		this.clonedResRes = res.clone(copier);
-		this.clonedRes = MyResource.get(this.clonedResRes);
-		this.context = copier.get(context);
-		this.originalRes = new WeakReference<MyResource>(res);
-		transferFunc = new EcoreMapTransferFunction(originalRes.get().getResource(),
-				clonedRes.getResource(), copier);
+		this.abort = true;
+		/*stepTime = totalTime = 0;
+		clonedRes = null;
+		copier = null;
+		transferFunc = null;
+		curSolutions = null;*/
 	}
-		
-	public static LocalSearchInterfaceImpl create(MyResource res, String name, Evaluable expr, EObject context, SimpleStream<Change<?>> stream,
-			NeighborhoodProvider provider, double originalQuality, int maxNeighbors, int maxSolutions) {
-		return new LocalSearchInterfaceImpl(res, name, expr, context, stream, provider, originalQuality, maxNeighbors, maxSolutions);
-	}
-	
-	public static LocalSearchInterfaceImpl create(MyResource res, String name, Evaluable expr, EObject context, SimpleStream<Change<?>> stream,
-			NeighborhoodProvider provider, double originalQuality) {
-		return new LocalSearchInterfaceImpl(res, name, expr, context, stream, provider, originalQuality, -1, -1);
-	}
-	
-	public EcoreTransferFunction toThisResource() {
-		return transferFunc;
-	}
-	
-	public EcoreTransferFunction toOriginalResource() {
-		return transferFunc.inverse();
-	}
-
-	@Override
-	public LocalSearchInterface clone() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void transfer(EcoreTransferFunction func) {
-		context = func.forward(context);
-	}
-
-	@Override
-	public Evaluable<?,?> getOriginalEvaluable() {
-		return orieval;
-	}
-	
-
-	@Override
-	public EObject getContext() {
-		return context;
-	}
-
-	@Override
-	public SimpleStream<Change<?>> getStream() {
-		return stream;
-	}
-	
 	private Change<?>[] buildOriginalResourceChange(List<Change<?>> oldchanges, Change<?>... toAdd) {
-		List<Change<?>> newchanges = new ArrayList<Change<?>>();
+		List<Change<?>> newchanges = new ArrayList<>();
 		EcoreTransferFunction toOriginal = toOriginalResource();
-		List<Change<?>> totalOldChanges = new ArrayList<Change<?>>();
+		List<Change<?>> totalOldChanges = new ArrayList<>();
 		for (Change<?> ch: oldchanges) {
 			totalOldChanges.add(ch);
 		}
 		for (Change<?> ch: toAdd) {
 			totalOldChanges.add(ch);
 		}
-		Change<?> oldr = new CompositeChangeImpl(clonedRes.getResource(), totalOldChanges);
+		Change<?> oldr = new CompositeChangeImpl(this.clonedRes.getResource(), totalOldChanges);
 		oldr.removeEmptyWhenExecuting();
 		oldr.removeUnnecessarySubchanges();
 		if (oldr.unbox().size() == 1) {
@@ -175,141 +212,46 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 		Change<?> newr = oldr.transfered(toOriginal);		
 		return new Change<?>[]{oldr,newr};
 	}
-	
-	private static final long maxTime = 5*1000L;
-	
-	
-	
-	private long stepTime = maxTime/10;
-	private long totalTime = Long.MAX_VALUE;
-	private PriorityQueue<SolutionState> curSolutions = new PriorityQueue<SolutionState>();
-	private Set<List<Change<?>>> allSolutions = new HashSet<>();
-	
-	public void setTime(long stepTimeMs, long totalTimeMs) {
-		this.stepTime = stepTimeMs;
-		this.totalTime = totalTimeMs;
+	@Override
+	public LocalSearchInterface clone() {
+		throw new UnsupportedOperationException();
 	}
-	
-	private EvaluableManager manager = new EvaluableManagerImpl();
 	
 	@Override
-	public synchronized void initSearch() {
-		
-
-		EvaluationState state = manager.basicEvaluate(clonedRes,getOriginalEvaluable(), getContext());
-		Object ret = state.getBasicResult();
-		//System.out.println("Evaluation of " + name+" was " + ret + " ("+getOriginalEvaluable()+")");
-		if (!(ret instanceof Boolean) || !((Boolean)ret)) {
-			double curQuality = state.getQuality();
-			EvalResult res = state.getResult();
-			FixAttemptReferenceInfo completeInfo = res.getCompleteReferenceInfo();
-			LocalSearchPartialSolution initSol = new LocalSearchPartialSolution(new Stack<Change<?>>(), curQuality, provider.getBaseFixes(res));
-			allSolutions.add(new ArrayList<>());
-			curSolutions.add(new SolutionState(initSol, provider.getNeighbours(initSol).iterator()));
+	public void copyFrom(LocalSearchInterface localSearchInterface, boolean reuseResource) {
+		if (!(localSearchInterface instanceof LocalSearchInterfaceImpl)) {
+			throw new UnsupportedOperationException("Can't copy localSearchInterfaceImpl with different class");
 		}
-			
+		LocalSearchInterfaceImpl other = (LocalSearchInterfaceImpl)localSearchInterface;
+		this.checkSolutions = other.getReturnedOrCheckSolutions();
+		
 	}
 	
-	private boolean abort= false;
-
-	@Override
-	public void abortSearch() {
-		
-		abort = true;
-		/*stepTime = totalTime = 0;
-		clonedRes = null;
-		copier = null;
-		transferFunc = null;
-		curSolutions = null;*/
-	}
-	
-	private class SolutionState implements Comparable<SolutionState> {
-		
-		public SolutionState(LocalSearchPartialSolution solution, Iterator<? extends Change<?>> iter) {
-			this.solution = solution;
-			this.iter = iter;
-		}
-		
-		private LocalSearchPartialSolution solution;
-		private Iterator<? extends Change<?>> iter;
-		private int usedSolutions;
-		
-		public Iterator<? extends Change<?>> iter() {
-			int i = 0;
-			while (iter == null || !iter.hasNext() && ++i < 10) {
-				iter = provider.getNeighbours(solution).iterator();
-			}
-			return iter;
-		}
-		
-		public void addUsedSolution(int num) {
-			usedSolutions+= num;
-		}
-		
-		public double getEffectiveQuality() {
-			return solution.getQuality()-usedSolutions*objectReduction;
-		}
-
-		@Override
-		public int compareTo(SolutionState arg0) {
-			int ret = -Double.compare(getEffectiveQuality(), arg0.getEffectiveQuality());
-			return ret;
-		}
-
-		public LocalSearchPartialSolution getSolution() {
-			return solution;
-		}
-
-		public double getOriginalQuality() {
-			return solution.getImproveQuality();
-		}
-
-		public Iterator<? extends Change<?>> sampledIter() {
-			int i = 0;
-			while (iter == null || !iter.hasNext() && ++i < 10) {
-				iter = provider.sampleNeighbours(solution).iterator();
-			}
-			return iter;
-		}
-	}
-	
-	public void run() {
-		doSomeSearch();
-	}
-	
-	private int calculatedSolutions = 0;
-	
-	public static enum SearchType {
-		DEFAULT, SIMULATED_ANNEALING
-	}
-	
-	private SearchType curType = SearchType.SIMULATED_ANNEALING;
-
 	@Override
 	public synchronized boolean doSomeSearch() {
 		try {
-		if (abort) {
+		if (this.abort) {
 			return false;
 		}
-		stepTime = Math.min(totalTime, stepTime);
-		totalTime-= stepTime;
-		double endTime = new Date().getTime()+stepTime;
+		this.stepTime = Math.min(this.totalTime, this.stepTime);
+		this.totalTime-= this.stepTime;
+		double endTime = new Date().getTime()+this.stepTime;
 		int numActions = 200;
 		int curAction = 0;
-		if (curCheckSolutionIndex < checkSolutions.size()) {
+		if (this.curCheckSolutionIndex < this.checkSolutions.size()) {
 			
-			for (; curCheckSolutionIndex < checkSolutions.size(); ++curCheckSolutionIndex) {
-				if (abort || new Date().getTime() >= endTime) {
+			for (; this.curCheckSolutionIndex < this.checkSolutions.size(); ++this.curCheckSolutionIndex) {
+				if (this.abort || new Date().getTime() >= endTime) {
 					//System.out.println("Time elapsed!");
 					return false;
 				}
-				Change<?> oriChange = checkSolutions.get(curCheckSolutionIndex);
-				Change<?> curChange = oriChange.transfered(transferFunc);
+				Change<?> oriChange = this.checkSolutions.get(this.curCheckSolutionIndex);
+				Change<?> curChange = oriChange.transfered(this.transferFunc);
 				Undoer undoer = curChange.execute();
-				clonedRes.checkResource();
+				this.clonedRes.checkResource();
 				try {
-					++processedChanges;
-					EvaluationState state = manager.basicEvaluate(clonedRes,getOriginalEvaluable(), getContext());
+					++this.processedChanges;
+					EvaluationState state = this.manager.basicEvaluate(this.clonedRes,getOriginalEvaluable(), getContext());
 					Object ret = state.getBasicResult();
 					//System.out.println("Evaluation of " + name+" was " + ret + " ("+getOriginalEvaluable()+")");
 					if (!(ret instanceof Boolean) || !((Boolean)ret)) {
@@ -319,21 +261,21 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 						res.printAllDirectFixingActions();
 						FixAttemptReferenceInfo completeInfo = res.getCompleteReferenceInfo();
 						completeInfo.printComplete();
-						Stack<Change<?>> alStack = new Stack<Change<?>>();
+						Stack<Change<?>> alStack = new Stack<>();
 						alStack.addAll(curChange.unbox());
-						if (allSolutions.add(oriChange.unbox())) {
-							 if (curQuality > originalQuality) {
+						if (this.allSolutions.add(oriChange.unbox())) {
+							 if (curQuality > this.originalQuality) {
 								 undoer.undo();
 								 LocalSearchPartialSolution initSol = new LocalSearchPartialSolution(alStack, curQuality,  res.getAllDirectFixingActions());
-								 curSolutions.add(new SolutionState(initSol, provider.getNeighbours(initSol).iterator()));
-								 returnedSolutions.add(oriChange);
+								 this.curSolutions.add(new SolutionState(initSol, this.provider.getNeighbours(initSol).iterator()));
+								 this.returnedSolutions.add(oriChange);
 								 getStream().add(curChange, oriChange, curQuality, oriChange.getCosts());
 								 undoer = curChange.execute();
 							 }
 						}
 					} else {
-						 if (allSolutions.add(oriChange.unbox())) {
-							 returnedSolutions.add(oriChange);
+						 if (this.allSolutions.add(oriChange.unbox())) {
+							 this.returnedSolutions.add(oriChange);
 							 undoer.undo();
 							 if (!GlobalSearch.FILTER_GRAMMAR_ERROR ) {
 								 getStream().add(curChange,oriChange, 1.0, oriChange.getCosts());
@@ -343,29 +285,29 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 					}
 				} finally {
 					undoer.undo();
-					clonedRes.checkResource();
+					this.clonedRes.checkResource();
 				}
 			}
-			if (curCheckSolutionIndex >= checkSolutions.size() && !checkSolutions.isEmpty()) {
-				checkSolutions.clear();
+			if (this.curCheckSolutionIndex >= this.checkSolutions.size() && !this.checkSolutions.isEmpty()) {
+				this.checkSolutions.clear();
 			}
 		}
 		Copier newCopier = new EcoreUtil.Copier();
-		Resource oldBase = clonedRes.clone(newCopier);
+		Resource oldBase = this.clonedRes.clone(newCopier);
 		
-		if (curType == SearchType.SIMULATED_ANNEALING) {
-			while (!curSolutions.isEmpty()) {
-				if (abort || (++curAction > numActions)) {
+		if (this.curType == SearchType.SIMULATED_ANNEALING) {
+			while (!this.curSolutions.isEmpty()) {
+				if (this.abort || (++curAction > numActions)) {
 					//System.out.println("Time elapsed!");
 					return false;
 				}
-				if (processedChanges > maxSolutions) {
-					abort = true;
+				if (this.processedChanges > this.maxSolutions) {
+					this.abort = true;
 					return false;
 				}
-				++processedChanges;
+				++this.processedChanges;
 				
-				SolutionState original = curSolutions.poll();
+				SolutionState original = this.curSolutions.poll();
 				
 				int changeNumb = 2;
 				Random random = new Random();
@@ -374,8 +316,8 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 				}
 				
 
-				List<Undoer> undoers = new ArrayList<Undoer>();
-				List<Change<?>> addChanges = new ArrayList<Change<?>>();
+				List<Undoer> undoers = new ArrayList<>();
+				List<Change<?>> addChanges = new ArrayList<>();
 				try {
 				for (Change<?> change: original.getSolution().getChanges()) {
 					undoers.add(change.execute());
@@ -383,7 +325,7 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 				
 				SolutionState changed = original;
 				SolutionState best = original;
-				List<LocalSearchPartialSolution> clearSolutions = new ArrayList<LocalSearchPartialSolution>();
+				List<LocalSearchPartialSolution> clearSolutions = new ArrayList<>();
 				
 				for (int chn = 0; chn < changeNumb; ++chn) {
 					Iterator<? extends Change<?>> chIter = changed.sampledIter();
@@ -418,12 +360,12 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 						 Undoer undoer = ch.execute();
 						 undoers.add(undoer);
 						 try {
-							 EvaluationState state = manager.basicEvaluate(clonedRes,getOriginalEvaluable(), getContext());
+							 EvaluationState state = this.manager.basicEvaluate(this.clonedRes,getOriginalEvaluable(), getContext());
 							 Object ret = state.getBasicResult();
 
 							 EvalResult res = state.getResult();
 							 double curQuality = state.getQuality();
-							 LocalSearchPartialSolution toAdd = changed.getSolution().added(ch, curQuality, provider.getBaseFixes(res));
+							 LocalSearchPartialSolution toAdd = changed.getSolution().added(ch, curQuality, this.provider.getBaseFixes(res));
 							 SolutionState newChanged = new SolutionState(toAdd,null);
 							 if (curQuality > best.getOriginalQuality() || curQuality >= 1.0) {
 								 if (curQuality > best.getOriginalQuality()) {
@@ -434,11 +376,11 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 										undoers.get(i).undo();
 								 }
 								 Change<?>[] oriNewChange = buildOriginalResourceChange(changed.getSolution().getChanges(),ch);
-								 if (allSolutions.add(oriNewChange[0].unbox())) {
-									 returnedSolutions.add(oriNewChange[1]);
+								 if (this.allSolutions.add(oriNewChange[0].unbox())) {
+									 this.returnedSolutions.add(oriNewChange[1]);
 									 getStream().add(oriNewChange[0],oriNewChange[1], curQuality, oriNewChange[1].getCosts());
 								 }
-								 undoers = new ArrayList<Undoer>();
+								 undoers = new ArrayList<>();
 								 for (Change<?> change: changed.getSolution().getChanges()) {
 									undoers.add(change.execute());
 								 }
@@ -461,12 +403,12 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 					
 				}
 				
-				curSolutions.add(best);
-				if (provider != NeighborhoodProvider.DEFAULT_DIRECTFIX) {
+				this.curSolutions.add(best);
+				if (this.provider != NeighborhoodProvider.DEFAULT_DIRECTFIX) {
 					System.out.println("Local search tries changes " + Arrays.toString(addChanges.toArray()));
 				}
 			}  catch (Exception e)  {
-				if (abort) {
+				if (this.abort) {
 					return false;
 				}
 				e.printStackTrace();
@@ -486,18 +428,18 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 		} else {
 		
 		try {
-		while (!curSolutions.isEmpty()) {
-			if (abort || new Date().getTime() >= endTime) {
+		while (!this.curSolutions.isEmpty()) {
+			if (this.abort || new Date().getTime() >= endTime) {
 				//System.out.println("Time elapsed!");
 				return false;
 			}
-			if (processedChanges > maxSolutions) {
-				abort = true;
+			if (this.processedChanges > this.maxSolutions) {
+				this.abort = true;
 				return false;
 			}
-			++processedChanges;
-			SolutionState curSol = curSolutions.poll();
-			List<Undoer> undoers = new ArrayList<Undoer>();
+			++this.processedChanges;
+			SolutionState curSol = this.curSolutions.poll();
+			List<Undoer> undoers = new ArrayList<>();
 			try {
 			for (Change<?> change: curSol.getSolution().getChanges()) {
 				undoers.add(change.execute());
@@ -513,16 +455,16 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 				if (ch.isIdentity()) {
 					continue;
 				}
-				if (curNeighbors++ >= maxNeighbors) {
+				if (curNeighbors++ >= this.maxNeighbors) {
 					//Store Iterator
 					curSol.addUsedSolution(curNeighbors);
-					curSolutions.add(curSol);
+					this.curSolutions.add(curSol);
 					break;
 				}
 				boolean previouslyName = false;
-				Set<String> acceptableNames = new HashSet<String>(Arrays.asList("R1","G1","G2","C1","C2","Bla"));
+				Set<String> acceptableNames = new HashSet<>(Arrays.asList("R1","G1","G2","C1","C2","Bla"));
 				
-				 for (EObject obj:clonedRes.iterateAllContents()) {
+				 for (EObject obj:this.clonedRes.iterateAllContents()) {
 						if (obj != null && (obj.eClass().getName().equals("Consumer") || obj.eClass().getName().equals("Computer")) ) {
 							if (!acceptableNames.contains(obj.eGet(obj.eClass().getEStructuralFeature("name")))) {
 								previouslyName = true;
@@ -535,7 +477,7 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 				 try {
 				 /*System.out.println("Trying " +ch);
 				 fact = EcoreEnvironmentFactory.INSTANCE;*/
-				 EvaluationState state = manager.basicEvaluate(clonedRes,getOriginalEvaluable(), getContext());
+				 EvaluationState state = this.manager.basicEvaluate(this.clonedRes,getOriginalEvaluable(), getContext());
 				 Object ret = state.getBasicResult();
 
 				 
@@ -555,21 +497,21 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 							undoers.get(i).undo();
 					 }
 					 Change<?>[] oriNewChange = buildOriginalResourceChange(curSol.getSolution().getChanges(),ch);
-					 if (allSolutions.add(oriNewChange[0].unbox())) {
+					 if (this.allSolutions.add(oriNewChange[0].unbox())) {
 						 
-						 returnedSolutions.add(oriNewChange[1]);
+						 this.returnedSolutions.add(oriNewChange[1]);
 						 getStream().add(oriNewChange[0],oriNewChange[1], 1.0, oriNewChange[1].getCosts());
 					 }
-					 undoers = new ArrayList<Undoer>();
+					 undoers = new ArrayList<>();
 					 for (Change<?> change: curSol.getSolution().getChanges()) {
 						undoers.add(change.execute());
 					 }
 				 } else {
 					 EvalResult res = state.getResult();
 					 double curQuality = state.getQuality();
-					 LocalSearchPartialSolution toAdd = curSol.getSolution().added(ch, curQuality, provider.getBaseFixes(res));
-					 if (allSolutions.add(toAdd.getChanges())) {
-						 curSolutions.add(new SolutionState(toAdd,null));
+					 LocalSearchPartialSolution toAdd = curSol.getSolution().added(ch, curQuality, this.provider.getBaseFixes(res));
+					 if (this.allSolutions.add(toAdd.getChanges())) {
+						 this.curSolutions.add(new SolutionState(toAdd,null));
 						 if (curQuality > curSol.getOriginalQuality()) {
 							
 							 
@@ -579,9 +521,9 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 									undoers.get(i).undo();
 							 }
 							 Change<?>[] oriNewChange = buildOriginalResourceChange(curSol.getSolution().getChanges(),ch);
-							 returnedSolutions.add(oriNewChange[1]);
+							 this.returnedSolutions.add(oriNewChange[1]);
 							 getStream().add(oriNewChange[0],oriNewChange[1], curQuality, oriNewChange[1].getCosts());
-							 undoers = new ArrayList<Undoer>();
+							 undoers = new ArrayList<>();
 							 for (Change<?> change: curSol.getSolution().getChanges()) {
 								undoers.add(change.execute());
 							 }
@@ -599,7 +541,7 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 				 }
 					if (!previouslyName) {
 					
-					 for (EObject obj:clonedRes.iterateAllContents()) {
+					 for (EObject obj:this.clonedRes.iterateAllContents()) {
 							if (obj != null && (obj.eClass().getName().equals("Consumer") || obj.eClass().getName().equals("Computer")) ) {
 								if (!acceptableNames.contains(obj.eGet(obj.eClass().getEStructuralFeature("name")))) {
 									previouslyName = true;
@@ -612,7 +554,7 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 			
 		
 			} catch (Exception e)  {
-				if (abort) {
+				if (this.abort) {
 					return false;
 				}
 				e.printStackTrace();
@@ -626,14 +568,14 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 					undoers.get(i).undo();
 				}
 			}
-			if (!clonedRes.equals(MyResource.get(oldBase), new EcoreMapTransferFunction(clonedRes.getResource(),
+			if (!this.clonedRes.equals(MyResource.get(oldBase), new EcoreMapTransferFunction(this.clonedRes.getResource(),
 					oldBase, newCopier))) {
 				System.err.println("....");
 			}
 		}
 			
 		} catch (Exception e) {
-			if (abort) {
+			if (this.abort) {
 				return false;
 			}
 			StringWriter writer = new StringWriter();
@@ -644,54 +586,120 @@ public class LocalSearchInterfaceImpl implements LocalSearchInterface {
 		}
 		
 		}
-		if (curSolutions.isEmpty()) {
-			isFinished = true;
+		if (this.curSolutions.isEmpty()) {
+			this.isFinished = true;
 		}
 		} catch (Exception e) {
-			if (abort) {return false;}
+			if (this.abort) {return false;}
 			throw e;
 		}
-		return isFinished;
+		return this.isFinished;
+	}
+	
+	@Override
+	public EObject getContext() {
+		return this.context;
+	}
+	
+	@Override
+	public NeighborhoodProvider getNeighborhood() {
+		return this.provider;
 	}
 
 	@Override
-	public boolean isFinished() {
-		return isFinished;
-	}
-
-	@Override
-	public boolean isObsolete(Resource curResource) {
-		return abort || originalRes.get() == null || !originalRes.get().getResource().equals(curResource);
+	public Evaluable<?,?> getOriginalEvaluable() {
+		return this.orieval;
 	}
 	
 	@Override
 	public double getQuality() {
-		return -processedChanges;
+		return -this.processedChanges;
 	}
 	
-	private List<Change<?>> checkSolutions = new ArrayList<>();
-	private List<Change<?>> returnedSolutions = new ArrayList<>();
-	private int curCheckSolutionIndex = 0;
-	
 	public List<Change<?>> getReturnedOrCheckSolutions() {
-		if (checkSolutions.isEmpty()) {
-			return returnedSolutions;
+		if (this.checkSolutions.isEmpty()) {
+			return this.returnedSolutions;
 		}
-		return checkSolutions;
+		return this.checkSolutions;
 	}
 	
 	public List<Change<?>> getReturnedSolutions() {
 		return this.returnedSolutions;
 	}
+	
+	@Override
+	public SimpleStream<Change<?>> getStream() {
+		return this.stream;
+	}
+	
+	public void initResourceCopy(MyResource res, EObject context) {
+		this.copier = new EcoreUtil.Copier();
+		
+		this.clonedResRes = res.clone(this.copier);
+		this.clonedRes = MyResource.get(this.clonedResRes);
+		this.context = this.copier.get(context);
+		this.originalRes = new WeakReference<>(res);
+		this.transferFunc = new EcoreMapTransferFunction(this.originalRes.get().getResource(),
+				this.clonedRes.getResource(), this.copier);
+	}
 
 	@Override
-	public void copyFrom(LocalSearchInterface localSearchInterface, boolean reuseResource) {
-		if (!(localSearchInterface instanceof LocalSearchInterfaceImpl)) {
-			throw new UnsupportedOperationException("Can't copy localSearchInterfaceImpl with different class");
-		}
-		LocalSearchInterfaceImpl other = (LocalSearchInterfaceImpl)localSearchInterface;
-		this.checkSolutions = other.getReturnedOrCheckSolutions();
+	public synchronized void initSearch() {
 		
+
+		EvaluationState state = this.manager.basicEvaluate(this.clonedRes,getOriginalEvaluable(), getContext());
+		Object ret = state.getBasicResult();
+		//System.out.println("Evaluation of " + name+" was " + ret + " ("+getOriginalEvaluable()+")");
+		if (!(ret instanceof Boolean) || !((Boolean)ret)) {
+			double curQuality = state.getQuality();
+			EvalResult res = state.getResult();
+			FixAttemptReferenceInfo completeInfo = res.getCompleteReferenceInfo();
+			LocalSearchPartialSolution initSol = new LocalSearchPartialSolution(new Stack<Change<?>>(), curQuality, this.provider.getBaseFixes(res));
+			this.allSolutions.add(new ArrayList<>());
+			this.curSolutions.add(new SolutionState(initSol, this.provider.getNeighbours(initSol).iterator()));
+		}
+			
+	}
+
+	@Override
+	public void interrupt() {
+		abortSearch();
+	}
+
+	@Override
+	public boolean isFinished() {
+		return this.isFinished;
+	}
+	
+	@Override
+	public boolean isObsolete(Resource curResource) {
+		return this.abort || this.originalRes.get() == null || !this.originalRes.get().getResource().equals(curResource);
+	}
+	
+	@Override
+	public void run() {
+		doSomeSearch();
+	}
+	@Override
+	public void setNeighborhood(NeighborhoodProvider provider) {
+		this.provider = provider;
+	}
+	public void setTime(long stepTimeMs, long totalTimeMs) {
+		this.stepTime = stepTimeMs;
+		this.totalTime = totalTimeMs;
+	}
+	
+	public EcoreTransferFunction toOriginalResource() {
+		return this.transferFunc.inverse();
+	}
+	
+	public EcoreTransferFunction toThisResource() {
+		return this.transferFunc;
+	}
+
+	@Override
+	public void transfer(EcoreTransferFunction func) {
+		this.context = func.forward(this.context);
 	}
 
 

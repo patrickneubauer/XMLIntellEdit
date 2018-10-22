@@ -108,6 +108,10 @@ public class MyResource {
 		Set<EPackage> knownPackages = new HashSet<>();
 
 		
+		private long fakeId = 0;
+		
+		
+		
 		public void augmentWith(EPackage pkg) {
 			Iterable<EClass> classes = IteratorUtils.filterType(pkg.getEClassifiers(),
 					EClass.class);
@@ -136,9 +140,8 @@ public class MyResource {
 			}
 			augmentWith(classes);
 		}
-		
-		
-		
+
+
 		public void augmentWith(Iterable<EClass> classes) {
 			EcoreInfo ecoreInfo = this;
 			Map<EClass, EClassInfo> eclassMap = ecoreInfo.eclassMap;
@@ -250,15 +253,14 @@ public class MyResource {
 				}
 			}
 		}
-
-
+		
 		public void augmentWith(Resource res) {
 			this.knownResources.add(res);
 			Iterable<EClass> classes = (Iterable<EClass>) (() -> IteratorUtils.filterType(res.getAllContents(),
 					EClass.class));
 			augmentWith(classes);
 		}
-		
+
 		public List<Evaluable<?, ?>> getApplicableEvaluators(EClass from) {
 			// TODO: ...
 			return this.eclassMap.computeIfAbsent(from, x -> {
@@ -283,13 +285,13 @@ public class MyResource {
 		public Evaluable<?, ?> getEvaluable(String forId) {
 			return this.idToEvaluable.get(forId);
 		}
-
+		
 		public OCLExpression getExpression(String forId) {
 			return this.idToOCLExpression.get(forId);
 		}
 
 		public String getID(Evaluable expr) {
-			return this.evaluableExpressionToId.get(expr);
+			return this.evaluableExpressionToId.computeIfAbsent(expr,e->"EXPR"+ (++this.fakeId));
 		}
 
 		public String getID(OCLExpression expr) {
@@ -506,7 +508,7 @@ public class MyResource {
 		 * (Iterable<EObject>)()->getResource().getAllContents()) {
 		 * copier.copy(eobj); }
 		 */
-		Set<EObject> addCopy = new HashSet<EObject>();
+		Set<EObject> addCopy = new HashSet<>();
 		getResource().getAllContents().forEachRemaining(x->{
 			if (x instanceof AddCopyable) {
 				AddCopyable ac =(AddCopyable)x;
