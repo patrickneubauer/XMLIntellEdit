@@ -63,6 +63,7 @@ public class SimpleModelEqualizer<Left extends EObject, Right extends EObject> i
 				Method m = targetEl.getClass().getMethod("setEClass", EClass.class);
 				m.invoke(targetEl, srcEl.eClass());
 			} catch (Exception e) {
+				System.err.println("Cannot convert from "+targetEl+" to "+srcEl);
 				e.printStackTrace();
 				System.err.println(e.getMessage());
 			}
