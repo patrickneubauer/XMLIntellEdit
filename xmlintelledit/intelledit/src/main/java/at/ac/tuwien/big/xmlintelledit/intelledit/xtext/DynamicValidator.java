@@ -35,7 +35,7 @@ import org.eclipse.xtext.validation.Issue;
 
 import com.google.common.base.Objects;
 
-import at.ac.tuwien.big.vfunc.nbasic.constraint.OclDerivationEvaluable;
+//import at.ac.tuwien.big.vfunc.nbasic.constraint.OclDerivationEvaluable; // TODO: REQUIRES INTEGRATION WITH VIRTUALEDIT FRAMEWORK (see: https://github.com/rbill/virtualedit/tree/master/VirtModel4)
 import at.ac.tuwien.big.xmlintelledit.intelledit.change.BasicChange;
 import at.ac.tuwien.big.xmlintelledit.intelledit.change.Change;
 import at.ac.tuwien.big.xmlintelledit.intelledit.change.ChangeType;
@@ -478,12 +478,18 @@ public class DynamicValidator extends org.eclipse.xtext.validation.AbstractDecla
 					if (message != null) {
 						issueDescrBase = message+"\n";
 					} 
-				} else if (evaluable instanceof OclDerivationEvaluable) {
+				} 
+				/*else if (evaluable instanceof OclDerivationEvaluable) {
 					OclDerivationEvaluable oe = (OclDerivationEvaluable)evaluable;
 					String message = oe.evaluateMessage(theObj);
 					if (message != null) {
 						issueDescrBase = message+"\n";
 					}
+				}*/
+				else {
+					// TODO: REQUIRES INTEGRATION WITH VIRTUALEDIT FRAMEWORK (see: https://github.com/rbill/virtualedit/tree/master/VirtModel4)
+					System.err.println("POSSIPLY INTEGRATION WITH VIRTUALEDIT FRAMEWORK MISSING !");
+					System.err.println("CHECK IF VARIABLE 'evaluable' IS INSTANCE OF 'OclDerivationEvaluable' (PART OF 'VirtModel4' PROJECT: https://github.com/rbill/virtualedit/tree/master/VirtModel4) AND INTEGRATE ACCORDINGLY.");
 				}
 				String otherIssueDesc = "";
 				Map<FixAttemptReference,String> refToId = new HashMap<>();
